@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+// @ts-ignore
+import animations from '@midudev/tailwind-animations'
 
 const config: Config = {
   content: [
@@ -13,8 +15,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        fondo: "var(--fondo)",
+        fondoSecundario: "var(--fondo-secundario)",
+        colorBase: "var(--color-base)",
+        colorBaseSecundario: "var(--color-secundario)",
+        contraste: "var(--ccontraste)",
+      },
     },
   },
-  plugins: [],
+  plugins: [animations],
 };
 export default config;
