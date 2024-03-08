@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import BotonTema from "./components/layout/botonCambioTema";
-import BotonHeader from "./components/layout/botonesHeader";
+import HeaderScroll from "./components/layout/headerScroll";
+import Image from "next/image";
+import BotonesHeader from "./components/layout/botonesHeader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,46 +21,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("bg-fondo min-h-lvh w-full", inter.className)}>
-        <header className="w-full flex justify-center">
-          <BotonHeader/>
-          {/* <ul className="flex justify-center text-2xl gap-12">
-          <BotonHeader
-              datos={{
-                margin: 10,
-                nombre: "Ejemplo",
-              }}
-            />
-            <BotonHeader
-              datos={{
-                margin: 2,
-                nombre: "Productos",
-              }}
-            />
-            <li className="flex items-center -mx-2">
-              <Image
-                className="h-48 w-auto cursor-pointer mt-5"
+        <header className="w-full flex flex-col items-center">
+            <div className="h-32 w-32 cursor-pointer bg-white rounded-3xl flex align-middle p-5 mt-5">
+              <Image className="w-auto h-auto"
                 src="/logo.png"
                 alt="Logo de la marca"
                 width={256}
                 height={256}
               />
-            </li>
-            <BotonHeader
-              datos={{
-                margin: 2,
-                nombre: "Outlet",
-              }}
-            />
-            <BotonHeader
-              datos={{
-                margin: 10,
-                nombre: "Contacto",
-              }}
-            />
-          <BotonTema/>
-
-          </ul> */}
+            </div>
+            <BotonesHeader/>
         </header>
+          {/* Este header solo se muestra cuando la pagina esta scroleada */}
+        <HeaderScroll />
+
         {children}
       </body>
     </html>

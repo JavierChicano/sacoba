@@ -1,5 +1,5 @@
-import { insertCountry } from "@/db/inserts";
 import { Button } from "@nextui-org/react";
+import SecccionInfo from "./components/main/seccionInfo";
 
 export default function Home() {
   return (
@@ -14,13 +14,7 @@ export default function Home() {
       >
         Button
       </Button>
-      <section>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </section>
+      <SecccionInfo/>
     </main>
   );
 }

@@ -1,28 +1,16 @@
-import Image from "next/image";
+import { IconoCarrito } from "./iconoCarrito";
+import { IconoCuenta } from "./iconoCuenta";
 
-export default function BotonHeader() {
+export default function BotonesHeader() {
   return (
-    <ul className="flex items-center">
-      <li className="bg-fondoSecundario border-l-[1px] border-y-[1px] border-colorBase p-4 rounded-l-full  w-36 flex justify-center text-xl hover:bg-colorBaseSecundario hover:text-black cursor-pointer">
-        <h1 className="">Outlet</h1>
-      </li>
-      <li className="bg-fondoSecundario border-y-[1px] border-colorBase p-4 w-36 flex justify-center text-xl hover:bg-colorBaseSecundario hover:text-black cursor-pointer">
-        Packs
-      </li>
-      <li>
-        <Image
-          className="h-48 w-auto cursor-pointer"
-          src="/logo.png"
-          alt="Logo de la marca"
-          width={256}
-          height={256}
-        />
-      </li>
-      <li className="bg-fondoSecundario border-y-[1px] border-colorBase p-4 w-36 flex justify-center text-xl hover:bg-colorBaseSecundario hover:text-black cursor-pointer">
-        Productos
-      </li>
-      <li className="bg-fondoSecundario border-r-[1px] border-y-[1px] border-colorBase p-4 rounded-r-full w-36 flex justify-center text-xl hover:bg-colorBaseSecundario hover:text-black cursor-pointer">
-        Contacto
+    <ul className="flex justify-around w-3/4 m-10">
+      <li className="w-36 flex justify-center">Outlet</li>
+      <li className="w-36 flex justify-center">Packs</li>
+      <li className="w-36 flex justify-center">Productos</li>
+      <li className="w-36 flex justify-center">Contacto</li>
+      <li className="w-36 flex justify-around">
+        <IconoCarrito size={30}/>
+        <IconoCuenta size={30}/>
       </li>
     </ul>
   );
