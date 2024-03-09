@@ -1,6 +1,7 @@
+"use client"
 import DivInfo from "./divInfo";
 
-export default function SecccionInfo() {
+export default function SeccionInfo() {
   return (
     <section className="flex gap-10 w-3/4 justify-around border-2 border-colorBase p-10 m-10">
       <DivInfo

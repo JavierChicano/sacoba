@@ -12,21 +12,39 @@ export default function DivInfo({ datos }: { datos: DivInfoParams }) {
 
   useEffect(() => {
     let contador = 0;
-    const intervalo = setInterval(() => {
-      if (contador < numero) {
-        setNumeroActual(contador);
-        contador++;
-      } else {
-        clearInterval(intervalo);
-      }
-    }, 100); // Intervalo de tiempo en milisegundos
+    let intervalo: NodeJS.Timeout;
 
-    return () => clearInterval(intervalo); // Limpiar el intervalo cuando el componente se desmonta
-  }, [numero]); // Ejecutar el efecto cuando el valor de 'numero' cambie
+    const faseRapida = () => {
+      intervalo = setInterval(() => {
+        if (contador < Math.min(numero, (numero-5))) {
+          setNumeroActual(contador);
+          contador += 1;
+        } else {
+          clearInterval(intervalo);
+          faseLenta();
+        }
+      }, 50);
+    };
+
+    const faseLenta = () => {
+      intervalo = setInterval(() => {
+        if (contador <= numero) {
+          setNumeroActual(contador);
+          contador++;
+        } else {
+          clearInterval(intervalo);
+        }
+      }, 500);
+    };
+
+    faseRapida();
+
+    return () => clearInterval(intervalo);
+  }, [numero]);
 
   return (
     <div className="flex flex-col items-center">
-      <span className="text-5xl mb-4">{numero}</span>
+      <span className="text-5xl mb-4">{numeroActual}</span>
       <p className="text-lg">{texto}</p>
     </div>
   );

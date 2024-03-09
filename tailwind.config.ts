@@ -18,6 +18,7 @@ const config: Config = {
       colors: {
         fondo: "var(--fondo)",
         fondoSecundario: "var(--fondo-secundario)",
+        fondoTerciario: "var(--fondo-terciario)",
         colorBase: "var(--color-base)",
         colorBaseSecundario: "var(--color-secundario)",
         contraste: "var(--ccontraste)",

@@ -1,5 +1,8 @@
 import { Button } from "@nextui-org/react";
-import SecccionInfo from "./components/main/seccionInfo";
+import SeccionInfo from "./components/main/seccionInfo";
+import SeccionImaginacion from "./components/main/seccionImaginacion";
+import SeccionNuestrosProductos from "./components/main/seccionNuestrosProductos";
+import SeccionMarcas from "./components/main/seccionMarcas";
 
 export default function Home() {
   return (
@@ -14,7 +17,10 @@ export default function Home() {
       >
         Button
       </Button>
-      <SecccionInfo/>
+      <SeccionInfo/>
+      <SeccionImaginacion/>
+      <SeccionNuestrosProductos/>
+      <SeccionMarcas/>
     </main>
   );
 }
