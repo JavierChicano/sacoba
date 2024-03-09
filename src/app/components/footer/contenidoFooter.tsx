@@ -1,3 +1,4 @@
+import { IconoCopyright } from "../iconos/iconoCopyright";
 import DivLogo from "../layout/divLogo";
 import TituloFooter from "./tituloFooter";
 import Image from "next/image";
@@ -52,7 +53,10 @@ export default function ContenidoFooter() {
       </div>
       <aside className="w-full flex flex-col items-center gap-4">
         <DivLogo />
-        <p>Muebles Sacoba. Todos los derechos reservados</p>
+        <span className="flex gap-2">
+          <p>Muebles Sacoba. Todos los derechos reservados</p>
+          <IconoCopyright />
+        </span>
       </aside>
     </footer>
   );

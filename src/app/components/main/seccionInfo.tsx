@@ -3,7 +3,7 @@ import DivInfo from "./divInfo";
 
 export default function SeccionInfo() {
   return (
-    <section className="flex gap-10 w-3/4 justify-around border-2 border-colorBase p-10 m-10">
+    <section className="flex gap-10 w-3/4 justify-around border-2 border-colorBase p-10 m-20 mt-48">
       <DivInfo
         datos={{
           numero: 29,

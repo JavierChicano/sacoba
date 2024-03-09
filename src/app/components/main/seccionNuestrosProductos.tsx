@@ -2,7 +2,7 @@ import CardProducto from "./cardNuestrosProductos";
 
 export default function SeccionNuestrosProductos() {
     return(
-        <section className="flex flex-col flex-wrap gap-8 mb-20">
+        <section id="productos" className="flex flex-col flex-wrap gap-8 mb-20">
             <h1 className="self-center text-5xl">Nuestros productos</h1>
             <div  className="flex flex-wrap mt-48  gap-8 ">
             <CardProducto
