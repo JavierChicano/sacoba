@@ -5,4 +5,5 @@
  4 - Retocar contador en "divInfo.tsx" para que quede mas bonito
  5 - Cambiar imagenes de "nuestrosProductos.tsx"
  6 - Poner el hover de los botones del header en el footer tmb
- 
+ 7 - Arreglar visualizacion en producto ✅
+ 8 - Cambio de tema oscuro y claro
