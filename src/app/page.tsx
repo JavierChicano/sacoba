@@ -8,7 +8,6 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useCambioTema } from "../../states/states";
 import { useEffect } from "react";
-import Ejemplo from "./components/main/ejemplo";
 
 export default function Home() {
   const { cambioTema } = useCambioTema();
@@ -21,7 +20,6 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center">
       <TextoAnimado />
-
       <h1 className="text-6xl text-white mt-20 m-2 animate-bounce animate-once animate-duration-[3000ms] animate-delay-2000 animate-ease-linear animate-fill-both" >
         Encuentra la mesa que encaje contigo
       </h1>
@@ -36,7 +34,6 @@ export default function Home() {
       <SeccionInfo />
   
       <SeccionImaginacion />
-      <Ejemplo/>
       <SeccionNuestrosProductos />
       <SeccionMarcas />
     </main>

@@ -7,3 +7,4 @@
  6 - Poner el hover de los botones del header en el footer tmb
  7 - Arreglar visualizacion en producto ✅
  8 - Cambio de tema oscuro y claro
+ 8.1 - Ajustas los colores del tema claro

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { IconoCarrito } from "../iconos/iconoCarrito";
 import { IconoCuenta } from "../iconos/iconoCuenta";
 import BotonTema from "./botonCambioTema";
+import { IconUser } from '@tabler/icons-react';
 
 export default function BotonesHeader() {
   return (
@@ -15,7 +16,7 @@ export default function BotonesHeader() {
       <li className="w-36 flex justify-around items-center">
         <BotonTema/>
         <IconoCarrito size={40} />
-        <IconoCuenta size={40} />
+        <IconUser stroke={2}  size={40}/>
       </li>
     </ul>
   );

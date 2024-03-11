@@ -13,25 +13,22 @@
   --color-secundario: #2e3138;
   --contraste: #17181d;
 }
+[data-theme="dark"] {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --fondo: #17181d;
-    --fondo-secundario: #2e3138;
-    --fondo-terciario:  #5e636e;
-    --color-base: #e09145;
-    --color-secundario: #f1be8f;
-    --contraste: #f3f3f3;
-  }
+  --fondo: #17181d;
+  --fondo-secundario: #2e3138;
+  --fondo-terciario: #5e636e;
+  --color-base: #e09145;
+  --color-secundario: #f1be8f;
+  --contraste: #f3f3f3;
 }
+
 
 body {
   color: rgb(var(--foreground-rgb));
-  
 }
 
 @layer utilities {
