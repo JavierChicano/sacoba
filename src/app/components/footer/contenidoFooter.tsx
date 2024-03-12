@@ -6,8 +6,8 @@ import Image from "next/image";
 export default function ContenidoFooter() {
   return (
     <footer className="w-full border-t-2 border-colorBase py-10">
-      <div className="grid grid-cols-4 ">
-        <section>
+      <div className="max-w-7xl grid grid-cols-4 mx-auto">
+        <section className="pl-20">
           <TituloFooter titulo="Productos" />
           <ul className="mt-4">
             <li>Mesas</li>
@@ -16,7 +16,7 @@ export default function ContenidoFooter() {
             <li>A medida</li>
           </ul>
         </section>
-        <section>
+        <section className="pl-20">
           <TituloFooter titulo="Contacto" />
           <ul className="mt-4">
             <li>Formulario de contacto</li>
@@ -24,18 +24,21 @@ export default function ContenidoFooter() {
             <li className="text-colorBase">atencionCliente@gmail.com</li>
           </ul>
         </section>
-        <section>
+        <section className="pl-20">
           <TituloFooter titulo="About" />
           <ul className="mt-4">
             <li>Descargar catálogo</li>
             <li>Quienes somos</li>
           </ul>
         </section>
-        <section>
-          <TituloFooter titulo="Redes" />
-          <div></div>
+        <section className="pl-20">
+          <TituloFooter titulo="Servicios" />
+          <ul className="mt-4">
+            <li>Entrega a domicilio</li>
+            <li>Recogida en tienda</li>
+          </ul>
         </section>
-        <section className="mt-10">
+        <section className="mt-10 pl-20">
           <TituloFooter titulo="Legal" />
           <ul className="mt-4">
             <li>Aviso legal</li>
@@ -43,12 +46,9 @@ export default function ContenidoFooter() {
             <li>Condiciones de venta</li>
           </ul>
         </section>
-        <section>
-          <TituloFooter titulo="Servicios" />
-          <ul className="mt-4">
-            <li>Entrega a domicilio</li>
-            <li>Recogida en tienda</li>
-          </ul>
+        <section className="mt-10 pl-20">
+          <TituloFooter titulo="Redes" />
+          <div></div>
         </section>
       </div>
       <aside className="w-full flex flex-col items-center gap-4">

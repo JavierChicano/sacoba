@@ -3,15 +3,17 @@
 @tailwind utilities;
 
 :root {
+  
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
   --fondo: #f3f3f3;
   --fondo-secundario: #f1be8f;
+  --fondo-terciario: #5e636e;
   --color-base: #e09145;
   --color-secundario: #2e3138;
-  --contraste: #17181d;
+  --contraste: #17181d; 
 }
 [data-theme="dark"] {
   --foreground-rgb: 255, 255, 255;
@@ -25,7 +27,6 @@
   --color-secundario: #f1be8f;
   --contraste: #f3f3f3;
 }
-
 
 body {
   color: rgb(var(--foreground-rgb));

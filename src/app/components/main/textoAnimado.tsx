@@ -9,7 +9,6 @@ export default function TextoAnimado() {
         </span>
       </button>
       <style jsx>{`
-        /* === removing default button style ===*/
         .button {
           margin: 0;
           height: auto;
@@ -32,7 +31,6 @@ export default function TextoAnimado() {
           -webkit-text-stroke: 1px var(--text-stroke-color);
         }
 
-        /* this is the text, when you hover on button */
         .hover-text {
           position: absolute;
           box-sizing: border-box;

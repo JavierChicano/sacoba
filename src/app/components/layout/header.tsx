@@ -3,7 +3,6 @@ import { usePathname } from "next/navigation";
 import BotonesHeader from "./botonesHeader";
 import DivLogo from "./divLogo";
 import { useState, useEffect } from "react";
-import { cn } from "@nextui-org/react";
 
 export default function Header() {
   const pathName = usePathname();
@@ -14,9 +13,12 @@ export default function Header() {
     if (pathName === "/ProductoMesa") {
       setBackgroundImage("/portadas/portadaMesas.png");
       setTitle("Mesas de cocina");
-    } else if (pathName === "/pagina2") {
-      setBackgroundImage("/ruta/de/imagen2.jpg");
-      setTitle("Título de la página 2");
+    } else if (pathName === "/ProductoSilla") {
+      setBackgroundImage("/portadas/portadaSillas.png");
+      setTitle("Sillas de cocina");
+    } else if (pathName === "/ProductoBanco") {
+      setBackgroundImage("/portadas/portadaBancos.png");
+      setTitle("Bancos de cocina");
     } else {
       setBackgroundImage("");
       setTitle("");

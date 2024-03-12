@@ -12,9 +12,6 @@ export default function SeccionImaginacion() {
           width={256}
           height={256}
         />
-        <div className="text-2xl bg-fondoSecundario p-2 self-end mr-4 -mt-10 w-32 flex justify-center">
-          Mesas
-        </div>
       </BordeCard>
       <BordeCard>
       <Image

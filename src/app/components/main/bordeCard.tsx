@@ -15,7 +15,7 @@ export default function BordeCard({ children }: { children: ReactNode }) {
       <style jsx>{`
         .card {
             overflow: visible;
-            width: 189px;
+            width: 400px;
             height: 254px;
           }
           .content {
@@ -25,6 +25,7 @@ export default function BordeCard({ children }: { children: ReactNode }) {
             transition: transform 300ms;
             box-shadow: 0px 0px 10px 1px #000000ee;
             border-radius: 5px;
+            background-color: #151515;
           }
           
           .back {
@@ -50,8 +51,8 @@ export default function BordeCard({ children }: { children: ReactNode }) {
             position: absolute;
             content: ' ';
             display: block;
-            width: 160px;
-            height: 160%;
+            width: 200px;
+            height: 200%;
             background: linear-gradient(90deg, transparent, #ff9966, #ff9966, #ff9966, #ff9966, transparent);
             animation: rotation_481 5000ms infinite linear;
           }
@@ -84,20 +85,6 @@ export default function BordeCard({ children }: { children: ReactNode }) {
             }
           }
           
-          
-          @keyframes floating {
-            0% {
-              transform: translateY(0px);
-            }
-          
-            50% {
-              transform: translateY(10px);
-            }
-          
-            100% {
-              transform: translateY(0px);
-            }
-          }
       `}</style>
     </div>
   );

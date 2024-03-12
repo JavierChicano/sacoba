@@ -1,19 +1,11 @@
 "use client";
 import { cn } from "@nextui-org/react";
 import { useTheme } from "next-themes";
-import React, { useEffect } from "react";
+import React from "react";
 import { IconMoon, IconSun } from "@tabler/icons-react";
 
 export default function BotonTema() {
-  const { setTheme, theme, resolvedTheme } = useTheme();
-
-  useEffect(() => {
-    // Verifica si el tema resuelto por el sistema es diferente al actual,
-    // y establece el tema según el tema resuelto por el sistema.
-    if (resolvedTheme !== theme) {
-      setTheme(resolvedTheme || "light");
-    }
-  }, [resolvedTheme, theme, setTheme]);
+  const { setTheme, theme } = useTheme();
 
   return (
     <div className="w-auto h-12 flex items-center">
