@@ -1,24 +1,17 @@
 import {
-  bigint,
-  boolean,
-  int,
-  mysqlEnum,
-  mysqlTable,
-  serial,
-  text,
-  uniqueIndex,
-  varchar,
-} from "drizzle-orm/mysql-core";
+  integer,
+  sqliteTable, text,
+} from "drizzle-orm/sqlite-core";
 
-export const usuarios = mysqlTable("usuarios", {
-  correoElectronico: varchar("correoElectronico", { length: 256 }).primaryKey(),
-  nombre: varchar("nombre", { length: 256 }).notNull(),
-  apellidos: varchar("apellidos", { length: 256 }).notNull(),
-  contraseña: varchar("contraseña", { length: 256 }).notNull(),
+export const usuarios = sqliteTable("usuarios", {
+  correoElectronico: text("correoElectronico").primaryKey(),
+  nombre: text("nombre").notNull(),
+  apellidos: text("apellidos").notNull(),
+  contraseña: text("contraseña").notNull(),
 });
 
-export const mesas = mysqlTable("mesas", {
-  id: serial("id").primaryKey(),
+export const mesas = sqliteTable("mesas", {
+  id: integer("id").primaryKey({autoIncrement: true}),
   modelo: text("modelo").notNull(),
   imagen: text("imagen"),
   tipoBase: text("tipoBase", { enum: ["4 patas", "peninsula", "pie central", "alas"]}).notNull(),
@@ -37,27 +30,27 @@ export const mesas = mysqlTable("mesas", {
   dimensiones: text("dimensiones").notNull(),
   altura: text("altura").notNull(),
   materialPata: text("materialPata", { enum: ["madera", "aluminio"]}).notNull(),
-  colorPata: text("colorPata").notNull(),
-  outlet: boolean("outlet").default(false),
-  tendencia: boolean("tendencia").default(false),
-  nuevo: boolean("nuevo").default(false),
-  precio: int("precio").notNull(),
+  colorPata: text("colorPata").notNull(), 
+  outlet: integer("outlet", {mode: 'boolean'}).default(false),
+  tendencia: integer("tendencia", {mode: 'boolean'}).default(false),
+  nuevo: integer("nuevo", {mode: 'boolean'}).default(false),
+  precio: integer("precio").notNull(),
 });
 
 
 
-export const sillas = mysqlTable("sillas",{
-  id: serial("id").primaryKey(),
-  modelo: varchar("modelo", { length: 256 }).notNull(),
-  formato: varchar("formato", { length: 256 }).notNull(),
-  colorAsiento: mysqlEnum("typeColorAsiento", ["tapizado nvA", "tapizado nvC", "laminado", "laca", "barniz"]).notNull(),
-  colorBastidor: varchar("modelo", { length: 256 }).notNull(),
+export const sillas = sqliteTable("sillas",{
+  id: integer("id").primaryKey({autoIncrement: true}),
+  modelo: text("modelo", { length: 256 }).notNull(),
+  formato: text("formato", { length: 256 }).notNull(),
+  colorAsiento: text("tipoColorAsiento", { enum: ["tapizado nvA", "tapizado nvC", "laminado", "laca", "barniz"]}).notNull(),
+  colorBastidor: text("modelo", { length: 256 }).notNull(),
 });
 
 
-export const colores = mysqlTable("colores", {
-  id: serial("id").primaryKey(),
-  modelo: mysqlEnum("typeModelo", [
+export const colores = sqliteTable("colores", {
+  id: integer("id").primaryKey({autoIncrement: true}),
+  modelo: text("tipoModelo", { enum: [
     "laca",
     "barniz",
     "tapizado nvA",
@@ -68,11 +61,11 @@ export const colores = mysqlTable("colores", {
     "cristal 8mm extraclaro",
     "silestone g1",
     "dekton g1",
-  ]).notNull(),
-  nombreColor: varchar("nombreColor", { length: 256 }).notNull(),
-  imagenColor: varchar("imagenColor", { length: 256 }).notNull(),
-  grupo: mysqlEnum("typeGrupo", ["g1", "g2", "g3", "g4", "g5", "g6"]),
-  grosor: varchar("grosor", { length: 256 }).notNull(),
-  acabado: mysqlEnum("typeGrupo", ["g1", "g2", "g3", "g4", "g5", "g6"]),
-  canto: boolean("canto").default(false),
+  ]}).notNull(),
+  nombreColor: text("nombreColor", { length: 256 }).notNull(),
+  imagenColor: text("imagenColor", { length: 256 }).notNull(),
+  grupo: text("tipoGrupo", { enum: ["g1", "g2", "g3", "g4", "g5", "g6"]}),
+  grosor: text("grosor", { length: 256 }).notNull(),
+  acabado: text("tipoAcabado", { enum: ["g1", "g2", "g3", "g4", "g5", "g6"]}),
+  canto: integer("canto", {mode: 'boolean'}).default(false),
 });

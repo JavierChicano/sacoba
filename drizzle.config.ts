@@ -1,11 +1,13 @@
-import { defineConfig } from "drizzle-kit";
+import { defineConfig } from 'drizzle-kit'
 
 export default defineConfig({
   schema: "./src/db/schema.ts",
-  driver: "mysql2",
+  driver: "turso",
   dbCredentials: {
-    uri: process.env.DATABASE_URL!,
-  },
+    url: process.env.DATABASE_URL!,
+    authToken: process.env.DATABASE_AUTH_TOKEN,
+},
   verbose: true,
   strict: true,
-});
+  out: "./drizzle"
+})
