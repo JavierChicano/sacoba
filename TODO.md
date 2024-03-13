@@ -6,6 +6,6 @@
  5 - Cambiar imagenes de "nuestrosProductos.tsx"
  6 - Poner el hover de los botones del header en el footer tmb
  7 - Arreglar visualizacion en producto ✅
- 8 - Cambio de tema oscuro y claro, fixear funcionamiento
- 8.1 - Ajustas los colores del tema claro
- 9 - Cambiar el hosting de la BBDD
+ 8 - Cambio de tema oscuro y claro, fixear funcionamiento ✅
+ 8.1 - Ajustas los colores del tema claro 
+ 9 - Cambiar el hosting de la BBDD ✅
