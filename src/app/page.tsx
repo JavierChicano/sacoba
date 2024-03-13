@@ -5,9 +5,22 @@ import SeccionNuestrosProductos from "./components/main/seccionNuestrosProductos
 import SeccionMarcas from "./components/main/seccionMarcas";
 import TextoAnimado from "./components/main/textoAnimado";
 import Image from "next/image";
+import { useEffect } from "react";
+import { insertarMesas } from "@/db/inserts";
 
 export default function Home() {
-  
+  useEffect(() => {
+    const ejecutarInserciones = async () => {
+      try {
+        const resultadoInserciones = await insertarMesas();
+        console.log('Inserciones realizadas con éxito:', resultadoInserciones);
+      } catch (error) {
+        console.error('Error al ejecutar inserciones:', error);
+      }
+    };
+
+    ejecutarInserciones();
+  }, []); 
   return (
     <main className="flex flex-col items-center">
       <TextoAnimado />
@@ -23,7 +36,6 @@ export default function Home() {
       />
        <button className="bg-fondoTerciario p-2 -mt-[50vh] text-2xl hover:bg-colorBase hover:text-black">Crea tu mesa</button>
       <SeccionInfo />
-  
       <SeccionImaginacion />
       <SeccionNuestrosProductos />
       <SeccionMarcas />

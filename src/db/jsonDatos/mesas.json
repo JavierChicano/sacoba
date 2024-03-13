@@ -1,0 +1,15 @@
+[
+  {
+    "modelo": "LOMMA",
+    "imagen": "img1",
+    "tipoBase": "4 patas",
+    "extension": "fija",
+    "materialTapa": "laminado",
+    "colorTapa": "blanco",
+    "dimensiones": "120x80",
+    "altura": "77, 92, 112",
+    "materialPata": "aluminio",
+    "colorPata": "blanco",
+    "precio": 250
+  }
+]
