@@ -13,7 +13,7 @@ export const usuarios = sqliteTable("usuarios", {
 export const mesas = sqliteTable("mesas", {
   id: integer("id").primaryKey({autoIncrement: true}),
   modelo: text("modelo").notNull(),
-  imagen: text("imagen"),
+  imagen: text("imagen").notNull(),
   tipoBase: text("tipoBase", { enum: ["4 patas", "peninsula", "pie central", "alas"]}).notNull(),
   extension: text("extension", { enum: ["de libro", "fija", "extensible"]}),
   tipoAmpliable: text("tipoAmpliable", { enum: ["lateral", "frontal"]}),

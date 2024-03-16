@@ -30,7 +30,7 @@ export default function Header() {
       style={{backgroundImage: `url('${backgroundImage}')`}}>
       <DivLogo />
       <BotonesHeader />
-      {pathName !== "/" && (
+      {title && (
         <h1 className="text-6xl h-96 flex items-center mb-20">{title}</h1>
       )}
     </header>

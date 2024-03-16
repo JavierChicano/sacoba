@@ -1,16 +1,17 @@
-import Link from "next/link";
 import { IconoCarrito } from "../iconos/iconoCarrito";
 import BotonTema from "./botonCambioTema";
 import { IconUser } from '@tabler/icons-react';
 import DesplegableProducto from "./desplegableProducto";
+import HoverBoton from "./hoverBotones";
 
 export default function BotonesHeader() {
   return (
     <ul className="flex justify-around w-3/4 m-10 text-xl items-center">
-      <li className="w-36 flex justify-center">Outlet</li>
-      <li className="w-36 flex justify-center">Packs</li>
+      
+      <HoverBoton><p className="text-center">Outlet</p></HoverBoton>
+      <HoverBoton><p className="text-center">Packs</p></HoverBoton>
       <DesplegableProducto/>
-      <li className="w-36 flex justify-center">Contacto</li>
+      <HoverBoton><p className="text-center">Contacto</p></HoverBoton>
       <li className="w-36 flex justify-around items-center">
         <BotonTema/>
         <IconoCarrito size={40} />

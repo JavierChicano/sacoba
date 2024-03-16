@@ -1,11 +1,27 @@
 import { create } from "zustand";
 
-type ThemeState = {
-  cambioTema: 'light' | 'dark'; // Cambiamos el tipo de boolean a 'light' | 'dark'
-  setCambioTema: (cambio: 'light' | 'dark') => void; // Cambiamos el tipo de boolean a 'light' | 'dark'
+type MesaParams = {
+  id: number;
+  modelo: string;
+  imagen: string;
+  tipoBase: string;
+  extension: string | null;
+  tipoAmpliable?: string | null;
+  auxiliar?: string | null;
+  materialTapa?: string | null;
+  colorTapa?: string | null;
+  dimensiones?: string | null;
+  altura?: string | null;
+  materialPata?: string | null;
+  colorPata?: string | null;
 };
 
-export const useCambioTema = create<ThemeState>((set) => ({
-  cambioTema: 'light', // Tema por defecto es 'light'
-  setCambioTema: (cambio: 'light' | 'dark') => set({ cambioTema: cambio }), // Aceptamos solo 'light' o 'dark'
+type MesaClickadaState = {
+  mesaSeleccionada: MesaParams | null;
+  setMesaSeleccionada: (mesa: MesaParams | null) => void;
+};
+
+export const useMesaClickada = create<MesaClickadaState>((set) => ({
+  mesaSeleccionada: null,
+  setMesaSeleccionada: (mesa: MesaParams | null) => set({ mesaSeleccionada: mesa }),
 }));
