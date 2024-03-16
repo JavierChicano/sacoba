@@ -18,6 +18,7 @@ type MesaParams = {
   altura?: string | null;
   materialPata?: string | null;
   colorPata?: string | null;
+  precio: number;
 };
 
 export default function TarjetaDisplayInfo({ datos }: { datos: MesaParams }) {
@@ -38,6 +39,7 @@ export default function TarjetaDisplayInfo({ datos }: { datos: MesaParams }) {
       altura: datos.altura,
       materialPata: datos.materialPata,
       colorPata: datos.colorPata,
+      precio: datos.precio,
     });
   };
   return (

@@ -24,6 +24,8 @@ export default async function ObjMesasNovedades() {
                 altura: mesa.altura,
                 materialPata: mesa.materialPata,
                 colorPata: mesa.colorPata,
+                precio: mesa.precio,
+
               }}
             />
           ))

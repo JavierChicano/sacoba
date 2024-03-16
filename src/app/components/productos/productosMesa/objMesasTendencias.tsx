@@ -23,6 +23,7 @@ export default async function ObjMesasTendencias() {
                 altura: mesa.altura,
                 materialPata: mesa.materialPata,
                 colorPata: mesa.colorPata,
+                precio: mesa.precio,
               }}
             />
           ))

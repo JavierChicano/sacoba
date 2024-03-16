@@ -14,6 +14,7 @@ type MesaParams = {
   altura?: string | null;
   materialPata?: string | null;
   colorPata?: string | null;
+  precio: number;
 };
 
 type MesaClickadaState = {
