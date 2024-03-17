@@ -1,7 +1,7 @@
 import ObjMesasNovedades from "../components/productos/productosMesa/objMesasNovedad";
 import ObjMesasTendencias from "../components/productos/productosMesa/objMesasTendencias";
 import ObjMesasTotales from "../components/productos/productosMesa/objMesasTotales";
-import Ruta from "../components/productos/ruta";
+import RutaP from "../components/productos/rutaP";
 import SeccionExplicacion from "../components/productos/seccionExplicacion";
 
 export default async function ProductoMesa() {
@@ -14,7 +14,7 @@ export default async function ProductoMesa() {
   return (
     <main className="flex flex-col items-center">
       <div className="max-w-7xl flex flex-col items-center">
-        <Ruta pagina="Mesas" />
+        <RutaP pagina="Mesas" />
         <SeccionExplicacion
           datos={{
             titulo: titulo,
@@ -27,7 +27,6 @@ export default async function ProductoMesa() {
         <ObjMesasTendencias/>
         <h1 className="self-start text-4xl pt-10 pb-5">Novedades</h1>
         <ObjMesasNovedades/>
-        
         {/* Apartado todas las mesas */}
         <ObjMesasTotales/>
       </div>

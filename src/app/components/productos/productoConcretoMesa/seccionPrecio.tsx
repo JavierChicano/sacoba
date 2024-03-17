@@ -1,9 +1,11 @@
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { useState } from "react";
+import { usePrecioAcumulado } from "../../../../../states/states";
+import Link from "next/link";
 
-export default function SeccionPrecio({ precio }: { precio: number }) {
+export default function SeccionPrecio() {
   const [cantidad, setCantidad] = useState(1);
-  const [precioFinal, setPrecioFinal] = useState(200);
+  const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
 
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
@@ -14,16 +16,18 @@ export default function SeccionPrecio({ precio }: { precio: number }) {
     }
   };
   return (
-    <section className="bg-fondoSecundario flex flex-col gap-4 p-8">
+    <section className="bg-fondoSecundario flex flex-col gap-4 p-8 ">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl">Total: {precioFinal * cantidad}€</h1>
+          <h1 className="text-3xl">Total: {precioAcumulado * cantidad}€</h1>
           {/* <p className="text-sm flex justify-end"> Iva incluido*</p> */}
         </div>
         <section className="flex w-36 border-[1px] border-fondoTerciario justify-between">
           <div
             className="bg-fondoTerciario p-2 flex justify-center hover:bg-colorBase cursor-pointer"
-            onClick={disminuirCantidad}
+            onClick={() => {
+              disminuirCantidad();
+            }}
           >
             <IconMinus stroke={2} />
           </div>
@@ -32,18 +36,33 @@ export default function SeccionPrecio({ precio }: { precio: number }) {
           </div>
           <div
             className="bg-fondoTerciario p-2 flex justify-center hover:bg-colorBase cursor-pointer"
-            onClick={aumentarCantidad}
+            onClick={() => {
+              aumentarCantidad();
+            }}
           >
             <IconPlus stroke={2} />
           </div>
         </section>
         <section className="flex flex-col gap-4">
-          <div className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer">
+          <Link
+            href="/"
+            className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer"
+            onClick={() => {
+              setPrecioAcumulado(precioAcumulado * cantidad);
+            }}
+          >
             Añadir al carro
-          </div>
-          <div className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer">
+          </Link>
+          {/* Este te tiene q llevar a la pagina de compra */}
+          <Link
+            href="/"
+            className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer"
+            onClick={() => {
+              setPrecioAcumulado(precioAcumulado * cantidad);
+            }}
+          >
             Comprar
-          </div>
+          </Link>
         </section>
       </div>
     </section>

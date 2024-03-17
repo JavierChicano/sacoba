@@ -57,7 +57,7 @@ export default function TarjetaDisplayInfo({ datos }: { datos: MesaParams }) {
         </div>
       )}
 
-      <Link href="/ProductoConcreto/"
+      <Link href="/ProductoConcretoMesa/"
       onClick={handleClick}
       >
         <Image

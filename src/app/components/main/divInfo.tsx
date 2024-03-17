@@ -5,6 +5,7 @@ type DivInfoParams = {
   numero: number;
   texto: string;
 };
+type Intervalo = ReturnType<typeof setInterval>;
 
 export default function DivInfo({ datos }: { datos: DivInfoParams }) {
   const { numero, texto } = datos;
@@ -12,7 +13,7 @@ export default function DivInfo({ datos }: { datos: DivInfoParams }) {
 
   useEffect(() => {
     let contador = 0;
-    let intervalo: NodeJS.Timeout;
+    let intervalo: Intervalo;
 
     const faseRapida = () => {
       intervalo = setInterval(() => {
@@ -23,7 +24,7 @@ export default function DivInfo({ datos }: { datos: DivInfoParams }) {
           clearInterval(intervalo);
           faseLenta();
         }
-      }, 50);
+      }, 50) ;
     };
 
     const faseLenta = () => {

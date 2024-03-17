@@ -1,4 +1,3 @@
-
 import SeccionInfo from "./components/main/seccionInfo";
 import SeccionImaginacion from "./components/main/seccionImaginacion";
 import SeccionNuestrosProductos from "./components/main/seccionNuestrosProductos";

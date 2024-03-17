@@ -1,4 +1,4 @@
-import Ruta from "../components/productos/ruta";
+import RutaP from "../components/productos/rutaP";
 import SeccionExplicacion from "../components/productos/seccionExplicacion";
 
 export default function ProductoBanco() {
@@ -11,7 +11,7 @@ export default function ProductoBanco() {
   return (
     <main className="flex flex-col items-center">
       <div className=" max-w-7xl flex flex-col items-center">
-        <Ruta pagina="Bancos" />
+        <RutaP pagina="Bancos" />
         <SeccionExplicacion
           datos={{
             titulo: titulo,

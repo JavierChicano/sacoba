@@ -7,11 +7,17 @@ export default async function ObjMesasTotales() {
 
   return (
     <>
-    <h1 className="self-start text-xl pt-10 pb-5">Mesas totales ({mesasTotales.length})</h1>
-    <div className="max-w-7xl w-full self-start gap-4 grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
+      <h1 className="self-start text-xl pt-10 pb-5">
+        Mesas totales ({mesasTotales.length})
+      </h1>
+      <div
+        className="max-w-7xl w-full self-start gap-4 grid"
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}
+      >
         {mesasTotales.length > 0 ? (
           mesasTotales.map((mesa) => (
             <TarjetaDisplayInfo
+              key={mesa.id}
               datos={{
                 id: mesa.id,
                 modelo: mesa.modelo,
@@ -33,8 +39,8 @@ export default async function ObjMesasTotales() {
         ) : (
           <div>No hay mesas disponibles</div>
         )}
-      <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
-    </div>
+        <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+      </div>
     </>
   );
 }

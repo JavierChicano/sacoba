@@ -31,7 +31,6 @@ export const mesas = sqliteTable("mesas", {
   altura: text("altura").notNull(),
   materialPata: text("materialPata", { enum: ["madera", "aluminio"]}).notNull(),
   colorPata: text("colorPata").notNull(), 
-  outlet: integer("outlet", {mode: 'boolean'}).default(false),
   tendencia: integer("tendencia", {mode: 'boolean'}).default(false),
   nuevo: integer("nuevo", {mode: 'boolean'}).default(false),
   precio: integer("precio").notNull(),

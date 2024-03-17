@@ -26,3 +26,16 @@ export const useMesaClickada = create<MesaClickadaState>((set) => ({
   mesaSeleccionada: null,
   setMesaSeleccionada: (mesa: MesaParams | null) => set({ mesaSeleccionada: mesa }),
 }));
+
+
+//Estado para acumular el precio
+
+type PrecioParams = {
+  precioAcumulado: number;
+  setPrecioAcumulado: (by: number) => void;
+};
+
+export const usePrecioAcumulado = create<PrecioParams>()((set) => ({
+  precioAcumulado: 0,
+  setPrecioAcumulado: (aumento: number) => set(() =>({precioAcumulado: aumento})),
+}));

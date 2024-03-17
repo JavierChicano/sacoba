@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-export default function Ruta({ pagina }: { pagina: string }) {
+export default function RutaP({ pagina }: { pagina: string }) {
   return (
     <div className="w-full py-10">
       <ul className="flex">
