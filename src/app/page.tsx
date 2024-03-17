@@ -5,6 +5,7 @@ import SeccionMarcas from "./components/main/seccionMarcas";
 import TextoAnimado from "./components/main/textoAnimado";
 import Image from "next/image";
 import { BackgroundBeams } from "./components/main/fondoAnimado";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
         width={1920}
         height={1080}
       />
-       <button className="bg-fondoTerciario p-2 -mt-[50vh] text-2xl hover:bg-colorBase hover:text-black">Crea tu mesa</button>
+       <button className="bg-fondoTerciario p-2 -mt-[50vh] text-2xl hover:bg-colorBase hover:text-black"><Link href="/ProductoAMedida/">Crea tu mesa</Link></button>
       <SeccionInfo />
       <SeccionImaginacion />
       <SeccionNuestrosProductos />

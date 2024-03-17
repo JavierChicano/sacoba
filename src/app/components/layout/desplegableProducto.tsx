@@ -68,14 +68,14 @@ export default function DesplegableProducto() {
           </li>
           <li>
             <Link
-              href="/ProductoPersonalizado/"
+              href="/ProductoAMedida/"
               className={`flex gap-4 items-center px-4 py-2 ${
-                pathName === "/ProductoPersonalizado" ? "bg-colorBase text-black" : "hover:bg-fondoTerciario"
+                pathName === "/ProductoAMedida" ? "bg-colorBase text-black" : "hover:bg-fondoTerciario"
               }`}
             >
               <Image
                 className={`w-auto h-6  ${
-                  pathName === "/ProductoPersonalizado" ? "filter none" : "filter invert"}`}
+                  pathName === "/ProductoAMedida" ? "filter none" : "filter invert"}`}
                 src="/iconos/aMedida.png"
                 alt="Logo de la marca"
                 width={50}

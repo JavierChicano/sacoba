@@ -50,8 +50,7 @@ export default function TarjetaDisplayInfo({ datos }: { datos: MesaParams }) {
     >
       {hovered && (
         <div 
-          className="absolute top-0 left-0 w-full h-full bg-black/80 flex justify-center items-center pointer-events-none"
-          style={{ zIndex: 10 }}
+          className="absolute top-0 left-0 w-full h-full bg-black/80 flex justify-center items-center pointer-events-none z-10"
         >
           <p className="text-white">{datos.modelo}</p>
         </div>

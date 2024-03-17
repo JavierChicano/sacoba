@@ -1,7 +1,7 @@
 import { IconoCopyright } from "../iconos/iconoCopyright";
 import DivLogo from "../layout/divLogo";
 import TituloFooter from "./tituloFooter";
-import Image from "next/image";
+import Link from "next/link";
 
 export default function ContenidoFooter() {
   return (
@@ -10,10 +10,18 @@ export default function ContenidoFooter() {
         <section className="pl-20">
           <TituloFooter titulo="Productos" />
           <ul className="mt-4">
-            <li>Mesas</li>
-            <li>Sillas</li>
-            <li>Bancos</li>
-            <li>A medida</li>
+            <li>
+              <Link href="/ProductoMesa/">Mesas</Link>
+            </li>
+            <li>
+              <Link href="/ProductoSilla/">Sillas</Link>
+            </li>
+            <li>
+              <Link href="/ProductoBanco/">Bancos</Link>
+            </li>
+            <li>
+              <Link href="/ProductoAMedida/">A medida</Link>
+            </li>
           </ul>
         </section>
         <section className="pl-20">

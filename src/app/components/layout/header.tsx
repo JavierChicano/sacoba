@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { usePathname } from "next/navigation";
 import BotonesHeader from "./botonesHeader";
 import DivLogo from "./divLogo";
@@ -19,6 +19,9 @@ export default function Header() {
     } else if (pathName === "/ProductoBanco") {
       setBackgroundImage("/portadas/portadaBancos.png");
       setTitle("Bancos de cocina");
+    } else if (pathName === "/ProductoAMedida") {
+      setBackgroundImage("/portadas/portadaAMedida.png");
+      setTitle("Diseña a tu gusto");
     } else {
       setBackgroundImage("");
       setTitle("");
@@ -26,8 +29,10 @@ export default function Header() {
   }, [pathName]);
 
   return (
-    <header className="w-full h-fit flex flex-col items-center bg-center bg-cover" 
-      style={{backgroundImage: `url('${backgroundImage}')`}}>
+    <header
+      className="w-full h-fit flex flex-col items-center bg-center bg-cover"
+      style={{ backgroundImage: `url('${backgroundImage}')` }}
+    >
       <DivLogo />
       <BotonesHeader />
       {title && (
