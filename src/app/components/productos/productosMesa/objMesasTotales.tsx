@@ -12,7 +12,7 @@ export default async function ObjMesasTotales() {
       </h1>
       <div
         className="max-w-7xl w-full self-start gap-4 grid"
-        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}
       >
         {mesasTotales.length > 0 ? (
           mesasTotales.map((mesa) => (

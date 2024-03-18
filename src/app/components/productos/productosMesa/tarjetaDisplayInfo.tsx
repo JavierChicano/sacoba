@@ -44,7 +44,7 @@ export default function TarjetaDisplayInfo({ datos }: { datos: MesaParams }) {
   };
   return (
     <div 
-      className="relative w-full h-full"
+      className="relative w-full h-full min-w-[300px]"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -52,7 +52,7 @@ export default function TarjetaDisplayInfo({ datos }: { datos: MesaParams }) {
         <div 
           className="absolute top-0 left-0 w-full h-full bg-black/80 flex justify-center items-center pointer-events-none z-10"
         >
-          <p className="text-white">{datos.modelo}</p>
+          <p className="text-white text-3xl">{datos.modelo}</p>
         </div>
       )}
 
@@ -60,7 +60,7 @@ export default function TarjetaDisplayInfo({ datos }: { datos: MesaParams }) {
       onClick={handleClick}
       >
         <Image
-          className="w-full h-48 cursor-pointer"
+          className="w-full h-60 cursor-pointer"
           src={`/productos/mesas/${datos.imagen}`}
           alt="Imagen mesa"
           width={500}

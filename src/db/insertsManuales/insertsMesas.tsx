@@ -4,7 +4,7 @@ import { mesas } from "../schema";
 
 export async function insertarMesas() {
     // modificar la ruta de la imagen en el insert
-    const newMesa1 = await db.insert(mesas).values({
+    const newMesa1 = await db.insert(mesas).values([{
       modelo: "LOMMA",
       imagen: "lomma.png",
       tipoBase: "4 patas",
@@ -16,8 +16,7 @@ export async function insertarMesas() {
       colorPata: "blanco",
       tendencia: true,
       precio: 250,
-    });
-    const newMesa2 = await db.insert(mesas).values({
+    }, {
       modelo: "DUBLIN",
       imagen: "m1.png",
       tipoBase: "4 patas",
@@ -28,7 +27,8 @@ export async function insertarMesas() {
       materialPata: "aluminio",
       colorPata: "blanco",
       precio: 150,
-    });
+    },
+  ]);
     const newMesa3 = await db.insert(mesas).values({
       modelo: "TARRAGONA",
       imagen: "ejemplo.png",

@@ -12,8 +12,8 @@ export default function InfoExtra() {
         <section>
           <h1 className="text-4xl mb-2">Horarios</h1>
           <ul>
-            <li>L-V: 9:00-13:00 | 16:00-20:00</li>
-            <li>S: 10:00-13:00</li>
+            <li>L-V: 9:00-13:30 | 17:00-20:00</li>
+            <li>S: 10:00-13:30</li>
           </ul>
         </section>
         <section>

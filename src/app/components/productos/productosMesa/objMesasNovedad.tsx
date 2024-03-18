@@ -1,12 +1,16 @@
 import { selectsMesasNovedad } from "@/db/selects";
-import { Skeleton } from "@nextui-org/react";
+import { Skeleton, cn } from "@nextui-org/react";
 import TarjetaDisplayInfo from "./tarjetaDisplayInfo";
 
 export default async function ObjMesasNovedades() {
   const mesasNovedad = await selectsMesasNovedad();
 
   return (
-    <div className="max-w-7xl flex self-start gap-8">
+    <div className={cn(
+      mesasNovedad.length > 4
+        ? "max-w-7xl flex flex-row overflow-x-scroll gap-4 pb-2"
+        : "max-w-7xl flex gap-4 pb-2"
+    )}>
       {mesasNovedad.length > 0 ? (
         mesasNovedad.map((mesa) => (
           <TarjetaDisplayInfo
