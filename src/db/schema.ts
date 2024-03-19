@@ -33,19 +33,30 @@ export const mesas = sqliteTable("mesas", {
   colorPata: text("colorPata").notNull(), 
   tendencia: integer("tendencia", {mode: 'boolean'}).default(false),
   nuevo: integer("nuevo", {mode: 'boolean'}).default(false),
-  precio: integer("precio").notNull(),
+  precio: text("precio").notNull(),
 });
-
-
 
 export const sillas = sqliteTable("sillas",{
   id: integer("id").primaryKey({autoIncrement: true}),
   modelo: text("modelo", { length: 256 }).notNull(),
+  imagen: text("imagen").notNull(),
   formato: text("formato", { length: 256 }).notNull(),
   colorAsiento: text("tipoColorAsiento", { enum: ["tapizado nvA", "tapizado nvC", "laminado", "laca", "barniz"]}).notNull(),
   colorBastidor: text("modelo", { length: 256 }).notNull(),
+  precio: text("precio").notNull(), 
 });
 
+export const bancos = sqliteTable("bancos",{
+  id: integer("id").primaryKey({autoIncrement: true}),
+  modelo: text("modelo", { length: 256 }).notNull(),
+  imagen: text("imagen").notNull(),
+  modulo: text ("modulo").notNull(),
+  materialBastidor: text("materialBastidor", { enum: ["laminado", "laca", "barniz", "nada"]}).notNull(),
+  respaldo: integer("respaldo", {mode: 'boolean'}).default(false),
+  precioRespaldo: integer("precioRespaldo").default(0),
+  zocalo: integer("zocalo", {mode: 'boolean'}).default(false),
+  precio: text("precio").notNull(), 
+});
 
 export const colores = sqliteTable("colores", {
   id: integer("id").primaryKey({autoIncrement: true}),

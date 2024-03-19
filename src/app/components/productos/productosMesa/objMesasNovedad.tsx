@@ -1,42 +1,95 @@
-import { selectsMesasNovedad } from "@/db/selects";
-import { Skeleton, cn } from "@nextui-org/react";
+"use client"
+import { useState, useRef } from "react";
+import { cn } from "@nextui-org/react";
 import TarjetaDisplayInfo from "./tarjetaDisplayInfo";
+import { TipoMesa } from "../../../../../tipos/tipos";
+import IconArrowIzquierda from "../../iconos/iconoFlechaIzq";
+import IconArrowDerecha from "../../iconos/iconoFlechaDer";
 
-export default async function ObjMesasNovedades() {
-  const mesasNovedad = await selectsMesasNovedad();
+export default function ObjMesasNovedades({
+  mesasNovedad,
+}: {
+  mesasNovedad: TipoMesa[];
+}) {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [contentWidth, setContentWidth] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    if (containerRef.current && contentRef.current) {
+      setScrollPosition(containerRef.current.scrollLeft);
+      setContainerWidth(containerRef.current.clientWidth);
+      setContentWidth(contentRef.current.scrollWidth);
+    }
+  };
+
+  const scrollToLeft = () => {
+    if (containerRef.current && contentRef.current) {
+      containerRef.current.scrollLeft -= 316; 
+      setScrollPosition(containerRef.current.scrollLeft);
+    }
+  };
+
+  const scrollToRight = () => {
+    if (containerRef.current && contentRef.current) {
+      containerRef.current.scrollLeft += 316; 
+      setScrollPosition(containerRef.current.scrollLeft);
+    }
+  };
 
   return (
-    <div className={cn(
-      mesasNovedad.length > 4
-        ? "max-w-7xl flex flex-row overflow-x-scroll gap-4 pb-2"
-        : "max-w-7xl flex gap-4 pb-2"
-    )}>
-      {mesasNovedad.length > 0 ? (
-        mesasNovedad.map((mesa) => (
-          <TarjetaDisplayInfo
-            key={mesa.id}
-            datos={{
-              id: mesa.id,
-              modelo: mesa.modelo,
-              imagen: mesa.imagen,
-              tipoBase: mesa.tipoBase,
-              extension: mesa.extension,
-              tipoAmpliable: mesa.tipoAmpliable,
-              auxiliar: mesa.auxiliar,
-              materialTapa: mesa.materialTapa,
-              colorTapa: mesa.colorTapa,
-              dimensiones: mesa.dimensiones,
-              altura: mesa.altura,
-              materialPata: mesa.materialPata,
-              colorPata: mesa.colorPata,
-              precio: mesa.precio,
-            }}
-          />
-        ))
-      ) : (
-        <div>No hay mesas nuevas</div>
-      )}
-      <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
-    </div>
+    <>
+      <section className="flex justify-between pt-10 pb-5 w-full">
+        <h1 className="text-4xl">Novedades</h1>
+        <span className="flex items-center gap-1">
+          <div onClick={scrollToLeft}>
+            <IconArrowIzquierda />
+          </div>
+          <div onClick={scrollToRight}>
+            <IconArrowDerecha />
+          </div>
+        </span>
+      </section>
+      <div
+        ref={containerRef}
+        className={cn(
+          "max-w-7xl flex flex-row gap-4 pb-2",
+          "overflow-x-scroll"
+        )}
+        style={{ scrollBehavior: "smooth"}}
+        onScroll={handleScroll}
+      >
+        <div ref={contentRef} className="flex" style={{ minWidth: "100%" }}>
+          {mesasNovedad.length > 0 ? (
+            mesasNovedad.map((mesa) => (
+              <div style={{ marginRight: "16px" }}>
+                <TarjetaDisplayInfo
+                  datos={{
+                    id: mesa.id,
+                    modelo: mesa.modelo,
+                    imagen: mesa.imagen,
+                    tipoBase: mesa.tipoBase,
+                    extension: mesa.extension,
+                    tipoAmpliable: mesa.tipoAmpliable,
+                    auxiliar: mesa.auxiliar,
+                    materialTapa: mesa.materialTapa,
+                    colorTapa: mesa.colorTapa,
+                    dimensiones: mesa.dimensiones,
+                    altura: mesa.altura,
+                    materialPata: mesa.materialPata,
+                    colorPata: mesa.colorPata,
+                    precio: mesa.precio,
+                  }}
+                />
+              </div>
+            ))
+          ) : (
+            <div>No hay mesas nuevas</div>
+          )}
+        </div>
+      </div>
+    </>
   );
 }

@@ -1,16 +1,23 @@
 import { eq } from "drizzle-orm";
 import { db } from ".";
-import { mesas } from "./schema";
+import { bancos, mesas } from "./schema";
 
+//Selects de mesas
 export async function selectsMesasTendencia() {
   const todasMesas = await db.select().from(mesas).where(eq(mesas.tendencia, true));
-  return todasMesas
+  return todasMesas;
 }
 export async function selectsMesasNovedad() {
   const todasMesas = await db.select().from(mesas).where(eq(mesas.nuevo, true));
-  return todasMesas
+  return todasMesas;
 }
 export async function selectsMesasTotales() {
   const todasMesas = await db.select().from(mesas);
-  return todasMesas
+  return todasMesas;
+}
+
+//Selects de bancos
+export async function selectsBancosTotales() {
+  const todosBancos = await db.selectDistinct().from(bancos).orderBy(bancos.id).groupBy(bancos.modelo);
+  return todosBancos;
 }

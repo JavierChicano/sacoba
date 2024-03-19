@@ -1,3 +1,4 @@
+import { selectsMesasNovedad, selectsMesasTendencia, selectsMesasTotales } from "@/db/selects";
 import ObjMesasNovedades from "../components/productos/productosMesa/objMesasNovedad";
 import ObjMesasTendencias from "../components/productos/productosMesa/objMesasTendencias";
 import ObjMesasTotales from "../components/productos/productosMesa/objMesasTotales";
@@ -9,8 +10,11 @@ const explicacionCortaP1 =
 const explicacionCortaP2 =
   "Nuestra mesa de cocina está fabricada con materiales de primera calidad, cuidadosamente seleccionados para garantizar durabilidad y estilo sofisticado. Utilizamos maderas finas, como roble o nogal, conocidas por su resistencia y belleza natural, o materiales compuestos de alta calidad que combinan la elegancia del mármol o el granito con la facilidad de mantenimiento del material sintético. Cada detalle está cuidadosamente elaborado para ofrecer una estética excepcional y una durabilidad sin igual.";
 
-
 export default async function ProductoMesa() {
+  const mesasNovedad = await selectsMesasNovedad();
+  const mesasTotales = await selectsMesasTotales();
+  const mesasTendencias = await selectsMesasTendencia();
+
   return (
     <main className="flex flex-col items-center">
       <div className="max-w-7xl flex flex-col items-center">
@@ -22,13 +26,14 @@ export default async function ProductoMesa() {
             explicacionp2: explicacionCortaP2,
           }}
         />
-        <h1 className="self-start text-4xl pt-10 pb-5">Tendencias</h1>
-        {/* hacer con overflow-r que desborde por la derecha el contenido y seha deslizable */}
-        <ObjMesasTendencias/>
-        <h1 className="self-start text-4xl pt-10 pb-5">Novedades</h1>
-        <ObjMesasNovedades/>
+        {/* Seccion mesas novedades */}
+        <ObjMesasTendencias mesasTendencias={mesasTendencias}/>
+
+        {/* Seccion mesas novedades */}
+        <ObjMesasNovedades mesasNovedad={mesasNovedad}/>
+
         {/* Apartado todas las mesas */}
-        <ObjMesasTotales/>
+        <ObjMesasTotales mesasTotales={mesasTotales} />
       </div>
     </main>
   );

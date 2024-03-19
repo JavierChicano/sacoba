@@ -1,22 +1,23 @@
 import { db } from "..";
 import { mesas } from "../schema";
 
-
 export async function insertarMesas() {
-    // modificar la ruta de la imagen en el insert
-    const newMesa1 = await db.insert(mesas).values([{
+  // modificar la ruta de la imagen en el insert
+  const newMesa = await db.insert(mesas).values([
+    {
       modelo: "LOMMA",
       imagen: "lomma.png",
       tipoBase: "4 patas",
       materialTapa: "laminado",
       colorTapa: "blanco",
-      dimensiones: "120x80",
+      dimensiones: "100x50, 100x60, 110x70, 120x80, 150x80",
       altura: "77, 92, 112",
       materialPata: "aluminio",
       colorPata: "blanco",
       tendencia: true,
-      precio: 250,
-    }, {
+      precio: "508",
+    },
+    {
       modelo: "DUBLIN",
       imagen: "m1.png",
       tipoBase: "4 patas",
@@ -26,10 +27,9 @@ export async function insertarMesas() {
       altura: "77, 92, 112",
       materialPata: "aluminio",
       colorPata: "blanco",
-      precio: 150,
+      precio: "508",
     },
-  ]);
-    const newMesa3 = await db.insert(mesas).values({
+    {
       modelo: "TARRAGONA",
       imagen: "ejemplo.png",
       tipoBase: "peninsula",
@@ -40,9 +40,9 @@ export async function insertarMesas() {
       materialPata: "aluminio",
       colorPata: "blanco",
       nuevo: true,
-      precio: 200,
-    });
-    const newMesa4 = await db.insert(mesas).values({
+      precio: "508",
+    },
+    {
       modelo: "ROMA",
       imagen: "m2.png",
       tipoBase: "4 patas",
@@ -53,9 +53,9 @@ export async function insertarMesas() {
       materialPata: "aluminio",
       colorPata: "blanco",
       nuevo: true,
-      precio: 450,
-    });
-    const newMesa5 = await db.insert(mesas).values({
+      precio: "508",
+    },
+    {
       modelo: "CADIZ",
       imagen: "m3.png",
       tipoBase: "4 patas",
@@ -69,9 +69,9 @@ export async function insertarMesas() {
       materialPata: "madera",
       colorPata: "blanco",
       nuevo: true,
-      precio: 350,
-    });
-    const newMesa6 = await db.insert(mesas).values({
+      precio: "508",
+    },
+    {
       modelo: "SEVILLA",
       imagen: "m4.png",
       tipoBase: "alas",
@@ -85,9 +85,9 @@ export async function insertarMesas() {
       materialPata: "madera",
       colorPata: "blanco",
       nuevo: true,
-      precio: 350,
-    });
-    const newMesa7 = await db.insert(mesas).values({
+      precio: "508",
+    },
+    {
       modelo: "ONTARO",
       imagen: "m5.png",
       tipoBase: "pie central",
@@ -101,9 +101,9 @@ export async function insertarMesas() {
       materialPata: "madera",
       colorPata: "blanco",
       nuevo: true,
-      precio: 350,
-    });
-    const newMesa8 = await db.insert(mesas).values({
+      precio: "508",
+    },
+    {
       modelo: "DUBLIN",
       imagen: "m6.png",
       tipoBase: "pie central",
@@ -117,9 +117,9 @@ export async function insertarMesas() {
       materialPata: "madera",
       colorPata: "blanco",
       tendencia: true,
-      precio: 350,
-    });
-    const newMesa9 = await db.insert(mesas).values({
+      precio: "508",
+    },
+    {
       modelo: "FRANCIA",
       imagen: "m7.png",
       tipoBase: "pie central",
@@ -132,9 +132,9 @@ export async function insertarMesas() {
       altura: "77, 92, 112",
       materialPata: "madera",
       colorPata: "blanco",
-      precio: 350,
-    });
-    const newMesa10 = await db.insert(mesas).values({
+      precio: "508",
+    },
+    {
       modelo: "TAILANDIA",
       imagen: "m8.png",
       tipoBase: "pie central",
@@ -147,9 +147,9 @@ export async function insertarMesas() {
       altura: "77, 92, 112",
       materialPata: "madera",
       colorPata: "blanco",
-      precio: 350,
-    });
-    const newMesa11 = await db.insert(mesas).values({
+      precio: "508",
+    },
+    {
       modelo: "TOKIO",
       imagen: "m9.png",
       tipoBase: "pie central",
@@ -163,9 +163,9 @@ export async function insertarMesas() {
       materialPata: "madera",
       colorPata: "blanco",
       nuevo: true,
-      precio: 350,
-    });
-    const newMesa12 = await db.insert(mesas).values({
+      precio: "508",
+    },
+    {
       modelo: "NUEVA YORK",
       imagen: "m10.png",
       tipoBase: "pie central",
@@ -179,9 +179,9 @@ export async function insertarMesas() {
       materialPata: "madera",
       colorPata: "blanco",
       tendencia: true,
-      precio: 350,
-    });
-    const newMesa13 = await db.insert(mesas).values({
+      precio: "508",
+    },
+    {
       modelo: "ESTAMBUL",
       imagen: "m11.png",
       tipoBase: "pie central",
@@ -195,9 +195,9 @@ export async function insertarMesas() {
       materialPata: "madera",
       colorPata: "blanco",
       tendencia: true,
-      precio: 350,
-    });
-    const newMesa14 = await db.insert(mesas).values({
+      precio: "508",
+    },
+    {
       modelo: "LAGOS",
       imagen: "m12.png",
       tipoBase: "pie central",
@@ -211,9 +211,9 @@ export async function insertarMesas() {
       materialPata: "madera",
       colorPata: "blanco",
       nuevo: true,
-      precio: 350,
-    });
-    const newMesa15 = await db.insert(mesas).values({
+      precio: "508",
+    },
+    {
       modelo: "SEÚL",
       imagen: "m13.png",
       tipoBase: "pie central",
@@ -226,9 +226,9 @@ export async function insertarMesas() {
       altura: "77, 92, 112",
       materialPata: "madera",
       colorPata: "blanco",
-      precio: 350,
-    });
-    const newMesa16 = await db.insert(mesas).values({
+      precio: "508",
+    },
+    {
       modelo: "EL CAIRO",
       imagen: "m14.png",
       tipoBase: "pie central",
@@ -242,6 +242,7 @@ export async function insertarMesas() {
       materialPata: "madera",
       colorPata: "blanco",
       nuevo: true,
-      precio: 350,
-    });
+      precio: "508",
+    },
+  ]);
 }

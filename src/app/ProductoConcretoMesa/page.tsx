@@ -13,7 +13,9 @@ export default function ProductoConcreto() {
 
   useEffect(() => {
     if (mesaSeleccionada !== null) {
-      setPrecioAcumulado(mesaSeleccionada.precio);
+      const preciosArray = mesaSeleccionada.precio.split(",").map(Number);
+      console.log(preciosArray);
+      setPrecioAcumulado(preciosArray[0]);
     }
   }, []);
   return (

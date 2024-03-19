@@ -23,7 +23,7 @@ const config: Config = {
         fondoTerciario: "var(--fondo-terciario)",
         colorBase: "var(--color-base)",
         colorBaseSecundario: "var(--color-secundario)",
-        contraste: "var(--ccontraste)",
+        contraste: "var(--contraste)",
       },
     },
   },

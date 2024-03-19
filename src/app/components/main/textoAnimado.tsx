@@ -4,7 +4,7 @@ export default function TextoAnimado() {
     <div className="mt-10">
       <button className="button " data-text="Awesome">
         <span className="actual-text">&nbsp;Sacoba&nbsp;</span>
-        <span aria-hidden="true" className="hover-text">
+        <span aria-hidden="true" className="hover-text" >
           &nbsp;Sacoba&nbsp;
         </span>
       </button>
@@ -19,8 +19,8 @@ export default function TextoAnimado() {
           /* button styling */
           --border-right: 6px;
           --text-stroke-color: rgba(255, 255, 255, 0.6);
-          --animation-color: #e09145; /* Cambiando el color a #e09145 */
-          --fs-size: 3em; /* Increased font size further */
+          --animation-color: #e09145;
+          --fs-size: 3em; 
           letter-spacing: 3px;
           text-decoration: none;
           font-size: var(--fs-size);

@@ -3,25 +3,9 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMesaClickada } from '../../../../../states/states';
+import { TipoMesa } from '../../../../../tipos/tipos';
 
-type MesaParams = {
-  id: number;
-  modelo: string;
-  imagen: string;
-  tipoBase: string;
-  extension: string | null;
-  tipoAmpliable?: string | null;
-  auxiliar?: string | null;
-  materialTapa?: string | null;
-  colorTapa?: string | null;
-  dimensiones?: string | null;
-  altura?: string | null;
-  materialPata?: string | null;
-  colorPata?: string | null;
-  precio: number;
-};
-
-export default function TarjetaDisplayInfo({ datos }: { datos: MesaParams }) {
+export default function TarjetaDisplayInfo({ datos }: { datos: TipoMesa }) {
   const { setMesaSeleccionada } = useMesaClickada();
   const [hovered, setHovered] = useState(false);
   const handleClick = () => {
