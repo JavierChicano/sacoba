@@ -57,7 +57,7 @@ export async function insertarBancos() {
       respaldo: true,
       precioRespaldo: 93,
       zocalo: true,
-      precio: "376, 395",
+      precio: "250, 262",
     },
     {
       modelo: "TRAPEZZE",
