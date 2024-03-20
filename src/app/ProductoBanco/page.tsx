@@ -1,4 +1,4 @@
-import { selectsBancosTotales } from "@/db/selects";
+import { selectsBancosModelo, selectsBancosTotales } from "@/db/selects";
 import RutaP from "../components/productos/rutaP";
 import SeccionExplicacion from "../components/productos/seccionExplicacion";
 import ObjBancosTotales from "../components/productos/productoBanco/objBancosTotales";
@@ -10,6 +10,8 @@ export default async function ProductoBanco() {
   const explicacionCortaP2 =
     "Con un diseño ingenioso que integra espacio de almacenamiento en su interior, nuestros bancos ofrecen una solución elegante para organizar y almacenar tus alimentos de manera ordenada y discreta.";
   const bancosTotales = await selectsBancosTotales();
+  const bancosModelo = await selectsBancosModelo()
+
   return (
     <main className="flex flex-col items-center">
       <div className=" max-w-7xl flex flex-col items-center">
@@ -21,7 +23,7 @@ export default async function ProductoBanco() {
             explicacionp2: explicacionCortaP2,
           }}
         />
-        <ObjBancosTotales bancosTotales={bancosTotales}/>
+        <ObjBancosTotales bancosModelos={bancosModelo} bancosTotales={bancosTotales}/>
       </div>
     </main>
   );

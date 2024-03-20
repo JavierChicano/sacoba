@@ -18,6 +18,10 @@ export async function selectsMesasTotales() {
 
 //Selects de bancos
 export async function selectsBancosTotales() {
+  const todosBancos = await db.selectDistinct().from(bancos);
+  return todosBancos;
+}
+export async function selectsBancosModelo() {
   const todosBancos = await db.selectDistinct().from(bancos).orderBy(bancos.id).groupBy(bancos.modelo);
   return todosBancos;
 }

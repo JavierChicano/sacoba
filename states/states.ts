@@ -14,25 +14,27 @@ export const useMesaClickada = create<MesaClickadaState>((set) => ({
 
 //Estado para guardar el banco seleccionado
 type BancoClickadaState = {
-  bancoSeleccionado: TipoBanco | null;
-  setBancoSeleccionado: (banco: TipoBanco | null) => void;
+  bancoSeleccionado: TipoBanco[] | null;
+  setBancoSeleccionado: (banco: TipoBanco[] | null) => void;
 };
 
-export const useBancoClickada = create<BancoClickadaState>((set) => ({
+export const useBancoClickado = create<BancoClickadaState>((set) => ({
   bancoSeleccionado: null,
-  setBancoSeleccionado: (banco: TipoBanco | null) => set({ bancoSeleccionado: banco }),
+  setBancoSeleccionado: (banco: TipoBanco[] | null) => set({ bancoSeleccionado: banco }),
 }));
 
 
-
 //Estado para acumular el precio
-
 type PrecioParams = {
   precioAcumulado: number;
-  setPrecioAcumulado: (by: number) => void;
+  setPrecioAcumulado: (precio: number) => void;
+  addPrecioAcumulado: (aumento: number) => void;
+  subPrecioAcumulado: (descuento: number) => void;
 };
 
 export const usePrecioAcumulado = create<PrecioParams>()((set) => ({
   precioAcumulado: 0,
-  setPrecioAcumulado: (aumento: number) => set(() =>({precioAcumulado: aumento})),
+  setPrecioAcumulado: (precio: number) => set(() => ({ precioAcumulado: precio })),
+  addPrecioAcumulado: (aumento: number) => set((state) => ({ precioAcumulado: state.precioAcumulado + aumento })),
+  subPrecioAcumulado: (descuento: number) => set((state) => ({ precioAcumulado: state.precioAcumulado - descuento })),
 }));

@@ -9,22 +9,17 @@ import { TipoBanco } from "../../../../../tipos/tipos";
 import TarjetaDisplayBanco from "./TarjetaDisplayBanco";
 import { cn } from "@nextui-org/react";
 
-export default function ObjBancosTotales({
-  bancosTotales,
-}: {
-  bancosTotales: TipoBanco[];
-}) {
+export default function ObjBancosTotales({bancosModelos, bancosTotales}: {bancosModelos: TipoBanco[], bancosTotales:TipoBanco[]}) {
   const [ocultarFiltro, setOcultarFiltro] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [bancosOrdenados, setBancosOrdenados] = useState<TipoBanco[]>(bancosTotales);
-
+  const [bancosOrdenados, setBancosOrdenados] = useState<TipoBanco[]>(bancosModelos);
   const ordenarPorReciente = () => {
-    const sortedBancos = [...bancosTotales].reverse();
+    const sortedBancos = [...bancosModelos].reverse();
     setBancosOrdenados(sortedBancos);
   };
 
   const ordenarPorPrecioAlto = () => {
-    const sortedBancos = [...bancosTotales].sort((a, b) => {
+    const sortedBancos = [...bancosModelos].sort((a, b) => {
       const precioA = parseFloat(a.precio.split(",")[0]);
       const precioB = parseFloat(b.precio.split(",")[0]);
       return precioB - precioA;
@@ -34,7 +29,7 @@ export default function ObjBancosTotales({
   };
 
   const ordenarPorPrecioBajo = () => {
-    const sortedBancos = [...bancosTotales].sort((a, b) => {
+    const sortedBancos = [...bancosModelos].sort((a, b) => {
       const precioA = parseFloat(a.precio.split(",")[0]);
       const precioB = parseFloat(b.precio.split(",")[0]);
       return precioA - precioB;
@@ -45,14 +40,14 @@ export default function ObjBancosTotales({
   };
   useEffect(() => {
     if (!bancosOrdenados.length) {
-      setBancosOrdenados(bancosTotales);
+      setBancosOrdenados(bancosModelos);
     }
-  }, [bancosOrdenados, bancosTotales]);
+  }, [bancosOrdenados, bancosModelos]);
   return (
     <>
       <div className="w-full mb-4 flex justify-between">
         <h1 className="text-3xl pt-10 flex items-end">
-          Bancos totales ({bancosTotales.length})
+          Bancos totales ({bancosModelos.length})
         </h1>
         <section
           className="bg-contraste mt-10 text-black flex flex-col items-center gap-8 p-4 rounded-lg "
@@ -83,6 +78,7 @@ export default function ObjBancosTotales({
           bancosOrdenados.map((banco) => (
             <TarjetaDisplayBanco
               key={banco.id}
+              bancosTotales={bancosTotales}
               datos={{
                 id: banco.id,
                 modelo: banco.modelo,

@@ -1,25 +1,16 @@
 "use client"
 import { useState } from "react";
-import { useBancoClickada } from "../../../../../states/states";
+import { useBancoClickado } from "../../../../../states/states";
 import { TipoBanco } from "../../../../../tipos/tipos";
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function TarjetaDisplayBanco({ datos }: { datos: TipoBanco }) {
-  const { setBancoSeleccionado } = useBancoClickada();
+export default function TarjetaDisplayBanco({ datos, bancosTotales }: { datos: TipoBanco, bancosTotales:TipoBanco[]}) {
+  const { setBancoSeleccionado } = useBancoClickado();
   const [hovered, setHovered] = useState(false);
   const handleClick = () => {
-    setBancoSeleccionado({
-      id: datos.id,
-      modelo: datos.modelo,
-      imagen: datos.imagen,
-      modulo: datos.modulo,
-      materialBastidor: datos.materialBastidor,
-      respaldo: datos.respaldo,
-      precioRespaldo: datos.precioRespaldo,
-      zocalo: datos.zocalo,
-      precio: datos.precio,
-    });
+    const bancoResultados = bancosTotales.filter(banco => banco.modelo === datos.modelo);
+    setBancoSeleccionado(bancoResultados);
   };
   return (
     <div
@@ -33,7 +24,7 @@ export default function TarjetaDisplayBanco({ datos }: { datos: TipoBanco }) {
         </div>
       )}
 
-      <Link href="/ProductoConcretoMesa/" onClick={handleClick}>
+      <Link href="/ProductoConcretoBanco/" onClick={handleClick}>
         <Image
           className="w-full h-60 cursor-pointer"
           src={`/productos/bancos/${datos.imagen}`}
