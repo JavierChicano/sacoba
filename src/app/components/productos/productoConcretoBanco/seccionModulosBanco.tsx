@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { usePrecioAcumulado } from "../../../../../states/states";
 import { TipoBanco } from "../../../../../tipos/tipos";
 import { IconClick } from "@tabler/icons-react";
 import ModuloEspecifico from "./moduloEspecifico";
@@ -11,7 +10,6 @@ export default function SeccionModulosBanco({
   bancosPosibles: TipoBanco[];
 }) {
   const [tapizadoSeleccionado, setTipoTapizado] = useState<string>("normal");
-  const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
 
   function dividirNumeros(cadena: string): number[] {
     return cadena.split(",").map((numero: string) => parseFloat(numero.trim()));
@@ -21,7 +19,6 @@ export default function SeccionModulosBanco({
     ...banco,
     preciosSeparados: dividirNumeros(banco.precio),
   }));
-  console.log(bancosPrecios)
   const indiceObjeto = tapizadoSeleccionado === "normal" ? 0 : 1;
 
   return (
@@ -75,6 +72,7 @@ export default function SeccionModulosBanco({
               <ModuloEspecifico
                 key={index}
                 datos={{
+                  id: banco.id,
                   dimensiones: banco.modulo,
                   respaldo: banco.respaldo,
                   precioRespaldo: banco.precioRespaldo,

@@ -38,3 +38,20 @@ export const usePrecioAcumulado = create<PrecioParams>()((set) => ({
   addPrecioAcumulado: (aumento: number) => set((state) => ({ precioAcumulado: state.precioAcumulado + aumento })),
   subPrecioAcumulado: (descuento: number) => set((state) => ({ precioAcumulado: state.precioAcumulado - descuento })),
 }));
+
+
+//Estado para guardar los modulos seleccionados de banco
+type PreciosBancoState = {
+  precios: Map<number, number>; // Cambiar a un mapa de número a número
+  modificarPrecio: (clave: number, nuevoPrecio: number) => void; // Cambiar 'indice' a 'clave'
+  resetearPrecios: () => void;
+};
+
+export const usePreciosBanco = create<PreciosBancoState>((set) => ({
+  precios: new Map(), // Inicializar el mapa vacío
+  modificarPrecio: (clave: number, nuevoPrecio: number) =>
+    set((state) => ({
+      precios: new Map(state.precios).set(clave, nuevoPrecio), // Crear un nuevo mapa con la clave y el nuevo precio
+    })),
+  resetearPrecios: () => set({ precios: new Map() }), // Resetear el mapa a uno vacío
+}));

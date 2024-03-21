@@ -1,11 +1,12 @@
 import { IconMinus, IconPlus } from "@tabler/icons-react";
-import { useState } from "react";
-import { usePrecioAcumulado } from "../../../../../states/states";
+import { useEffect, useState } from "react";
+import { usePrecioAcumulado, usePreciosBanco } from "../../../../../states/states";
 import Link from "next/link";
 
 export default function SeccionPrecio() {
   const [cantidad, setCantidad] = useState(1);
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
+  const { precios } = usePreciosBanco();
 
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
@@ -15,6 +16,14 @@ export default function SeccionPrecio() {
       setCantidad(cantidad - 1);
     }
   };
+  useEffect(() => {
+    let acumulado = 0; 
+    precios.forEach((valor) => {
+      acumulado += valor; 
+    });
+    setPrecioAcumulado(acumulado); 
+  }, [precios]);
+  
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 ">
       <div className="flex justify-between items-center">

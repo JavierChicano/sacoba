@@ -15,7 +15,6 @@ export default function ProductoConcretoBanco() {
     if (bancoSeleccionado !== null) {
       const preciosArray = bancoSeleccionado[0].precio.split(",").map(Number);
       console.log(preciosArray);
-      setPrecioAcumulado(preciosArray[0]);
     }
   }, []);
   console.log(bancoSeleccionado);
@@ -39,12 +38,12 @@ export default function ProductoConcretoBanco() {
             />
           </section>
           <SeccionModulosBanco bancosPosibles={bancoSeleccionado} />
-          <section className="h-60">
-            <p>Todos los módulos tienen 45 de fondo</p>
+          <section>
+            <p>Todos los módulos tienen 45cm de fondo</p>
             <p>La imagen es una sugerencia de presentacion compuesta por:</p>
             <ul>
-              <li> - 2 módulos de 120x45 y uno de 45 x 45 de rincón</li>
-              <li> - O bien, 1 módulo de 150 x 45 y otro de 120 x 45</li>
+              <li> - 2 módulos de 120cm x 45cm y uno de 45cm x 45cm de rincón</li>
+              <li> - O bien, 1 módulo de 150cm x 45cm y otro de 120cm x 45cm</li>
             </ul>
           </section>
           <SeccionPrecio />

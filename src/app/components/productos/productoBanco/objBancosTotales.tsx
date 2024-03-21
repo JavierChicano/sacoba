@@ -8,11 +8,14 @@ import {
 import { TipoBanco } from "../../../../../tipos/tipos";
 import TarjetaDisplayBanco from "./TarjetaDisplayBanco";
 import { cn } from "@nextui-org/react";
+import { usePreciosBanco } from "../../../../../states/states";
 
 export default function ObjBancosTotales({bancosModelos, bancosTotales}: {bancosModelos: TipoBanco[], bancosTotales:TipoBanco[]}) {
   const [ocultarFiltro, setOcultarFiltro] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [bancosOrdenados, setBancosOrdenados] = useState<TipoBanco[]>(bancosModelos);
+  const { resetearPrecios } = usePreciosBanco();
+
   const ordenarPorReciente = () => {
     const sortedBancos = [...bancosModelos].reverse();
     setBancosOrdenados(sortedBancos);
@@ -27,7 +30,6 @@ export default function ObjBancosTotales({bancosModelos, bancosTotales}: {bancos
     setBancosOrdenados(sortedBancos);
     console.log(sortedBancos)
   };
-
   const ordenarPorPrecioBajo = () => {
     const sortedBancos = [...bancosModelos].sort((a, b) => {
       const precioA = parseFloat(a.precio.split(",")[0]);
@@ -42,6 +44,7 @@ export default function ObjBancosTotales({bancosModelos, bancosTotales}: {bancos
     if (!bancosOrdenados.length) {
       setBancosOrdenados(bancosModelos);
     }
+    resetearPrecios();
   }, [bancosOrdenados, bancosModelos]);
   return (
     <>

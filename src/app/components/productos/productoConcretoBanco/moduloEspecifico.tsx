@@ -1,8 +1,12 @@
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import { usePrecioAcumulado } from "../../../../../states/states";
+import {
+  usePrecioAcumulado,
+  usePreciosBanco,
+} from "../../../../../states/states";
 
 type ModuloEspecificoParams = {
+  id: number;
   dimensiones: string;
   respaldo: boolean | null;
   precioRespaldo: number | null;
@@ -15,19 +19,26 @@ export default function ModuloEspecifico({
   datos: ModuloEspecificoParams;
 }) {
   const [respaldoSeleccionado, setRespaldoSeleccionado] = useState(false);
-  const [cantidad, setCantidad] = useState(1);
+  const [cantidad, setCantidad] = useState(0);
   const [precioTotal, setPrecioTotal] = useState(datos.precio);
-  const { precioAcumulado, addPrecioAcumulado, subPrecioAcumulado } = usePrecioAcumulado();
-
+  const { precios, modificarPrecio } = usePreciosBanco();
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
   };
   const disminuirCantidad = () => {
-    if (cantidad > 1) {
+    if (cantidad > 0) {
       setCantidad(cantidad - 1);
     }
   };
-
+  const calcularCantidad = () => {
+    if (
+      datos.dimensiones === "45Rincon" ||
+      datos.dimensiones === "120" ||
+      datos.dimensiones === "150"
+    ) {
+      setCantidad(1);
+    }
+  };
   useEffect(() => {
     // Actualizar precio total
     let nuevoPrecio = datos.precio;
@@ -35,8 +46,21 @@ export default function ModuloEspecifico({
       nuevoPrecio += datos.precioRespaldo;
     }
     setPrecioTotal(nuevoPrecio);
-  }, [respaldoSeleccionado, datos.precioRespaldo, datos.precio]);
-
+    modificarPrecio(datos.id, precioTotal);
+  }, [
+    respaldoSeleccionado,
+    datos.precioRespaldo,
+    datos.precio,
+    precioTotal,
+    modificarPrecio,
+  ]);
+  console.log(precios);
+  useEffect(() => {
+    calcularCantidad();
+  }, []);
+  useEffect(() => {
+    modificarPrecio(datos.id, precioTotal * cantidad);
+  }, [cantidad, respaldoSeleccionado, precioTotal]);
   return (
     <article className="bg-fondoTerciario p-4 flex flex-col gap-4 border border-colorBase m-1">
       <h1 className="text-xl">Dimensiones: {datos.dimensiones}x45</h1>
@@ -49,10 +73,10 @@ export default function ModuloEspecifico({
               <label className="flex items-center">
                 Añadir respaldo: {datos.precioRespaldo}€
                 <input
-                  type="checkbox" 
+                  type="checkbox"
                   checked={respaldoSeleccionado}
                   onChange={(e) => setRespaldoSeleccionado(e.target.checked)}
-                  style={{ width: '20px', height: '20px', marginLeft: '5px' }}
+                  style={{ width: "20px", height: "20px", marginLeft: "5px" }}
                 />
               </label>
             )}
