@@ -11,6 +11,7 @@ export default function TarjetaDisplayBanco({ datos, bancosTotales }: { datos: T
   const handleClick = () => {
     const bancoResultados = bancosTotales.filter(banco => banco.modelo === datos.modelo);
     setBancoSeleccionado(bancoResultados);
+    console.log(bancoResultados)
   };
   return (
     <div

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import { usePrecioAcumulado } from "../../../../../states/states";
 import { TipoBanco } from "../../../../../tipos/tipos";
@@ -21,11 +21,11 @@ export default function SeccionModulosBanco({
     ...banco,
     preciosSeparados: dividirNumeros(banco.precio),
   }));
-
+  console.log(bancosPrecios)
   const indiceObjeto = tapizadoSeleccionado === "normal" ? 0 : 1;
 
   return (
-    <section className="bg-fondoSecundario flex flex-col gap-4 p-8 row-span-4">
+    <section className="bg-fondoSecundario flex flex-col gap-4 p-8 row-span-5">
       <div className="flex justify-between h-14">
         <h1 className="text-4xl w-32 self-center">Módulos</h1>
         <div>
@@ -70,15 +70,19 @@ export default function SeccionModulosBanco({
         </section>
         <section>
           <h2 className="text-2xl">Cantidad </h2>
-
-          <ModuloEspecifico
-            datos={{
-              dimensiones: bancosPrecios[0].modulo,
-              respaldo: bancosPrecios[0].respaldo,
-              precioRespaldo: bancosPrecios[0].precioRespaldo,
-              precio: bancosPrecios[0].preciosSeparados[indiceObjeto],
-            }}
-          />
+          <div className="grid grid-cols-2">
+          {bancosPrecios.map((banco, index) => (
+              <ModuloEspecifico
+                key={index}
+                datos={{
+                  dimensiones: banco.modulo,
+                  respaldo: banco.respaldo,
+                  precioRespaldo: banco.precioRespaldo,
+                  precio: banco.preciosSeparados[indiceObjeto],
+                }}
+              />
+            ))}
+          </div>
         </section>
       </div>
     </section>

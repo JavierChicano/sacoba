@@ -9,8 +9,11 @@ export default async function ProductoBanco() {
     "Descubre la versatilidad y la funcionalidad sin límites con nuestros bancos diseñados para maximizar tu espacio y comodidad. Más que simples asientos, estos bancos son la solución perfecta para aquellos que valoran la practicidad sin sacrificar el estilo.";
   const explicacionCortaP2 =
     "Con un diseño ingenioso que integra espacio de almacenamiento en su interior, nuestros bancos ofrecen una solución elegante para organizar y almacenar tus alimentos de manera ordenada y discreta.";
-  const bancosTotales = await selectsBancosTotales();
-  const bancosModelo = await selectsBancosModelo()
+  
+  const promiseBancosTotales =  selectsBancosTotales();
+  const promiseBancosModelo =  selectsBancosModelo()
+
+  const [bancosTotales, bancosModelo] = await Promise.all([promiseBancosTotales, promiseBancosModelo])
 
   return (
     <main className="flex flex-col items-center">

@@ -17,7 +17,7 @@ export default function ModuloEspecifico({
   const [respaldoSeleccionado, setRespaldoSeleccionado] = useState(false);
   const [cantidad, setCantidad] = useState(1);
   const [precioTotal, setPrecioTotal] = useState(datos.precio);
-  const { addPrecioAcumulado, subPrecioAcumulado } = usePrecioAcumulado();
+  const { precioAcumulado, addPrecioAcumulado, subPrecioAcumulado } = usePrecioAcumulado();
 
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
@@ -35,18 +35,10 @@ export default function ModuloEspecifico({
       nuevoPrecio += datos.precioRespaldo;
     }
     setPrecioTotal(nuevoPrecio);
-
-    if (respaldoSeleccionado && datos.precioRespaldo !== null) {
-      addPrecioAcumulado(datos.precioRespaldo);
-    } else {
-      if (datos.precioRespaldo !== null) {
-        subPrecioAcumulado(datos.precioRespaldo);
-      }
-    }
-  }, [respaldoSeleccionado, datos.precio, datos.precioRespaldo, addPrecioAcumulado, subPrecioAcumulado]);
+  }, [respaldoSeleccionado, datos.precioRespaldo, datos.precio]);
 
   return (
-    <article className="bg-fondoTerciario p-4 flex flex-col gap-4">
+    <article className="bg-fondoTerciario p-4 flex flex-col gap-4 border border-colorBase m-1">
       <h1 className="text-xl">Dimensiones: {datos.dimensiones}x45</h1>
       {datos.respaldo && (
         <section className="text-xl flex flex-col gap-4">
