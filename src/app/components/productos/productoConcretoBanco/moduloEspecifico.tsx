@@ -55,12 +55,15 @@ export default function ModuloEspecifico({
     modificarPrecio,
   ]);
   console.log(precios);
+  
   useEffect(() => {
     calcularCantidad();
   }, []);
+
   useEffect(() => {
     modificarPrecio(datos.id, precioTotal * cantidad);
   }, [cantidad, respaldoSeleccionado, precioTotal]);
+
   return (
     <article className="bg-fondoTerciario p-4 flex flex-col gap-4 border border-colorBase m-1">
       <h1 className="text-xl">Dimensiones: {datos.dimensiones}x45</h1>

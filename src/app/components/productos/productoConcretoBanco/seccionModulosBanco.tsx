@@ -82,6 +82,10 @@ export default function SeccionModulosBanco({
             ))}
           </div>
         </section>
+        <section>
+          <h2>Desea que el banco tenga zócalo? chequear zocalos en los bancos inserts</h2>
+          <h2>Cambiar el color del bastidor /barniz laca</h2>
+        </section>
       </div>
     </section>
   );

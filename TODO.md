@@ -24,3 +24,4 @@
  //PGINA BANCOS
  El respaldo opcinal, suma precio
  Cambiar el material del bastidor (+25%) Barniz laca laminado
+ Quitar o poner el zocalo
