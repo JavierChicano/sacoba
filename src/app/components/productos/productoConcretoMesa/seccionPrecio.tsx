@@ -1,12 +1,18 @@
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import { usePrecioAcumulado, usePreciosBanco } from "../../../../../states/states";
+import {
+  useMaterialBastidor,
+  usePrecioAcumulado,
+  usePreciosBanco,
+} from "../../../../../states/states";
 import Link from "next/link";
 
 export default function SeccionPrecio() {
   const [cantidad, setCantidad] = useState(1);
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
+  const [ porcentaje, setPorcentaje ] = useState(1);
   const { precios } = usePreciosBanco();
+  const { material } = useMaterialBastidor();
 
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
@@ -17,18 +23,25 @@ export default function SeccionPrecio() {
     }
   };
   useEffect(() => {
-    let acumulado = 0; 
-    precios.forEach((valor) => {
-      acumulado += valor; 
+    let acumulado = 0;
+    precios.forEach((modulo) => {
+      acumulado += modulo.precio * modulo.cantidad;
     });
-    setPrecioAcumulado(acumulado); 
+    setPrecioAcumulado(acumulado);
   }, [precios]);
-  
+
+  useEffect(() => {
+    if (material != "Laminado") {
+      setPorcentaje(1.2);
+    }else{
+      setPorcentaje(1);
+    }
+  }, [material]);
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 ">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl">Total: {precioAcumulado * cantidad}€</h1>
+          <h1 className="text-3xl">Total: {Math.trunc(precioAcumulado * cantidad * porcentaje)}€</h1>
           {/* <p className="text-sm flex justify-end"> Iva incluido*</p> */}
         </div>
         <section className="flex w-36 border-[1px] border-fondoTerciario justify-between">

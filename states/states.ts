@@ -39,19 +39,61 @@ export const usePrecioAcumulado = create<PrecioParams>()((set) => ({
   subPrecioAcumulado: (descuento: number) => set((state) => ({ precioAcumulado: state.precioAcumulado - descuento })),
 }));
 
+type MaterialBastidor = {
+  material: string;
+  setMaterial: (material: string) => void;
+};
+
+export const useMaterialBastidor = create<MaterialBastidor>((set) => ({
+  material: 'Laminado',
+  setMaterial: (material: string) => set({ material }),
+}));
 
 //Estado para guardar los modulos seleccionados de banco
+type ModuloBanco = {
+  dimensiones: string;
+  respaldo: boolean;
+  cantidad: number;
+  precio: number;
+};
+
 type PreciosBancoState = {
-  precios: Map<number, number>; // Cambiar a un mapa de número a número
-  modificarPrecio: (clave: number, nuevoPrecio: number) => void; // Cambiar 'indice' a 'clave'
+  precios: Map<number, ModuloBanco>;
+  modificarPrecio: (clave: number, nuevoPrecio: number) => void;
+  modificarCantidad: (clave: number, nuevaCantidad: number) => void;
   resetearPrecios: () => void;
+  insertarModificarModulo: (clave: number, modulo: ModuloBanco) => void;
 };
 
 export const usePreciosBanco = create<PreciosBancoState>((set) => ({
-  precios: new Map(), // Inicializar el mapa vacío
+  precios: new Map(),
   modificarPrecio: (clave: number, nuevoPrecio: number) =>
-    set((state) => ({
-      precios: new Map(state.precios).set(clave, nuevoPrecio), // Crear un nuevo mapa con la clave y el nuevo precio
-    })),
-  resetearPrecios: () => set({ precios: new Map() }), // Resetear el mapa a uno vacío
+    set((state) => {
+      const nuevosPrecios = new Map(state.precios);
+      const modulo = nuevosPrecios.get(clave);
+      if (modulo) {
+        modulo.precio = nuevoPrecio;
+        nuevosPrecios.set(clave, modulo);
+        return { precios: nuevosPrecios };
+      }
+      return state;
+    }),
+  modificarCantidad: (clave: number, nuevaCantidad: number) =>
+    set((state) => {
+      const nuevosPrecios = new Map(state.precios);
+      const modulo = nuevosPrecios.get(clave);
+      if (modulo) {
+        modulo.cantidad = nuevaCantidad;
+        nuevosPrecios.set(clave, modulo);
+        return { precios: nuevosPrecios };
+      }
+      return state;
+    }),
+  resetearPrecios: () => set({ precios: new Map() }),
+  insertarModificarModulo: (clave: number, modulo: ModuloBanco) =>
+    set((state) => {
+      const nuevosPrecios = new Map(state.precios);
+      nuevosPrecios.set(clave, modulo);
+      return { precios: nuevosPrecios };
+    }),
 }));

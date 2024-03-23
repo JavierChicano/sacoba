@@ -18,10 +18,11 @@ export default function ModuloEspecifico({
 }: {
   datos: ModuloEspecificoParams;
 }) {
+  const [respaldo, setRespaldo] = useState(false);
   const [respaldoSeleccionado, setRespaldoSeleccionado] = useState(false);
   const [cantidad, setCantidad] = useState(0);
   const [precioTotal, setPrecioTotal] = useState(datos.precio);
-  const { precios, modificarPrecio } = usePreciosBanco();
+  const { precios, modificarPrecio, insertarModificarModulo, modificarCantidad } = usePreciosBanco();
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
   };
@@ -46,7 +47,7 @@ export default function ModuloEspecifico({
       nuevoPrecio += datos.precioRespaldo;
     }
     setPrecioTotal(nuevoPrecio);
-    modificarPrecio(datos.id, precioTotal);
+    modificarPrecio(datos.id, precioTotal)
   }, [
     respaldoSeleccionado,
     datos.precioRespaldo,
@@ -57,16 +58,29 @@ export default function ModuloEspecifico({
   console.log(precios);
   
   useEffect(() => {
+    if(datos.precioRespaldo === 0){
+      setRespaldoSeleccionado(true)
+    }
     calcularCantidad();
   }, []);
 
   useEffect(() => {
-    modificarPrecio(datos.id, precioTotal * cantidad);
-  }, [cantidad, respaldoSeleccionado, precioTotal]);
+    insertarModificarModulo(datos.id, {
+      dimensiones: datos.dimensiones,
+      respaldo: respaldoSeleccionado,
+      cantidad: cantidad,
+      precio: (datos.precio*cantidad),
+    });
+  }, [respaldoSeleccionado]);
+  
+  useEffect(() => {
+    modificarCantidad(datos.id, cantidad)
+    modificarPrecio(datos.id, precioTotal)
+  },[cantidad, precioTotal]);
 
   return (
     <article className="bg-fondoTerciario p-4 flex flex-col gap-4 border border-colorBase m-1">
-      <h1 className="text-xl">Dimensiones: {datos.dimensiones}x45</h1>
+      <h1 className="text-xl">Tamaño: <span className="text-lg">{datos.dimensiones}x45 (cm)</span></h1>
       {datos.respaldo && (
         <section className="text-xl flex flex-col gap-4">
           <h2>
