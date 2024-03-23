@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { IconoCarrito } from "../iconos/iconoCarrito";
 import BotonTema from "./botonCambioTema";
 import { IconUser } from "@tabler/icons-react";
 import DesplegableProducto from "./desplegableProducto";
-import HoverBoton from "./hoverBotones";
 import Link from "next/link";
+import DesplegableCarrito from "./desplegableCarrito";
+import HoverBoton from "./hoverBotones";
 
 export default function BotonesHeader() {
+  const [mostrarDesplegable, setMostrarDesplegable] = useState(false);
+
   return (
     <ul className="flex justify-around w-3/4 m-10 text-xl items-center">
       <HoverBoton>
@@ -22,7 +26,14 @@ export default function BotonesHeader() {
       </HoverBoton>
       <li className="w-36 flex justify-around items-center">
         <BotonTema />
-        <IconoCarrito size={40} />
+        <div
+          onMouseEnter={() => setMostrarDesplegable(true)}
+          onMouseLeave={() => setMostrarDesplegable(false)}
+        >
+          <IconoCarrito size={40}/>
+          {mostrarDesplegable && <DesplegableCarrito />}
+        </div>
+
         <IconUser stroke={2} size={40} />
       </li>
     </ul>
