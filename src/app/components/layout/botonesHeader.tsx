@@ -6,9 +6,11 @@ import DesplegableProducto from "./desplegableProducto";
 import Link from "next/link";
 import DesplegableCarrito from "./desplegableCarrito";
 import HoverBoton from "./hoverBotones";
+import DesplegableLogin from "./desplegableLogin";
 
 export default function BotonesHeader() {
   const [mostrarDesplegable, setMostrarDesplegable] = useState(false);
+  const [mostrarLogin, setMostrarLogin] = useState(false);
 
   return (
     <ul className="flex justify-around w-3/4 m-10 text-xl items-center">
@@ -30,11 +32,24 @@ export default function BotonesHeader() {
           onMouseEnter={() => setMostrarDesplegable(true)}
           onMouseLeave={() => setMostrarDesplegable(false)}
         >
-          <IconoCarrito size={40}/>
+          <IconoCarrito
+            size={40}
+            color={mostrarDesplegable ? "orange" : "currentColor"}
+          />
           {mostrarDesplegable && <DesplegableCarrito />}
         </div>
-
-        <IconUser stroke={2} size={40} />
+        <div
+          onMouseEnter={() => setMostrarLogin(true)}
+          onMouseLeave={() => setMostrarLogin(false)}
+        >
+          <IconUser
+            stroke={2}
+            size={40}
+            color={mostrarLogin ? "orange" : "currentColor"}
+            className="cursor-pointer"
+          />
+          <DesplegableLogin />
+        </div>
       </li>
     </ul>
   );
