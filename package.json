@@ -27,6 +27,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@types/bun": "latest",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -37,8 +38,7 @@
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
     "tailwindcss-animated": "^1.0.1",
-    "typescript": "^5",
-    "@types/bun": "latest"
+    "typescript": "^5"
   },
   "module": "index.ts",
   "type": "module"

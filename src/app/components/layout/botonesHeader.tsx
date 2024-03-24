@@ -32,10 +32,13 @@ export default function BotonesHeader() {
           onMouseEnter={() => setMostrarDesplegable(true)}
           onMouseLeave={() => setMostrarDesplegable(false)}
         >
-          <IconoCarrito
-            size={40}
-            color={mostrarDesplegable ? "orange" : "currentColor"}
-          />
+          <Link href="/CarritoCompra">
+            <IconoCarrito
+              size={40}
+              color={mostrarDesplegable ? "orange" : "currentColor"}
+            />
+          </Link>
+
           {mostrarDesplegable && <DesplegableCarrito />}
         </div>
         <div
@@ -48,7 +51,7 @@ export default function BotonesHeader() {
             color={mostrarLogin ? "orange" : "currentColor"}
             className="cursor-pointer"
           />
-          <DesplegableLogin />
+          {mostrarLogin && <DesplegableLogin />}
         </div>
       </li>
     </ul>

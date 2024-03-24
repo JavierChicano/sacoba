@@ -76,7 +76,6 @@ export default function ObjMesasTendencias({
                     tipoAmpliable: mesa.tipoAmpliable,
                     auxiliar: mesa.auxiliar,
                     materialTapa: mesa.materialTapa,
-                    colorTapa: mesa.colorTapa,
                     dimensiones: mesa.dimensiones,
                     altura: mesa.altura,
                     materialPata: mesa.materialPata,

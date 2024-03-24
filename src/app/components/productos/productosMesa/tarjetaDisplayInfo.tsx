@@ -18,7 +18,6 @@ export default function TarjetaDisplayInfo({ datos }: { datos: TipoMesa }) {
       tipoAmpliable: datos.tipoAmpliable,
       auxiliar: datos.auxiliar,
       materialTapa: datos.materialTapa,
-      colorTapa: datos.colorTapa,
       dimensiones: datos.dimensiones,
       altura: datos.altura,
       materialPata: datos.materialPata,

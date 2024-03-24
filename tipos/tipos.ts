@@ -7,7 +7,6 @@ export interface TipoMesa {
   tipoAmpliable: string | null;
   auxiliar: string | null;
   materialTapa: string | null;
-  colorTapa: string | null;
   dimensiones: string | null;
   altura: string | null;
   materialPata: string | null;
