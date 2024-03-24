@@ -19,6 +19,8 @@ export const mesas = sqliteTable("mesas", {
   tipoAmpliable: text("tipoAmpliable", { enum: ["lateral", "frontal"]}),
   auxiliar: text("auxiliar", { enum: ["simple", "doble"]}),
   materialTapa: text("materialTapa", { enum: [
+    "laca",
+    "barniz",
     "laminado",
     "cristal 3mm",
     "cristal 8mm",
@@ -26,9 +28,9 @@ export const mesas = sqliteTable("mesas", {
     "silestone g1",
     "dekton g1",
   ]}).notNull(),
-  colorTapa: text("colorTapa").notNull(),
   dimensiones: text("dimensiones").notNull(),
   altura: text("altura").notNull(),
+  costeAltura: text("costeAltura"),
   materialPata: text("materialPata", { enum: ["madera", "aluminio"]}).notNull(),
   colorPata: text("colorPata").notNull(), 
   tendencia: integer("tendencia", {mode: 'boolean'}).default(false),
@@ -41,7 +43,7 @@ export const sillas = sqliteTable("sillas",{
   modelo: text("modelo", { length: 256 }).notNull(),
   imagen: text("imagen").notNull(),
   formato: text("formato", { length: 256 }).notNull(),
-  colorAsiento: text("tipoColorAsiento", { enum: ["tapizado nvA", "tapizado nvC", "laminado", "laca", "barniz"]}).notNull(),
+  materialAsiento: text("tipoMaterialAsiento", { enum: ["tapizado nvA", "tapizado nvC", "laminado", "laca", "barniz"]}).notNull(),
   colorBastidor: text("modelo", { length: 256 }).notNull(),
   precio: text("precio").notNull(), 
 });
