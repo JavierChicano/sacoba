@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { db } from ".";
-import { bancos, mesas } from "./schema";
+import { bancos, mesas, packs } from "./schema";
 
 //Selects de mesas
 export async function selectsMesasTendencia() {
@@ -28,4 +28,14 @@ export async function selectsBancosTotales() {
 export async function selectsBancosModelo() {
   const todosBancos = await db.selectDistinct().from(bancos).orderBy(bancos.id).groupBy(bancos.modelo);
   return todosBancos;
+}
+
+// Selects de packs
+export async function selectsPacksTotales(){
+  const todosPacks = await db.selectDistinct().from(packs);
+  return todosPacks;
+}
+export async function selectsPacksModelo(){
+  const todosPacks = await db.selectDistinct().from(packs).orderBy(packs.id).groupBy(packs.modelo);
+  return todosPacks;
 }

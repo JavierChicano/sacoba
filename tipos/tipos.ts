@@ -6,7 +6,7 @@ export interface TipoMesa {
   extension: string | null;
   tipoAmpliable: string | null;
   auxiliar: string | null;
-  materialTapa: string | null;
+  materialTapa: string;
   dimensiones: string | null;
   altura: string | null;
   materialPata: string | null;
@@ -22,5 +22,15 @@ export interface TipoBanco {
   respaldo: boolean | null;
   precioRespaldo: number | null;
   zocalo: boolean | null;
+  precio: string;
+}
+export interface TipoPack {
+  id: number;
+  modelo: string;
+  imagenMesa: string;
+  descripcion: string;
+  materialTapa: string;
+  dimensiones: string;
+  precioCajon: number | null;
   precio: string;
 }

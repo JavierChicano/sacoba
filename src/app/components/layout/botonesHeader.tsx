@@ -18,7 +18,9 @@ export default function BotonesHeader() {
         <p className="text-center">Outlet</p>
       </HoverBoton>
       <HoverBoton>
-        <p className="text-center">Packs</p>
+        <p className="text-center">
+          <Link href="/Packs/">Packs</Link>
+        </p>
       </HoverBoton>
       <DesplegableProducto />
       <HoverBoton>
@@ -27,31 +29,33 @@ export default function BotonesHeader() {
         </p>
       </HoverBoton>
       <li className="w-36 flex justify-around items-center">
-        <BotonTema />
-        <div
-          onMouseEnter={() => setMostrarDesplegable(true)}
-          onMouseLeave={() => setMostrarDesplegable(false)}
-        >
-          <Link href="/CarritoCompra">
-            <IconoCarrito
-              size={40}
-              color={mostrarDesplegable ? "orange" : "currentColor"}
-            />
-          </Link>
+        <div className="absolute flex items-center z-50">
+          <BotonTema />
+          <div
+            onMouseEnter={() => setMostrarDesplegable(true)}
+            onMouseLeave={() => setMostrarDesplegable(false)}
+          >
+            <Link href="/CarritoCompra">
+              <IconoCarrito
+                size={40}
+                color={mostrarDesplegable ? "orange" : "currentColor"}
+              />
+            </Link>
 
-          {mostrarDesplegable && <DesplegableCarrito />}
-        </div>
-        <div
-          onMouseEnter={() => setMostrarLogin(true)}
-          onMouseLeave={() => setMostrarLogin(false)}
-        >
-          <IconUser
-            stroke={2}
-            size={40}
-            color={mostrarLogin ? "orange" : "currentColor"}
-            className="cursor-pointer"
-          />
-          {mostrarLogin && <DesplegableLogin />}
+            {mostrarDesplegable && <DesplegableCarrito />}
+          </div>
+          <div
+            onMouseEnter={() => setMostrarLogin(true)}
+            onMouseLeave={() => setMostrarLogin(false)}
+          >
+            <IconUser
+              stroke={2}
+              size={40}
+              color={mostrarLogin ? "orange" : "currentColor"}
+              className="cursor-pointer"
+            />
+            {mostrarLogin && <DesplegableLogin />}
+          </div>
         </div>
       </li>
     </ul>

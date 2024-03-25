@@ -6,11 +6,13 @@ import TextoAnimado from "./components/main/textoAnimado";
 import Image from "next/image";
 import { BackgroundBeams } from "./components/main/fondoAnimado";
 import Link from "next/link";
+import Sacoba from "./components/main/sacoba";
 
 export default function Home() {
   return (
     <main className="flex flex-col items-center">
       <BackgroundBeams/>
+      {/* <Sacoba/> */}
       <TextoAnimado /> 
       <h1 className="text-6xl text-contraste mt-20 m-2 animate-bounce animate-once animate-duration-[3000ms] animate-delay-2000 animate-ease-linear animate-fill-both" >
         Encuentra el producto que encaje contigo

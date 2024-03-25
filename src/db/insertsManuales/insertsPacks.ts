@@ -1,5 +1,5 @@
 import { db } from "..";
-import { mesas } from "../schema";
+import { packs } from "../schema";
 
 export async function insertarPacks() {
   // modificar la ruta de la imagen en el insert
@@ -9,7 +9,7 @@ export async function insertarPacks() {
       modelo: "Basic",
       imagenMesa: "basic.png",
       descripcion: "Mesa de libro, con cajón opcional",
-      materialTapa: "cristal 8mm"
+      materialTapa: "cristal 3mm",
       dimensiones: "70x35(70x70), 80x40(80x80), 90x45(90x90)",
       precio: "183, 191, 202",
     },
@@ -17,7 +17,7 @@ export async function insertarPacks() {
         modelo: "Basic",
         imagenMesa: "basic.png",
         descripcion: "Mesa de libro, con cajón opcional",
-        materialTapa: "laminado"
+        materialTapa: "laminado",
         dimensiones: "70x35(70x70), 80x40(80x80), 90x45(90x90)",
         precioCajon: 39,
         precio: "173, 181, 191",
@@ -26,7 +26,7 @@ export async function insertarPacks() {
         modelo: "Basic",
         imagenMesa: "basic.png",
         descripcion: "Mesa de libro, con cajón opcional",
-        materialTapa: "laminado ECO"
+        materialTapa: "laminado ECO",
         dimensiones: "70x35(70x70), 80x40(80x80), 90x45(90x90)",
         precioCajon: 39,
         precio: "159, 166, 173",
@@ -37,7 +37,7 @@ export async function insertarPacks() {
         modelo: "CALPE",
         imagenMesa: "calpe.png",
         descripcion: "Mesa extensible frontal, guías automáticas",
-        materialTapa: "cristal 8mm"
+        materialTapa: "cristal 3mm",
         dimensiones: "80x40(80x68), 90x45x(90x79), 100x50(100x84), 100x60(100x94)",
         precio: "265, 278, 299, 308",
       },
@@ -45,7 +45,7 @@ export async function insertarPacks() {
         modelo: "CALPE",
         imagenMesa: "calpe.png",
         descripcion: "Mesa extensible frontal, guías automáticas",
-        materialTapa: "laminado"
+        materialTapa: "laminado",
         dimensiones: "80x40(80x68), 90x45x(90x79), 100x50(100x84), 100x60(100x94)",
         precio: "256, 267, 284, 293",
       },
@@ -53,7 +53,7 @@ export async function insertarPacks() {
         modelo: "CALPE",
         imagenMesa: "calpe.png",
         descripcion: "Mesa extensible frontal, guías automáticas",
-        materialTapa: "laminado ECO"
+        materialTapa: "laminado ECO",
         dimensiones: "80x40(80x68), 90x45x(90x79), 100x50(100x84), 100x60(100x94)",
         precio: "236, 245, 259, 265",
       },
@@ -63,7 +63,7 @@ export async function insertarPacks() {
         modelo: "MALTA",
         imagenMesa: "malta.png",
         descripcion: "Mesa extensible lateral, guías automáticas, con cajón opcional",
-        materialTapa: "cristal 8mm"
+        materialTapa: "cristal 3mm",
         dimensiones: "90x45(150x45), 100x50(160x50), 100x60(160x60), 110x70(170x70)",
         precioCajon: 39,
         precio: "274, 293, 303, 327",
@@ -72,7 +72,7 @@ export async function insertarPacks() {
         modelo: "MALTA",
         imagenMesa: "malta.png",
         descripcion: "Mesa extensible lateral, guías automáticas, con cajón opcional",
-        materialTapa: "laminado"
+        materialTapa: "laminado",
         dimensiones: "90x45(150x45), 100x50(160x50), 100x60(160x60), 110x70(170x70)",
         precioCajon: 39,
         precio: "253, 269, 278, 296",
@@ -81,7 +81,7 @@ export async function insertarPacks() {
         modelo: "MALTA",
         imagenMesa: "malta.png",
         descripcion: "Mesa extensible lateral, guías automáticas, con cajón opcional",
-        materialTapa: "laminado ECO"
+        materialTapa: "laminado ECO",
         dimensiones: "90x45(150x45), 100x50(160x50), 100x60(160x60), 110x70(170x70)",
         precioCajon: 39,
         precio: "232, 245, 252, 264",
@@ -92,7 +92,7 @@ export async function insertarPacks() {
         modelo: "AUTA",
         imagenMesa: "aura.png",
         descripcion: "Mesa ampliable, bastidor de carro",
-        materialTapa: "cristal 8mm"
+        materialTapa: "cristal 3mm",
         dimensiones: "100x60(160x60), 110x70(170x70), 120x80(180x80)",
         precio: "356, 371, 386",
       },
@@ -100,7 +100,7 @@ export async function insertarPacks() {
         modelo: "AUTA",
         imagenMesa: "aura.png",
         descripcion: "Mesa ampliable, bastidor de carro",
-        materialTapa: "laminado"
+        materialTapa: "laminado",
         dimensiones: "100x60(160x60), 110x70(170x70), 120x80(180x80)",
         precio: "341, 351, 362",
       },
@@ -108,7 +108,7 @@ export async function insertarPacks() {
         modelo: "AUTA",
         imagenMesa: "aura.png",
         descripcion: "Mesa ampliable, bastidor de carro",
-        materialTapa: "laminado ECO"
+        materialTapa: "laminado ECO",
         dimensiones: "100x60(160x60), 110x70(170x70), 120x80(180x80)",
         precio: "318, 323, 329",
       },

@@ -92,7 +92,6 @@ export const packs = sqliteTable("packs", {
     "laminado ECO",
     "laminado",
     "cristal 3mm",
-    "cristal 8mm",
   ]}).notNull(),
   dimensiones: text("dimensiones").notNull(),
   precioCajon: integer("precioCajon").default(0),

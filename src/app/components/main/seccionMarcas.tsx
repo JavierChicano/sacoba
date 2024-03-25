@@ -14,6 +14,7 @@ export default function SeccionMarcas() {
             marca: "Silestone",
           }}
         />
+        
         <DivMarca
           datos={{
             img: "dekton.png",
