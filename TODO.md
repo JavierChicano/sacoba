@@ -23,3 +23,7 @@
 
  //PAGINA BANCOS
  Quitar o poner el zocalo (Depende del modelo)
+
+ //PAGINA PACK
+ Los packs aumentan 106€ en funcion
+ Poner la opcion de cambiar el color del resto entre aluminio y blanco
