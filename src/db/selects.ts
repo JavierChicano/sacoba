@@ -11,6 +11,10 @@ export async function selectsMesasNovedad() {
   const todasMesas = await db.select().from(mesas).where(eq(mesas.nuevo, true));
   return todasMesas;
 }
+export async function selectsMesasModelo() {
+  const todasMesas = await db.selectDistinct().from(mesas).orderBy(mesas.id).groupBy(mesas.modelo);
+  return todasMesas;
+}
 export async function selectsMesasTotales() {
   const todasMesas = await db.select().from(mesas);
   return todasMesas;

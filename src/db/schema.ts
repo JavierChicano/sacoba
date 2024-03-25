@@ -73,6 +73,7 @@ export const colores = sqliteTable("colores", {
     "cristal 8mm extraclaro",
     "silestone g1",
     "dekton g1",
+    "Laminado ECO",
   ]}).notNull(),
   nombreColor: text("nombreColor", { length: 256 }).notNull(),
   imagenColor: text("imagenColor", { length: 256 }).notNull(),
@@ -80,4 +81,27 @@ export const colores = sqliteTable("colores", {
   grosor: text("grosor", { length: 256 }).notNull(),
   acabado: text("tipoAcabado", { enum: ["g1", "g2", "g3", "g4", "g5", "g6"]}),
   canto: integer("canto", {mode: 'boolean'}).default(false),
+});
+
+export const packs = sqliteTable("packs", {
+  id: integer("id").primaryKey({autoIncrement: true}),
+  modelo: text("modelo").notNull(),
+  imagenMesa: text("imagenMesa").notNull(),
+  descripcion: text("descripcion").notNull(),
+  materialTapa: text("materialTapa", { enum: [
+    "laminado ECO",
+    "laminado",
+    "cristal 3mm",
+    "cristal 8mm",
+  ]}).notNull(),
+  dimensiones: text("dimensiones").notNull(),
+  altura: text("altura").notNull(),
+  costeAltura: text("costeAltura"),
+  materialPata: text("materialPata", { enum: ["madera", "aluminio"]}).notNull(),
+  colorPata: text("colorPata").notNull(), 
+  tendencia: integer("tendencia", {mode: 'boolean'}).default(false),
+  nuevo: integer("nuevo", {mode: 'boolean'}).default(false),
+  precio: text("precio").notNull(),
+  precio2s: text("precio").notNull(),
+  precio4s: text("precio").notNull(),
 });

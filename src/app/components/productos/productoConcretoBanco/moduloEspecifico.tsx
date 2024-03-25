@@ -56,6 +56,7 @@ export default function ModuloEspecifico({
     modificarPrecio,
   ]);
   console.log(precios);
+  console.log(2*3);
   
   useEffect(() => {
     if(datos.precioRespaldo === 0){
