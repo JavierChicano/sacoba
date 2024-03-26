@@ -3,11 +3,10 @@ import CardProducto from "./cardNuestrosProductos";
 import CardProductoDerecha from "./cardNuestrosProductosDerecha";
 
 export default function SeccionNuestrosProductos() {
-  //  HACER JS AQUI
-  
+ 
     return(
-        <section id="productos" className="flex flex-col flex-wrap gap-8 mb-20 ">
-            <h1 className="self-center text-5xl mb-20">Nuestros productos</h1>
+        <section id="productos" className="flex flex-col flex-wrap gap-8 mb-20 max-w-7xl">
+            <h1 className="self-center text-5xl">Nuestros productos</h1>
             <div  className="flex flex-wrap  gap-8 justify-center">
             <CardProducto
             datos={{

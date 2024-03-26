@@ -39,7 +39,7 @@ export default function CardProductoAMedida({ datos }: { datos: CardProductoPara
             <TextGenerateEffect words={texto}/>
       </div>
       <div className="flex gap-6 h-3/6 items-center justify-center ">     
-            <div className="relative w-2/6 h-5/6"
+            <div className="relative w-1/2 h-5/6"
               onMouseEnter={() => setHovered(true)}
               onMouseLeave={() => setHovered(false)}>
                 {hovered && (

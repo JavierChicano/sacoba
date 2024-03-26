@@ -26,7 +26,6 @@ export default function Home() {
       />
        <button className="bg-fondoTerciario p-2 -mt-[50vh] text-2xl hover:bg-colorBase hover:text-black"><Link href="/ProductoAMedida/">Crea tu mesa</Link></button>
       <SeccionInfo />
-      <SeccionImaginacion />
       <SeccionNuestrosProductos />
       <SeccionMarcas />
     </main>
