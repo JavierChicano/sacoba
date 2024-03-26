@@ -36,6 +36,6 @@ export async function selectsPacksTotales(){
   return todosPacks;
 }
 export async function selectsPacksModelo(){
-  const todosPacks = await db.selectDistinct().from(packs).orderBy(packs.id).groupBy(packs.modelo);
+  const todosPacks = await db.selectDistinct().from(packs).where(eq(packs.materialTapa, "laminado ECO"));
   return todosPacks;
 }

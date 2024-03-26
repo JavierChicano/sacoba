@@ -2,6 +2,8 @@ import { useState } from "react";
 import { TipoPack } from "../../../../tipos/tipos";
 import Image from "next/image";
 import { Meteors } from "../main/meteoros";
+import { IconArrowRightBar } from "@tabler/icons-react";
+import Link from "next/link";
 
 export default function TarjetaDisplayPacks({
   datos,
@@ -10,6 +12,16 @@ export default function TarjetaDisplayPacks({
   datos: TipoPack;
   posicion: number;
 }) {
+  const obtenerArrayDimensiones = (dimensionesString: string): string[] => {
+    return dimensionesString.split(",");
+  };
+  const dimensiones = obtenerArrayDimensiones(datos.dimensiones);
+  const aumento = 106;
+  const obtenerArrayPrecio = (precioString: string): number[] => {
+    return precioString.split(",").map((precio) => parseFloat(precio.trim()));
+  };
+  const precios = obtenerArrayPrecio(datos.precio);
+  console.log(precios);
   return (
     <>
       {/* Esto simplemente es un relleno de codigo, para situar correctamente los section */}
@@ -33,11 +45,45 @@ export default function TarjetaDisplayPacks({
         </div>
         <section className="p-5 relative overflow-hidden">
           <Meteors />
-          <div className="z-10">
-          <h1 className="text-4xl">{datos.modelo}</h1>
-          <h2>{datos.descripcion}</h2>
+          <div className="z-10 h-full flex flex-col justify-between">
+            <h1 className="text-4xl border-b border-colorBase mb-2">
+              {datos.modelo}
+            </h1>
+            <h2 className="mb-2">{datos.descripcion}</h2>
+            <div>
+              Disponible en las siguientes medidas (cm):{" "}
+              <ul className="grid grid-cols-2 mb-2">
+                {dimensiones.length > 0 ? (
+                  dimensiones.map((dimension, index) => (
+                    <li key={index}>- {dimension}</li>
+                  ))
+                ) : (
+                  <li>No hay packs disponibles</li>
+                )}
+              </ul>
+            </div>
+            <h1 className="text-2xl border-b border-colorBase w-fit mb-2">
+              Diferentes packs
+            </h1>
+            <section className=" justify-around text-xl">
+              <div className="flex items-center gap-2">
+                Mesa <IconArrowRightBar stroke={2} /> desde: {precios[0]}€
+              </div>
+              <div className="flex items-center gap-2">
+                Mesa + 2 Sillas <IconArrowRightBar stroke={2} /> desde:{" "}
+                {precios[0] + aumento}€
+              </div>
+              <div className="flex items-center gap-2 ">
+                Mesa + 4 Sillas <IconArrowRightBar stroke={2} /> desde:{" "}
+                {precios[0] + aumento * 2}€
+              </div>
+            </section>
+            <div className=" text-xl">
+              <Link href={""} className="underline text-colorBase">
+                Ver opciones de compra
+              </Link>
+            </div>
           </div>
-          
         </section>
       </section>
     </>
