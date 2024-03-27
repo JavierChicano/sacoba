@@ -3,10 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import HeaderScroll from "./components/layout/headerScroll";
-import ContenidoFooter from "./components/footer/contenidoFooter";
 import React from "react";
 import ClientComponent from "./components/layout/client";
 import Header from "./components/layout/header";
+import Footer from "./components/footer/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,9 +28,7 @@ export default function RootLayout({
           {/* Hay que poner este header y esconder el otro cuando se hace scroll */}
           <HeaderScroll />
           {children}
-          <footer className="flex justify-center p-20 pb-0">
-            <ContenidoFooter />
-          </footer>
+          <Footer/>
         </ClientComponent>
       </body>
     </html>

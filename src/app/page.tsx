@@ -1,5 +1,4 @@
 import SeccionInfo from "./components/main/seccionInfo";
-import SeccionImaginacion from "./components/main/seccionImaginacion";
 import SeccionNuestrosProductos from "./components/main/seccionNuestrosProductos";
 import SeccionMarcas from "./components/main/seccionMarcas";
 import TextoAnimado from "./components/main/textoAnimado";
@@ -20,7 +19,7 @@ export default function Home() {
       <Image
         className="w-3/4 h-auto"
         src="/portadas/portadaMain.png"
-        alt="Logo de la marca"
+        alt="Mesa del main"
         width={1920}
         height={1080}
       />

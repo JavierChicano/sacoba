@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import BotonesHeader from "./botonesHeader";
 import DivLogo from "./divLogo";
 import { useState, useEffect } from "react";
+import { cn } from "@nextui-org/react";
 
 export default function Header() {
   const pathName = usePathname();
@@ -30,8 +31,12 @@ export default function Header() {
 
   return (
     <header
-      className="w-full h-fit flex flex-col items-center bg-center bg-cover"
+    className={cn({
+      'w-full h-fit flex flex-col items-center bg-center bg-cover': !['/Login', '/Registro', '/Cuenta'].includes(pathName),
+      'hidden': ['/Login', '/Registro', '/Cuenta'].includes(pathName)
+    })}
       style={{ backgroundImage: `url('${backgroundImage}')` }}
+      
     >
       <DivLogo />
       <BotonesHeader />
