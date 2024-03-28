@@ -43,8 +43,10 @@ export const sillas = sqliteTable("sillas",{
   modelo: text("modelo", { length: 256 }).notNull(),
   imagen: text("imagen").notNull(),
   formato: text("formato", { length: 256 }).notNull(),
-  materialAsiento: text("tipoMaterialAsiento", { enum: ["tapizado nvA", "tapizado nvC", "laminado", "laca", "barniz"]}).notNull(),
-  colorBastidor: text("modelo", { length: 256 }).notNull(),
+  materialAsiento: text("tipoMaterialAsiento").notNull(),
+  colorBastidor: text("colorBastidor", { length: 256 }).notNull(),
+  tendencia: integer("tendencia", {mode: 'boolean'}).default(false),
+  nuevo: integer("nuevo", {mode: 'boolean'}).default(false),
   precio: text("precio").notNull(), 
 });
 
