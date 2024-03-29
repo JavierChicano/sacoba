@@ -25,6 +25,11 @@ export default function TarjetaDisplayInfo({ datos }: { datos: TipoMesa }) {
       precio: datos.precio,
     });
   };
+  const obtenerArrayPrecio = (precioString: string): number[] => {
+    return precioString.split(',').map((precio) => parseFloat(precio.trim()));
+  };
+  const precios = obtenerArrayPrecio(datos.precio);
+  
   return (
     <div 
       className="relative w-full h-full min-w-[300px]"
@@ -33,9 +38,10 @@ export default function TarjetaDisplayInfo({ datos }: { datos: TipoMesa }) {
     >
       {hovered && (
         <div 
-          className="absolute top-0 left-0 w-full h-full bg-black/80 flex justify-center items-center pointer-events-none z-10"
+          className="absolute top-0 left-0 w-full h-full bg-black/80 flex flex-col justify-center items-center pointer-events-none z-10"
         >
           <p className="text-white text-3xl">{datos.modelo}</p>
+          <h1 className="text-2xl">Desde {precios[0]}€</h1>
         </div>
       )}
 

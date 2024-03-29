@@ -11,7 +11,7 @@ export default async function ProductoBanco() {
     "Con un diseño ingenioso que integra espacio de almacenamiento en su interior, nuestros bancos ofrecen una solución elegante para organizar y almacenar tus alimentos de manera ordenada y discreta.";
   
   const promiseBancosTotales =  selectsBancosTotales();
-  const promiseBancosModelo =  selectsBancosModelo()
+  const promiseBancosModelo =  selectsBancosModelo();
 
   const [bancosTotales, bancosModelo] = await Promise.all([promiseBancosTotales, promiseBancosModelo])
 
