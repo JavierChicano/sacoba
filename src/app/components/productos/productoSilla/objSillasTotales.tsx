@@ -1,58 +1,57 @@
-"use client";
+"use client"
 import { useState, useEffect } from "react";
-import TarjetaDisplayInfo from "./tarjetaDisplayInfo";
+import TarjetaDisplayInfoSilla from "./tarjetaDisplayInfoSilla";
 import {
   IconAdjustmentsHorizontal,
   IconSquareRoundedChevronDown,
   IconSquareRoundedChevronUp,
 } from "@tabler/icons-react";
-import { TipoMesa } from "../../../../../tipos/tipos";
+import { TipoSilla } from "../../../../../tipos/tipos";
 import { cn } from "@nextui-org/react";
 
-export default function ObjMesasTotales({
-  mesasTotales,
+export default function ObjSillasTotales({
+  sillasTotales,
 }: {
-  mesasTotales: TipoMesa[];
+  sillasTotales: TipoSilla[];
 }) {
   const [ocultarFiltro, setOcultarFiltro] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
-  const [mesasOrdenadas, setMesasOrdenadas] =
-    useState<TipoMesa[]>(mesasTotales);
+  const [sillasOrdenadas, setSillasOrdenadas] = useState<TipoSilla[]>(sillasTotales);
 
   const ordenarPorReciente = () => {
-    const sortedMesas = [...mesasTotales].reverse();
-    setMesasOrdenadas(sortedMesas);
+    const sortedSillas = [...sillasTotales].reverse();
+    setSillasOrdenadas(sortedSillas);
   };
 
   const ordenarPorPrecioAlto = () => {
-    const sortedMesas = [...mesasTotales].sort((a, b) => {
+    const sortedSillas = [...sillasTotales].sort((a, b) => {
       const precioA = parseFloat(a.precio.split(",")[0]);
       const precioB = parseFloat(b.precio.split(",")[0]);
       return precioB - precioA;
     });
-    setMesasOrdenadas(sortedMesas);
+    setSillasOrdenadas(sortedSillas);
   };
 
   const ordenarPorPrecioBajo = () => {
-    const sortedMesas = [...mesasTotales].sort((a, b) => {
+    const sortedSillas = [...sillasTotales].sort((a, b) => {
       const precioA = parseFloat(a.precio.split(",")[0]);
       const precioB = parseFloat(b.precio.split(",")[0]);
       return precioA - precioB;
     });
-    setMesasOrdenadas(sortedMesas);
+    setSillasOrdenadas(sortedSillas);
   };
 
   useEffect(() => {
-    if (!mesasOrdenadas.length) {
-      setMesasOrdenadas(mesasTotales);
+    if (!sillasOrdenadas.length) {
+      setSillasOrdenadas(sillasTotales);
     }
-  }, [mesasOrdenadas, mesasTotales]);
+  }, [sillasOrdenadas, sillasTotales]);
 
   return (
     <>
       <div className="w-full mb-4 flex justify-between">
         <h1 className="text-3xl pt-10 flex items-end">
-          Mesas totales ({mesasTotales.length})
+          Sillas totales ({sillasTotales.length})
         </h1>
         <section className="bg-contraste mt-10 text-black flex items-center gap-8 p-4 rounded-lg relative">
           <span
@@ -115,32 +114,28 @@ export default function ObjMesasTotales({
       >
         {!ocultarFiltro && (
           <aside className="row-span-2 bg-fondoSecundario relative">
-            {/* <Slider defaultValue={[33]} max={100} step={1} /> */}
+            {/* Aquí puedes añadir cualquier filtro para sillas */}
           </aside>
         )}
-        {mesasOrdenadas.length > 0 ? (
-          mesasOrdenadas.map((mesa) => (
-            <TarjetaDisplayInfo
-              key={mesa.id}
+        {sillasOrdenadas.length > 0 ? (
+          sillasOrdenadas.map((silla) => (
+            <TarjetaDisplayInfoSilla
+              key={silla.id}
               datos={{
-                id: mesa.id,
-                modelo: mesa.modelo,
-                imagen: mesa.imagen,
-                tipoBase: mesa.tipoBase,
-                extension: mesa.extension,
-                tipoAmpliable: mesa.tipoAmpliable,
-                auxiliar: mesa.auxiliar,
-                materialTapa: mesa.materialTapa,
-                dimensiones: mesa.dimensiones,
-                altura: mesa.altura,
-                materialPata: mesa.materialPata,
-                colorPata: mesa.colorPata,
-                precio: mesa.precio,
+                id: silla.id,
+                modelo: silla.modelo,
+                imagen: silla.imagen,
+                formato: silla.formato,
+                materialAsiento: silla.materialAsiento,
+                colorBastidor: silla.colorBastidor,
+                tendencia: silla.tendencia,
+                nuevo: silla.nuevo,
+                precio: silla.precio,
               }}
             />
           ))
         ) : (
-          <div>No hay mesas disponibles</div>
+          <div>No hay sillas disponibles</div>
         )}
         <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
       </div>

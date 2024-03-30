@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { db } from ".";
-import { bancos, mesas, packs } from "./schema";
+import { bancos, mesas, packs, sillas } from "./schema";
 
 //Selects de mesas
 export async function selectsMesasTendencia() {
@@ -18,6 +18,24 @@ export async function selectsMesasModelo() {
 export async function selectsMesasTotales() {
   const todasMesas = await db.select().from(mesas);
   return todasMesas;
+}
+
+//Selects de sillas
+export async function selectsSillasTendencia() {
+  const todasSillas = await db.select().from(sillas).where(eq(sillas.tendencia, true));
+  return todasSillas;
+}
+export async function selectsSillasNovedad() {
+  const todasSillas = await db.select().from(sillas).where(eq(sillas.nuevo, true));
+  return todasSillas;
+}
+export async function selectsSillasModelo() {
+  const todasSillas = await db.selectDistinct().from(sillas).orderBy(sillas.id).groupBy(sillas.modelo);
+  return todasSillas;
+}
+export async function selectsSillasTotales() {
+  const todasSillas = await db.select().from(sillas);
+  return todasSillas;
 }
 
 //Selects de bancos

@@ -1,15 +1,15 @@
 "use client"
 import { useState, useRef } from "react";
 import { cn } from "@nextui-org/react";
-import TarjetaDisplayInfo from "./tarjetaDisplayInfo";
-import { TipoMesa } from "../../../../../tipos/tipos";
+import { TipoSilla } from "../../../../../tipos/tipos";
 import IconArrowIzquierda from "../../iconos/iconoFlechaIzq";
 import IconArrowDerecha from "../../iconos/iconoFlechaDer";
+import TarjetaDisplayInfoSilla from "./tarjetaDisplayInfoSilla";
 
-export default function ObjMesasNovedades({
-  mesasNovedad,
+export default function ObjSillasNovedades({
+  sillasTendencia,
 }: {
-  mesasNovedad: TipoMesa[];
+  sillasTendencia: TipoSilla[];
 }) {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -27,14 +27,14 @@ export default function ObjMesasNovedades({
 
   const scrollToLeft = () => {
     if (containerRef.current && contentRef.current) {
-      containerRef.current.scrollLeft -= 316; 
+      containerRef.current.scrollLeft -= 316;
       setScrollPosition(containerRef.current.scrollLeft);
     }
   };
 
   const scrollToRight = () => {
     if (containerRef.current && contentRef.current) {
-      containerRef.current.scrollLeft += 316; 
+      containerRef.current.scrollLeft += 316;
       setScrollPosition(containerRef.current.scrollLeft);
     }
   };
@@ -58,34 +58,18 @@ export default function ObjMesasNovedades({
           "max-w-7xl flex flex-row gap-4 pb-2",
           "overflow-x-scroll"
         )}
-        style={{ scrollBehavior: "smooth"}}
+        style={{ scrollBehavior: "smooth" }}
         onScroll={handleScroll}
       >
         <div ref={contentRef} className="flex" style={{ minWidth: "100%" }}>
-          {mesasNovedad.length > 0 ? (
-            mesasNovedad.map((mesa) => (
-              <div style={{ marginRight: "16px" }}>
-                <TarjetaDisplayInfo
-                  datos={{
-                    id: mesa.id,
-                    modelo: mesa.modelo,
-                    imagen: mesa.imagen,
-                    tipoBase: mesa.tipoBase,
-                    extension: mesa.extension,
-                    tipoAmpliable: mesa.tipoAmpliable,
-                    auxiliar: mesa.auxiliar,
-                    materialTapa: mesa.materialTapa,
-                    dimensiones: mesa.dimensiones,
-                    altura: mesa.altura,
-                    materialPata: mesa.materialPata,
-                    colorPata: mesa.colorPata,
-                    precio: mesa.precio,
-                  }}
-                />
+          {sillasTendencia.length > 0 ? (
+            sillasTendencia.map((silla) => (
+              <div style={{ marginRight: "16px" }} key={silla.id}>
+                <TarjetaDisplayInfoSilla datos={silla} />
               </div>
             ))
           ) : (
-            <div>No hay mesas nuevas</div>
+            <div>No hay sillas en tendencia</div>
           )}
         </div>
       </div>

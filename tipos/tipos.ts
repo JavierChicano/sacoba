@@ -34,3 +34,14 @@ export interface TipoPack {
   precioCajon: number | null;
   precio: string;
 }
+export interface TipoSilla {
+  id: number;
+  modelo: string;
+  imagen: string;
+  formato: string;
+  materialAsiento: string;
+  colorBastidor: string;
+  tendencia: boolean | null;
+  nuevo: boolean | null;
+  precio: string;
+}
