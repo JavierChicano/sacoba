@@ -38,12 +38,12 @@ export default function CardProductoDerecha({ datos }: { datos: CardProductoPara
   }, [inView]);
   
   return (
-    <section className="bg-fondoNormal items-center w-9/12 h-screen">
-      <p className={`flex text-4xl justify-center ${isVisible ? 'animate-fade-down animate-duration-[3000ms] animate-ease-out' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>{titulo}</p>
-      <div className="flex gap-6 h-5/6 items-center justify-center mr-16">
-        <div className="mt-20">
-          <div className={`justify-end ml-12 w-3/4 ${isVisible ? 'animate-fade-right animate-once animate-ease-in animate-normal animate-duration-[2000ms]' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <span className="flex items-center gap-4 text-xl mb-12 pl-36">
+    <section className="flex w-full flex-col items-center h-screen">
+      <p className={`flex text-5xl justify-center h-40 items-center ${isVisible ? 'animate-fade-down animate-duration-[3000ms] animate-ease-out' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>{titulo}</p>
+      <div className="flex gap-10 items-start">
+        <div>
+          <div className={`flex flex-col items-center w-72 ${isVisible ? 'animate-fade-right animate-once animate-ease-in animate-normal animate-duration-[2000ms]' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+            <span className="flex items-center gap-4 text-xl h-24 self-end">
               <div ref={ref} className=" w-12 h-12">
                 <Image className="w-full h-full filter invert"
                   alt="iconoDescriptivo"
@@ -54,7 +54,7 @@ export default function CardProductoDerecha({ datos }: { datos: CardProductoPara
               </div>
               {descripcion1}
             </span>
-            <span className="flex items-center gap-4 text-xl mb-12 pl-16">
+            <span className="flex items-center gap-4 text-xl h-24 self-center">
               
               <div className=" w-12 h-12">
                 <Image className="w-full h-full filter invert"
@@ -66,9 +66,9 @@ export default function CardProductoDerecha({ datos }: { datos: CardProductoPara
               </div>
               {descripcion2}
             </span>
-            <span className="flex items-center gap-4 text-xl mb-12 pr-48">
+            <span className="flex items-center gap-4 text-xl h-24 self-start">
               
-              <div className=" w-12 h-12">
+              <div className="w-6 h-10">
                 <Image className="w-full h-full filter invert"
                   alt="iconoDescriptivo"
                   src="/iconosMain/pataNegra.png"
@@ -78,7 +78,7 @@ export default function CardProductoDerecha({ datos }: { datos: CardProductoPara
               </div>
               {descripcion3}
             </span>
-            <span className="flex items-center gap-4 text-xl mb-12 pl-16">
+            <span className="flex items-center gap-4 text-xl h-24 self-center">
               
               <div className=" w-12 h-12">
                 <Image className="w-full h-full filter invert"
@@ -90,7 +90,7 @@ export default function CardProductoDerecha({ datos }: { datos: CardProductoPara
               </div>
               {descripcion4}
             </span>
-            <span className="flex items-center gap-4 text-xl mb-12 pl-36">
+            <span className="flex items-center gap-4 text-xl h-24 self-end">
               
               <div className=" w-12 h-12">
                 <Image className="w-full h-full filter invert" 
@@ -104,9 +104,8 @@ export default function CardProductoDerecha({ datos }: { datos: CardProductoPara
             </span>
           </div>
         </div>
-        <div className={`mt-8 ml-8 border border-colorBase h-40 ${isVisible ? 'animate-fade-down animate-ease-out animate-normal animate-once animate-duration-[3000ms]' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}></div>
-
-        <div className={`w-auto h-3/5 ${isVisible ? 'animate-fade-left animate-once animate-ease-in animate-normal animate-duration-[2500ms]' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`border border-colorBase h-40 self-center  ${isVisible ? 'animate-fade-down animate-ease-out animate-normal animate-once animate-duration-[3000ms]' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}></div>
+        <div className={`w-full h-full ${isVisible ? 'animate-fade-left animate-once animate-ease-in animate-normal animate-duration-[2500ms]' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <Image
             className="w-full h-full "
             src={`/productos/${img}`}

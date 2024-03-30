@@ -107,13 +107,13 @@ export default function CardProducto({ datos }: { datos: CardProductoParams }) {
             </span>
             <span className="flex items-center gap-4 text-xl h-24 self-end">
               {descripcion3}
-              <div className=" w-12 h-12">
+              <div className="w-6 h-10">
                 <Image
                   className="w-full h-full filter invert"
                   alt="iconoDescriptivo"
                   src="/iconosMain/pataNegra.png"
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
                 />
               </div>
             </span>
