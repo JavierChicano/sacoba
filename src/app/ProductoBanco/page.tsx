@@ -10,10 +10,8 @@ export default async function ProductoBanco() {
   const explicacionCortaP2 =
     "Con un diseño ingenioso que integra espacio de almacenamiento en su interior, nuestros bancos ofrecen una solución elegante para organizar y almacenar tus alimentos de manera ordenada y discreta.";
   
-  const promiseBancosTotales =  selectsBancosTotales();
-  const promiseBancosModelo =  selectsBancosModelo();
+  const bancosModelo =  await selectsBancosModelo();
 
-  const [bancosTotales, bancosModelo] = await Promise.all([promiseBancosTotales, promiseBancosModelo])
 
   return (
     <main className="flex flex-col items-center">
@@ -26,7 +24,7 @@ export default async function ProductoBanco() {
             explicacionp2: explicacionCortaP2,
           }}
         />
-        <ObjBancosTotales bancosModelos={bancosModelo} bancosTotales={bancosTotales}/>
+        <ObjBancosTotales bancosModelos={bancosModelo}/>
       </div>
     </main>
   );

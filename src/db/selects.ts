@@ -48,6 +48,11 @@ export async function selectsBancosModelo() {
   return todosBancos;
 }
 
+export async function selectsBancosPrueba(modelo: string) {
+  const todosBancos = await db.selectDistinct().from(bancos).where(eq(bancos.modelo, modelo));
+  return todosBancos;
+}
+
 // Selects de packs
 export async function selectsPacksTotales(){
   const todosPacks = await db.selectDistinct().from(packs);

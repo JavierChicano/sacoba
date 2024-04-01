@@ -12,16 +12,6 @@ export const useMesaClickada = create<MesaClickadaState>((set) => ({
   setMesaSeleccionada: (mesa: TipoMesa | null) => set({ mesaSeleccionada: mesa }),
 }));
 
-//Estado para guardar el banco seleccionado
-type BancoClickadaState = {
-  bancoSeleccionado: TipoBanco[] | null;
-  setBancoSeleccionado: (banco: TipoBanco[] | null) => void;
-};
-
-export const useBancoClickado = create<BancoClickadaState>((set) => ({
-  bancoSeleccionado: null,
-  setBancoSeleccionado: (banco: TipoBanco[] | null) => set({ bancoSeleccionado: banco }),
-}));
 
 // Estado para guardar la silla seleccionada
 type SillaClickadaState = {

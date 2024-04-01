@@ -9,9 +9,10 @@ import {
 import RutaBancoConcreto from "./rutaBancoC";
 import SeccionPrecio from "../productoConcretoMesa/seccionPrecio";
 import SeccionModulosBanco from "./seccionModulosBanco";
+import { TipoBanco } from "../../../../../tipos/tipos";
 
-export default function CompClienteBanco({InsertarDatosACarrito,}: {InsertarDatosACarrito: React.ReactNode;}) {
-  const { bancoSeleccionado } = useBancoClickado();
+export default function CompClienteBanco({InsertarDatosACarrito, bancoSeleccionado}: {InsertarDatosACarrito: React.ReactNode, bancoSeleccionado: TipoBanco[]}) {
+ 
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
 
   useEffect(() => {
