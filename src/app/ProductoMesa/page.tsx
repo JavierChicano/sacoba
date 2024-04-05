@@ -1,4 +1,4 @@
-import { selectsMesasModelo, selectsMesasNovedad, selectsMesasTendencia, selectsMesasTotales } from "@/db/selects";
+import { selectsMesasModelo, selectsMesasNovedad, selectsMesasTendencia } from "@/db/selects";
 import ObjMesasNovedades from "../components/productos/productosMesa/objMesasNovedad";
 import ObjMesasTendencias from "../components/productos/productosMesa/objMesasTendencias";
 import ObjMesasTotales from "../components/productos/productosMesa/objMesasTotales";

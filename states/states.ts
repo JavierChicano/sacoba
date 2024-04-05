@@ -1,18 +1,6 @@
 import { create } from "zustand";
 import { TipoBanco, TipoMesa, TipoSilla } from "../tipos/tipos";
 
-//Estado para guardar la mesa seleccionado
-type MesaClickadaState = {
-  mesaSeleccionada: TipoMesa | null;
-  setMesaSeleccionada: (mesa: TipoMesa | null) => void;
-};
-
-export const useMesaClickada = create<MesaClickadaState>((set) => ({
-  mesaSeleccionada: null,
-  setMesaSeleccionada: (mesa: TipoMesa | null) => set({ mesaSeleccionada: mesa }),
-}));
-
-
 // Estado para guardar la silla seleccionada
 type SillaClickadaState = {
   sillaSeleccionada: TipoSilla | null;

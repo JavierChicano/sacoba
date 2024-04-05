@@ -122,21 +122,7 @@ export default function ObjMesasTotales({
           mesasOrdenadas.map((mesa) => (
             <TarjetaDisplayInfo
               key={mesa.id}
-              datos={{
-                id: mesa.id,
-                modelo: mesa.modelo,
-                imagen: mesa.imagen,
-                tipoBase: mesa.tipoBase,
-                extension: mesa.extension,
-                tipoAmpliable: mesa.tipoAmpliable,
-                auxiliar: mesa.auxiliar,
-                materialTapa: mesa.materialTapa,
-                dimensiones: mesa.dimensiones,
-                altura: mesa.altura,
-                materialPata: mesa.materialPata,
-                colorPata: mesa.colorPata,
-                precio: mesa.precio,
-              }}
+              datos={mesa}
             />
           ))
         ) : (

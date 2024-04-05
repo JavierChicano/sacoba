@@ -15,8 +15,8 @@ export async function selectsMesasModelo() {
   const todasMesas = await db.selectDistinct().from(mesas).orderBy(mesas.id).groupBy(mesas.modelo);
   return todasMesas;
 }
-export async function selectsMesasTotales() {
-  const todasMesas = await db.select().from(mesas);
+export async function selectsMesaSeleccionada(modelo: string) {
+  const todasMesas = await db.selectDistinct().from(mesas).where(eq(mesas.modelo, modelo));
   return todasMesas;
 }
 
@@ -39,16 +39,12 @@ export async function selectsSillasTotales() {
 }
 
 //Selects de bancos
-export async function selectsBancosTotales() {
-  const todosBancos = await db.selectDistinct().from(bancos);
-  return todosBancos;
-}
 export async function selectsBancosModelo() {
   const todosBancos = await db.selectDistinct().from(bancos).orderBy(bancos.id).groupBy(bancos.modelo);
   return todosBancos;
 }
 
-export async function selectsBancosPrueba(modelo: string) {
+export async function selectsBancoSeleccionado(modelo: string) {
   const todosBancos = await db.selectDistinct().from(bancos).where(eq(bancos.modelo, modelo));
   return todosBancos;
 }
