@@ -50,11 +50,12 @@ export async function selectsBancoSeleccionado(modelo: string) {
 }
 
 // Selects de packs
-export async function selectsPacksTotales(){
-  const todosPacks = await db.selectDistinct().from(packs);
-  return todosPacks;
-}
 export async function selectsPacksModelo(){
   const todosPacks = await db.selectDistinct().from(packs).where(eq(packs.materialTapa, "laminado ECO"));
+  return todosPacks;
+}
+
+export async function selectsPackSeleccionado(modelo: string){
+  const todosPacks = await db.select().from(packs).where(eq(packs.modelo, modelo));
   return todosPacks;
 }

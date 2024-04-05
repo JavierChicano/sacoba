@@ -89,7 +89,7 @@ export async function insertarPacks() {
       
        //INSERTS PACK 4
     {
-        modelo: "AUTA",
+        modelo: "AURA",
         imagenMesa: "aura.png",
         descripcion: "Mesa ampliable, bastidor de carro",
         materialTapa: "cristal 3mm",
@@ -97,7 +97,7 @@ export async function insertarPacks() {
         precio: "356, 371, 386",
       },
       {
-        modelo: "AUTA",
+        modelo: "AURA",
         imagenMesa: "aura.png",
         descripcion: "Mesa ampliable, bastidor de carro",
         materialTapa: "laminado",
@@ -105,7 +105,7 @@ export async function insertarPacks() {
         precio: "341, 351, 362",
       },
       {
-        modelo: "AUTA",
+        modelo: "AURA",
         imagenMesa: "aura.png",
         descripcion: "Mesa ampliable, bastidor de carro",
         materialTapa: "laminado ECO",
