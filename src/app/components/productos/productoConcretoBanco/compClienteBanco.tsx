@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { ReactNode, useEffect } from "react";
 import {
-  useBancoClickado,
   usePrecioAcumulado,
 } from "../../../../../states/states";
 import RutaBancoConcreto from "./rutaBancoC";

@@ -14,9 +14,9 @@ export default function TarjetaDisplayBanco({
   const router = useRouter();
 
   const handleClick = () => {
-   
     router.push(`/ProductoConcretoBanco/${datos.modelo}`);
   };
+  
   const obtenerArrayPrecio = (precioString: string): number[] => {
     return precioString.split(',').map((precio) => parseFloat(precio.trim()));
   };

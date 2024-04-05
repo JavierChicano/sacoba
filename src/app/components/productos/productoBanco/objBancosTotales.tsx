@@ -81,17 +81,7 @@ export default function ObjBancosTotales({bancosModelos}: {bancosModelos: TipoBa
           bancosOrdenados.map((banco) => (
             <TarjetaDisplayBanco
               key={banco.id}
-              datos={{
-                id: banco.id,
-                modelo: banco.modelo,
-                imagen: banco.imagen,
-                modulo: banco.modulo,
-                materialBastidor: banco.materialBastidor,
-                respaldo: banco.respaldo,
-                precioRespaldo: banco.precioRespaldo,
-                zocalo: banco.zocalo,
-                precio: banco.precio,
-              }}
+              datos={banco}
             />
           ))
         ) : (

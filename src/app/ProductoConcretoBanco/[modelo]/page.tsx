@@ -1,11 +1,10 @@
 import CompClienteBanco from "../../components/productos/productoConcretoBanco/compClienteBanco";
 import InsertarDatosACarrito from "../../components/productos/insertarDatosACarrito";
-import { NextPageContext } from 'next';
-import { selectsBancosPrueba } from "@/db/selects";
+import { selectsBancoSeleccionado } from "@/db/selects";
 
-async function ProductoConcretoBanco({ params }: { params: {modelo: string} }) {
-  console.log("MODELO DE LA PAGINA", params.modelo)
-  const bancos = await selectsBancosPrueba(params.modelo);
+export default async function ProductoConcretoBanco({ params }: { params: {modelo: string} }) {
+  const bancos = await selectsBancoSeleccionado(params.modelo);
+
   return (
     <main className="flex flex-col items-center">
         <CompClienteBanco bancoSeleccionado={bancos} InsertarDatosACarrito={<InsertarDatosACarrito />}/> 
@@ -14,4 +13,3 @@ async function ProductoConcretoBanco({ params }: { params: {modelo: string} }) {
   
 }
 
-export default ProductoConcretoBanco;
