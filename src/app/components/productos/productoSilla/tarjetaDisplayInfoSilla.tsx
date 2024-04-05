@@ -2,31 +2,23 @@ import { useState } from "react";
 import { TipoSilla } from "../../../../../tipos/tipos";
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSillaClickada } from "../../../../../states/states";
+import router from "next/router";
 
 export default function TarjetaDisplayInfoSilla({ datos }: { datos: TipoSilla }) {
-    const { setSillaSeleccionada } = useSillaClickada();
   const [hovered, setHovered] = useState(false);
 
   const handleClick = () => {
-    setSillaSeleccionada({
-      id: datos.id,
-      modelo: datos.modelo,
-      imagen: datos.imagen,
-      formato: datos.formato,
-      materialAsiento: datos.materialAsiento,
-      colorBastidor: datos.colorBastidor,
-      tendencia: datos.tendencia,
-      nuevo: datos.nuevo,
-      precio: datos.precio,
-    });
+    router.push(`/ProductoConcretoSilla/${datos.modelo}`);
   };
+
   const obtenerArrayPrecio = (precioString: string): number[] => {
     return precioString.split(',').map((precio) => parseFloat(precio.trim()));
   };
 
   const precios = obtenerArrayPrecio(datos.precio);
 
+ 
+  
     return(
 <div 
       className="relative w-full h-full min-w-[300px]"
@@ -42,7 +34,8 @@ export default function TarjetaDisplayInfoSilla({ datos }: { datos: TipoSilla })
         </div>
       )}
 
-      <Link href="/ProductoConcretoSilla/" onClick={handleClick}>
+      <Link href={`/ProductoConcretoSilla/${datos.modelo}`}
+       onClick={handleClick}>
         <Image
           className="w-full h-60 cursor-pointer"
           src={`/productos/sillas/${datos.imagen}`}

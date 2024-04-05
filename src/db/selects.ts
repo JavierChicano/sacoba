@@ -33,8 +33,8 @@ export async function selectsSillasModelo() {
   const todasSillas = await db.selectDistinct().from(sillas).orderBy(sillas.id).groupBy(sillas.modelo);
   return todasSillas;
 }
-export async function selectsSillasTotales() {
-  const todasSillas = await db.select().from(sillas);
+export async function selectsSillaSeleccionada(modelo: string) {
+  const todasSillas = await db.select().from(sillas).where(eq(sillas.modelo, modelo));
   return todasSillas;
 }
 

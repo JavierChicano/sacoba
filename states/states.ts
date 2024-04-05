@@ -7,12 +7,6 @@ type SillaClickadaState = {
   setSillaSeleccionada: (silla: TipoSilla | null) => void;
 };
 
-// Hook personalizado para gestionar el estado de la silla seleccionada
-export const useSillaClickada = create<SillaClickadaState>((set) => ({
-  sillaSeleccionada: null,
-  setSillaSeleccionada: (silla: TipoSilla | null) => set({ sillaSeleccionada: silla }),
-}));
-
 //Estado para acumular el precio
 type PrecioParams = {
   precioAcumulado: number;

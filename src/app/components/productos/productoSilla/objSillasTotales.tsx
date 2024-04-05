@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 import TarjetaDisplayInfoSilla from "./tarjetaDisplayInfoSilla";
 import {
@@ -16,7 +16,8 @@ export default function ObjSillasTotales({
 }) {
   const [ocultarFiltro, setOcultarFiltro] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
-  const [sillasOrdenadas, setSillasOrdenadas] = useState<TipoSilla[]>(sillasTotales);
+  const [sillasOrdenadas, setSillasOrdenadas] =
+    useState<TipoSilla[]>(sillasTotales);
 
   const ordenarPorReciente = () => {
     const sortedSillas = [...sillasTotales].reverse();
@@ -119,20 +120,7 @@ export default function ObjSillasTotales({
         )}
         {sillasOrdenadas.length > 0 ? (
           sillasOrdenadas.map((silla) => (
-            <TarjetaDisplayInfoSilla
-              key={silla.id}
-              datos={{
-                id: silla.id,
-                modelo: silla.modelo,
-                imagen: silla.imagen,
-                formato: silla.formato,
-                materialAsiento: silla.materialAsiento,
-                colorBastidor: silla.colorBastidor,
-                tendencia: silla.tendencia,
-                nuevo: silla.nuevo,
-                precio: silla.precio,
-              }}
-            />
+            <TarjetaDisplayInfoSilla key={silla.id} datos={silla} />
           ))
         ) : (
           <div>No hay sillas disponibles</div>
