@@ -60,7 +60,7 @@ export default function SeccionModulosBanco({
         <section>
           <div className="flex items-center gap-4">
             <h2 className="text-2xl">Color del tapizado </h2>
-            <span className="flex bg-fondoTerciario p-2 cursor-pointer ">
+            <span className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase">
               Cambiar <IconClick stroke={2} />
             </span>
           </div>

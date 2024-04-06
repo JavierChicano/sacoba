@@ -313,7 +313,6 @@ export async function insertarMesas() {
       altura: "77",
       materialPata: "madera",
       colorPata: "blanco",
-      tendencia: true, 
       precio: "598, 663, 767",
     },
     {
