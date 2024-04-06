@@ -5,8 +5,6 @@ import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { TextGenerateEffect } from "./generadorTexto";
 
-
-
 type CardProductoParams = {
   titulo: string;
   link: string;
@@ -19,10 +17,9 @@ export default function CardProductoAMedida({ datos }: { datos: CardProductoPara
     img1,
   } = datos;
   const [hovered, setHovered] = useState(false);
-  
   const [isVisible, setIsVisible] = useState(false);
   const { ref, inView } = useInView({
-    threshold: 0.5, // Cambia este valor según tus necesidades
+    threshold: 0.5, 
     triggerOnce: true,
   });
 
@@ -33,17 +30,17 @@ export default function CardProductoAMedida({ datos }: { datos: CardProductoPara
   }, [inView]);
   const texto = "¡Personaliza tu mesa a medida! Elige la encimera y estructura por separado. Recomendamos comenzar con la encimera y luego seleccionar la estructura. Proceso de personalización detallado para una mesa única."
   return (
-    <section ref={ref} className="bg-fondoNormal items-center w-9/12 h-screen">
-      <p className={`flex text-4xl justify-center ${isVisible ? 'animate-fade-down animate-duration-[3000ms] animate-ease-out' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>{titulo}</p>
-      <div className="flex mt-20 self-center animate-fade-left animate-once animate-ease-in animate-normal animate-duration-[3000ms]">
-            <TextGenerateEffect words={texto}/>
+    <section ref={ref} className="flex w-full flex-col items-center h-screen">
+      <p className={`flex text-5xl justify-center h-40 items-center ${isVisible ? 'animate-fade-down animate-duration-[3000ms] animate-ease-out' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>{titulo}</p>
+      <div className={`flex self-center `}>
+            <TextGenerateEffect words={texto} view={isVisible}/>
       </div>
-      <div className="flex gap-6 h-3/6 items-center justify-center ">     
-            <div className="relative w-1/2 h-5/6"
+      <div>     
+            <div className="relative w-full h-full"
               onMouseEnter={() => setHovered(true)}
               onMouseLeave={() => setHovered(false)}>
                 {hovered && (
-                  <div className="absolute top-0 left-0 w-full h-full bg-black/80 flex justify-center items-center pointer-events-none z-10">
+                  <div className="absolute w-full h-full bg-black/80 flex justify-center items-center pointer-events-none z-10">
                     <p className="text-white">A medida</p>
                   </div>
                 )}

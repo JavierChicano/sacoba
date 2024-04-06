@@ -80,9 +80,12 @@ export const colores = sqliteTable("colores", {
   nombreColor: text("nombreColor", { length: 256 }).notNull(),
   imagenColor: text("imagenColor", { length: 256 }).notNull(),
   grupo: text("tipoGrupo", { enum: ["g1", "g2", "g3", "g4", "g5", "g6"]}),
-  grosor: text("grosor", { length: 256 }).notNull(),
-  acabado: text("tipoAcabado", { enum: ["g1", "g2", "g3", "g4", "g5", "g6"]}),
-  canto: integer("canto", {mode: 'boolean'}).default(false),
+  acabadoMate: integer("acabadoMate", {mode: 'boolean'}).default(false),
+  acabadoEfectoNatural: integer("acabadoEfectoNatural", {mode: 'boolean'}).default(false),
+  acabadoBrillo: integer("cantoColorBrillo", {mode: 'boolean'}).default(false),
+  cantoColorBrillo: integer("cantoColorBrillo", {mode: 'boolean'}).default(false),
+  cantoColorMate: integer("cantoColorMate", {mode: 'boolean'}).default(false),
+  cantoColorAcabadoNatural: integer("cantoColorAcabadoNatural", {mode: 'boolean'}).default(false),
 });
 
 export const packs = sqliteTable("packs", {

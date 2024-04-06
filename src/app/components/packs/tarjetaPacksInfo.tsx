@@ -1,9 +1,11 @@
+"use client";
 import { useState } from "react";
 import { TipoPack } from "../../../../tipos/tipos";
 import Image from "next/image";
 import { Meteors } from "../main/meteoros";
 import { IconArrowRightBar } from "@tabler/icons-react";
 import Link from "next/link";
+import router from "next/router";
 
 export default function TarjetaDisplayPacks({
   datos,
@@ -12,6 +14,10 @@ export default function TarjetaDisplayPacks({
   datos: TipoPack;
   posicion: number;
 }) {
+  const handleClick = () => {
+    router.push(`/PackConcreto/${datos.modelo}`);
+  };
+
   const obtenerArrayDimensiones = (dimensionesString: string): string[] => {
     return dimensionesString.split(",");
   };
@@ -79,7 +85,11 @@ export default function TarjetaDisplayPacks({
               </div>
             </section>
             <div className=" text-xl">
-              <Link href={""} className="underline text-colorBase">
+              <Link
+                href={`/PackConcreto/${datos.modelo}`}
+                onClick={handleClick}
+                className="underline text-colorBase"
+              >
                 Ver opciones de compra
               </Link>
             </div>

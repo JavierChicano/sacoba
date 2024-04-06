@@ -6,24 +6,31 @@ import { cn } from "@nextui-org/react";
 export const TextGenerateEffect = ({
   words,
   className,
+  view
 }: {
   words: string;
   className?: string;
+  view: boolean;
 }) => {
+
+  
   const [scope, animate] = useAnimate();
   let wordsArray = words.split(" ");
   useEffect(() => {
-    animate(
-      "span",
-      {
-        opacity: 1,
-      },
-      {
-        duration: 2,
-        delay: stagger(0.2),
-      }
-    );
-  }, [scope.current]);
+    if (view) {
+      animate(
+        "span",
+        {
+          opacity: 1,
+        },
+        {
+          duration: 2,
+          delay: stagger(0.1),
+        }
+      );
+    }
+    
+  }, [scope.current, view]);
 
   const renderWords = () => {
     return (
@@ -32,7 +39,7 @@ export const TextGenerateEffect = ({
           return (
             <motion.span
               key={word + idx}
-              className="dark:text-white text-black opacity-0"
+              className="text-contraste opacity-0"
             >
               {word}{" "}
             </motion.span>
@@ -45,7 +52,7 @@ export const TextGenerateEffect = ({
   return (
     <div className={cn("font-bold", className)}>
       <div className="mt-4">
-        <div className=" dark:text-white text-black text-2xl leading-snug tracking-wide self-center w-full">
+        <div className="text-contraste text-2xl leading-snug tracking-wide self-center w-full">
           {renderWords()}
         </div>
       </div>

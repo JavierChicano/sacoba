@@ -15,7 +15,7 @@
  13- Crear la tabla outlet para la pagina de outlet
  14- Crear la tabla packs para la pagina de packs✅
  15- Cambiar el texto de sacoba, para una buena renderizacion
-
+ 16- Crear un slider en mesas filtros para setear el precio
 
 
 

@@ -10,7 +10,7 @@ import TarjetaDisplayBanco from "./TarjetaDisplayBanco";
 import { cn } from "@nextui-org/react";
 import { usePreciosBanco } from "../../../../../states/states";
 
-export default function ObjBancosTotales({bancosModelos, bancosTotales}: {bancosModelos: TipoBanco[], bancosTotales:TipoBanco[]}) {
+export default function ObjBancosTotales({bancosModelos}: {bancosModelos: TipoBanco[]}) {
   const [ocultarFiltro, setOcultarFiltro] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [bancosOrdenados, setBancosOrdenados] = useState<TipoBanco[]>(bancosModelos);
@@ -81,18 +81,7 @@ export default function ObjBancosTotales({bancosModelos, bancosTotales}: {bancos
           bancosOrdenados.map((banco) => (
             <TarjetaDisplayBanco
               key={banco.id}
-              bancosTotales={bancosTotales}
-              datos={{
-                id: banco.id,
-                modelo: banco.modelo,
-                imagen: banco.imagen,
-                modulo: banco.modulo,
-                materialBastidor: banco.materialBastidor,
-                respaldo: banco.respaldo,
-                precioRespaldo: banco.precioRespaldo,
-                zocalo: banco.zocalo,
-                precio: banco.precio,
-              }}
+              datos={banco}
             />
           ))
         ) : (
