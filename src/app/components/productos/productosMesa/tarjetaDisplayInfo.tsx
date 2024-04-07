@@ -17,7 +17,6 @@ export default function TarjetaDisplayInfo({ datos }: { datos: TipoMesa }) {
   };
   const precios = obtenerArrayPrecio(datos.precio);
   
-  console.log(precios)
   return (
     <div 
       className="relative w-full h-full min-w-[300px]"

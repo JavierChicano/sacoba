@@ -11,11 +11,12 @@
  9 - Cambiar el hosting de la BBDD ✅
  10- Configurar skeleton onLoading para el await de la consulta
  11- Pasarle los datos a la page "productoConcreto" ✅
- 12- Hacer ventana modal con los colores en la page "productoConcreto"
+ 12- Hacer ventana modal con los colores en la page "productoConcreto"✅
  13- Crear la tabla outlet para la pagina de outlet
  14- Crear la tabla packs para la pagina de packs✅
  15- Cambiar el texto de sacoba, para una buena renderizacion
- 16- Crear un slider en mesas filtros para setear el precio
+ 16- Crear un slider en mesas filtros para setear el precio✅
+ 16.1- El slider cuando pones ambos en el mismo precio no filtra
  17- Que cuando se añada al carrito aparezca una notificacion "Toast" confirmandolo
 
 

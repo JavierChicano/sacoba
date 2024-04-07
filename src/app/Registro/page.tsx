@@ -1,23 +1,23 @@
 import Link from "next/link";
-import IzquierdaLogin from "../components/main/compLoginIzquierda";
 import FormRegistro from "../components/main/formularioRegistro";
+import CompoLogo from "../components/main/compLogoRegLog";
 
 export default function Registro() {
   return (
     <main
-      className="grid grid-cols-2 h-screen"
+      className="grid grid-cols-2 h-screen bg-[#2e3138]"
       style={{
         backgroundImage: "url('/fondos/prueba1.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <IzquierdaLogin texto="¡Bienvenido a nuestra tienda!" />
-      <section className="flex p-10 justify-center items-center">
+      <CompoLogo/>
+      <section className="flex p-10 justify-center items-center col-span-2 sm:col-span-1 text-black">
         <div className="flex flex-col gap-5">
         <ul className="flex h-20">
-            <li className="text-gray-400">
-              <Link href="/">Main</Link> |&nbsp;{" "}
+            <li className="text-slate-600">
+              <Link href="/">Main</Link> |&nbsp;
             </li>
             <li>Registro</li>
           </ul>
@@ -25,7 +25,7 @@ export default function Registro() {
           <h1 className="text-5xl font-bold">Crear una nueva cuenta</h1>
           <h4>
             ¿Ya eres socio?{" "}
-            <Link href="/Login" className="text-colorBase underline">
+            <Link href="/Login" className="text-colorBaseSecundario underline">
               Inicia sesion
             </Link>
           </h4>

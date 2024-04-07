@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function IzquierdaLogin({ texto }: { texto: string }) {
+export default function CompoLogo() {
   return (
-    <section className="p-20 h-full overflow-hidden">
+    <section className="p-24 ml-2 h-full overflow-hidden hidden sm:block">
       <header className="flex items-center text-6xl gap-10">
         <Link href="/">
           <div className="h-auto w-24 cursor-pointer bg-white rounded-3xl flex align-middle p-3">
@@ -16,9 +16,8 @@ export default function IzquierdaLogin({ texto }: { texto: string }) {
             />
           </div>
         </Link>
-        <h1>Sacoba</h1>
+        <h1 className="text-black">Sacoba</h1>
       </header>
-      <h1 className="text-6xl font-bold h-full flex items-center">{texto}</h1>
     </section>
   );
 }

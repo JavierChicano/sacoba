@@ -7,7 +7,7 @@ import {
   IconSquareRoundedChevronUp,
 } from "@tabler/icons-react";
 import { TipoSilla } from "../../../../../tipos/tipos";
-import { cn } from "@nextui-org/react";
+import { Slider, SliderValue, cn } from "@nextui-org/react";
 
 export default function ObjSillasTotales({
   sillasTotales,
@@ -16,8 +16,9 @@ export default function ObjSillasTotales({
 }) {
   const [ocultarFiltro, setOcultarFiltro] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
-  const [sillasOrdenadas, setSillasOrdenadas] =
-    useState<TipoSilla[]>(sillasTotales);
+  const [sillasOrdenadas, setSillasOrdenadas] = useState<TipoSilla[]>(sillasTotales);
+  const [precioMinimo, setPrecioMinimo] = useState(50);
+  const [precioMaximo, setPrecioMaximo] = useState(300);
 
   const ordenarPorReciente = () => {
     const sortedSillas = [...sillasTotales].reverse();
@@ -47,6 +48,15 @@ export default function ObjSillasTotales({
       setSillasOrdenadas(sillasTotales);
     }
   }, [sillasOrdenadas, sillasTotales]);
+
+  useEffect(() => {
+    // Filtrar las sillas en función de los valores del slider
+    const sillasFiltradas = sillasTotales.filter((silla) => {
+      const precio = parseFloat(silla.precio.split(",")[0]);
+      return precio >= precioMinimo && precio <= precioMaximo;
+    });
+    setSillasOrdenadas(sillasFiltradas);
+  }, [precioMinimo, precioMaximo, sillasTotales]);
 
   return (
     <>
@@ -114,9 +124,22 @@ export default function ObjSillasTotales({
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}
       >
         {!ocultarFiltro && (
-          <aside className="row-span-2 bg-fondoSecundario relative">
-            {/* Aquí puedes añadir cualquier filtro para sillas */}
-          </aside>
+          <aside className="row-span-1 bg-fondoSecundario relative p-4">
+          <Slider
+            label="Filtrar precios"
+            step={50}
+            minValue={50}
+            maxValue={300}
+            showSteps
+            defaultValue={[100, 500]}
+            formatOptions={{ style: "currency", currency: "EUR" }}
+            className="max-w-md"
+            onChangeEnd={(value: SliderValue) => {
+              setPrecioMinimo((value as number[])[0]);
+              setPrecioMaximo((value as number[])[1]);
+            }}
+          />
+        </aside>
         )}
         {sillasOrdenadas.length > 0 ? (
           sillasOrdenadas.map((silla) => (
@@ -125,7 +148,7 @@ export default function ObjSillasTotales({
         ) : (
           <div>No hay sillas disponibles</div>
         )}
-        <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+        <div className="col-span-2"></div>
       </div>
     </>
   );

@@ -24,11 +24,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn("bg-fondo min-h-lvh w-full", inter.className)}>
         <ClientComponent>
-          <Header/>
+          <Header />
           {/* Hay que poner este header y esconder el otro cuando se hace scroll */}
           <HeaderScroll />
           {children}
-          <Footer/>
+          <Footer />
         </ClientComponent>
       </body>
     </html>

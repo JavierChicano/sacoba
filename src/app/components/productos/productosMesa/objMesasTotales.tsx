@@ -7,7 +7,7 @@ import {
   IconSquareRoundedChevronUp,
 } from "@tabler/icons-react";
 import { TipoMesa } from "../../../../../tipos/tipos";
-import { cn } from "@nextui-org/react";
+import { Slider, SliderValue, cn } from "@nextui-org/react";
 
 export default function ObjMesasTotales({
   mesasTotales,
@@ -18,7 +18,8 @@ export default function ObjMesasTotales({
   const [isHovered, setIsHovered] = useState(false);
   const [mesasOrdenadas, setMesasOrdenadas] =
     useState<TipoMesa[]>(mesasTotales);
-
+  const [precioMinimo, setPrecioMinimo] = useState(200);
+  const [precioMaximo, setPrecioMaximo] = useState(1000);
   const ordenarPorReciente = () => {
     const sortedMesas = [...mesasTotales].reverse();
     setMesasOrdenadas(sortedMesas);
@@ -47,6 +48,16 @@ export default function ObjMesasTotales({
       setMesasOrdenadas(mesasTotales);
     }
   }, [mesasOrdenadas, mesasTotales]);
+
+  useEffect(() => {
+    // Filtrar las mesas en función de los valores del slider
+    const mesasFiltradas = mesasTotales.filter((mesa) => {
+      const precio = parseFloat(mesa.precio.split(",")[0]);
+      return precio >= precioMinimo && precio <= precioMaximo;
+    });
+    console.log(precioMaximo);
+    setMesasOrdenadas(mesasFiltradas);
+  }, [precioMinimo, precioMaximo, mesasTotales]);
 
   return (
     <>
@@ -114,21 +125,31 @@ export default function ObjMesasTotales({
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}
       >
         {!ocultarFiltro && (
-          <aside className="row-span-2 bg-fondoSecundario relative">
-            {/* <Slider defaultValue={[33]} max={100} step={1} /> */}
+          <aside className="row-span-1 bg-fondoSecundario relative p-4">
+            <Slider
+              label="Filtrar precios"
+              step={100}
+              minValue={200}
+              maxValue={1000}
+              showSteps
+              defaultValue={[100, 500]}
+              formatOptions={{ style: "currency", currency: "EUR" }}
+              className="max-w-md"
+              onChangeEnd={(value: SliderValue) => {
+                setPrecioMinimo((value as number[])[0]);
+                setPrecioMaximo((value as number[])[1]);
+              }}
+            />
           </aside>
         )}
         {mesasOrdenadas.length > 0 ? (
           mesasOrdenadas.map((mesa) => (
-            <TarjetaDisplayInfo
-              key={mesa.id}
-              datos={mesa}
-            />
+            <TarjetaDisplayInfo key={mesa.id} datos={mesa} />
           ))
         ) : (
           <div>No hay mesas disponibles</div>
         )}
-        <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+        <div className="col-span-2"></div>
       </div>
     </>
   );

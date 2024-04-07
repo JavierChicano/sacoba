@@ -4,6 +4,7 @@ import ObjFormatoSilla from "./objFormatoSilla";
 import { IconClick } from "@tabler/icons-react";
 import ModalColores from "../modalColores";
 import { useColorSeleccionado, useModal } from "../../../../../states/states";
+import { cn } from "@nextui-org/react";
 
 export default function SeccionPersonalizarSilla({
   sillaSeleccionada,
@@ -57,7 +58,7 @@ export default function SeccionPersonalizarSilla({
         </span>
         {modalVisible && <ModalColores colores={colores} />}
       </section>
-      <div>
+      <div className={cn(colorElegido === "" ? "hidden" : "block")}>
         <h2 className="text-xl">
           Acabado: <span className="text-colorBase">{modeloElegido}</span>
         </h2>
