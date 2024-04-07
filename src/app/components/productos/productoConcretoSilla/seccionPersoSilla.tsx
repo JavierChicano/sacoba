@@ -1,25 +1,34 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TipoColor, TipoSilla } from "../../../../../tipos/tipos";
 import ObjFormatoSilla from "./objFormatoSilla";
 import { IconClick } from "@tabler/icons-react";
 import ModalColores from "../modalColores";
+import { useColorSeleccionado, useModal } from "../../../../../states/states";
 
 export default function SeccionPersonalizarSilla({
-  sillaSeleccionada, colores
+  sillaSeleccionada,
+  colores,
 }: {
-  sillaSeleccionada: TipoSilla[],
-  colores: TipoColor[]
+  sillaSeleccionada: TipoSilla[];
+  colores: TipoColor[];
 }) {
   const [selectedItem, setSelectedItem] = useState(0);
   const [formato, setFormato] = useState("");
+  const { modalVisible, setModalVisible } = useModal();
+  const { colorElegido, modeloElegido, setColorSeleccionado } =
+    useColorSeleccionado();
 
   const handleSelectItem = (index: number, formato: string) => {
     setSelectedItem(index);
     setFormato(formato);
   };
+
   useEffect(() => {
-    setFormato(sillaSeleccionada[0].formato);
-  }, []);
+    if (sillaSeleccionada.length > 0) {
+      setFormato(sillaSeleccionada[0].formato);
+    }
+  }, [sillaSeleccionada]);
+
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8">
       <aside className="text-4xl flex items-end gap-4">
@@ -38,12 +47,24 @@ export default function SeccionPersonalizarSilla({
       </div>
       <section className="flex items-center gap-2">
         <h2 className="text-2xl">Elige color y textura</h2>
-        <span className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase">
+        <span
+          className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase"
+          onClick={() => {
+            setModalVisible(true);
+          }}
+        >
           Elegir <IconClick stroke={2} />
         </span>
-        <ModalColores colores={colores}/>
+        {modalVisible && <ModalColores colores={colores} />}
       </section>
-      <h2 className="text-2xl">Seleccionado:</h2>
+      <div>
+        <h2 className="text-xl">
+          Acabado: <span className="text-colorBase">{modeloElegido}</span>
+        </h2>
+        <h2 className="text-xl">
+          Color: <span className="text-colorBase">{colorElegido}</span>
+        </h2>
+      </div>
     </section>
   );
 }

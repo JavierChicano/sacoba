@@ -1,11 +1,16 @@
 import { create } from "zustand";
 import { TipoBanco, TipoMesa, TipoSilla } from "../tipos/tipos";
 
-// Estado para guardar la silla seleccionada
-type SillaClickadaState = {
-  sillaSeleccionada: TipoSilla | null;
-  setSillaSeleccionada: (silla: TipoSilla | null) => void;
+// Estado para guardar la visibilidad del modal
+type ModalState = {
+  modalVisible: boolean;
+  setModalVisible: (visible: boolean) => void;
 };
+
+export const useModal = create<ModalState>((set) => ({
+  modalVisible: false,
+  setModalVisible: (visible) => set({ modalVisible: visible }),
+}));
 
 //Estado para acumular el precio
 type PrecioParams = {
@@ -79,4 +84,17 @@ export const usePreciosBanco = create<PreciosBancoState>((set) => ({
       nuevosPrecios.set(clave, modulo);
       return { precios: nuevosPrecios };
     }),
+}));
+
+//Estado para guardar el color seleccionado
+type ColorSeleccionado = {
+  colorElegido: string;
+  modeloElegido: string;
+  setColorSeleccionado: (color: string, modelo: string) => void;
+};
+
+export const useColorSeleccionado = create<ColorSeleccionado>((set) => ({
+  colorElegido: '',
+  modeloElegido: '',
+  setColorSeleccionado: (colorElegido: string, modeloElegido: string) => set({ colorElegido, modeloElegido }),
 }));
