@@ -1,13 +1,10 @@
 "use client"
-import { TipoSilla } from "../../../../../tipos/tipos";
+import { TipoColor, TipoSilla } from "../../../../../tipos/tipos";
 import RutaSillaConcreta from "./rutaSillaConcreta";
 import Image from "next/image";
 import SeccionPersonalizarSilla from "./seccionPersoSilla";
 
-export default function CompClienteSilla({sillaSeleccionada}: {sillaSeleccionada: TipoSilla[]}) {
-console.log("------------------------")
-console.log(sillaSeleccionada)
-console.log("------------------------")
+export default function CompClienteSilla({sillaSeleccionada, colores}: {sillaSeleccionada: TipoSilla[], colores: TipoColor[]}) {
 
     return(
     <div>
@@ -27,7 +24,7 @@ console.log("------------------------")
               height={500}
             />
           </div>
-          <SeccionPersonalizarSilla sillaSeleccionada={sillaSeleccionada} />
+          <SeccionPersonalizarSilla sillaSeleccionada={sillaSeleccionada} colores={colores} />
           {/* <SeccionPrecio /> */}
         </div>
       )}

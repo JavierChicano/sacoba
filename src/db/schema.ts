@@ -82,7 +82,7 @@ export const colores = sqliteTable("colores", {
   grupo: text("tipoGrupo", { enum: ["g1", "g2", "g3", "g4", "g5", "g6"]}),
   acabadoMate: integer("acabadoMate", {mode: 'boolean'}).default(false),
   acabadoEfectoNatural: integer("acabadoEfectoNatural", {mode: 'boolean'}).default(false),
-  acabadoBrillo: integer("cantoColorBrillo", {mode: 'boolean'}).default(false),
+  acabadoBrillo: integer("acabadoBrillo", {mode: 'boolean'}).default(false),
   cantoColorBrillo: integer("cantoColorBrillo", {mode: 'boolean'}).default(false),
   cantoColorMate: integer("cantoColorMate", {mode: 'boolean'}).default(false),
   cantoColorAcabadoNatural: integer("cantoColorAcabadoNatural", {mode: 'boolean'}).default(false),

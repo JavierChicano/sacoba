@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { TipoSilla } from "../../../../../tipos/tipos";
+import { TipoColor, TipoSilla } from "../../../../../tipos/tipos";
 import ObjFormatoSilla from "./objFormatoSilla";
 import { IconClick } from "@tabler/icons-react";
+import ModalColores from "../modalColores";
 
 export default function SeccionPersonalizarSilla({
-  sillaSeleccionada,
+  sillaSeleccionada, colores
 }: {
-  sillaSeleccionada: TipoSilla[];
+  sillaSeleccionada: TipoSilla[],
+  colores: TipoColor[]
 }) {
   const [selectedItem, setSelectedItem] = useState(0);
   const [formato, setFormato] = useState("");
@@ -39,6 +41,7 @@ export default function SeccionPersonalizarSilla({
         <span className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase">
           Elegir <IconClick stroke={2} />
         </span>
+        <ModalColores colores={colores}/>
       </section>
       <h2 className="text-2xl">Seleccionado:</h2>
     </section>

@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { eq, inArray } from "drizzle-orm";
 import { db } from ".";
-import { bancos, mesas, packs, sillas } from "./schema";
+import { bancos, colores, mesas, packs, sillas } from "./schema";
 
 //Selects de mesas
 export async function selectsMesasTendencia() {
@@ -58,4 +58,10 @@ export async function selectsPacksModelo(){
 export async function selectsPackSeleccionado(modelo: string){
   const todosPacks = await db.select().from(packs).where(eq(packs.modelo, modelo));
   return todosPacks;
+}
+
+//Selects de colores
+export async function selectsColoresSillas(){
+  const todosColores = await db.select().from(colores).where(inArray(colores.modelo, ["laca", "laminado", "barniz", "tapizado nvC", "tapizado nvA"]));
+  return todosColores;
 }

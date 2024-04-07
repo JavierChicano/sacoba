@@ -12,7 +12,7 @@ export async function insertarColores() {
     {
       modelo: "laca",
       nombreColor: "Aluminio",
-      imagenColor: "Aliminio.png",
+      imagenColor: "Aluminio.png",
     },
     {
       modelo: "laca",
@@ -400,8 +400,8 @@ export async function insertarColores() {
     },
     {
       modelo: "laminado",
-      nombreColor: "Earth F5342",
-      imagenColor: "Earth.png",
+      nombreColor: "Eart F5342",
+      imagenColor: "Eart.png",
       acabadoMate: true,
       cantoColorMate: true,
     },
@@ -494,7 +494,7 @@ export async function insertarColores() {
     {
       modelo: "laminado",
       nombreColor: "Vivid Cherry K7021",
-      imagenColor: "VididCherry.png",
+      imagenColor: "VividCherry.png",
       acabadoMate: true,
       cantoColorMate: true,
     },
@@ -549,8 +549,8 @@ export async function insertarColores() {
     },
     {
       modelo: "laminado",
-      nombreColor: "Roble Natural F8853",
-      imagenColor: "RobleNatural.png",
+      nombreColor: "Roble Rural F8853",
+      imagenColor: "RobleRural.png",
       acabadoEfectoNatural: true,
       cantoColorAcabadoNatural: true,
     },
@@ -585,7 +585,7 @@ export async function insertarColores() {
     {
       modelo: "laminado",
       nombreColor: "Marmol Hades",
-      imagenColor: "Marmol Hades.png",
+      imagenColor: "MarmolHades.png",
       acabadoEfectoNatural: true,
       cantoColorAcabadoNatural: true,
     },
