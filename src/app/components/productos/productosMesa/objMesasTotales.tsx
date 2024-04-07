@@ -47,15 +47,18 @@ export default function ObjMesasTotales({
     if (!mesasOrdenadas.length) {
       setMesasOrdenadas(mesasTotales);
     }
-  }, [mesasOrdenadas, mesasTotales]);
+  }, []);
 
   useEffect(() => {
     // Filtrar las mesas en función de los valores del slider
     const mesasFiltradas = mesasTotales.filter((mesa) => {
       const precio = parseFloat(mesa.precio.split(",")[0]);
-      return precio >= precioMinimo && precio <= precioMaximo;
+      if (precioMaximo === precioMinimo) {
+        return precio >= precioMinimo - 50 && precio <= precioMaximo + 50;
+      } else {
+        return precio >= precioMinimo && precio <= precioMaximo;
+      }
     });
-    console.log(precioMaximo);
     setMesasOrdenadas(mesasFiltradas);
   }, [precioMinimo, precioMaximo, mesasTotales]);
 
@@ -63,7 +66,7 @@ export default function ObjMesasTotales({
     <>
       <div className="w-full mb-4 flex justify-between">
         <h1 className="text-3xl pt-10 flex items-end">
-          Mesas totales ({mesasTotales.length})
+          Mesas totales ({mesasOrdenadas.length})
         </h1>
         <section className="bg-contraste mt-10 text-black flex items-center gap-8 p-4 rounded-lg relative">
           <span
@@ -135,7 +138,7 @@ export default function ObjMesasTotales({
               defaultValue={[100, 500]}
               formatOptions={{ style: "currency", currency: "EUR" }}
               className="max-w-md"
-              onChangeEnd={(value: SliderValue) => {
+              onChange={(value: SliderValue) => {
                 setPrecioMinimo((value as number[])[0]);
                 setPrecioMaximo((value as number[])[1]);
               }}
@@ -149,7 +152,8 @@ export default function ObjMesasTotales({
         ) : (
           <div>No hay mesas disponibles</div>
         )}
-        <div className="col-span-2"></div>
+        <div></div>
+        <div></div>
       </div>
     </>
   );

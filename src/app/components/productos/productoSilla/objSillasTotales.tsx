@@ -47,13 +47,17 @@ export default function ObjSillasTotales({
     if (!sillasOrdenadas.length) {
       setSillasOrdenadas(sillasTotales);
     }
-  }, [sillasOrdenadas, sillasTotales]);
+  }, []);
 
   useEffect(() => {
     // Filtrar las sillas en función de los valores del slider
     const sillasFiltradas = sillasTotales.filter((silla) => {
       const precio = parseFloat(silla.precio.split(",")[0]);
-      return precio >= precioMinimo && precio <= precioMaximo;
+      if (precioMaximo === precioMinimo) {
+        return precio >= precioMinimo - 50 && precio <= precioMaximo + 50;
+      } else {
+        return precio >= precioMinimo && precio <= precioMaximo;
+      }
     });
     setSillasOrdenadas(sillasFiltradas);
   }, [precioMinimo, precioMaximo, sillasTotales]);
@@ -62,7 +66,7 @@ export default function ObjSillasTotales({
     <>
       <div className="w-full mb-4 flex justify-between">
         <h1 className="text-3xl pt-10 flex items-end">
-          Sillas totales ({sillasTotales.length})
+          Sillas totales ({sillasOrdenadas.length})
         </h1>
         <section className="bg-contraste mt-10 text-black flex items-center gap-8 p-4 rounded-lg relative">
           <span
@@ -134,7 +138,7 @@ export default function ObjSillasTotales({
             defaultValue={[100, 500]}
             formatOptions={{ style: "currency", currency: "EUR" }}
             className="max-w-md"
-            onChangeEnd={(value: SliderValue) => {
+            onChange={(value: SliderValue) => {
               setPrecioMinimo((value as number[])[0]);
               setPrecioMaximo((value as number[])[1]);
             }}
@@ -148,7 +152,8 @@ export default function ObjSillasTotales({
         ) : (
           <div>No hay sillas disponibles</div>
         )}
-        <div className="col-span-2"></div>
+        <div></div>
+        <div></div>
       </div>
     </>
   );

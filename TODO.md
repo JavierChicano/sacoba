@@ -16,7 +16,7 @@
  14- Crear la tabla packs para la pagina de packs✅
  15- Cambiar el texto de sacoba, para una buena renderizacion
  16- Crear un slider en mesas filtros para setear el precio✅
- 16.1- El slider cuando pones ambos en el mismo precio no filtra
+ 16.1- El slider cuando pones ambos en el mismo precio no filtra✅
  17- Que cuando se añada al carrito aparezca una notificacion "Toast" confirmandolo
 
 
