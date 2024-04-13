@@ -20,13 +20,20 @@ export default function ObjSillasTotales({
   const [precioMinimo, setPrecioMinimo] = useState(50);
   const [precioMaximo, setPrecioMaximo] = useState(300);
 
+  useEffect(() => {
+    if (!sillasOrdenadas.length) {
+      setSillasOrdenadas(sillasTotales);
+    }
+  }, []);
+
+  //Filtros de ordenacion
   const ordenarPorReciente = () => {
-    const sortedSillas = [...sillasTotales].reverse();
+    const sortedSillas = [...sillasOrdenadas].reverse();
     setSillasOrdenadas(sortedSillas);
   };
 
   const ordenarPorPrecioAlto = () => {
-    const sortedSillas = [...sillasTotales].sort((a, b) => {
+    const sortedSillas = [...sillasOrdenadas].sort((a, b) => {
       const precioA = parseFloat(a.precio.split(",")[0]);
       const precioB = parseFloat(b.precio.split(",")[0]);
       return precioB - precioA;
@@ -35,22 +42,16 @@ export default function ObjSillasTotales({
   };
 
   const ordenarPorPrecioBajo = () => {
-    const sortedSillas = [...sillasTotales].sort((a, b) => {
+    const sortedSillas = [...sillasOrdenadas].sort((a, b) => {
       const precioA = parseFloat(a.precio.split(",")[0]);
       const precioB = parseFloat(b.precio.split(",")[0]);
       return precioA - precioB;
     });
     setSillasOrdenadas(sortedSillas);
   };
-
+  
+  // Filtrar las sillas en función de los valores del slider
   useEffect(() => {
-    if (!sillasOrdenadas.length) {
-      setSillasOrdenadas(sillasTotales);
-    }
-  }, []);
-
-  useEffect(() => {
-    // Filtrar las sillas en función de los valores del slider
     const sillasFiltradas = sillasTotales.filter((silla) => {
       const precio = parseFloat(silla.precio.split(",")[0]);
       if (precioMaximo === precioMinimo) {

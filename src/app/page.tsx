@@ -17,13 +17,12 @@ export default function Home() {
         Encuentra el producto que encaje contigo
       </h1>
       <Image
-        className="w-3/4 h-auto"
+        className="w-3/4 h-auto -mb-48"
         src="/portadas/portadaMain.png"
         alt="Mesa del main"
         width={1920}
         height={1080}
       />
-       <button className="bg-fondoTerciario p-2 -mt-[50vh] text-2xl hover:bg-colorBase hover:text-black"><Link href="/ProductoAMedida/">Crea tu mesa</Link></button>
       <SeccionInfo />
       <SeccionNuestrosProductos />
       <SeccionMarcas />
