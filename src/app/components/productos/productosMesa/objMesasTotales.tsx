@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import TarjetaDisplayInfo from "./tarjetaDisplayInfo";
 import {
   IconAdjustmentsHorizontal,
@@ -7,7 +7,8 @@ import {
   IconSquareRoundedChevronUp,
 } from "@tabler/icons-react";
 import { TipoMesa } from "../../../../../tipos/tipos";
-import { Slider, SliderValue, cn } from "@nextui-org/react";
+import { Select, SelectItem, Slider, SliderValue, cn } from "@nextui-org/react";
+import React from "react";
 
 export default function ObjMesasTotales({
   mesasTotales,
@@ -24,6 +25,28 @@ export default function ObjMesasTotales({
     const sortedMesas = [...mesasTotales].reverse();
     setMesasOrdenadas(sortedMesas);
   };
+  //Para poder filtrar las mesas por tipo de base
+  const [tiposBases, setTiposBases] = useState<string[]>([]);
+  const [tiposBaseSeleccionados, setTiposBaseSeleccionados] = useState<string[]>([]);
+  
+  const handleSelectionChange = (indice: string) => {
+    if (indice) {
+      const indices = indice.split(",").map(Number); // Convertir cadenas a números
+      const tiposSeleccionados = indices.map(index => tiposBases[index]); // Mapear los índices a los elementos de tiposBases
+      setTiposBaseSeleccionados(tiposSeleccionados);
+    }else{
+      setTiposBaseSeleccionados([]);
+    }
+  };
+
+  useEffect(() => {
+    if (tiposBaseSeleccionados.length > 0) {
+      const mesasFiltradas = mesasTotales.filter(mesa => tiposBaseSeleccionados.includes(mesa.tipoBase));
+      setMesasOrdenadas(mesasFiltradas);
+    } else {
+      setMesasOrdenadas(mesasTotales);
+    }
+  }, [tiposBaseSeleccionados, mesasTotales, tiposBases]);
 
   const ordenarPorPrecioAlto = () => {
     const sortedMesas = [...mesasTotales].sort((a, b) => {
@@ -60,6 +83,10 @@ export default function ObjMesasTotales({
       }
     });
     setMesasOrdenadas(mesasFiltradas);
+
+     // Extraer tipos de base únicos
+     const tiposBaseUnicos = Array.from(new Set(mesasFiltradas.map(mesa => mesa.tipoBase)));
+     setTiposBases(tiposBaseUnicos);
   }, [precioMinimo, precioMaximo, mesasTotales]);
 
   return (
@@ -135,7 +162,7 @@ export default function ObjMesasTotales({
               minValue={200}
               maxValue={1000}
               showSteps
-              defaultValue={[100, 500]}
+              defaultValue={[precioMinimo, precioMaximo]}
               formatOptions={{ style: "currency", currency: "EUR" }}
               className="max-w-md"
               onChange={(value: SliderValue) => {
@@ -143,6 +170,23 @@ export default function ObjMesasTotales({
                 setPrecioMaximo((value as number[])[1]);
               }}
             />
+            <Select
+              label="Por tipo de estructura"
+              selectionMode="multiple"
+              className="max-w-xs mt-6"
+              radius="none"
+              onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+                const value = event.target.value;
+                console.log("llaves del coche", value);
+                handleSelectionChange(value)
+              }}
+            >
+              {tiposBases.map((tipoBase, index) => (
+                <SelectItem key={index} value={tipoBase}>
+                  {tipoBase}
+                </SelectItem>
+              ))}
+            </Select>
           </aside>
         )}
         {mesasOrdenadas.length > 0 ? (

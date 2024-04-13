@@ -135,7 +135,7 @@ export default function ObjSillasTotales({
             minValue={50}
             maxValue={300}
             showSteps
-            defaultValue={[100, 500]}
+            defaultValue={[precioMinimo, precioMaximo]}
             formatOptions={{ style: "currency", currency: "EUR" }}
             className="max-w-md"
             onChange={(value: SliderValue) => {
