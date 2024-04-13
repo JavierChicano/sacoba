@@ -1,30 +1,12 @@
 "use client";
+import { IconArmchair } from "@tabler/icons-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-type CardProductoParams = {
-  titulo: string;
-  link: string;
-  img: string;
-  descripcion1: string;
-  descripcion2: string;
-  descripcion3: string;
-  descripcion4: string;
-  descripcion5: string;
-};
-
-export default function CardProductoDerecha({ datos }: { datos: CardProductoParams }) {
-  const { titulo,
-    link,
-    img,
-    descripcion1,
-    descripcion2,
-    descripcion3,
-    descripcion4,
-    descripcion5
-  } = datos;
-
+export default function CardInfoSilla() {
+  
   const [isVisible, setIsVisible] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0.5, // Cambia este valor según tus necesidades
@@ -39,7 +21,7 @@ export default function CardProductoDerecha({ datos }: { datos: CardProductoPara
   
   return (
     <section className="flex w-full flex-col items-center h-screen">
-      <p className={`flex text-5xl justify-center h-40 items-center ${isVisible ? 'animate-fade-down animate-duration-[3000ms] animate-ease-out' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>{titulo}</p>
+      <p className={`flex text-5xl justify-center h-40 items-center ${isVisible ? 'animate-fade-down animate-duration-[3000ms] animate-ease-out' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>Sillas</p>
       <div className="flex gap-10 items-start">
         <div>
           <div className={`flex flex-col items-center w-72 ${isVisible ? 'animate-fade-right animate-once animate-ease-in animate-normal animate-duration-[2000ms]' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
@@ -52,7 +34,8 @@ export default function CardProductoDerecha({ datos }: { datos: CardProductoPara
                   height={100}
                 />
               </div>
-              {descripcion1}
+              <span className="w-20 flex justify-end">Formatos</span>
+              
             </span>
             <span className="flex items-center gap-4 text-xl h-24 self-center">
               
@@ -64,7 +47,7 @@ export default function CardProductoDerecha({ datos }: { datos: CardProductoPara
                   height={100}
                 />
               </div>
-              {descripcion2}
+              Tamaños
             </span>
             <span className="flex items-center gap-4 text-xl h-24 self-start">
               
@@ -76,7 +59,7 @@ export default function CardProductoDerecha({ datos }: { datos: CardProductoPara
                   height={100}
                 />
               </div>
-              {descripcion3}
+              Bastidores
             </span>
             <span className="flex items-center gap-4 text-xl h-24 self-center">
               
@@ -88,19 +71,19 @@ export default function CardProductoDerecha({ datos }: { datos: CardProductoPara
                   height={100}
                 />
               </div>
-              {descripcion4}
+              dssd
             </span>
-            <span className="flex items-center gap-4 text-xl h-24 self-end">
-              
-              <div className=" w-12 h-12">
-                <Image className="w-full h-full filter invert" 
-                  alt="iconoDescriptivo"
-                  src="/iconosMain/mesaNegra.png"
-                  width={100}
-                  height={100}
-                />
-              </div>
-              {descripcion5}
+            <span className="self-end">
+              <Link
+                href="/ProductoSilla/"
+                className="flex items-center gap-4 text-xl h-24 "
+              >
+                <div className=" w-12 h-12">
+                  <IconArmchair size={50} />
+                </div>
+                <span className="text-colorBase w-20 flex justify-start">Ir a ver</span>
+                
+              </Link>
             </span>
           </div>
         </div>
@@ -108,7 +91,7 @@ export default function CardProductoDerecha({ datos }: { datos: CardProductoPara
         <div className={`w-full h-full ${isVisible ? 'animate-fade-left animate-once animate-ease-in animate-normal animate-duration-[2500ms]' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <Image
             className="w-full h-full "
-            src={`/productos/${img}`}
+            src={`/productos/silla.png`}
             alt="Logo de la marca"
             width={500}
             height={500}

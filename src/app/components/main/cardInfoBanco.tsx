@@ -2,33 +2,12 @@
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
-type CardProductoParams = {
-  titulo: string;
-  link: string;
-  img: string;
-  descripcion1: string;
-  descripcion2: string;
-  descripcion3: string;
-  descripcion4: string;
-  descripcion5: string;
-};
-
-export default function CardProducto({ datos }: { datos: CardProductoParams }) {
-  const {
-    titulo,
-    link,
-    img,
-    descripcion1,
-    descripcion2,
-    descripcion3,
-    descripcion4,
-    descripcion5,
-  } = datos;
-
+export default function CardInfoBanco() {
   const [isVisible, setIsVisible] = useState(false);
   const { ref, inView } = useInView({
-    threshold: 0.5, // Cambia este valor según tus necesidades
+    threshold: 0.5,
     triggerOnce: true,
   });
 
@@ -47,7 +26,7 @@ export default function CardProducto({ datos }: { datos: CardProductoParams }) {
             : ""
         } ${isVisible ? "opacity-100" : "opacity-0"}`}
       >
-        {titulo}
+        Bancos
       </p>
       <div className="flex gap-10 items-start">
         <div
@@ -60,7 +39,7 @@ export default function CardProducto({ datos }: { datos: CardProductoParams }) {
                 ? "animate-fade-right animate-once animate-ease-in animate-normal animate-duration-[2000ms]"
                 : ""
             }`}
-            src={`/productos/${img}`}
+            src={`/productos/bancos/banco1.png`}
             alt="Logo de la marca"
             width={500}
             height={500}
@@ -82,7 +61,7 @@ export default function CardProducto({ datos }: { datos: CardProductoParams }) {
             } ${isVisible ? "opacity-100" : "opacity-0"}`}
           >
             <span className="flex items-center gap-4 text-xl h-24 self-start">
-              {descripcion1}
+              <span className="w-20 flex justify-end">Módulos</span>
               <div className="w-12 h-12">
                 <Image
                   className="w-full h-full filter invert"
@@ -94,7 +73,7 @@ export default function CardProducto({ datos }: { datos: CardProductoParams }) {
               </div>
             </span>
             <span className="flex items-center gap-4 text-xl h-24 self-center">
-              {descripcion2}
+              dddd
               <div className=" w-12 h-12">
                 <Image
                   className="w-full h-full filter invert"
@@ -106,7 +85,7 @@ export default function CardProducto({ datos }: { datos: CardProductoParams }) {
               </div>
             </span>
             <span className="flex items-center gap-4 text-xl h-24 self-end">
-              {descripcion3}
+              Bastidores
               <div className="w-6 h-10">
                 <Image
                   className="w-full h-full filter invert"
@@ -118,7 +97,7 @@ export default function CardProducto({ datos }: { datos: CardProductoParams }) {
               </div>
             </span>
             <span className="flex items-center gap-4 text-xl h-24 self-center">
-              {descripcion4}
+              dsd
               <div className=" w-12 h-12">
                 <Image
                   className="w-full h-full filter invert"
@@ -129,17 +108,22 @@ export default function CardProducto({ datos }: { datos: CardProductoParams }) {
                 />
               </div>
             </span>
-            <span className="flex items-center gap-4 text-xl h-24 self-start">
-              {descripcion5}
-              <div className=" w-12 h-12">
-                <Image
-                  className="w-full h-full filter invert"
-                  alt="iconoDescriptivo"
-                  src="/iconosMain/mesaNegra.png"
-                  width={100}
-                  height={100}
-                />
-              </div>
+            <span className="self-start">
+              <Link
+                href="/ProductoBanco/"
+                className="flex items-center gap-4 text-xl h-24 "
+              >
+                <span className="text-colorBase w-20 flex justify-end">Ir a ver</span>
+                <div className=" w-12 h-12">
+                  <Image
+                    className="filter invert"
+                    src="/iconos/banco.png"
+                    alt="Logo de la marca"
+                    width={50}
+                    height={50}
+                  />
+                </div>
+              </Link>
             </span>
           </div>
         </div>

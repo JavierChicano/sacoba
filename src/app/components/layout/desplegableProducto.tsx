@@ -33,7 +33,7 @@ export default function DesplegableProducto() {
                 pathName === "/ProductoMesa" ? "bg-colorBase text-black" : "hover:bg-fondoTerciario"
               }`}
             >
-              <IconDesk stroke={1} />
+              <IconDesk stroke={1} color="white"/>
               Mesas
             </Link>
           </li>
@@ -44,7 +44,7 @@ export default function DesplegableProducto() {
                 pathName === "/ProductoSilla" ? "bg-colorBase text-black" : "hover:bg-fondoTerciario"
               }`}
             >
-              <IconArmchair stroke={1} />
+              <IconArmchair stroke={1} color="white"/>
               Sillas
             </Link>
           </li>
