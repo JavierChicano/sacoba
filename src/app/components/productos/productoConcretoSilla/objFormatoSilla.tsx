@@ -1,7 +1,13 @@
-import { useState } from 'react';
 import { cn } from "@nextui-org/react";
 
-export default function ObjFormatoSilla({ formato, index, selected, onSelect }: { formato: string, index: number, selected: boolean, onSelect: (formato: string) => void }) {
+type ObjFormatoSillaParams = {
+    formato: string;
+    selected: boolean;
+    onSelect: (formato: string) => void;
+}
+
+export default function ObjFormatoSilla({datos}:{datos: ObjFormatoSillaParams}) {
+    const { formato, selected, onSelect } = datos;
     return (
         <div
             className={cn(

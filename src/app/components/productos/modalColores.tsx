@@ -5,9 +5,7 @@ import { IconSquareX } from "@tabler/icons-react";
 import { useModal } from "../../../../states/states";
 
 export default function ModalColores({ colores }: { colores: TipoColor[] }) {
-  const [coloresPorModelo, setColoresPorModelo] = useState<{
-    [key: string]: TipoColor[];
-  }>({});
+  const [coloresPorModelo, setColoresPorModelo] = useState<{[key: string]: TipoColor[];  }>({});
   const {modalVisible, setModalVisible} = useModal();
 
   useEffect(() => {
