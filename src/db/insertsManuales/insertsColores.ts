@@ -196,7 +196,7 @@ export async function insertarColores() {
     {
       modelo: "cristal 3mm",
       nombreColor: "Azul Cielo",
-      imagenColor: "Azul Cielo.png",
+      imagenColor: "AzulCielo.png",
     },
     {
       modelo: "cristal 3mm",
@@ -248,7 +248,7 @@ export async function insertarColores() {
     {
       modelo: "cristal 8mm",
       nombreColor: "Azul Cielo",
-      imagenColor: "Azul Cielo.png",
+      imagenColor: "AzulCielo.png",
     },
     {
       modelo: "cristal 8mm",
@@ -893,8 +893,8 @@ export async function insertarColores() {
     },
     {
       modelo: "silestone g1",
-      nombreColor: "Et.Calatta Gold",
-      imagenColor: "EtCalattaGold.png",
+      nombreColor: "Et.Calacatta Gold",
+      imagenColor: "EtCalacattaGold.png",
       grupo: "g6",
     },
     {
@@ -1067,8 +1067,8 @@ export async function insertarColores() {
     },
     {
       modelo: "silestone g1",
-      nombreColor: "Coral Clary Colour",
-      imagenColor: "CoralClaryColour.png",
+      nombreColor: "Coral Clay Colour",
+      imagenColor: "CoralClayColour.png",
       grupo: "g2",
     },
     {
@@ -1179,7 +1179,7 @@ export async function insertarColores() {
       modelo: "dekton g1",
       nombreColor: "Uyuni",
       imagenColor: "Uyuni.png",
-      grupo: "g1",
+      grupo: "g3",
     },
     {
       modelo: "dekton g1",
@@ -1376,7 +1376,7 @@ export async function insertarColores() {
     {
       modelo: "dekton g1",
       nombreColor: "Laurent",
-      imagenColor: "Larent.png",
+      imagenColor: "Laurent.png",
       grupo: "g3",
     },
     {
@@ -1394,7 +1394,7 @@ export async function insertarColores() {
     {
       modelo: "dekton g1",
       nombreColor: "Domoos",
-      imagenColor: "Domoos .png",
+      imagenColor: "Domoos.png",
       grupo: "g2",
     },
     {

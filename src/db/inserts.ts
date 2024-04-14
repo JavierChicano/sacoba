@@ -1,7 +1,14 @@
+import { TipoUsuario } from "../../tipos/tipos";
 import { db } from "./index";
-import { mesas, usuarios, colores, sillas } from "./schema";
+import { usuarios } from "./schema";
 
-// // Aqui se insertan las mesas desde el modo admin
-// export async function insertarMesas() {
-    
-// }
+export async function registrarUsuario({usuario}:{usuario: TipoUsuario}) {
+    const newUsuario = await db.insert(usuarios).values({
+        correoElectronico: usuario.correoElectronico,
+        nombre: usuario.nombre,
+        apellidos: usuario.apellidos,
+        contraseña: usuario.contraseña,
+    })
+  }
+  
+

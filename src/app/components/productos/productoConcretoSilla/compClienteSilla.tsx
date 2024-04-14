@@ -14,7 +14,6 @@ export default function CompClienteSilla({sillaSeleccionada, colores}: {sillaSel
           <h1 className="text-4xl border-b-2 border-colorBase col-span-2">
             {sillaSeleccionada[0].modelo}
           </h1>
-
           <div>
             <Image
               className="w-full h-full max-h-[500px]"

@@ -28,3 +28,6 @@
  //PAGINA PACK
  Los packs aumentan 106€ en funcion
  Poner la opcion de cambiar el color del resto entre aluminio y blanco
+
+//INSERTS COLORES
+Agregar laminado eco

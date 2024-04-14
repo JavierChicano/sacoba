@@ -59,3 +59,10 @@ export interface TipoColor {
   cantoColorMate: boolean | null;
   cantoColorAcabadoNatural: boolean | null;
 }
+
+export interface TipoUsuario {
+  correoElectronico: string;
+  nombre: string;
+  apellidos: string;
+  contraseña: string;
+}

@@ -1,9 +1,8 @@
-import { selectsPacksModelo, selectsPacksTotales } from "@/db/selects";
+import { selectsPacksModelo } from "@/db/selects";
 import RutaPacks from "../components/packs/rutaPacks";
 import ObjPack from "../components/packs/objPack";
 
 export default async function Packs() {
-
   const packsModelo = await selectsPacksModelo();
 
   return (
