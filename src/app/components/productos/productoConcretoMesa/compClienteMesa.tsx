@@ -18,7 +18,7 @@ export default function CompClienteMesa({mesaSeleccionada}:{mesaSeleccionada: Ti
       console.log(preciosArray);
       setPrecioAcumulado(preciosArray[0]);
     }
-  }, []);
+  }, [mesaSeleccionada, setPrecioAcumulado]);
   return (
     <div>
       {mesaSeleccionada && (

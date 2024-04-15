@@ -25,7 +25,7 @@ export default function ObjMesasTotales({
     if (!mesasOrdenadas.length) {
       setMesasOrdenadas(mesasTotales);
     }
-  }, []);
+  }, [mesasOrdenadas, mesasOrdenadas.length]);
 
 
   //Filtro de ordenacion
@@ -85,7 +85,7 @@ export default function ObjMesasTotales({
     // Extraer tipos de base únicos
     const tiposBaseUnicos = Array.from(new Set(mesasFiltradasPorPrecio.map(mesa => mesa.tipoBase)));
     setTiposBases(tiposBaseUnicos);
-  }, [precioMinimo, precioMaximo, tiposBaseSeleccionados]);
+  }, [precioMinimo, precioMaximo, tiposBaseSeleccionados, mesasTotales]);
   
 
   return (

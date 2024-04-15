@@ -42,7 +42,7 @@ export default function CardProductoAMedida() {
         >
           {hovered && (
             <div className="absolute w-full h-full bg-black/80 flex justify-center items-center pointer-events-none z-10">
-              <p className="text-white text-4xl"> Ir a: "A medida"</p>
+              <span className="text-white text-4xl"> Ir a: <span className="border-b border-colorBase">A medida</span></span>
             </div>
           )}
           <Link href="/ProductoAMedida/">

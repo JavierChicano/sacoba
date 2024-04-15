@@ -24,7 +24,7 @@ export default function ObjSillasTotales({
     if (!sillasOrdenadas.length) {
       setSillasOrdenadas(sillasTotales);
     }
-  }, []);
+  }, [sillasOrdenadas, sillasTotales, sillasTotales.length]);
 
   //Filtros de ordenacion
   const ordenarPorReciente = () => {

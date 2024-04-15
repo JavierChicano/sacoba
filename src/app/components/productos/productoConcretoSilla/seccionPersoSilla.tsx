@@ -46,20 +46,20 @@ export default function SeccionPersonalizarSilla({
   //Filtra los colores para q solo aparezcan los del material disponible
   useEffect(() => {
     if (sillaSeleccionada.length > 0) {
-      const materialesAsiento = sillaSeleccionada.map(
-        silla => silla.materialAsiento.split(",")
-      ).flat();
+      const materialesAsiento = sillaSeleccionada
+        .map((silla) => silla.materialAsiento.split(","))
+        .flat();
       console.log(materialesAsiento);
 
-      const modelosFiltrados = colores.filter(color =>
-        materialesAsiento.some(material =>
+      const modelosFiltrados = colores.filter((color) =>
+        materialesAsiento.some((material) =>
           color.modelo.includes(material.trim())
         )
       );
       console.log(modelosFiltrados);
       setColoresFiltrados(modelosFiltrados);
     }
-  }, []);
+  }, [colores, sillaSeleccionada]);
 
   //Para mostrar los posibles colores del bastidor de la silla
   useEffect(() => {
@@ -78,18 +78,18 @@ export default function SeccionPersonalizarSilla({
       );
       setPrecioAcumulado(precio);
     }
-  }, [indexMaterialColor, indexPrecio]);
+  }, [indexMaterialColor, indexPrecio, setPrecioAcumulado, sillaSeleccionada]);
 
   useEffect(() => {
     if (modeloElegido == "Tapizado normal") {
       setIndexMaterialColor(0);
-    }else if(modeloElegido == "Tapizado premium"){
+    } else if (modeloElegido == "Tapizado premium") {
       setIndexMaterialColor(1);
-    }else if(modeloElegido == "Laminado"){
+    } else if (modeloElegido == "Laminado") {
       setIndexMaterialColor(2);
-    }else if(modeloElegido == "Laca"){
+    } else if (modeloElegido == "Laca") {
       setIndexMaterialColor(3);
-    }else if(modeloElegido == "Barniz"){
+    } else if (modeloElegido == "Barniz") {
       setIndexMaterialColor(4);
     }
   }, [modeloElegido]);
@@ -103,6 +103,7 @@ export default function SeccionPersonalizarSilla({
         <div className="flex gap-2 flex-wrap justify-around">
           {sillaSeleccionada.map((silla, index) => (
             <ObjFormatoSilla
+              key={index}
               datos={{
                 formato: silla.formato,
                 selected: selectedItem === index,

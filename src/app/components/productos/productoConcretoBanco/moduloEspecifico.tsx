@@ -49,6 +49,7 @@ export default function ModuloEspecifico({
     setPrecioTotal(nuevoPrecio);
     modificarPrecio(datos.id, precioTotal)
   }, [
+    datos.id,
     respaldoSeleccionado,
     datos.precioRespaldo,
     datos.precio,
@@ -63,7 +64,7 @@ export default function ModuloEspecifico({
       setRespaldoSeleccionado(true)
     }
     calcularCantidad();
-  }, []);
+  }, [calcularCantidad, datos.precioRespaldo]);
 
   useEffect(() => {
     insertarModificarModulo(datos.id, {
@@ -72,12 +73,12 @@ export default function ModuloEspecifico({
       cantidad: cantidad,
       precio: (datos.precio*cantidad),
     });
-  }, [respaldoSeleccionado]);
+  }, [respaldoSeleccionado, cantidad, datos.dimensiones, datos.id, datos.precio, insertarModificarModulo]);
   
   useEffect(() => {
     modificarCantidad(datos.id, cantidad)
     modificarPrecio(datos.id, precioTotal)
-  },[cantidad, precioTotal]);
+  },[cantidad, precioTotal, datos.id, modificarCantidad, modificarPrecio]);
 
   return (
     <article className="bg-fondoTerciario p-4 flex flex-col gap-4 border border-colorBase m-1">

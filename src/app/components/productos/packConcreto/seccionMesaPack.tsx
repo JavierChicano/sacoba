@@ -35,7 +35,7 @@ export default function SeccionMesaPack({
       const dimensionesMesa = packSeleccionado[0].dimensiones.split(",");
       setDimensionesMesa(dimensionesMesa);
     }
-  }, []);
+  }, [packSeleccionado]);
 
   //Para ver si tiene cajon o no
   const [cajon, setCajon] = useState(false);
@@ -57,9 +57,8 @@ export default function SeccionMesaPack({
 
       setCajon(hayPrecioCajon !== -1);
       setMesaConCajon(hayPrecioCajon);
-      console.log(cajon);
     }
-  }, [modeloElegido]);
+  }, [modeloElegido, cajon, packSeleccionado]);
 
   return (
     <section className="bg-fondoSecundario col-span-3 p-8 flex flex-col gap-4">

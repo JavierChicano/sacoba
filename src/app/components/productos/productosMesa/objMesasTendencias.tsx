@@ -63,8 +63,8 @@ export default function ObjMesasTendencias({
       >
         <div ref={contentRef} className="flex" style={{ minWidth: "100%" }}>
           {mesasTendencias.length > 0 ? (
-            mesasTendencias.map((mesa) => (
-              <div style={{ marginRight: "16px" }}>
+            mesasTendencias.map((mesa, index) => (
+              <div key={index} style={{ marginRight: "16px" }}>
                 <TarjetaDisplayInfo
                   key={mesa.id}
                   datos={mesa}

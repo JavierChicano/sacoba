@@ -28,7 +28,7 @@ export default function SeccionPrecio() {
       acumulado += modulo.precio * modulo.cantidad;
     });
     setPrecioAcumulado(acumulado);
-  }, [precios]);
+  }, [precios, setPrecioAcumulado]);
 
   useEffect(() => {
     if (material != "Laminado") {

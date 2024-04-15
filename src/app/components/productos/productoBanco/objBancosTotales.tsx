@@ -45,7 +45,7 @@ export default function ObjBancosTotales({bancosModelos}: {bancosModelos: TipoBa
       setBancosOrdenados(bancosModelos);
     }
     resetearPrecios();
-  }, [bancosOrdenados, bancosModelos]);
+  }, [bancosOrdenados, bancosModelos, resetearPrecios]);
   return (
     <>
       <div className="w-full mb-4 flex justify-between">

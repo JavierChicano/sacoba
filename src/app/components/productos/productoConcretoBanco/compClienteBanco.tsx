@@ -19,7 +19,7 @@ export default function CompClienteBanco({InsertarDatosACarrito, bancoSelecciona
       const preciosArray = bancoSeleccionado[0].precio.split(",").map(Number);
       console.log(preciosArray);
     }
-  }, []);
+  }, [bancoSeleccionado]);
   console.log(bancoSeleccionado);
   console.log(precioAcumulado);
 

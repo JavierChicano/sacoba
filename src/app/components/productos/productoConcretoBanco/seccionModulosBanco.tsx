@@ -26,7 +26,7 @@ export default function SeccionModulosBanco({
 
   useEffect(() => {
     setMaterial(materialBastidor)
-  },[materialBastidor]);
+  },[materialBastidor, setMaterial]);
 
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 row-span-6">

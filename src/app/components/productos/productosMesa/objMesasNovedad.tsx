@@ -63,8 +63,8 @@ export default function ObjMesasNovedades({
       >
         <div ref={contentRef} className="flex" style={{ minWidth: "100%" }}>
           {mesasNovedad.length > 0 ? (
-            mesasNovedad.map((mesa) => (
-              <div style={{ marginRight: "16px" }}>
+            mesasNovedad.map((mesa, index) => (
+              <div key={index} style={{ marginRight: "16px" }}>
                 <TarjetaDisplayInfo
                   datos={mesa}
                 />
