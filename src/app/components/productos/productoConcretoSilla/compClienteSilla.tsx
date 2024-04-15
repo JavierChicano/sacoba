@@ -24,7 +24,6 @@ export default function CompClienteSilla({sillaSeleccionada, colores}: {sillaSel
             />
           </div>
           <SeccionPersonalizarSilla sillaSeleccionada={sillaSeleccionada} colores={colores} />
-          {/* <SeccionPrecio /> */}
         </div>
       )}
     </div>

@@ -22,7 +22,6 @@ export default function SeccionPersonalizarSilla({
   const [selectedItem, setSelectedItem] = useState(0);
   const [selectedColor, setSelectedColor] = useState(0);
   const [indexPrecio, setIndexPrecio] = useState(0);
-  const [indexMaterialColor, setIndexMaterialColor] = useState(0);
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
   const [formato, setFormato] = useState("");
   const [colorB, setColorB] = useState("");
@@ -73,26 +72,36 @@ export default function SeccionPersonalizarSilla({
   //Para coger el precio en funcion del formato y color seleccionados
   useEffect(() => {
     if (sillaSeleccionada.length > 0) {
-      const precio = parseFloat(
-        sillaSeleccionada[indexPrecio].precio.split(",")[indexMaterialColor]
-      );
-      setPrecioAcumulado(precio);
-    }
-  }, [indexMaterialColor, indexPrecio, setPrecioAcumulado, sillaSeleccionada]);
+      let modeloColor = "";
+      if (modeloElegido == "Tapizado normal") {
+        modeloColor = "tapizado nvC";
+      } else if (modeloElegido == "Tapizado premium") {
+        modeloColor = "tapizado nvA";
+      } else {
+        modeloColor = modeloElegido.toLowerCase();
+      }
 
-  useEffect(() => {
-    if (modeloElegido == "Tapizado normal") {
-      setIndexMaterialColor(0);
-    } else if (modeloElegido == "Tapizado premium") {
-      setIndexMaterialColor(1);
-    } else if (modeloElegido == "Laminado") {
-      setIndexMaterialColor(2);
-    } else if (modeloElegido == "Laca") {
-      setIndexMaterialColor(3);
-    } else if (modeloElegido == "Barniz") {
-      setIndexMaterialColor(4);
+      //Dividir los strings en un array de strings
+      const preciosSilla = sillaSeleccionada[indexPrecio].precio.split(",");
+      const materialesSilla = sillaSeleccionada[indexPrecio].materialAsiento.split(",");
+
+      // Variable para guardar el índice donde se encuentra el modeloColor
+      let indiceEncontrado = -1;
+
+      materialesSilla.forEach((material, index) => {
+        if (material.trim() === modeloColor.trim()) {
+          // Guardamos el índice donde encontramos el modeloColor
+          indiceEncontrado = index;
+        }
+      });
+
+      // Verificamos si encontramos el modeloColor
+      if (indiceEncontrado !== -1) {
+        const precio = parseFloat(preciosSilla[indiceEncontrado]);
+        setPrecioAcumulado(precio);
+      }
     }
-  }, [modeloElegido]);
+  }, [indexPrecio, setPrecioAcumulado, sillaSeleccionada, modeloElegido]);
 
   return (
     <>
