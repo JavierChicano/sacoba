@@ -18,7 +18,7 @@
  16- Crear un slider en mesas filtros para setear el precio✅
  16.1- El slider cuando pones ambos en el mismo precio no filtra✅
  17- Que cuando se añada al carrito aparezca una notificacion "Toast" confirmandolo
-
+ 18- Que cuando estes en una pagina, el hover se quede fijo, marcándola
 
 
 

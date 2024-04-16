@@ -99,6 +99,6 @@ export const packs = sqliteTable("packs", {
     "cristal 3mm",
   ]}).notNull(),
   dimensiones: text("dimensiones").notNull(),
-  precioCajon: integer("precioCajon").default(0),
+  precioCajon: integer("precioCajon").default(0).notNull(),
   precio: text("precio").notNull(),
 });

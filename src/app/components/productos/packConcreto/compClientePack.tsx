@@ -64,8 +64,8 @@ export default function CompClientePack({
           />
           <ImagenesSillas
             datos={{
-              nombre: "Eos",
-              selected: sillaSeleccionada === "Eos",
+              nombre: "Ker",
+              selected: sillaSeleccionada === "Ker",
               onSelect: setSillaSeleccionada,
             }}
           />

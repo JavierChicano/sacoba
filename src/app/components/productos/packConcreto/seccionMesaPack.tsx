@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { TipoColor, TipoPack } from "../../../../../tipos/tipos";
 import ObjMesaPacks from "./objDimensionesMesaPack";
-import { useColorSeleccionado, useModal } from "../../../../../states/states";
+import {
+  useColorSeleccionado,
+  useModal,
+  usePrecioAcumulado,
+} from "../../../../../states/states";
 import { IconClick } from "@tabler/icons-react";
 import ModalColores from "../modalColores";
 import { cn } from "@nextui-org/react";
+import { index } from "drizzle-orm/mysql-core";
 
 export default function SeccionMesaPack({
   packSeleccionado,
@@ -14,7 +19,9 @@ export default function SeccionMesaPack({
   colores: TipoColor[];
 }) {
   const [dimensionesMesa, setDimensionesMesa] = useState<string[]>([]);
-
+  const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
+  const [preciosMesa, setPreciosMesa] = useState<number[]>([]);
+  
   //Estados para almacenar las dimensiones de la mesas elegidas
   const [dimensionElegida, setDimensionElegida] = useState(0);
   const [dimension, setDimension] = useState("");
@@ -36,6 +43,25 @@ export default function SeccionMesaPack({
       setDimensionesMesa(dimensionesMesa);
     }
   }, [packSeleccionado]);
+
+  useEffect(() => {
+    const preciosEncontrados: number[] = []; 
+    // Recorrer el array packSeleccionado
+    packSeleccionado.forEach(pack => {
+      // Verificar si el material de la tapa coincide con modeloElegido
+      if (pack.materialTapa === modeloElegido.toLowerCase()) {
+        // Acceder al parámetro precio del objeto pack
+        const precioString = pack.precio;
+        // Dividir el precio en un array usando la coma como delimitador
+        const precios = precioString.split(",").map(precio => parseFloat(precio.trim()));
+        // Agregar los precios encontrados al array preciosEncontrados
+        preciosEncontrados.push(...precios);
+      }
+    });
+
+    // Actualizar el estado preciosMesa con los precios encontrados
+    setPreciosMesa(preciosEncontrados);
+  }, [modeloElegido]);
 
   //Para ver si tiene cajon o no
   const [cajon, setCajon] = useState(false);
@@ -60,6 +86,16 @@ export default function SeccionMesaPack({
     }
   }, [modeloElegido, cajon, packSeleccionado]);
 
+
+  useEffect(() => {
+    if(cajonSeleccionado){
+      setPrecioAcumulado(preciosMesa[indexPrecio]+ packSeleccionado[mesaConCajon].precioCajon)
+    }else{
+      setPrecioAcumulado(preciosMesa[indexPrecio])
+    }
+  }, [preciosMesa, indexPrecio, cajonSeleccionado]);
+
+
   return (
     <section className="bg-fondoSecundario col-span-3 p-8 flex flex-col gap-4">
       <h1 className="text-4xl">Dimensiones</h1>
@@ -76,7 +112,7 @@ export default function SeccionMesaPack({
         ))}
       </div>
       <section className="flex items-center gap-2">
-        <h2 className="text-2xl">Elige color y textura</h2>
+        <h2 className="text-2xl">Elija color y textura</h2>
         <span
           className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase"
           onClick={() => {
@@ -111,6 +147,9 @@ export default function SeccionMesaPack({
           />
         </div>
       )}
+      <section className="flex h-full items-end">
+        <h1 className="text-3xl">Precio de la mesa: {precioAcumulado}€</h1>
+      </section>
     </section>
   );
 }

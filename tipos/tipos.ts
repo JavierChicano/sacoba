@@ -31,7 +31,7 @@ export interface TipoPack {
   descripcion: string;
   materialTapa: string;
   dimensiones: string;
-  precioCajon: number | null;
+  precioCajon: number;
   precio: string;
 }
 export interface TipoSilla {
