@@ -14,14 +14,15 @@ export default function CompClientePack({
   packSeleccionado: TipoPack[];
   colores: TipoColor[];
 }) {
-  const [sillaSeleccionada, setSillaSeleccionada] = useState("");
+  const [modeloSeleccionada, setModeloSeleccionada] = useState("");
+  const [formatoSeleccionado, setFormatoSeleccionado] = useState("Silla");
 
   return (
     <div>
       <div className="max-w-7xl flex flex-col w-full gap-y-10">
         <RutaPackConcreto modelo={packSeleccionado[0].modelo} />
         <h1 className="text-4xl flex justify-center w-full">
-          Primero, configure la mesa a su gusto
+          Primero, configura la mesa a tu gusto
         </h1>
         <h1 className="text-4xl border-b-2 border-colorBase">
           {packSeleccionado[0].modelo}
@@ -45,40 +46,67 @@ export default function CompClientePack({
           />
         </section>
         <h1 className="text-4xl flex justify-center w-full mt-10">
-          Seleccione el modelo de silla deseado
+          Selecciona el modelo y formato deseado
         </h1>
+        <aside className="flex justify-center gap-4">
+          <div
+            className={`flex justify-center text-3xl py-2 px-4 w-72 cursor-pointer ${
+              formatoSeleccionado === "Silla"
+                ? "bg-colorBase"
+                : "bg-fondoSecundario"
+            }`}
+            onClick={() => setFormatoSeleccionado("Silla")}
+          >
+            Silla
+          </div>
+          <div
+            className={`flex justify-center text-2xl py-2 px-4 w-72 items-center cursor-pointer ${
+              formatoSeleccionado === "Taburete con respaldo"
+                ? "bg-colorBase"
+                : "bg-fondoSecundario"
+            }`}
+            onClick={() => setFormatoSeleccionado("Taburete con respaldo")}
+          >
+            Taburete con respaldo
+          </div>
+        </aside>
+
         <section className="grid grid-cols-3 gap-10 w-full">
           <ImagenesSillas
             datos={{
               nombre: "Soria",
-              selected: sillaSeleccionada === "Soria",
-              onSelect: setSillaSeleccionada,
+              img: formatoSeleccionado === "Silla" ? "SoriaSilla" : "SoriaTab",
+              selected:modeloSeleccionada === "Soria",
+              onSelect: setModeloSeleccionada,
             }}
           />
           <ImagenesSillas
             datos={{
               nombre: "Onda",
-              selected: sillaSeleccionada === "Onda",
-              onSelect: setSillaSeleccionada,
+              img: formatoSeleccionado === "Silla" ? "OndaSilla" : "OndaTab",
+              selected:modeloSeleccionada === "Onda",
+              onSelect: setModeloSeleccionada,
             }}
           />
           <ImagenesSillas
             datos={{
               nombre: "Ker",
-              selected: sillaSeleccionada === "Ker",
-              onSelect: setSillaSeleccionada,
+              img: formatoSeleccionado === "Silla" ? "KerSilla" : "KerTab",
+              selected:modeloSeleccionada === "Ker",
+              onSelect: setModeloSeleccionada,
             }}
           />
         </section>
-        {sillaSeleccionada !== "" && (
+
+        {modeloSeleccionada !== "" && (
           <>
             <h1 className="text-4xl flex justify-center w-full mt-10">
               Aqui tiene los diferentes packs
             </h1>
             <ElegirPack
               mesa={packSeleccionado[0].modelo}
-              precioMesa={0}
-              silla={sillaSeleccionada}
+              modelo={modeloSeleccionada}
+              formato={formatoSeleccionado}
             />
           </>
         )}

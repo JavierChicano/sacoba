@@ -2,15 +2,16 @@ import { IconMinus, IconPlus } from "@tabler/icons-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePrecioAcumulado } from "../../../../../states/states";
+import Link from "next/link";
 
 export default function ElegirPack({
   mesa,
-  precioMesa,
-  silla,
+  modelo,
+  formato,
 }: {
   mesa: string;
-  precioMesa: number;
-  silla: string;
+  modelo: string;
+  formato: string;
 }) {
   const [packSeleccionado, setPackSeleccionado] = useState("Mesa y 2 sillas");
   const [cantidad, setCantidad] = useState(0);
@@ -24,6 +25,7 @@ export default function ElegirPack({
     if (cantidad > 0) {
       setCantidad(cantidad - 1);
     }
+    console.log("modelo",modelo+formato)
   };
   useEffect(() => {
     if (packSeleccionado == "Mesa") {
@@ -51,7 +53,7 @@ export default function ElegirPack({
           }`}
         >
           <Image
-            src={`/productos/packs/${silla}.png`}
+            src={`/productos/packs/${modelo}${formato === "Silla" ? "Silla" : "Tab"}.png`}
             width={300}
             height={300}
             alt="foto silla"
@@ -88,7 +90,7 @@ export default function ElegirPack({
         >
           Mesa y 4 sillas
         </aside>
-        <section className="w-full flex gap-4 items-center mt-10">
+        <section className="w-full flex gap-4 items-center mt-8 mb-8">
           <h1 className="text-2xl">
             Añadir sillas extra <span className="text-xl">(64€/u)</span>
           </h1>
@@ -114,8 +116,43 @@ export default function ElegirPack({
             </div>
           </aside>
         </section>
-        <section className="w-full h-full flex items-end">
-          <h1 className="text-3xl">Total: {precioAcumulado+precioSillas+(64*cantidad)}€</h1>
+        <section className="w-full h-full flex items-end justify-between">
+          {precioAcumulado ? (
+            <>
+              <h1 className="text-3xl">
+                Total: {precioAcumulado + precioSillas + 64 * cantidad}€
+              </h1>
+              <section className="flex gap-4">
+                <Link
+                  href="/"
+                  className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer"
+                  onClick={() => {
+                    setPrecioAcumulado(
+                      precioAcumulado + precioSillas + 64 * cantidad
+                    );
+                  }}
+                >
+                  Añadir al carro
+                </Link>
+                {/* Este te tiene q llevar a la pagina de compra */}
+                <Link
+                  href="/"
+                  className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer"
+                  onClick={() => {
+                    setPrecioAcumulado(
+                      precioAcumulado + precioSillas + 64 * cantidad
+                    );
+                  }}
+                >
+                  Comprar
+                </Link>
+              </section>
+            </>
+          ) : (
+            <h1 className="text-red-500">
+              Para ver el precio, configura la mesa primero
+            </h1>
+          )}
         </section>
       </div>
     </section>

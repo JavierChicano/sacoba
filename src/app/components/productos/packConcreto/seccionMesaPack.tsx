@@ -21,7 +21,7 @@ export default function SeccionMesaPack({
   const [dimensionesMesa, setDimensionesMesa] = useState<string[]>([]);
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
   const [preciosMesa, setPreciosMesa] = useState<number[]>([]);
-  
+
   //Estados para almacenar las dimensiones de la mesas elegidas
   const [dimensionElegida, setDimensionElegida] = useState(0);
   const [dimension, setDimension] = useState("");
@@ -45,15 +45,17 @@ export default function SeccionMesaPack({
   }, [packSeleccionado]);
 
   useEffect(() => {
-    const preciosEncontrados: number[] = []; 
+    const preciosEncontrados: number[] = [];
     // Recorrer el array packSeleccionado
-    packSeleccionado.forEach(pack => {
+    packSeleccionado.forEach((pack) => {
       // Verificar si el material de la tapa coincide con modeloElegido
-      if (pack.materialTapa === modeloElegido.toLowerCase()) {
+      if (pack.materialTapa.toLowerCase() === modeloElegido.toLowerCase()) {
         // Acceder al parámetro precio del objeto pack
         const precioString = pack.precio;
         // Dividir el precio en un array usando la coma como delimitador
-        const precios = precioString.split(",").map(precio => parseFloat(precio.trim()));
+        const precios = precioString
+          .split(",")
+          .map((precio) => parseFloat(precio.trim()));
         // Agregar los precios encontrados al array preciosEncontrados
         preciosEncontrados.push(...precios);
       }
@@ -76,7 +78,7 @@ export default function SeccionMesaPack({
       const hayPrecioCajon = packSeleccionado.findIndex((pack) => {
         // Verificar si el acabado es igual al modeloElegido y el precioCajon es mayor que 0
         return (
-          pack.materialTapa === modeloElegido.toLowerCase() &&
+          pack.materialTapa.toLowerCase() === modeloElegido.toLowerCase() &&
           pack.precioCajon !== 0
         );
       });
@@ -86,15 +88,15 @@ export default function SeccionMesaPack({
     }
   }, [modeloElegido, cajon, packSeleccionado]);
 
-
   useEffect(() => {
-    if(cajonSeleccionado){
-      setPrecioAcumulado(preciosMesa[indexPrecio]+ packSeleccionado[mesaConCajon].precioCajon)
-    }else{
-      setPrecioAcumulado(preciosMesa[indexPrecio])
+    if (cajonSeleccionado) {
+      setPrecioAcumulado(
+        preciosMesa[indexPrecio] + packSeleccionado[mesaConCajon].precioCajon
+      );
+    } else {
+      setPrecioAcumulado(preciosMesa[indexPrecio]);
     }
   }, [preciosMesa, indexPrecio, cajonSeleccionado]);
-
 
   return (
     <section className="bg-fondoSecundario col-span-3 p-8 flex flex-col gap-4">
@@ -112,7 +114,7 @@ export default function SeccionMesaPack({
         ))}
       </div>
       <section className="flex items-center gap-2">
-        <h2 className="text-2xl">Elija color y textura</h2>
+        <h2 className="text-2xl">Elige color y textura</h2>
         <span
           className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase"
           onClick={() => {
@@ -148,7 +150,9 @@ export default function SeccionMesaPack({
         </div>
       )}
       <section className="flex h-full items-end">
-        <h1 className="text-3xl">Precio de la mesa: {precioAcumulado}€</h1>
+        {precioAcumulado && (
+          <h1 className="text-3xl">Precio de la mesa: {precioAcumulado}€</h1>
+        )}
       </section>
     </section>
   );

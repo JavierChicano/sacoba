@@ -2,6 +2,7 @@ import Image from "next/image";
 
 type ImagenesSillasParams = {
   nombre: string;
+  img: string;
   selected: boolean;
   onSelect: (nombre: string) => void;
 };
@@ -11,7 +12,7 @@ export default function ImagenesSillas({
 }: {
   datos: ImagenesSillasParams;
 }) {
-  const { nombre, selected, onSelect } = datos;
+  const { nombre, img, selected, onSelect } = datos;
 
   return (
     <div
@@ -23,7 +24,7 @@ export default function ImagenesSillas({
       <h1 className="text-4xl">{nombre}</h1>
       <div className="h-80">
         <Image
-          src={`/productos/packs/${nombre}.png`}
+          src={`/productos/packs/${img}.png`}
           width={200}
           height={200}
           alt={`foto silla ${nombre}`}

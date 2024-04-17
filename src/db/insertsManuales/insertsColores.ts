@@ -1477,3 +1477,49 @@ export async function insertarColores() {
       },
   ]);
 }
+export async function insertarColoresECO() {
+  // modificar la ruta de la imagen en el insert
+  const newColores = await db.insert(colores).values([
+    {
+      modelo: "laminado ECO",
+      nombreColor: "Blanco ECO",
+      imagenColor: "BlancoECO.png",
+    },
+    {
+      modelo: "laminado ECO",
+      nombreColor: "Cemento Blanco",
+      imagenColor: "CementoBlanco.png",
+    },
+    {
+      modelo: "laminado ECO",
+      nombreColor: "Cemento Gris",
+      imagenColor: "CementoGris.png",
+    },
+    {
+      modelo: "laminado ECO",
+      nombreColor: "Fresno Taiga",
+      imagenColor: "FresnoTaiga.png",
+    },
+    {
+      modelo: "laminado ECO",
+      nombreColor: "Marmol Hades",
+      imagenColor: "MarmolHades.png",
+    },
+    {
+      modelo: "laminado ECO",
+      nombreColor: "Nogal Canaletto",
+      imagenColor: "NogCanaletto.png",
+    },
+    {
+      modelo: "laminado ECO",
+      nombreColor: "Roble Aurora",
+      imagenColor: "RobleAurora.png",
+    },
+    {
+      modelo: "laminado ECO",
+      nombreColor: "Yin Marble",
+      imagenColor: "YinMarble.png",
+    },
+  ]);
+}
+

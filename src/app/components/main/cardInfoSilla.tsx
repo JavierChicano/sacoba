@@ -91,7 +91,7 @@ export default function CardInfoSilla() {
         <div className={`w-full h-full ${isVisible ? 'animate-fade-left animate-once animate-ease-in animate-normal animate-duration-[2500ms]' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <Image
             className="w-full h-full "
-            src={`/productos/silla.png`}
+            src={`/productos/Sillas.png`}
             alt="Logo de la marca"
             width={500}
             height={500}

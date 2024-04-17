@@ -68,6 +68,6 @@ export async function selectsColoresSillas(){
 
 export async function selectsColoresPacks(){
   // poner laminado ECO
-  const todosColores = await db.select().from(colores).where(inArray(colores.modelo, ["cristal 3mm", "laminado"]));
+  const todosColores = await db.select().from(colores).where(inArray(colores.modelo, ["cristal 3mm", "laminado", "laminado ECO"]));
   return todosColores;
 }

@@ -75,7 +75,7 @@ export const colores = sqliteTable("colores", {
     "cristal 8mm extraclaro",
     "silestone g1",
     "dekton g1",
-    "Laminado ECO",
+    "laminado ECO",
   ]}).notNull(),
   nombreColor: text("nombreColor", { length: 256 }).notNull(),
   imagenColor: text("imagenColor", { length: 256 }).notNull(),

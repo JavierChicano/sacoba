@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { TipoPack } from "../../../../tipos/tipos";
 import Image from "next/image";
-import { Meteors } from "../main/meteoros";
 import { IconArrowRightBar } from "@tabler/icons-react";
 import Link from "next/link";
 import router from "next/router";
@@ -50,7 +49,6 @@ export default function TarjetaDisplayPacks({
           />
         </div>
         <section className="p-5 relative overflow-hidden">
-          <Meteors />
           <div className="z-10 h-full flex flex-col justify-between">
             <h1 className="text-4xl border-b border-colorBase mb-2">
               {datos.modelo}

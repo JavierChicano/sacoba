@@ -19,15 +19,10 @@
  16.1- El slider cuando pones ambos en el mismo precio no filtra✅
  17- Que cuando se añada al carrito aparezca una notificacion "Toast" confirmandolo
  18- Que cuando estes en una pagina, el hover se quede fijo, marcándola
-
+ 
 
 
  //PAGINA BANCOS
  Quitar o poner el zocalo (Depende del modelo)
 
- //PAGINA PACK
- Los packs aumentan 106€ en funcion
- Poner la opcion de cambiar el color del resto entre aluminio y blanco
-
-//INSERTS COLORES
-Agregar laminado eco
+//Borrar el componente "meteors", si al final no se va a usar
