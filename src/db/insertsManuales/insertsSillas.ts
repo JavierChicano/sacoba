@@ -137,7 +137,7 @@ export async function insertarSillas() {
       formato: "Taburete bajo sin respaldo",
       materialAsiento: "tapizado nvC, tapizado nvA, laminado, laca, barniz",
       colorBastidor: "aluminio, blanco",
-      precio: "52, 55, 55, 66",
+      precio: "52, 55, 55, 66, 66",
     },
 
     //   INSERT SILLA 4
@@ -172,7 +172,7 @@ export async function insertarSillas() {
       formato: "Taburete bajo sin respaldo",
       materialAsiento: "tapizado nvC, tapizado nvA, laminado, laca, barniz",
       colorBastidor: "aluminio, blanco, negro",
-      precio: "52, 55, 55, 66",
+      precio: "52, 55, 55, 66, 66",
     },
 
     //   INSERT SILLA 5

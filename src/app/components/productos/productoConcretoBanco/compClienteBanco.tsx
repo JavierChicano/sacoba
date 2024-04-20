@@ -20,8 +20,6 @@ export default function CompClienteBanco({InsertarDatosACarrito, bancoSelecciona
       console.log(preciosArray);
     }
   }, [bancoSeleccionado]);
-  console.log(bancoSeleccionado);
-  console.log(precioAcumulado);
 
   return (
     // {InsertarDatosACarrito}

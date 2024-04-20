@@ -23,11 +23,13 @@ export default function ModuloEspecifico({
   const [cantidad, setCantidad] = useState(0);
   const [precioTotal, setPrecioTotal] = useState(datos.precio);
   const { precios, modificarPrecio, insertarModificarModulo, modificarCantidad } = usePreciosBanco();
+
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
   };
   const disminuirCantidad = () => {
     if (cantidad > 0) {
+      console.log("ENTRA AQUI")
       setCantidad(cantidad - 1);
     }
   };
@@ -38,8 +40,11 @@ export default function ModuloEspecifico({
       datos.dimensiones === "150"
     ) {
       setCantidad(1);
+      console.log(" AQUI NO DEBERIA")
+
     }
   };
+
   useEffect(() => {
     // Actualizar precio total
     let nuevoPrecio = datos.precio;
@@ -56,15 +61,13 @@ export default function ModuloEspecifico({
     precioTotal,
     modificarPrecio,
   ]);
-  console.log(precios);
-  console.log(2*3);
   
   useEffect(() => {
     if(datos.precioRespaldo === 0){
       setRespaldoSeleccionado(true)
     }
     calcularCantidad();
-  }, [calcularCantidad, datos.precioRespaldo]);
+  }, [datos.precioRespaldo]);
 
   useEffect(() => {
     insertarModificarModulo(datos.id, {
