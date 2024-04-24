@@ -1,40 +1,48 @@
 "use client";
-import { registrarUsuario } from "@/db/inserts";
 import {
   IconEye,
   IconEyeOff,
   IconMail,
   IconUserScan,
 } from "@tabler/icons-react";
-import React, { useState } from "react";
-import { TipoUsuario } from "../../../../tipos/tipos";
+import React, { useState, ChangeEvent, FormEvent } from "react";
+import { InsertarRegistro } from "./insertarUsuarioRegistro";
+import { FormRegistroValidation } from "../../../../tipos/tiposForm";
+import { redirect } from "next/navigation";
 
 export default function FormRegistro() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState<TipoUsuario>({
-    correoElectronico: "",
-    nombre: "",
-    apellidos: "",
-    contraseña: "",
-  });
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  // const handleFormSubmit = (e: { preventDefault: () => void; }) => {
-  //   e.preventDefault();
-  //   registrarUsuario({usuario: formData});
-  // };
-  
-  const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+  const clientAction = async (formData: FormData) => {
+    const newForm = {
+      nombre: formData.get("nombre"),
+      apellidos: formData.get("apellidos"),
+      email: formData.get("correoElectronico"),
+      contraseña: formData.get("contraseña"),
+    };
+    const result = FormRegistroValidation.safeParse(newForm);
+    if (!result.success) {
+      console.log(result.error.issues);
+      return;
+    }
+    const response = await InsertarRegistro(result.data);
+    if (response?.error) {
+      //Manejar el error
+      console.log(response.error);
+    } else {
+      //Si se ha insertado correctamente redirige al main
+      redirect("/");
+    }
   };
 
   return (
     <form
       className="flex flex-col gap-4 max-w-lg mb:max-w-sm"
-      // onSubmit={handleFormSubmit}
+      action={clientAction}
     >
       <div className="flex gap-4 w-full relative">
         <div className="flex w-1/2 relative">
@@ -44,8 +52,6 @@ export default function FormRegistro() {
             className="w-full border-b border-colorBase h-14 bg-fondoTerciario text-xl text-white pl-3"
             required
             name="nombre"
-            value={formData.nombre}
-            onChange={handleInputChange}
           />
           <IconUserScan
             className="absolute right-5 self-center w-8"
@@ -59,8 +65,6 @@ export default function FormRegistro() {
           className="w-1/2 border-b border-colorBase h-14 bg-fondoTerciario text-xl text-white pl-3"
           required
           name="apellidos"
-          value={formData.apellidos}
-          onChange={handleInputChange}
         />
         <IconUserScan
           className="absolute right-5 self-center w-8"
@@ -73,9 +77,7 @@ export default function FormRegistro() {
           placeholder="Correo electrónico"
           className="w-full border-b border-colorBase h-14 bg-fondoTerciario text-xl text-white pl-3"
           required
-          name="correo"
-          value={formData.correoElectronico}
-          onChange={handleInputChange}
+          name="correoElectronico"
         />
         <IconMail
           className="absolute right-5 self-center w-8 z-15"
@@ -90,9 +92,8 @@ export default function FormRegistro() {
           className="w-full border-b border-colorBase h-14 bg-fondoTerciario text-xl text-white pl-3"
           required
           name="contraseña"
-          value={formData.contraseña}
-          onChange={handleInputChange}
         />
+
         {showPassword ? (
           <IconEyeOff
             className="absolute right-5 self-center w-8 z-15 cursor-pointer"

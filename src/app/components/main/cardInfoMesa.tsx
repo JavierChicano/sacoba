@@ -32,7 +32,7 @@ export default function CardInfoMesa() {
       <div className="flex gap-10 items-start">
         <div
           ref={ref}
-          className={`w-full h-full ${isVisible ? "opacity-100" : "opacity-0"}`}
+          className={`w-1/2 self-center ${isVisible ? "opacity-100" : "opacity-0"}`}
         >
           <Image
             className={`w-full h-full ${
@@ -40,7 +40,7 @@ export default function CardInfoMesa() {
                 ? "animate-fade-right animate-once animate-ease-in animate-normal animate-duration-[2000ms]"
                 : ""
             }`}
-            src={`/productos/mesas/lomma.png`}
+            src={`/productos/mesa.png`}
             alt="Logo de la marca"
             width={500}
             height={500}
@@ -73,8 +73,8 @@ export default function CardInfoMesa() {
                 />
               </div>
             </span>
-            <span className="flex items-center gap-4 text-xl h-24 self-center">
-              Tamaños
+            <span className="flex items-center gap-4 text-xl h-24 w-44 self-center">
+              <p className="w-32 flex justify-end">Tamaños</p>
               <div className=" w-12 h-12">
                 <Image
                   className="w-full h-full filter invert"
@@ -85,9 +85,9 @@ export default function CardInfoMesa() {
                 />
               </div>
             </span>
-            <span className="flex items-center gap-4 text-xl h-24 self-end">
+            <span className="flex items-center gap-4 text-xl h-24 w-20 self-end">
               Patas
-              <div className="w-6 h-10">
+              <div className="w-10 h-10">
                 <Image
                   className="w-full h-full filter invert"
                   alt="iconoDescriptivo"
@@ -97,7 +97,7 @@ export default function CardInfoMesa() {
                 />
               </div>
             </span>
-            <span className="flex items-center gap-4 text-xl h-24 self-center">
+            <span className="flex items-center gap-4 text-xl h-24 w-44 self-center">
               Estructuras
               <div className=" w-12 h-12">
                 <Image
@@ -115,7 +115,7 @@ export default function CardInfoMesa() {
                 className="flex items-center gap-4 text-xl h-24 "
               >
                 <span className="text-colorBase w-20 flex justify-end">Ir a ver</span>
-                <div className=" w-12 h-12">
+                <div className="w-12 h-12">
                   <IconDesk size={50} />
                 </div>
               </Link>

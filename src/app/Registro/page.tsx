@@ -1,5 +1,5 @@
+import FormRegistro from "../components/Registro/formularioRegistro";
 import Link from "next/link";
-import FormRegistro from "../components/main/formularioRegistro";
 import CompoLogo from "../components/main/compLogoRegLog";
 
 export default function Registro() {
@@ -12,10 +12,10 @@ export default function Registro() {
         backgroundPosition: "center",
       }}
     >
-      <CompoLogo/>
+      <CompoLogo />
       <section className="flex p-10 justify-center items-center col-span-2 sm:col-span-1 text-black">
         <div className="flex flex-col gap-5">
-        <ul className="flex h-20">
+          <ul className="flex h-20">
             <li className="text-slate-600">
               <Link href="/">Main</Link> |&nbsp;
             </li>
@@ -29,6 +29,8 @@ export default function Registro() {
               Inicia sesion
             </Link>
           </h4>
+
+          {/* Componente que gestiona el registro del usuario atraves de un form */}
           <FormRegistro />
         </div>
       </section>
