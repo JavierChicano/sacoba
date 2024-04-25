@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IconoCarrito } from "../iconos/iconoCarrito";
 import BotonTema from "./botonCambioTema";
 import { IconUser } from "@tabler/icons-react";
@@ -11,6 +11,18 @@ import DesplegableLogin from "./desplegableLogin";
 export default function BotonesHeader() {
   const [mostrarDesplegable, setMostrarDesplegable] = useState(false);
   const [mostrarLogin, setMostrarLogin] = useState(false);
+  const [sesionIniciada, setSesionIniciada] = useState(false);
+
+  useEffect(() => {
+    const sesionGuardada = sessionStorage.getItem("sesionIniciada");
+    if (sesionGuardada === "true") {
+      setSesionIniciada(true);
+      console.log("Se setea a true");
+    } else {
+      setSesionIniciada(false);
+      console.log("Se setea a false");
+    }
+  }, []);
 
   return (
     <ul className="flex justify-around w-3/4 m-10 text-xl items-center">
@@ -42,19 +54,21 @@ export default function BotonesHeader() {
               />
             </Link>
 
-            {mostrarDesplegable && <DesplegableCarrito />}
+            {mostrarDesplegable && sesionIniciada && <DesplegableCarrito />}
           </div>
           <div
             onMouseEnter={() => setMostrarLogin(true)}
             onMouseLeave={() => setMostrarLogin(false)}
           >
-            <IconUser
-              stroke={2}
-              size={40}
-              color={mostrarLogin ? "orange" : "currentColor"}
-              className="cursor-pointer"
-            />
-            {mostrarLogin && <DesplegableLogin />}
+            <Link href={"/Perfil"}>
+              <IconUser
+                stroke={2}
+                size={40}
+                color={mostrarLogin ? "orange" : "currentColor"}
+                className="cursor-pointer"
+              />
+            </Link>
+            {mostrarLogin && !sesionIniciada && <DesplegableLogin />}
           </div>
         </div>
       </li>

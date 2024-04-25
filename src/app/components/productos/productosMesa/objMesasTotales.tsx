@@ -17,7 +17,8 @@ export default function ObjMesasTotales({
 }) {
   const [ocultarFiltro, setOcultarFiltro] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
-  const [mesasOrdenadas, setMesasOrdenadas] = useState<TipoMesa[]>(mesasTotales);
+  const [mesasOrdenadas, setMesasOrdenadas] =
+    useState<TipoMesa[]>(mesasTotales);
   const [precioMinimo, setPrecioMinimo] = useState(200);
   const [precioMaximo, setPrecioMaximo] = useState(1000);
 
@@ -25,8 +26,7 @@ export default function ObjMesasTotales({
     if (!mesasOrdenadas.length) {
       setMesasOrdenadas(mesasTotales);
     }
-  }, [mesasOrdenadas, mesasOrdenadas.length]);
-
+  }, []);
 
   //Filtro de ordenacion
   const ordenarPorReciente = () => {
@@ -54,13 +54,13 @@ export default function ObjMesasTotales({
   //Para poder filtrar las mesas por tipo de base
   const [tiposBases, setTiposBases] = useState<string[]>([]);
   const [tiposBaseSeleccionados, setTiposBaseSeleccionados] = useState<string[]>([]);
-  
+
   const handleSelectionChange = (indice: string) => {
     if (indice) {
-      const indices = indice.split(",").map(Number); 
-      const tiposSeleccionados = indices.map(index => tiposBases[index]); 
+      const indices = indice.split(",").map(Number);
+      const tiposSeleccionados = indices.map((index) => tiposBases[index]);
       setTiposBaseSeleccionados(tiposSeleccionados);
-    }else{
+    } else {
       setTiposBaseSeleccionados([]);
     }
   };
@@ -75,18 +75,20 @@ export default function ObjMesasTotales({
         return precio >= precioMinimo && precio <= precioMaximo;
       }
     });
-  
-    const mesasFiltradasPorTiposBase = mesasFiltradasPorPrecio.filter(mesa =>
-      tiposBaseSeleccionados.length > 0 ? tiposBaseSeleccionados.includes(mesa.tipoBase) : true
+
+    const mesasFiltradasPorTiposBase = mesasFiltradasPorPrecio.filter((mesa) =>
+      tiposBaseSeleccionados.length > 0
+        ? tiposBaseSeleccionados.includes(mesa.tipoBase)
+        : true
     );
-  
     setMesasOrdenadas(mesasFiltradasPorTiposBase);
-  
+
     // Extraer tipos de base únicos
-    const tiposBaseUnicos = Array.from(new Set(mesasFiltradasPorPrecio.map(mesa => mesa.tipoBase)));
+    const tiposBaseUnicos = Array.from(
+      new Set(mesasFiltradasPorPrecio.map((mesa) => mesa.tipoBase))
+    );
     setTiposBases(tiposBaseUnicos);
   }, [precioMinimo, precioMaximo, tiposBaseSeleccionados, mesasTotales]);
-  
 
   return (
     <>
@@ -177,7 +179,7 @@ export default function ObjMesasTotales({
               onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
                 const value = event.target.value;
                 console.log("llaves del coche", value);
-                handleSelectionChange(value)
+                handleSelectionChange(value);
               }}
             >
               {tiposBases.map((tipoBase, index) => (

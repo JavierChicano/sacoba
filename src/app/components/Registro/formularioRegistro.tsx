@@ -34,6 +34,8 @@ export default function FormRegistro() {
       //Manejar el error
       console.log(response.error);
     } else {
+      //Esto guarda que la sesion esta iniciada
+      sessionStorage.setItem("sesionIniciada", "true");
       //Si se ha insertado correctamente redirige al main
       redirect("/");
     }
