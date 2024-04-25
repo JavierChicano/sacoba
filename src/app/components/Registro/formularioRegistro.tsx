@@ -18,17 +18,25 @@ export default function FormRegistro() {
   };
 
   const clientAction = async (formData: FormData) => {
+    const contraseña = formData.get("contraseña");
+    console.log(contraseña)
+    // const contraseñaHasheada = await Bun.password.hash("contraseña");
+
     const newForm = {
       nombre: formData.get("nombre"),
       apellidos: formData.get("apellidos"),
       email: formData.get("correoElectronico"),
       contraseña: formData.get("contraseña"),
     };
+
+    //Validacion del lado del cliente
     const result = FormRegistroValidation.safeParse(newForm);
     if (!result.success) {
       console.log(result.error.issues);
       return;
     }
+
+    //Validacion del lado del servidor
     const response = await InsertarRegistro(result.data);
     if (response?.error) {
       //Manejar el error

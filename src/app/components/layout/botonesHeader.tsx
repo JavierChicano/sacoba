@@ -17,12 +17,13 @@ export default function BotonesHeader() {
     const sesionGuardada = sessionStorage.getItem("sesionIniciada");
     if (sesionGuardada === "true") {
       setSesionIniciada(true);
-      console.log("Se setea a true");
+      console.log("Se abre la sesion")
     } else {
       setSesionIniciada(false);
-      console.log("Se setea a false");
+      console.log("Se cierra la sesion")
+
     }
-  }, []);
+  }, [sessionStorage.getItem("sesionIniciada")]);
 
   return (
     <ul className="flex justify-around w-3/4 m-10 text-xl items-center">
@@ -60,14 +61,20 @@ export default function BotonesHeader() {
             onMouseEnter={() => setMostrarLogin(true)}
             onMouseLeave={() => setMostrarLogin(false)}
           >
-            <Link href={"/Perfil"}>
-              <IconUser
-                stroke={2}
-                size={40}
-                color={mostrarLogin ? "orange" : "currentColor"}
-                className="cursor-pointer"
-              />
-            </Link>
+            {sesionIniciada ? (
+              <Link href={"/Perfil"}>
+                  <IconUser
+                    stroke={2}
+                    size={40}
+                    className="cursor-pointer"
+                  />
+              </Link>
+            ) : (
+                <IconUser
+                  stroke={2}
+                  size={40}
+                />
+            )}
             {mostrarLogin && !sesionIniciada && <DesplegableLogin />}
           </div>
         </div>
