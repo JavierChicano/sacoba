@@ -46,8 +46,8 @@ export default function FormRegistro() {
     } else {
       //Esto guarda que la sesion esta iniciada
       sessionStorage.setItem("sesionIniciada", "true");
-      //Si se ha insertado correctamente redirige al main
-      redirect("/");
+      //Si se ha insertado correctamente redirige al perfil
+      redirect("/Perfil");
     }
   };
 

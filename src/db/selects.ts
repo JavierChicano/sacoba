@@ -1,6 +1,6 @@
 import { eq, inArray } from "drizzle-orm";
 import { db } from ".";
-import { bancos, colores, mesas, packs, sillas } from "./schema";
+import { bancos, colores, mesas, packs, sillas, usuarios } from "./schema";
 
 //Selects de mesas
 export async function selectsMesasTendencia() {
@@ -70,4 +70,28 @@ export async function selectsColoresPacks(){
   // poner laminado ECO
   const todosColores = await db.select().from(colores).where(inArray(colores.modelo, ["cristal 3mm", "laminado", "laminado ECO"]));
   return todosColores;
+}
+
+//Select usuario logueado
+export async function selectComprobarUsuario(email: string, contraseña: string) {
+  try {
+    // Realizar una consulta SQL para seleccionar el usuario con el correo electrónico dado
+    const usuario = await db.select({
+      correoElectronico: usuarios.correoElectronico, 
+      nombre: usuarios.nombre, 
+      apellidos: usuarios.apellidos}).from(usuarios).where(eq(usuarios.correoElectronico, email)&&eq(usuarios.contraseña, contraseña)).limit(1);
+
+      if (usuario && usuario.length === 1) {
+      // Si se encontró un usuario, devolverlo junto con el estado de éxito
+      return {
+        success: true,
+        usuario: usuario[0],
+      };
+    } else {
+      // Si no se encontró un usuario, devolver false
+      return false;
+    }
+  } catch (error: any) {
+    return false;
+  }
 }

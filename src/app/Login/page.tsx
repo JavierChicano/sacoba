@@ -1,5 +1,5 @@
 import Link from "next/link";
-import FormLogin from "../components/main/formularioLogin";
+import FormLogin from "../components/Login/formularioLogin";
 import CompoLogo from "../components/main/compLogoRegLog";
 
 export default function Login() {

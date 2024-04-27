@@ -26,3 +26,6 @@
  Quitar o poner el zocalo (Depende del modelo)
 
 //Borrar el componente "meteors", si al final no se va a usar
+
+//PAGINA PACKS
+poner numero al lado de las sillas, en funcion de las seleccionadas

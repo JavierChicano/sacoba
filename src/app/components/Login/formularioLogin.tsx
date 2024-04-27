@@ -5,7 +5,11 @@ import {
   IconMail,
   IconUserScan,
 } from "@tabler/icons-react";
+import { redirect } from "next/navigation";
 import React, { useState } from "react";
+import { ComprobarUsuario } from "./comprobarUsuario";
+import { Toaster, toast } from "sonner";
+import { FormLoginValidation } from "../../../../tipos/tiposForm";
 
 export default function FormLogin() {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,13 +18,47 @@ export default function FormLogin() {
     setShowPassword(!showPassword);
   };
 
+  const clientAction = async (formData: FormData) => {
+    const contraseña = formData.get("contraseña");
+    console.log(contraseña);
+    //  const contraseñaHasheada = await Bun.password.hash("contraseña");
+    //  console.log(contraseñaHasheada)
+
+    const newForm = {
+      email: formData.get("correoElectronico"),
+      contraseña: formData.get("contraseña"),
+    };
+
+    //Validacion del lado del cliente
+    const result = FormLoginValidation.safeParse(newForm);
+    if (!result.success) {
+      toast.error(result.error.issues[0].message);
+      return;
+    }
+
+    //Validacion del lado del servidor
+    const response = await ComprobarUsuario(result.data);
+    if (response?.error) {
+      //Manejar el error
+      toast.error(response.error);
+    } else {
+      //Esto guarda que la sesion esta iniciada
+      sessionStorage.setItem("sesionIniciada", "true")
+      //Guardamos los datos del usuario en la sesion
+      sessionStorage.setItem("usuario", JSON.stringify(response.usuario));
+      //Si se ha insertado correctamente redirige al perfil
+      redirect("/Perfil");
+    }
+  };
+
   return (
-    <form className="flex flex-col gap-4 max-w-lg w-full">
+    <form className="flex flex-col gap-4 max-w-lg w-full" action={clientAction}>
       <div className="flex relative w-full">
         <input
           type="email"
           placeholder="Correo electrónico"
           className="w-full border-b border-colorBase h-14 bg-fondoTerciario text-xl text-white pl-3"
+          name="correoElectronico"
         />
         <IconMail
           className="absolute right-5 self-center w-8 z-15"
@@ -33,6 +71,7 @@ export default function FormLogin() {
           type={showPassword ? "text" : "password"}
           placeholder="Contraseña"
           className="w-full border-b border-colorBase h-14 bg-fondoTerciario text-xl text-white pl-3"
+          name="contraseña"
         />
         {showPassword ? (
           <IconEyeOff
@@ -55,6 +94,7 @@ export default function FormLogin() {
       >
         Entrar
       </button>
+      <Toaster position="top-right" richColors />
       <style jsx>{`
         input::placeholder {
           color: #f1be8f;
