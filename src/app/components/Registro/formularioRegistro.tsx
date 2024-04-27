@@ -9,6 +9,7 @@ import React, { useState, ChangeEvent, FormEvent } from "react";
 import { InsertarRegistro } from "./insertarUsuarioRegistro";
 import { FormRegistroValidation } from "../../../../tipos/tiposForm";
 import { redirect } from "next/navigation";
+import { Toaster, toast } from 'sonner'
 
 export default function FormRegistro() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -20,7 +21,8 @@ export default function FormRegistro() {
   const clientAction = async (formData: FormData) => {
     const contraseña = formData.get("contraseña");
     console.log(contraseña)
-    // const contraseñaHasheada = await Bun.password.hash("contraseña");
+  //  const contraseñaHasheada = await Bun.password.hash("contraseña");
+  //  console.log(contraseñaHasheada)
 
     const newForm = {
       nombre: formData.get("nombre"),
@@ -32,7 +34,7 @@ export default function FormRegistro() {
     //Validacion del lado del cliente
     const result = FormRegistroValidation.safeParse(newForm);
     if (!result.success) {
-      console.log(result.error.issues);
+      toast.error(result.error.issues[0].message)
       return;
     }
 
@@ -40,7 +42,7 @@ export default function FormRegistro() {
     const response = await InsertarRegistro(result.data);
     if (response?.error) {
       //Manejar el error
-      console.log(response.error);
+      toast.error(response.error)
     } else {
       //Esto guarda que la sesion esta iniciada
       sessionStorage.setItem("sesionIniciada", "true");
@@ -125,6 +127,7 @@ export default function FormRegistro() {
       >
         Crear cuenta
       </button>
+      <Toaster position="top-right" richColors />
       <style jsx>{`
         input::placeholder {
           color: #f1be8f;

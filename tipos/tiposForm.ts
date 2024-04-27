@@ -1,16 +1,16 @@
 import { z } from "zod";
 
 export const FormRegistroValidation = z.object({
-  nombre: z.string({
-    required_error: "El nombre es obligatorio",
-    invalid_type_error: "El nombre tiene que ser alfabetico",
+  nombre: z.string().regex(/^[a-zA-Z]+$/, {
+    message: "El nombre solo puede contener letras",
   }),
-  apellidos: z.string({
-    required_error: "El apellido es obligatorio",
-    invalid_type_error: "El apellido tiene que ser alfabetico",
+  apellidos: z.string().regex(/^[a-zA-Z]+$/, {
+    message: "Los apellidos solo pueden contener letras",
   }),
-  email: z.string({
-    required_error: "El correo es obligatorio",}),
-  contraseña: z.string({
-    required_error: "La contraseña es obligatoria",}),
+  email: z.string().email({
+      message: "Email no válido",
+    }),
+  contraseña: z.string().min(7, {
+      message: "La contraseña tiene que tener una longitud mínima de 7 caracteres",
+    }),
 });

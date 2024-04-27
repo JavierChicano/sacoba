@@ -17,13 +17,10 @@ export default function BotonesHeader() {
     const sesionGuardada = sessionStorage.getItem("sesionIniciada");
     if (sesionGuardada === "true") {
       setSesionIniciada(true);
-      console.log("Se abre la sesion")
     } else {
       setSesionIniciada(false);
-      console.log("Se cierra la sesion")
-
     }
-  }, [sessionStorage.getItem("sesionIniciada")]);
+  }, []);
 
   return (
     <ul className="flex justify-around w-3/4 m-10 text-xl items-center">
