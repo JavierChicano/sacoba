@@ -10,9 +10,11 @@ import React, { useState } from "react";
 import { ComprobarUsuario } from "./comprobarUsuario";
 import { Toaster, toast } from "sonner";
 import { FormLoginValidation } from "../../../../tipos/tiposForm";
+import { useSesion } from "../../../../states/states";
 
 export default function FormLogin() {
   const [showPassword, setShowPassword] = useState(false);
+  const { sesionON, setSesionON } = useSesion();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -37,6 +39,7 @@ export default function FormLogin() {
       //Manejar el error
       toast.error(response.error);
     } else {
+      setSesionON(true)
       //Esto guarda que la sesion esta iniciada
       sessionStorage.setItem("sesionIniciada", "true")
       //Guardamos los datos del usuario en la sesion

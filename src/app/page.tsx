@@ -3,10 +3,10 @@ import SeccionNuestrosProductos from "./components/main/seccionNuestrosProductos
 import SeccionMarcas from "./components/main/seccionMarcas";
 import TextoAnimado from "./components/main/textoAnimado";
 import Image from "next/image";
-import Link from "next/link";
 import Sacoba from "./components/main/sacoba";
 
 export default function Home() {
+
   return (
     <main className="flex flex-col items-center">
       {/* <Sacoba/> */}

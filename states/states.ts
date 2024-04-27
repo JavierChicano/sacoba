@@ -98,3 +98,14 @@ export const useColorSeleccionado = create<ColorSeleccionado>((set) => ({
   modeloElegido: '',
   setColorSeleccionado: (colorElegido: string, modeloElegido: string) => set({ colorElegido, modeloElegido }),
 }));
+
+//Estado para guardar el estado de la sesion
+type SesionState = {
+  sesionON: boolean;
+  setSesionON: (sesion: boolean) => void;
+};
+
+export const useSesion = create<SesionState>((set) => ({
+  sesionON: false,
+  setSesionON: (sesion) => set({ sesionON: sesion }),
+}));

@@ -7,20 +7,12 @@ import Link from "next/link";
 import DesplegableCarrito from "./desplegableCarrito";
 import HoverBoton from "./hoverBotones";
 import DesplegableLogin from "./desplegableLogin";
+import { useSesion } from "../../../../states/states";
 
 export default function BotonesHeader() {
   const [mostrarDesplegable, setMostrarDesplegable] = useState(false);
   const [mostrarLogin, setMostrarLogin] = useState(false);
-  const [sesionIniciada, setSesionIniciada] = useState(false);
-
-  useEffect(() => {
-    const sesionGuardada = sessionStorage.getItem("sesionIniciada");
-    if (sesionGuardada === "true") {
-      setSesionIniciada(true);
-    } else {
-      setSesionIniciada(false);
-    }
-  }, []);
+  const { sesionON } = useSesion();
 
   return (
     <ul className="flex justify-around w-3/4 m-10 text-xl items-center">
@@ -52,13 +44,13 @@ export default function BotonesHeader() {
               />
             </Link>
 
-            {mostrarDesplegable && sesionIniciada && <DesplegableCarrito />}
+            {mostrarDesplegable && sesionON && <DesplegableCarrito />}
           </div>
           <div
             onMouseEnter={() => setMostrarLogin(true)}
             onMouseLeave={() => setMostrarLogin(false)}
           >
-            {sesionIniciada ? (
+            {sesionON ? (
               <Link href={"/Perfil"}>
                   <IconUser
                     stroke={2}
@@ -72,7 +64,7 @@ export default function BotonesHeader() {
                   size={40}
                 />
             )}
-            {mostrarLogin && !sesionIniciada && <DesplegableLogin />}
+            {mostrarLogin && !sesionON && <DesplegableLogin />}
           </div>
         </div>
       </li>

@@ -10,9 +10,11 @@ import { InsertarRegistro } from "./insertarUsuarioRegistro";
 import { FormRegistroValidation } from "../../../../tipos/tiposForm";
 import { redirect } from "next/navigation";
 import { Toaster, toast } from 'sonner'
+import { useSesion } from "../../../../states/states";
 
 export default function FormRegistro() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const { sesionON, setSesionON } = useSesion();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -39,6 +41,7 @@ export default function FormRegistro() {
       //Manejar el error
       toast.error(response.error)
     } else {
+      setSesionON(true)
       //Esto guarda que la sesion esta iniciada
       sessionStorage.setItem("sesionIniciada", "true");
       //Si se ha insertado correctamente redirige al perfil
