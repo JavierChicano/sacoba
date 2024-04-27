@@ -19,11 +19,6 @@ export default function FormLogin() {
   };
 
   const clientAction = async (formData: FormData) => {
-    const contraseña = formData.get("contraseña");
-    console.log(contraseña);
-    //  const contraseñaHasheada = await Bun.password.hash("contraseña");
-    //  console.log(contraseñaHasheada)
-
     const newForm = {
       email: formData.get("correoElectronico"),
       contraseña: formData.get("contraseña"),

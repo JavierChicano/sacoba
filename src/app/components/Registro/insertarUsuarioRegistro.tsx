@@ -1,6 +1,7 @@
 "use server";
 import { registrarUsuario } from "@/db/inserts";
 import { FormRegistroValidation } from "../../../../tipos/tiposForm";
+import bcrypt from "bcrypt"
 
 export const InsertarRegistro = async (nuevoRegistro: unknown) => {
   const result = FormRegistroValidation.safeParse(nuevoRegistro);
@@ -16,12 +17,13 @@ export const InsertarRegistro = async (nuevoRegistro: unknown) => {
   }
 
   try {
+    const constraseñaHasheada = await bcrypt.hash(result.data.contraseña, 10)
     const usuario = {
       usuario: {
         nombre: result.data.nombre,
         apellidos: result.data.apellidos,
         correoElectronico: result.data.email,
-        contraseña: result.data.contraseña,
+        contraseña: constraseñaHasheada,
       },
     };
     const insercionExitosa = await registrarUsuario(usuario);

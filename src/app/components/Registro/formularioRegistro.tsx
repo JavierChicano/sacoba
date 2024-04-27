@@ -19,11 +19,6 @@ export default function FormRegistro() {
   };
 
   const clientAction = async (formData: FormData) => {
-    const contraseña = formData.get("contraseña");
-    console.log(contraseña)
-  //  const contraseñaHasheada = await Bun.password.hash("contraseña");
-  //  console.log(contraseñaHasheada)
-
     const newForm = {
       nombre: formData.get("nombre"),
       apellidos: formData.get("apellidos"),
