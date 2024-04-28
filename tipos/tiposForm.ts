@@ -1,10 +1,11 @@
 import { z } from "zod";
+const caracteresPermitidos = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\s]+$/;
 
 export const FormRegistroValidation = z.object({
-  nombre: z.string().trim().regex(/^[a-zA-Z]+$/, {
+  nombre: z.string().trim().regex(caracteresPermitidos, {
     message: "El nombre solo puede contener letras",
   }),
-  apellidos: z.string().trim().regex(/^[a-zA-Z]+$/, {
+  apellidos: z.string().trim().regex(caracteresPermitidos, {
     message: "Los apellidos solo pueden contener letras",
   }),
   email: z.string().email({

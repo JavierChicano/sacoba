@@ -55,7 +55,7 @@ export default function BotonesHeader() {
                   <IconUser
                     stroke={2}
                     size={40}
-                    className="cursor-pointer"
+                    color={mostrarLogin ? "orange" : "currentColor"}
                   />
               </Link>
             ) : (
