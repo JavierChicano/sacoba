@@ -1,9 +1,10 @@
-import { IconUserScan } from "@tabler/icons-react";
+import { IconBuildingSkyscraper, IconHomeEdit, IconPhone, IconScan, IconUserScan } from "@tabler/icons-react";
 import { useSesion } from "../../../../states/states";
 import { FormCuentaValidation } from "../../../../tipos/tiposForm";
 import { Toaster, toast } from "sonner";
 import { useState } from "react";
 import { TipoUsuario } from "../../../../tipos/tipos";
+import { InsertarUserData } from "./InsertarFormUser";
 
 export default function FormPerfil() {
   const { sesionON } = useSesion();
@@ -13,7 +14,7 @@ export default function FormPerfil() {
 
   const clientAction = async (formData: FormData) => {
     const newForm = {
-      email: usuario.correoElectronico,
+      correoElectronico: usuario.correoElectronico,
       nombre: formData.get("nombre"),
       apellidos: formData.get("apellidos"),
       telefono: formData.get("telefono"),
@@ -21,27 +22,22 @@ export default function FormPerfil() {
       cp: formData.get("cp"),
       provincia: formData.get("provincia"),
     };
-
     //Validacion del lado del cliente
     const result = FormCuentaValidation.safeParse(newForm);
     if (!result.success) {
       toast.error(result.error.issues[0].message);
       return;
     }
-    console.log(newForm);
-    console.log(result);
+
     //Validacion del lado del servidor
-    // const response = await InsertarRegistro(result.data);
-    // if (response?.error) {
-    //   //Manejar el error
-    //   toast.error(response.error);
-    // } else {
-    //   setSesionON(true);
-    //   //Esto guarda que la sesion esta iniciada
-    //   sessionStorage.setItem("sesionIniciada", "true");
-    //   //Si se ha insertado correctamente redirige al perfil
-    //   redirect("/Perfil");
-    // }
+    const response = await InsertarUserData(result.data);
+    if (response?.error) {
+      //Manejar el error
+      toast.error(response.error);
+    } else {
+      //Si se ejecuta correctamente
+      sessionStorage.setItem("usuario", JSON.stringify(newForm))
+    }
   };
   return (
     <form className="grid grid-cols-2 w-full gap-4 mt-10" action={clientAction}>
@@ -88,7 +84,7 @@ export default function FormPerfil() {
           name="telefono"
           defaultValue={usuario.telefono || null}
         />
-        <IconUserScan
+        <IconPhone
           className="absolute right-5 self-center w-8"
           height={30}
         />
@@ -101,7 +97,7 @@ export default function FormPerfil() {
           name="domicilio"
           defaultValue={usuario.domicilio || null}
         />
-        <IconUserScan
+        <IconHomeEdit
           className="absolute right-5 self-center w-8"
           height={30}
         />
@@ -114,7 +110,7 @@ export default function FormPerfil() {
           name="cp"
           defaultValue={usuario.cp || null}
         />
-        <IconUserScan
+        <IconScan
           className="absolute right-5 self-center w-8"
           height={30}
         />
@@ -127,7 +123,7 @@ export default function FormPerfil() {
           name="provincia"
           defaultValue={usuario.provincia || null}
         />
-        <IconUserScan
+        <IconBuildingSkyscraper
           className="absolute right-5 self-center w-8"
           height={30}
         />

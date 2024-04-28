@@ -14,15 +14,15 @@ export default function CajaUserInfo() {
     : null;
   return (
     <section className="flex flex-col gap-12 px-28">
-      <aside>
+      {usuario && <aside>
         <h1 className="text-5xl">
           {capitalizeFirstLetter(usuario.nombre) +
             " " +
             capitalizeFirstLetter(usuario.apellidos)}
         </h1>
         <h3>{usuario.correoElectronico}</h3>
-        {usuario && <FormPerfil/>}
-      </aside>
+        <FormPerfil/>
+      </aside>}
     </section>
   );
 }

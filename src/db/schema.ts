@@ -3,6 +3,7 @@ import {
   sqliteTable, text,
 } from "drizzle-orm/sqlite-core";
 
+//PUSHEAR EL SCHEMA --> bun drizzle-kit push:sqlite
 export const usuarios = sqliteTable("usuarios", {
   correoElectronico: text("correoElectronico").primaryKey(),
   nombre: text("nombre").notNull(),

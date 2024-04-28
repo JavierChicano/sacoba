@@ -28,8 +28,9 @@ export const FormLoginValidation = z.object({
   }),
 });
 
+
 export const FormCuentaValidation = z.object({
-  email: z.string().email({
+  correoElectronico: z.string().email({
     message: "Email no válido",
   }),
   nombre: z.string().trim().regex(caracteresPermitidos, {
@@ -38,16 +39,16 @@ export const FormCuentaValidation = z.object({
   apellidos: z.string().trim().regex(caracteresPermitidos, {
     message: "Los apellidos solo pueden contener letras",
   }),
-  telefono: z.string().nullable().refine(value => !value || (soloNumeros.test(value.trim()) && value.trim().length === 9), {
+  telefono: z.string().nullable().refine(value => value === null || value.trim() === "" || (soloNumeros.test(value.trim()) && value.trim().length === 9), {
     message: "El teléfono debe contener 9 dígitos numéricos",
   }),
-  domicilio: z.string().nullable().refine(value => !value || value.trim().length > 0, {
+  domicilio: z.string().nullable().refine(value => value === null || value.trim() === "" || value.trim().length > 0, {
     message: "El domicilio no puede estar vacío",
   }),
-  cp: z.string().nullable().refine(value => !value || (soloNumeros.test(value.trim()) && value.trim().length === 5), {
+  cp: z.string().nullable().refine(value => value === null || value.trim() === "" || (soloNumeros.test(value.trim()) && value.trim().length === 5), {
     message: "El código postal solo puede contener números y debe tener 5 dígitos",
   }),
-  provincia: z.string().nullable().refine(value => !value || caracteresPermitidos.test(value.trim()), {
+  provincia: z.string().nullable().refine(value => value === null || value.trim() === "" || caracteresPermitidos.test(value.trim()), {
     message: "La provincia solo puede contener letras",
   }),
 });

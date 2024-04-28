@@ -65,6 +65,13 @@ export interface TipoUsuario {
   nombre: string;
   apellidos: string;
   contraseña: string;
+}
+
+//Actualizar user (sin contraseña)
+export interface TipoUsuarioExtended {
+  correoElectronico: string;
+  nombre: string;
+  apellidos: string;
   telefono: string | null;
   domicilio: string | null;
   cp: string | null;
