@@ -65,4 +65,8 @@ export interface TipoUsuario {
   nombre: string;
   apellidos: string;
   contraseña: string;
+  telefono: string | null;
+  domicilio: string | null;
+  cp: string | null;
+  provincia: string | null;
 }

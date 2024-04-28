@@ -15,7 +15,7 @@ export default function CerrarSesion() {
 
   return (
     <Link href={"/"}>
-      <button className="bg-red-300 p-4 m-20 text-black" onClick={handleBoton}>
+      <button className="bg-red-300 p-2 text-black" onClick={handleBoton}>
         Cerrar sesion
       </button>
     </Link>

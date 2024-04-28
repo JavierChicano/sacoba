@@ -8,6 +8,10 @@ export const usuarios = sqliteTable("usuarios", {
   nombre: text("nombre").notNull(),
   apellidos: text("apellidos").notNull(),
   contraseña: text("contraseña").notNull(),
+  telefono: text("telefono"),
+  domicilio: text("domicilio"),
+  cp: text("cp"),
+  provincia: text("provincia"),
 });
 
 export const mesas = sqliteTable("mesas", {
