@@ -87,7 +87,6 @@ export default function ObjBancosTotales({bancosModelos}: {bancosModelos: TipoBa
         ) : (
           <div>No hay mesas disponibles</div>
         )}
-        <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
       </div>
     </>
   );

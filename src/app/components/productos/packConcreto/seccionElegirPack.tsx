@@ -15,6 +15,7 @@ export default function ElegirPack({
 }) {
   const [packSeleccionado, setPackSeleccionado] = useState("Mesa y 2 sillas");
   const [cantidad, setCantidad] = useState(0);
+  const [cantidadSillas, setCantidadSillas] = useState(0);
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
   const [precioSillas, setPrecioSillas] = useState(0);
 
@@ -30,10 +31,16 @@ export default function ElegirPack({
   useEffect(() => {
     if (packSeleccionado == "Mesa") {
       setPrecioSillas(0);
+      setCantidadSillas(0)
+      setCantidad(0)
     } else if (packSeleccionado == "Mesa y 2 sillas") {
       setPrecioSillas(106);
+      setCantidadSillas(2)
+      setCantidad(0)
     } else if (packSeleccionado == "Mesa y 4 sillas") {
       setPrecioSillas(212);
+      setCantidadSillas(4)
+      setCantidad(0)
     }
   }, [packSeleccionado]);
 
@@ -59,6 +66,9 @@ export default function ElegirPack({
             alt="foto silla"
             className="h-full w-auto"
           />
+          <div className="absolute text-5xl bottom-2 right-6">
+            <span className="text-3xl">x</span>{cantidadSillas+cantidad}
+          </div>
         </div>
       </div>
       <div className="bg-fondoSecundario p-8 flex flex-col gap-4 items-center w-full">

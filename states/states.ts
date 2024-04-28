@@ -11,6 +11,16 @@ export const useModal = create<ModalState>((set) => ({
   modalVisible: false,
   setModalVisible: (visible) => set({ modalVisible: visible }),
 }));
+//Visibilidad modal color bastidor
+type ModalStateBastidor = {
+  modalVisibleBastidor: boolean;
+  setModalVisibleBastidor: (visible: boolean) => void;
+};
+
+export const useModalBastidor = create<ModalStateBastidor>((set) => ({
+  modalVisibleBastidor: false,
+  setModalVisibleBastidor: (visible) => set({ modalVisibleBastidor: visible }),
+}));
 
 //Estado para acumular el precio
 type PrecioParams = {
@@ -25,16 +35,6 @@ export const usePrecioAcumulado = create<PrecioParams>()((set) => ({
   setPrecioAcumulado: (precio: number) => set(() => ({ precioAcumulado: precio })),
   addPrecioAcumulado: (aumento: number) => set((state) => ({ precioAcumulado: state.precioAcumulado + aumento })),
   subPrecioAcumulado: (descuento: number) => set((state) => ({ precioAcumulado: state.precioAcumulado - descuento })),
-}));
-
-type MaterialBastidor = {
-  material: string;
-  setMaterial: (material: string) => void;
-};
-
-export const useMaterialBastidor = create<MaterialBastidor>((set) => ({
-  material: 'Laminado',
-  setMaterial: (material: string) => set({ material }),
 }));
 
 //Estado para guardar los modulos seleccionados de banco
@@ -97,6 +97,19 @@ export const useColorSeleccionado = create<ColorSeleccionado>((set) => ({
   colorElegido: '',
   modeloElegido: '',
   setColorSeleccionado: (colorElegido: string, modeloElegido: string) => set({ colorElegido, modeloElegido }),
+}));
+
+//Estado para guardar el color seleccionado del bastidor
+type ColorSeleccionadoBastidor = {
+  colorElegidoBastidor: string;
+  modeloElegidoBastidor: string;
+  setColorSeleccionadoBastidor: (color: string, modelo: string) => void;
+};
+
+export const useColorSeleccionadoBastidor = create<ColorSeleccionadoBastidor>((set) => ({
+  colorElegidoBastidor: '',
+  modeloElegidoBastidor: '',
+  setColorSeleccionadoBastidor: (colorElegidoBastidor: string, modeloElegidoBastidor: string) => set({ colorElegidoBastidor, modeloElegidoBastidor }),
 }));
 
 //Estado para guardar el estado de la sesion

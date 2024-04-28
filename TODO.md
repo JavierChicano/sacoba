@@ -19,13 +19,7 @@
  16.1- El slider cuando pones ambos en el mismo precio no filtra✅
  17- Que cuando se añada al carrito aparezca una notificacion "Toast" confirmandolo
  18- Que cuando estes en una pagina, el hover se quede fijo, marcándola
- 
-
-
- //PAGINA BANCOS
- Quitar o poner el zocalo (Depende del modelo)
 
 //Borrar el componente "meteors", si al final no se va a usar
 
-//PAGINA PACKS
-poner numero al lado de las sillas, en funcion de las seleccionadas
+//Modal de colores, que tmb pase por estado la imagen del color seleccionado para ponerlo tmb

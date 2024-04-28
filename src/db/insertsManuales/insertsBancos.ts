@@ -4,6 +4,7 @@ import { bancos } from "../schema";
 export async function insertarBancos() {
   // modificar la ruta de la imagen en el insert
   const newBancos = await db.insert(bancos).values([
+    //Modelo TRAVEL
     {
       modelo: "TRAVEL",
       imagen: "banco1.png",
@@ -48,6 +49,7 @@ export async function insertarBancos() {
       zocalo: true,
       precio: "416, 437",
     },
+    //Modelo TRAPEZZE
     {
       modelo: "TRAPEZZE",
       imagen: "banco2.png",
@@ -98,6 +100,7 @@ export async function insertarBancos() {
       zocalo: true,
       precio: "297, 312",
     },
+    //Modelo SCALA
     {
       modelo: "SCALA",
       imagen: "banco3.png",
@@ -142,6 +145,7 @@ export async function insertarBancos() {
       zocalo: true,
       precio: "416, 437",
     },
+    //Modelo CUBE
     {
       modelo: "CUBE",
       imagen: "banco4.png",
@@ -192,12 +196,12 @@ export async function insertarBancos() {
       zocalo: true,
       precio: "252, 265",
     },
+    //Modelo HALL
     {
       modelo: "HALL",
       imagen: "banco5.png",
       modulo: "45",
       materialBastidor: "laminado",
-      zocalo: true,
       precio: "235, 247",
     },
     {
@@ -205,7 +209,6 @@ export async function insertarBancos() {
       imagen: "banco5.png",
       modulo: "90",
       materialBastidor: "laminado",
-      zocalo: true,
       precio: "288, 302",
     },
     {
@@ -213,7 +216,6 @@ export async function insertarBancos() {
       imagen: "banco5.png",
       modulo: "120",
       materialBastidor: "laminado",
-      zocalo: true,
       precio: "314, 330",
     },
     {
@@ -221,7 +223,6 @@ export async function insertarBancos() {
       imagen: "banco5.png",
       modulo: "150",
       materialBastidor: "laminado",
-      zocalo: true,
       precio: "358, 376",
     },
   ]);

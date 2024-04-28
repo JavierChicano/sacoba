@@ -1,7 +1,7 @@
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import {
-  useMaterialBastidor,
+  useColorSeleccionadoBastidor,
   usePrecioAcumulado,
   usePreciosBanco,
 } from "../../../../../states/states";
@@ -12,7 +12,7 @@ export default function SeccionPrecio() {
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
   const [ porcentaje, setPorcentaje ] = useState(1);
   const { precios } = usePreciosBanco();
-  const { material } = useMaterialBastidor();
+  const { modeloElegidoBastidor } = useColorSeleccionadoBastidor();
 
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
@@ -31,12 +31,12 @@ export default function SeccionPrecio() {
   }, [precios, setPrecioAcumulado]);
 
   useEffect(() => {
-    if (material != "Laminado") {
+    if (modeloElegidoBastidor != "Laminado") {
       setPorcentaje(1.2);
     }else{
       setPorcentaje(1);
     }
-  }, [material]);
+  }, [modeloElegidoBastidor]);
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 ">
       <div className="flex justify-between items-center">

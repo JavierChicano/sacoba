@@ -8,9 +8,9 @@ import {
 import RutaBancoConcreto from "./rutaBancoC";
 import SeccionPrecio from "../productoConcretoMesa/seccionPrecio";
 import SeccionModulosBanco from "./seccionModulosBanco";
-import { TipoBanco } from "../../../../../tipos/tipos";
+import { TipoBanco, TipoColor } from "../../../../../tipos/tipos";
 
-export default function CompClienteBanco({InsertarDatosACarrito, bancoSeleccionado}: {InsertarDatosACarrito: React.ReactNode, bancoSeleccionado: TipoBanco[]}) {
+export default function CompClienteBanco({bancoSeleccionado, coloresTapizado, coloresBastidor}: {bancoSeleccionado: TipoBanco[], coloresTapizado: TipoColor[], coloresBastidor: TipoColor[]}) {
  
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
 
@@ -40,13 +40,12 @@ export default function CompClienteBanco({InsertarDatosACarrito, bancoSelecciona
               height={500}
             />
           </div>
-          <SeccionModulosBanco bancosPosibles={bancoSeleccionado} />
+          <SeccionModulosBanco bancosPosibles={bancoSeleccionado} coloresTapizado={coloresTapizado} coloresBastidor={coloresBastidor} />
           <div>
             <p>Todos los módulos tienen 45cm de fondo</p>
             <p>La imagen es una sugerencia de presentacion compuesta por:</p>
-            <ul></ul>
-            <li> - 2 módulos de 120cm x 45cm y uno de 45cm x 45cm de rincón</li>
-            <li> - O bien, 1 módulo de 150cm x 45cm y otro de 120cm x 45cm</li>
+            <p className="ml-4"> - 2 módulos de 120cm x 45cm y uno de 45cm x 45cm de rincón</p>
+            <p className="ml-4"> - O bien, 1 módulo de 150cm x 45cm y otro de 120cm x 45cm</p>
           </div>
           <SeccionPrecio />
         </div>

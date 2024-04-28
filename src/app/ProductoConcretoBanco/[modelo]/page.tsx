@@ -1,13 +1,17 @@
 import CompClienteBanco from "../../components/productos/productoConcretoBanco/compClienteBanco";
-import InsertarDatosACarrito from "../../components/productos/insertarDatosACarrito";
-import { selectsBancoSeleccionado } from "@/db/selects";
+import { selectsBancoSeleccionado, selectsColoresBastidorBancos, selectsColoresTapizadoBancos } from "@/db/selects";
 
 export default async function ProductoConcretoBanco({ params }: { params: {modelo: string} }) {
-  const bancos = await selectsBancoSeleccionado(params.modelo);
+  const promiseBancos = selectsBancoSeleccionado(params.modelo);
+  const promiseTapizado = selectsColoresTapizadoBancos();
+  const promiseBastidor = selectsColoresBastidorBancos();
+
+  const [bancos, coloresTapizado, coloresBastidor] = await Promise.all([promiseBancos, promiseTapizado, promiseBastidor])
+
 
   return (
     <main className="flex flex-col items-center">
-        <CompClienteBanco bancoSeleccionado={bancos} InsertarDatosACarrito={<InsertarDatosACarrito />}/> 
+        <CompClienteBanco bancoSeleccionado={bancos} coloresTapizado={coloresTapizado} coloresBastidor={coloresBastidor} /> 
     </main>
   );
   

@@ -115,12 +115,31 @@ export async function selectsColoresSillas() {
 }
 
 export async function selectsColoresPacks() {
-  // poner laminado ECO
   const todosColores = await db
     .select()
     .from(colores)
     .where(
       inArray(colores.modelo, ["cristal 3mm", "laminado", "laminado ECO"])
+    );
+  return todosColores;
+}
+
+export async function selectsColoresTapizadoBancos() {
+  const todosColores = await db
+    .select()
+    .from(colores)
+    .where(
+      inArray(colores.modelo, ["tapizado nvA", "tapizado nvC"])
+    );
+  return todosColores;
+}
+
+export async function selectsColoresBastidorBancos() {
+  const todosColores = await db
+    .select()
+    .from(colores)
+    .where(
+      inArray(colores.modelo, ["laminado", "barniz", "laca"])
     );
   return todosColores;
 }
