@@ -27,10 +27,10 @@
   --background-end-rgb: 255, 255, 255;
 
   --fondo: #f3f3f3;
-  --fondo-secundario: #f1be8f;
-  --fondo-terciario: #5e636e;
+  --fondo-secundario: #a8a8aa;
+  --fondo-terciario: #7e838f;
   --color-base: #e09145;
-  --color-secundario: #2e3138;
+  --color-secundario: #5e636e;
   --contraste: #17181d; 
 }
 [data-theme="dark"] {

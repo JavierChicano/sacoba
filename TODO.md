@@ -23,3 +23,13 @@
 //Borrar el componente "meteors", si al final no se va a usar
 
 //Modal de colores, que tmb pase por estado la imagen del color seleccionado para ponerlo tmb
+
+//Pagina mesa, sumar un x2, al porcentaje del grupo elegido (silestone o dekton), en funcion del grosor elegido (12mm o 20mm / 8mm o 12mm), esto se muestra si GrosorTapa = TRUE
+-->Hay que tener en cuenta q las q solo tienen 1, puede ser el primero o el segundo
+
+//PAGINA AYUDA
+¿Quiere mas opciones de personalizacion?, mire el catálogo y consulte disponibilidad y precio, puesto que en la página se ha reducido la oferta y aunque se trate de abarcar todos los aspectos y variantes de personalización, no estas cubiertas todas por lavores de simplificacion hacia el usuario
+
+Las alturas de las mesas son considerando tapa laminado
+
+//AÑADIR IMAGENES ACLARACION
