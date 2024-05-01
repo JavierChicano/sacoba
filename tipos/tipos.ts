@@ -77,3 +77,9 @@ export interface TipoUsuarioExtended {
   cp: string | null;
   provincia: string | null;
 }
+export interface TipoConsulta {
+  correoElectronico: string;
+  nombre: string;
+  motivo: string;
+  consulta: string;
+}

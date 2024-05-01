@@ -52,3 +52,18 @@ export const FormCuentaValidation = z.object({
     message: "La provincia solo puede contener letras",
   }),
 });
+
+export const FormConsultaValidation = z.object({
+  correoElectronico: z.string().email({
+    message: "Email no válido",
+  }),
+  nombre: z.string().trim().regex(caracteresPermitidos, {
+    message: "El nombre solo puede contener letras",
+  }),
+  motivo: z.string({
+    message:"Especifica un motivo"
+  }),
+  consulta: z.string().min(5, {
+    message: "Especifica la consulta"
+  }),
+});

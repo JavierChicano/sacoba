@@ -110,3 +110,12 @@ export const packs = sqliteTable("packs", {
   precioCajon: integer("precioCajon").default(0).notNull(),
   precio: text("precio").notNull(),
 });
+
+
+export const consultas = sqliteTable("consultas", {
+  id: integer("id").primaryKey({autoIncrement: true}),
+  correoElectronico: text("correoElectronico").notNull(),
+  nombre: text("nombre").notNull(),
+  motivo: text("motivo").notNull(),
+  consulta: text("consulta").notNull(),
+});
