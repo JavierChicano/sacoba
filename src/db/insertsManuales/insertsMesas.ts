@@ -268,6 +268,7 @@ export async function insertarMesas() {
       materialPata: "madera",
       colorPata: "madera",
       precio: "227, 245, 251, 271, 290, 329, 250, 289",
+      tendencia: true,
     },
     {
       modelo: "LEGNA",
@@ -328,6 +329,7 @@ export async function insertarMesas() {
       materialPata: "madera",
       colorPata: "madera",
       precio: "598, 608, 628",
+      nuevo: true,
     },
     {
       modelo: "SILK",
@@ -424,7 +426,6 @@ export async function insertarMesas() {
       altura: "77",
       materialPata: "madera",
       colorPata: "blanco",
-      tendencia: true,
       precio: "700, 788, 921",
     },
 
@@ -440,6 +441,7 @@ export async function insertarMesas() {
       materialPata: "madera",
       colorPata: "blanco",
       precio: "417, 430",
+      tendencia: true,
     },
     {
       modelo: "RUNDA",
@@ -469,6 +471,7 @@ export async function insertarMesas() {
       materialPata: "aluminio",
       colorPata: "aluminio, blanco",
       precio: "332, 342, 366, 389",
+      tendencia: true,
     },
     {
       modelo: "PRAGA",
@@ -545,6 +548,7 @@ export async function insertarMesas() {
       materialPata: "aluminio",
       colorPata: "aluminio",
       precio: "667, 704",
+      nuevo: true,
     },
     {
       modelo: "CORA",
@@ -953,6 +957,7 @@ export async function insertarMesas() {
       materialPata: "aluminio",
       colorPata: "aluminio",
       precio: "471, 481, 508, 533, 458, 494",
+      tendencia: true,
     },
     {
       modelo: "ZÚRICH",
@@ -1437,6 +1442,7 @@ export async function insertarMesas() {
       materialPata: "aluminio",
       colorPata: "aluminio",
       precio: "380",
+      tendencia: true,
     },
     {
       modelo: "MARE",
@@ -1464,6 +1470,7 @@ export async function insertarMesas() {
       materialPata: "aluminio",
       colorPata: "aluminio, blanco",
       precio: "284, 292, 310, 326",
+      nuevo: true,
     },
     {
       modelo: "XXL",
@@ -1592,6 +1599,7 @@ export async function insertarMesas() {
       materialPata: "aluminio",
       colorPata: "aluminio",
       precio: "299, 300, 314, 332, 365, 366",
+      nuevo: true,
     },
     {
       modelo: "LYON",
@@ -1756,6 +1764,7 @@ export async function insertarMesas() {
       materialPata: "aluminio",
       colorPata: "aluminio, blanco",
       precio: "311, 321, 336, 350, 359, 381",
+      nuevo: true,
     },
     {
       modelo: "CÁDIZ",
@@ -1821,6 +1830,7 @@ export async function insertarMesas() {
       materialPata: "aluminio",
       colorPata: "aluminio",
       precio: "369",
+      nuevo: true,
     },
     {
       modelo: "MARSELLA",
@@ -1852,6 +1862,7 @@ export async function insertarMesas() {
       materialPata: "aluminio",
       colorPata: "aluminio",
       precio: "292, 292, 292",
+      nuevo: true,
     },
     //INSERT MESA 27
     {
@@ -1868,6 +1879,7 @@ export async function insertarMesas() {
       materialPata: "aluminio",
       colorPata: "aluminio",
       precio: "292, 292, 292",
+      tendencia: true,
     },
   ]);
 }

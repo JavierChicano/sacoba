@@ -6,7 +6,6 @@ import Image from "next/image";
 import Sacoba from "./components/main/sacoba";
 
 export default function Home() {
-
   return (
     <main className="flex flex-col items-center">
       {/* <Sacoba/> */}

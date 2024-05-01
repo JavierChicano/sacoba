@@ -2,6 +2,7 @@
 import { Toaster, toast } from "sonner";
 import { FormConsultaValidation } from "../../../../tipos/tiposForm";
 import { InsertarConsulta } from "./insertarConsulta";
+import { redirect } from "next/navigation";
 
 export default function FormularioContacto() {
   const clientAction = async (formData: FormData) => {
@@ -25,6 +26,7 @@ export default function FormularioContacto() {
       //Manejar el error
       toast.error(response.error);
     } else {
+      redirect("/Contacto/Exitoso")
     }
   };
   return (
