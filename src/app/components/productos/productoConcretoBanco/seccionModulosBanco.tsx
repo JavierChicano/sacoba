@@ -12,6 +12,7 @@ import {
 import { cn } from "@nextui-org/react";
 import ModalColores from "../modalColores";
 import ModalColoresBastidor from "./modalColoresBastidor";
+import Image from "next/image";
 
 export default function SeccionModulosBanco({
   bancosPosibles,
@@ -23,8 +24,8 @@ export default function SeccionModulosBanco({
   coloresBastidor: TipoColor[];
 }) {
   //Para mostrar y guardar el color seleccionado
-  const { colorElegido, modeloElegido } = useColorSeleccionado();
-  const { colorElegidoBastidor, modeloElegidoBastidor } =
+  const { colorElegido, modeloElegido, rutaImagen } = useColorSeleccionado();
+  const { colorElegidoBastidor, modeloElegidoBastidor, rutaImagenBastidor } =
     useColorSeleccionadoBastidor();
   const { modalVisible, setModalVisible } = useModal();
   const { modalVisibleBastidor, setModalVisibleBastidor } = useModalBastidor();
@@ -68,7 +69,9 @@ export default function SeccionModulosBanco({
         </section>
         <div
           className={cn(
-            colorElegido === "" ? "hidden" : "flex gap-10 whitespace-nowrap"
+            colorElegido === ""
+              ? "hidden"
+              : "flex gap-5 whitespace-nowrap items-center flex-wrap"
           )}
         >
           <h2 className="text-xl">
@@ -77,6 +80,14 @@ export default function SeccionModulosBanco({
           <h2 className="text-xl">
             Color: <span className="text-colorBase">{colorElegido}</span>
           </h2>
+          <div>
+            <Image
+              src={rutaImagen}
+              alt={`Color ${modeloElegido}`}
+              width={50}
+              height={50}
+            />
+          </div>
         </div>
         <section>
           <section className="flex items-center gap-2">
@@ -97,7 +108,7 @@ export default function SeccionModulosBanco({
             className={cn(
               colorElegidoBastidor === ""
                 ? "hidden"
-                : "flex gap-10 whitespace-nowrap"
+                : "flex gap-5 whitespace-nowrap items-center flex-wrap mt-4"
             )}
           >
             <h2 className="text-xl">
@@ -108,6 +119,14 @@ export default function SeccionModulosBanco({
               Color:{" "}
               <span className="text-colorBase">{colorElegidoBastidor}</span>
             </h2>
+            <div>
+              <Image
+                src={rutaImagenBastidor}
+                alt={`Color ${modeloElegidoBastidor}`}
+                width={50}
+                height={50}
+              />
+            </div>
           </div>
           {zocalo && (
             <label className="flex items-center text-2xl gap-4 mt-4">

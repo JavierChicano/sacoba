@@ -9,7 +9,8 @@ import {
 import { IconClick } from "@tabler/icons-react";
 import ModalColores from "../modalColores";
 import { cn } from "@nextui-org/react";
-import { index } from "drizzle-orm/mysql-core";
+import Image from "next/image";
+
 
 export default function SeccionMesaPack({
   packSeleccionado,
@@ -35,7 +36,7 @@ export default function SeccionMesaPack({
 
   //Para manejar el modal de los colores
   const { modalVisible, setModalVisible } = useModal();
-  const { colorElegido, modeloElegido } = useColorSeleccionado();
+  const { colorElegido, modeloElegido, rutaImagen } = useColorSeleccionado();
 
   useEffect(() => {
     if (packSeleccionado.length > 0) {
@@ -127,7 +128,7 @@ export default function SeccionMesaPack({
       </section>
       <div
         className={cn(
-          colorElegido === "" ? "hidden" : "flex gap-10 whitespace-nowrap"
+          colorElegido === "" ? "hidden" : "flex gap-5 whitespace-nowrap items-center flex-wrap"
         )}
       >
         <h2 className="text-xl">
@@ -136,6 +137,14 @@ export default function SeccionMesaPack({
         <h2 className="text-xl">
           Color: <span className="text-colorBase">{colorElegido}</span>
         </h2>
+        <div>
+            <Image
+              src={rutaImagen}
+              alt={`Color ${modeloElegido}`}
+              width={50}
+              height={50}
+            />
+          </div>
       </div>
       {/* Solo se muestra si la mesa tiene la posibilidad de cajon */}
       {cajon && (

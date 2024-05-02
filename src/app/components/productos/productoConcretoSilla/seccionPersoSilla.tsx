@@ -11,6 +11,7 @@ import {
 import { cn } from "@nextui-org/react";
 import ColorEstructuraSilla from "./colorEstructuraSilla";
 import SeccionPrecioSilla from "./seccionPrecioSilla";
+import Image from "next/image";
 
 export default function SeccionPersonalizarSilla({
   sillaSeleccionada,
@@ -29,7 +30,7 @@ export default function SeccionPersonalizarSilla({
   const [coloresFiltrados, setColoresFiltrados] = useState<TipoColor[]>([]);
 
   const { modalVisible, setModalVisible } = useModal();
-  const { colorElegido, modeloElegido } = useColorSeleccionado();
+  const { colorElegido, modeloElegido, rutaImagen } = useColorSeleccionado();
 
   const handleSelectFormato = (index: number, formato: string) => {
     setSelectedItem(index);
@@ -48,14 +49,12 @@ export default function SeccionPersonalizarSilla({
       const materialesAsiento = sillaSeleccionada
         .map((silla) => silla.materialAsiento.split(","))
         .flat();
-      console.log(materialesAsiento);
 
       const modelosFiltrados = colores.filter((color) =>
         materialesAsiento.some((material) =>
           color.modelo.includes(material.trim())
         )
       );
-      console.log(modelosFiltrados);
       setColoresFiltrados(modelosFiltrados);
     }
   }, [colores, sillaSeleccionada]);
@@ -83,7 +82,8 @@ export default function SeccionPersonalizarSilla({
 
       //Dividir los strings en un array de strings
       const preciosSilla = sillaSeleccionada[indexPrecio].precio.split(",");
-      const materialesSilla = sillaSeleccionada[indexPrecio].materialAsiento.split(",");
+      const materialesSilla =
+        sillaSeleccionada[indexPrecio].materialAsiento.split(",");
 
       // Variable para guardar el índice donde se encuentra el modeloColor
       let indiceEncontrado = -1;
@@ -136,7 +136,7 @@ export default function SeccionPersonalizarSilla({
         </section>
         <div
           className={cn(
-            colorElegido === "" ? "hidden" : "flex gap-10 whitespace-nowrap"
+            colorElegido === "" ? "hidden" : "flex gap-5 whitespace-nowrap items-center flex-wrap"
           )}
         >
           <h2 className="text-xl">
@@ -145,6 +145,14 @@ export default function SeccionPersonalizarSilla({
           <h2 className="text-xl">
             Color: <span className="text-colorBase">{colorElegido}</span>
           </h2>
+          <div>
+            <Image
+              src={rutaImagen}
+              alt={`Color ${modeloElegido}`}
+              width={50}
+              height={50}
+            />
+          </div>
         </div>
         <div className="flex gap-2 items-center">
           <h2 className="text-2xl mr-4">Color del bastidor</h2>

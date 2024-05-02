@@ -90,26 +90,31 @@ export const usePreciosBanco = create<PreciosBancoState>((set) => ({
 type ColorSeleccionado = {
   colorElegido: string;
   modeloElegido: string;
-  setColorSeleccionado: (color: string, modelo: string) => void;
+  rutaImagen: string;
+  setColorSeleccionado: (color: string, modelo: string, rutaImagen: string) => void;
 };
 
 export const useColorSeleccionado = create<ColorSeleccionado>((set) => ({
   colorElegido: '',
   modeloElegido: '',
-  setColorSeleccionado: (colorElegido: string, modeloElegido: string) => set({ colorElegido, modeloElegido }),
+  rutaImagen: '',
+  setColorSeleccionado: (colorElegido: string, modeloElegido: string, rutaImagen: string)=> set({ colorElegido, modeloElegido, rutaImagen }),
 }));
 
 //Estado para guardar el color seleccionado del bastidor
 type ColorSeleccionadoBastidor = {
   colorElegidoBastidor: string;
   modeloElegidoBastidor: string;
-  setColorSeleccionadoBastidor: (color: string, modelo: string) => void;
+  rutaImagenBastidor: string;
+
+  setColorSeleccionadoBastidor: (color: string, modelo: string, rutaImagen: string) => void;
 };
 
 export const useColorSeleccionadoBastidor = create<ColorSeleccionadoBastidor>((set) => ({
   colorElegidoBastidor: '',
   modeloElegidoBastidor: '',
-  setColorSeleccionadoBastidor: (colorElegidoBastidor: string, modeloElegidoBastidor: string) => set({ colorElegidoBastidor, modeloElegidoBastidor }),
+  rutaImagenBastidor: '',
+  setColorSeleccionadoBastidor: (colorElegidoBastidor: string, modeloElegidoBastidor: string, rutaImagenBastidor: string) => set({ colorElegidoBastidor, modeloElegidoBastidor, rutaImagenBastidor }),
 }));
 
 //Estado para guardar el estado de la sesion

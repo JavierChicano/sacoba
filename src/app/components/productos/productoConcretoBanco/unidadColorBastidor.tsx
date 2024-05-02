@@ -1,13 +1,13 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useColorSeleccionadoBastidor, useModalBastidor,  } from "../../../../../states/states";
 import { TipoColor } from "../../../../../tipos/tipos";
 
 export default function UnidadColorBastidor({ color }: { color: TipoColor }) {
   const [hovered, setHovered] = useState(false);
+  const [ rutaIMG, setRutaIMG] =  useState("");
   const {setModalVisibleBastidor} = useModalBastidor();
-
-  const { colorElegidoBastidor, modeloElegidoBastidor, setColorSeleccionadoBastidor } =
+  const {setColorSeleccionadoBastidor } =
     useColorSeleccionadoBastidor();
 
   const mayuscula = (str: string) => {
@@ -22,6 +22,14 @@ export default function UnidadColorBastidor({ color }: { color: TipoColor }) {
     }
     return modelo;
   };
+  
+  useEffect(()=>{
+    if(color.grupo){
+      setRutaIMG(`/colores/${color.modelo}/${color.grupo}/${color.imagenColor}`)
+    }else{
+      setRutaIMG(`/colores/${color.modelo}/${color.imagenColor}`)
+    }
+  },[])
   return (
     <li
       className="rounded-lg w-36 relative"
@@ -36,7 +44,7 @@ export default function UnidadColorBastidor({ color }: { color: TipoColor }) {
       <div
         className="cursor-pointer"
         onClick={() => {
-          setColorSeleccionadoBastidor(color.nombreColor, mayuscula(cambiarNombresModelo(color.modelo)));
+          setColorSeleccionadoBastidor(color.nombreColor, mayuscula(cambiarNombresModelo(color.modelo)), rutaIMG);
           setModalVisibleBastidor(false);
         }}
       >
