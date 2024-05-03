@@ -114,10 +114,12 @@ export default function SeccionPersonalizarMesa({
           setGrosorTapa(true);
         }
       } else {
-        setGrosorElegido("no hay");
         setGrosorTapa(false);
       }
     });
+    if(modelo!=="silestone g1" && modelo !== "dekton g1"){
+        setGrosorElegido("no hay");
+    }
   }, [modeloElegido]);
 
   //Guarda en los estados globales todos los datos recogidos de los estados locales

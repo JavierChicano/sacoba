@@ -10,6 +10,7 @@ type MesaStateFinal = {
     grosor?: string;
     colorPata: string;
     altura: string;
+    precio: number;
   };
   setMesaFinal: (
     dimension: string,
@@ -20,6 +21,7 @@ type MesaStateFinal = {
     colorPata: string,
     altura: string
   ) => void;
+  setPrecioMesaFinal: (precio: number) => void;
 };
 
 export const useMesaFinal = create<MesaStateFinal>((set) => ({
@@ -31,6 +33,7 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
     grosor: undefined,
     colorPata: "",
     altura: "",
+    precio: 0,
   },
   setMesaFinal: (
     dimension: string,
@@ -50,8 +53,17 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
         grosor,
         colorPata,
         altura,
+        precio: state.mesa.precio,
       },
     })),
+  setPrecioMesaFinal(precio) {
+    set((state) => ({
+      mesa: {
+        ...state.mesa,
+        precio: precio,
+      },
+    }));
+  },
 }));
 
 //Estado para guardar los index
