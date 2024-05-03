@@ -3,15 +3,12 @@ import { TipoColor, TipoSilla } from "../../../../../tipos/tipos";
 import ObjFormatoSilla from "./objFormatoSilla";
 import { IconClick } from "@tabler/icons-react";
 import ModalColores from "../modalColores";
-import {
-  useColorSeleccionado,
-  useModal,
-  usePrecioAcumulado,
-} from "../../../../../states/states";
+import { useColorSeleccionado, useModal } from "../../../../../states/states";
 import { cn } from "@nextui-org/react";
 import ColorEstructuraSilla from "./colorEstructuraSilla";
 import SeccionPrecioSilla from "./seccionPrecioSilla";
 import Image from "next/image";
+import { useSillaFinal } from "../../../../../states/statesProductoFinal";
 
 export default function SeccionPersonalizarSilla({
   sillaSeleccionada,
@@ -20,17 +17,24 @@ export default function SeccionPersonalizarSilla({
   sillaSeleccionada: TipoSilla[];
   colores: TipoColor[];
 }) {
-  const [selectedItem, setSelectedItem] = useState(0);
-  const [selectedColor, setSelectedColor] = useState(0);
-  const [indexPrecio, setIndexPrecio] = useState(0);
-  const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
-  const [formato, setFormato] = useState("");
-  const [colorB, setColorB] = useState("");
+  //Estados globales
+  const { modalVisible, setModalVisible } = useModal();
+  const { colorElegido, modeloElegido, rutaImagen } = useColorSeleccionado();
+  const { setSillaFinal } = useSillaFinal();
+
+  //Estados para coger las variables de la silla
   const [coloresBastidor, setColoresBastidor] = useState<string[]>([]);
   const [coloresFiltrados, setColoresFiltrados] = useState<TipoColor[]>([]);
 
-  const { modalVisible, setModalVisible } = useModal();
-  const { colorElegido, modeloElegido, rutaImagen } = useColorSeleccionado();
+  //Estados para ver el indice de la seleccion del usuario
+  const [selectedItem, setSelectedItem] = useState(0);
+  const [selectedColor, setSelectedColor] = useState(0);
+  const [indexPrecio, setIndexPrecio] = useState(0);
+
+  //Estados que almacenan la eleccion final del usuario
+  const [formato, setFormato] = useState("");
+  const [colorB, setColorB] = useState("");
+  const [precioFinal, setPrecioFinal] = useState(0);
 
   const handleSelectFormato = (index: number, formato: string) => {
     setSelectedItem(index);
@@ -65,6 +69,7 @@ export default function SeccionPersonalizarSilla({
       setFormato(sillaSeleccionada[0].formato);
       const colorBastidor = sillaSeleccionada[0].colorBastidor.split(",");
       setColoresBastidor(colorBastidor);
+      setColorB(colorBastidor[0]);
     }
   }, [sillaSeleccionada]);
 
@@ -98,10 +103,17 @@ export default function SeccionPersonalizarSilla({
       // Verificamos si encontramos el modeloColor
       if (indiceEncontrado !== -1) {
         const precio = parseFloat(preciosSilla[indiceEncontrado]);
-        setPrecioAcumulado(precio);
+        setPrecioFinal(precio);
       }
     }
-  }, [indexPrecio, setPrecioAcumulado, sillaSeleccionada, modeloElegido]);
+  }, [indexPrecio, precioFinal, sillaSeleccionada, modeloElegido]);
+
+  console.log(sillaSeleccionada)
+  //Guarda en los estados globales todos los datos recogidos de los estados locales
+  useEffect(() => {
+    //Guardamos en el estado global mesa los datos
+    setSillaFinal(sillaSeleccionada[0].modelo, formato, modeloElegido, colorElegido, colorB, precioFinal);
+  }, [formato, modeloElegido, colorElegido, colorB, precioFinal]);
 
   return (
     <>
@@ -136,7 +148,9 @@ export default function SeccionPersonalizarSilla({
         </section>
         <div
           className={cn(
-            colorElegido === "" ? "hidden" : "flex gap-5 whitespace-nowrap items-center flex-wrap"
+            colorElegido === ""
+              ? "hidden"
+              : "flex gap-5 whitespace-nowrap items-center flex-wrap"
           )}
         >
           <h2 className="text-xl">
@@ -169,7 +183,7 @@ export default function SeccionPersonalizarSilla({
           ))}
         </div>
       </section>
-      <SeccionPrecioSilla indexPrecio={indexPrecio} />
+      <SeccionPrecioSilla precio={precioFinal} />
     </>
   );
 }

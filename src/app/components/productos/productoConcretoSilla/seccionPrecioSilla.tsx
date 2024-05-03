@@ -5,11 +5,12 @@ import {
   usePreciosBanco,
 } from "../../../../../states/states";
 import Link from "next/link";
+import { useSillaFinal } from "../../../../../states/statesProductoFinal";
 
-export default function SeccionPrecioSilla({indexPrecio}: {indexPrecio:number}) {
+export default function SeccionPrecioSilla({precio}: {precio:number}) {
   const [cantidad, setCantidad] = useState(1);
-  const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
   const { precios } = usePreciosBanco();
+  const { silla, setPrecioSillaFinal } = useSillaFinal();
 
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
@@ -20,11 +21,17 @@ export default function SeccionPrecioSilla({indexPrecio}: {indexPrecio:number}) 
     }
   };
   
+  const precioFinal = () => {
+    const precioCalculado = Math.trunc(precio * cantidad);
+    return precioCalculado;
+  };
+
+console.log(silla)
   return (
     <section className="bg-fondoSecundario flex flex-col p-8 ">
       <div className="flex justify-between items-center gap-4">
         <div>
-          <h1 className="text-3xl">Total: {Math.trunc(precioAcumulado * cantidad)}€</h1>
+          <h1 className="text-3xl">Total: {precioFinal()}€</h1>
           {/* <p className="text-sm flex justify-end"> Iva incluido*</p> */}
         </div>
         <section className="flex w-36 border-[1px] border-fondoTerciario justify-between">
@@ -53,7 +60,7 @@ export default function SeccionPrecioSilla({indexPrecio}: {indexPrecio:number}) 
             href="/"
             className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer"
             onClick={() => {
-              setPrecioAcumulado(precioAcumulado * cantidad);
+              setPrecioSillaFinal(precioFinal());
             }}
           >
             Añadir al carro
@@ -63,7 +70,7 @@ export default function SeccionPrecioSilla({indexPrecio}: {indexPrecio:number}) 
             href="/"
             className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer"
             onClick={() => {
-              setPrecioAcumulado(precioAcumulado * cantidad);
+              setPrecioSillaFinal(precioFinal());
             }}
           >
             Comprar
