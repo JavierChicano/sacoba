@@ -5,18 +5,18 @@ type MesaStateFinal = {
   mesa: {
     dimension: string;
     acabado: string;
-    grupo: string;
+    grupo?: string;
     color: string;
-    grosor: string;
+    grosor?: string;
     colorPata: string;
     altura: string;
   };
   setMesaFinal: (
     dimension: string,
     acabado: string,
-    grupo: string,
+    grupo: string | undefined,
     color: string,
-    grosor: string,
+    grosor: string | undefined,
     colorPata: string,
     altura: string
   ) => void;
@@ -26,18 +26,18 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
   mesa: {
     dimension: "",
     acabado: "",
-    grupo: "",
+    grupo: undefined,
     color: "",
-    grosor: "",
+    grosor: undefined,
     colorPata: "",
     altura: "",
   },
   setMesaFinal: (
     dimension: string,
     acabado: string,
-    grupo: string,
+    grupo: string | undefined,
     color: string,
-    grosor: string,
+    grosor: string | undefined,
     colorPata: string,
     altura: string
   ) =>
@@ -54,38 +54,43 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
     })),
 }));
 
-//Estado para guardar los index 
+//Estado para guardar los index
 type StateIndexMesaFinal = {
   index: {
-    dimension: string;
-    grupo: string;
-    grosor: string;
-    altura: string;
+    dimension: number;
+    acabado: string;
+    grupo?: string;
+    grosor?: string;
+    altura: number;
   };
-  setMesaFinal: (
-    dimension: string,
-    grupo: string,
-    grosor: string,
-    altura: string
+  setIndexMesaFinal: (
+    dimension: number,
+    acabado: string,
+    grupo: string | undefined,
+    grosor: string | undefined,
+    altura: number
   ) => void;
 };
 
 export const useIndexMesaFinal = create<StateIndexMesaFinal>((set) => ({
-    index: {
-    dimension: "",
-    grupo: "",
-    grosor: "",
-    altura: "",
+  index: {
+    dimension: 0,
+    acabado: "",
+    grupo: undefined,
+    grosor: undefined,
+    altura: 0,
   },
-  setMesaFinal: (
-    dimension: string,
-    grupo: string,
-    grosor: string,
-    altura: string
+  setIndexMesaFinal: (
+    dimension: number,
+    acabado: string,
+    grupo: string | undefined,
+    grosor: string | undefined,
+    altura: number
   ) =>
     set((state) => ({
-        index: {
+      index: {
         dimension,
+        acabado,
         grupo,
         grosor,
         altura,

@@ -14,14 +14,6 @@ export default function CompClienteMesa({
   mesaSeleccionada: TipoMesa[];
   colores: TipoColor[];
 }) {
-  const { setPrecioAcumulado } = usePrecioAcumulado();
-
-  useEffect(() => {
-    if (mesaSeleccionada !== null) {
-      const preciosArray = mesaSeleccionada[0].precio.split(",").map(Number);
-      setPrecioAcumulado(preciosArray[0]);
-    }
-  }, [mesaSeleccionada, setPrecioAcumulado]);
   return (
     <div>
       {mesaSeleccionada && (
@@ -52,7 +44,7 @@ export default function CompClienteMesa({
             mesaSeleccionada={mesaSeleccionada}
             colores={colores}
           />
-          <SeccionPrecio />
+          <SeccionPrecio mesaSeleccionada={mesaSeleccionada} />
         </div>
       )}
     </div>

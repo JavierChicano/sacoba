@@ -52,7 +52,7 @@ export default function UnidadColor({ color }: { color: TipoColor }) {
         onClick={() => {
           setColorSeleccionado(color.nombreColor, mayuscula(cambiarNombresModelo(nombreModelo)), rutaIMG);
           //Seteamos el grupo solo si existe
-          {color.grupo && setGrupo(color.grupo)}
+          {color.grupo ? setGrupo(color.grupo) : setGrupo("no hay")}
           setModalVisible(false);
         }}
       >

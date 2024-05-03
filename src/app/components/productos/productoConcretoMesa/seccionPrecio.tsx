@@ -6,13 +6,23 @@ import {
   usePreciosBanco,
 } from "../../../../../states/states";
 import Link from "next/link";
+import { TipoMesa } from "../../../../../tipos/tipos";
+import { useIndexMesaFinal, useMesaFinal } from "../../../../../states/statesProductoFinal";
 
-export default function SeccionPrecio() {
+export default function SeccionPrecio({
+  mesaSeleccionada,
+}: {
+  mesaSeleccionada: TipoMesa[];
+}) {
   const [cantidad, setCantidad] = useState(1);
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
-  const [ porcentaje, setPorcentaje ] = useState(1);
-  const { precios } = usePreciosBanco();
-  const { modeloElegidoBastidor } = useColorSeleccionadoBastidor();
+  const { mesa } = useMesaFinal();
+  const { index } = useIndexMesaFinal();
+  
+  const ajustarNombre = () => {
+    const modelo = index.acabado.toLowerCase().replace(/ (\w+)$/i, " g1");
+    return modelo;
+  };
 
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
@@ -22,26 +32,35 @@ export default function SeccionPrecio() {
       setCantidad(cantidad - 1);
     }
   };
-  useEffect(() => {
-    let acumulado = 0;
-    precios.forEach((modulo) => {
-      acumulado += modulo.precio * modulo.cantidad;
-    });
-    setPrecioAcumulado(acumulado);
-  }, [precios, setPrecioAcumulado]);
-
-  useEffect(() => {
-    if (modeloElegidoBastidor != "Laminado") {
-      setPorcentaje(1.2);
+  const precioFinal = () => {
+    const precio = Math.trunc(precioAcumulado * cantidad);
+    return precio;
+  };
+  console.log(index)
+  console.log(mesaSeleccionada)
+  //Aqui se calcula el precio de la mesa en funcion de la seleccion final
+  useEffect(()=>{
+    let material = "";
+    if(index.acabado.startsWith("Silestone") || index.acabado.startsWith("Dekton")){
+      material =  ajustarNombre()
     }else{
-      setPorcentaje(1);
+      material =  index.acabado.toLowerCase()
     }
-  }, [modeloElegidoBastidor]);
+    
+
+
+
+
+
+
+      
+  },[mesa, index, mesaSeleccionada])
+
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 ">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl">Total: {Math.trunc(precioAcumulado * cantidad * porcentaje)}€</h1>
+          <h1 className="text-3xl">Total: {precioFinal()}€</h1>
           {/* <p className="text-sm flex justify-end"> Iva incluido*</p> */}
         </div>
         <section className="flex w-36 border-[1px] border-fondoTerciario justify-between">
@@ -70,7 +89,7 @@ export default function SeccionPrecio() {
             href="/"
             className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer"
             onClick={() => {
-              setPrecioAcumulado(precioAcumulado * cantidad);
+              setPrecioAcumulado(precioFinal());
             }}
           >
             Añadir al carro
@@ -80,7 +99,7 @@ export default function SeccionPrecio() {
             href="/"
             className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer"
             onClick={() => {
-              setPrecioAcumulado(precioAcumulado * cantidad);
+              setPrecioAcumulado(precioFinal());
             }}
           >
             Comprar

@@ -21,20 +21,18 @@
  18- Que cuando estes en una pagina, el hover se quede fijo, marcándola
  19- Agregar "Sugerencia" a contacto
  20- Agregar info extra de los laminados en el display de colores 
+ 21- Modificar precio mesas con patas de alta estabilidad
 
-//Borrar el componente "meteors", si al final no se va a usar
-
-//Pagina mesa, sumar un x2, al porcentaje del grupo elegido (silestone o dekton), en funcion del grosor elegido (12mm o 20mm / 8mm o 12mm), esto se muestra si GrosorTapa = TRUE
--->Hay que tener en cuenta q las q solo tienen 1, puede ser el primero o el segundo
 
 //PAGINA AYUDA
 ¿Quiere mas opciones de personalizacion?, mire el catálogo y consulte disponibilidad y precio, puesto que en la página se ha reducido la oferta y aunque se trate de abarcar todos los aspectos y variantes de personalización, no estas cubiertas todas por lavores de simplificacion hacia el usuario
 
-Las alturas de las mesas son considerando tapa laminado
+Las alturas de las mesas son considerando tapa laminado, el grosor por defecto de silestone 12mm y dekton 8mm
 
 //AÑADIR IMAGENES ACLARACION
 
 //TENER EN CUENTA TIEMPOS DE CARGA EN LOS INSERTS EN LA BBDD
 
+//Borrar el componente "meteors", si al final no se va a usar
 
-//BORRAR PAGINA CALCULO PRECIOS AL FINALIZAR LA PAGINA
+//BORRAR PAGINA "CALCULOPRECIOS" AL FINALIZAR LA PAGINA

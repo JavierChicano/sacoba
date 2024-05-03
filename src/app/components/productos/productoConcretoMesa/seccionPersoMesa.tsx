@@ -7,6 +7,10 @@ import {
   useModal,
   usePrecioAcumulado,
 } from "../../../../../states/states";
+import {
+  useIndexMesaFinal,
+  useMesaFinal,
+} from "../../../../../states/statesProductoFinal";
 import { cn } from "@nextui-org/react";
 import Image from "next/image";
 import ObjMesaPacks from "../packConcreto/objDimensionesMesaPack";
@@ -22,8 +26,10 @@ export default function SeccionPersonalizarMesa({
 }) {
   //Estado globales
   const { modalVisible, setModalVisible } = useModal();
-  const { colorElegido, modeloElegido, rutaImagen, grupo } =
+  const { colorElegido, modeloElegido, rutaImagen, grupo, setGrupo } =
     useColorSeleccionado();
+  const { setMesaFinal } = useMesaFinal();
+  const { setIndexMesaFinal } = useIndexMesaFinal();
 
   //Estados para coger las variables de la mesa
   const [dimensionesMesa, setDimensionesMesa] = useState<string[]>([]);
@@ -62,7 +68,6 @@ export default function SeccionPersonalizarMesa({
     const modelo = modeloElegido.toLowerCase().replace(/ (\w+)$/i, " g1");
     return modelo;
   };
-
   //Para mostrar las diferentes dimensiones y colores de la mesa
   useEffect(() => {
     if (mesaSeleccionada.length > 0) {
@@ -94,26 +99,51 @@ export default function SeccionPersonalizarMesa({
       setColoresFiltrados(modelosFiltrados);
     }
   }, [colores, mesaSeleccionada]);
-
   //Para comprobar si en ese material existen varios grosores
   useEffect(() => {
     // Iterar sobre cada mesa
     const modelo = ajustarNombre();
     mesaSeleccionada.forEach((mesa) => {
       if (mesa.materialTapa === modelo) {
+        if (modelo === "silestone g1") {
+          setGrosorElegido("12mm");
+        } else if (modelo === "dekton g1") {
+          setGrosorElegido("8mm");
+        }
         if (mesa.grosorTapa === true) {
           setGrosorTapa(true);
-          if (modelo === "silestone g1") {
-            setGrosorElegido("12mm");
-          } else if (modelo === "dekton g1") {
-            setGrosorElegido("8mm");
-          }
-        } else {
-          setGrosorTapa(false);
         }
+      } else {
+        setGrosorElegido("no hay");
+        setGrosorTapa(false);
       }
     });
   }, [modeloElegido]);
+
+  //Guarda en los estados globales todos los datos recogidos de los estados locales
+  useEffect(() => {
+    //Guardamos en el estado global mesa los datos
+    setMesaFinal(
+      dimension,
+      modeloElegido,
+      grupo,
+      colorElegido,
+      grosorElegido,
+      colorPataElegido,
+      alturaElegida
+    );
+    setIndexMesaFinal(indexDimension, modeloElegido, grupo, grosorElegido, indexAltura);
+  }, [
+    dimension,
+    modeloElegido,
+    grupo,
+    colorElegido,
+    grosorElegido,
+    colorPataElegido,
+    alturaElegida,
+    indexDimension,
+    indexAltura,
+  ]);
 
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8">
