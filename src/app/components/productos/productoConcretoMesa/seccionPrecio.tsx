@@ -1,10 +1,5 @@
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import {
-  useColorSeleccionadoBastidor,
-  usePrecioAcumulado,
-  usePreciosBanco,
-} from "../../../../../states/states";
 import Link from "next/link";
 import { TipoMesa } from "../../../../../tipos/tipos";
 import {
@@ -17,7 +12,6 @@ export default function SeccionPrecio({
 }: {
   mesaSeleccionada: TipoMesa[];
 }) {
-  const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
   //Estados globales
   const { mesa, setPrecioMesaFinal } = useMesaFinal();
   const { index } = useIndexMesaFinal();
@@ -85,7 +79,7 @@ export default function SeccionPrecio({
       setPrecioAltura(40);
     }
   }, [mesa, index, mesaSeleccionada]);
-  console.log(mesa)
+console.log(mesa)
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 ">
       <div className="flex justify-between items-center">

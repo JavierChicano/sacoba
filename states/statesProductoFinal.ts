@@ -3,6 +3,7 @@ import { create } from "zustand";
 // Estado global para guardar los datos finales de la mesa
 type MesaStateFinal = {
   mesa: {
+    modelo: string;
     dimension: string;
     acabado: string;
     grupo?: string;
@@ -13,6 +14,7 @@ type MesaStateFinal = {
     precio: number;
   };
   setMesaFinal: (
+    modelo: string,
     dimension: string,
     acabado: string,
     grupo: string | undefined,
@@ -26,6 +28,7 @@ type MesaStateFinal = {
 
 export const useMesaFinal = create<MesaStateFinal>((set) => ({
   mesa: {
+    modelo: "",
     dimension: "",
     acabado: "",
     grupo: undefined,
@@ -36,6 +39,7 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
     precio: 0,
   },
   setMesaFinal: (
+    modelo: string,
     dimension: string,
     acabado: string,
     grupo: string | undefined,
@@ -46,6 +50,7 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
   ) =>
     set((state) => ({
       mesa: {
+        modelo,
         dimension,
         acabado,
         grupo,
@@ -66,7 +71,7 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
   },
 }));
 
-//Estado para guardar los index
+//Estado para guardar los index de la mesa
 type StateIndexMesaFinal = {
   index: {
     dimension: number;
@@ -106,6 +111,62 @@ export const useIndexMesaFinal = create<StateIndexMesaFinal>((set) => ({
         grupo,
         grosor,
         altura,
+      },
+    })),
+}));
+
+// Estado global para guardar los datos finales de la silla
+type SillaStateFinal = {
+  silla: {
+    modelo: string;
+    formato: string;
+    acabado: string;
+    color: string;
+    colorPata: string;
+    precio: number;
+  };
+  setSillaFinal: (
+    modelo: string,
+    formato: string,
+    acabado: string,
+    color: string,
+    colorPata: string,
+    precio: number
+  ) => void;
+  setPrecioSillaFinal: (precio: number) => void;
+};
+export const useSillaFinal = create<SillaStateFinal>((set) => ({
+  silla: {
+    modelo: "",
+    formato: "",
+    acabado: "",
+    color: "",
+    colorPata: "",
+    precio: 0,
+  },
+  setSillaFinal: (
+    modelo: string,
+    formato: string,
+    acabado: string,
+    color: string,
+    colorPata: string,
+    precio: number
+  ) =>
+    set((state) => ({
+      silla: {
+        modelo,
+        formato,
+        acabado,
+        color,
+        colorPata,
+        precio,
+      },
+    })),
+  setPrecioSillaFinal: (precio: number) =>
+    set((state) => ({
+      silla: {
+        ...state.silla,
+        precio,
       },
     })),
 }));

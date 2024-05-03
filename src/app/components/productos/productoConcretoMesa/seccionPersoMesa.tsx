@@ -26,7 +26,7 @@ export default function SeccionPersonalizarMesa({
 }) {
   //Estado globales
   const { modalVisible, setModalVisible } = useModal();
-  const { colorElegido, modeloElegido, rutaImagen, grupo, setGrupo } =
+  const { colorElegido, modeloElegido, rutaImagen, grupo } =
     useColorSeleccionado();
   const { setMesaFinal } = useMesaFinal();
   const { setIndexMesaFinal } = useIndexMesaFinal();
@@ -121,11 +121,11 @@ export default function SeccionPersonalizarMesa({
         setGrosorElegido("no hay");
     }
   }, [modeloElegido]);
-
   //Guarda en los estados globales todos los datos recogidos de los estados locales
   useEffect(() => {
     //Guardamos en el estado global mesa los datos
     setMesaFinal(
+      mesaSeleccionada[0].modelo,
       dimension,
       modeloElegido,
       grupo,
