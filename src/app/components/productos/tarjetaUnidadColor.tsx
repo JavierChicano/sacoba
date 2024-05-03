@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { useColorSeleccionado, useModal } from "../../../../states/states";
 
 export default function UnidadColor({ color }: { color: TipoColor }) {
-  const [hovered, setHovered] = useState(false);
-  const [ rutaIMG, setRutaIMG] =  useState("");
+  const [ hovered, setHovered ] = useState(false);
+  const [ rutaIMG, setRutaIMG ] =  useState("");
+  const [ nombreModelo, setNombreModelo ] =  useState("");
   const { setModalVisible } = useModal();
-  const { colorElegido, modeloElegido, setColorSeleccionado } =
+  const { setColorSeleccionado, setGrupo } =
     useColorSeleccionado();
 
   const mayuscula = (str: string) => {
@@ -26,11 +27,14 @@ export default function UnidadColor({ color }: { color: TipoColor }) {
   useEffect(()=>{
     if(color.grupo){
       setRutaIMG(`/colores/${color.modelo}/${color.grupo}/${color.imagenColor}`)
+      const nombre = color.modelo.replace(/ g1/i, "");
+      const nombreCompleto = nombre + " " +color.grupo
+      setNombreModelo(nombreCompleto)  
     }else{
       setRutaIMG(`/colores/${color.modelo}/${color.imagenColor}`)
+      setNombreModelo(color.modelo)
     }
   },[])
-  
   return (
     <li
       className="rounded-lg w-36 relative"
@@ -40,12 +44,15 @@ export default function UnidadColor({ color }: { color: TipoColor }) {
       {hovered && (
         <div className="absolute top-0 left-0 w-full h-full bg-black/80 flex flex-col justify-center items-center pointer-events-none z-10">
           <p className="text-white text-xl text-center">{color.nombreColor}</p>
+          <p>{color.grupo}</p>
         </div>
       )}
       <div
         className="cursor-pointer"
         onClick={() => {
-          setColorSeleccionado(color.nombreColor, mayuscula(cambiarNombresModelo(color.modelo)), rutaIMG);
+          setColorSeleccionado(color.nombreColor, mayuscula(cambiarNombresModelo(nombreModelo)), rutaIMG);
+          //Seteamos el grupo solo si existe
+          {color.grupo && setGrupo(color.grupo)}
           setModalVisible(false);
         }}
       >

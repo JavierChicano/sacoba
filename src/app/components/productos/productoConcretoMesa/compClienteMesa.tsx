@@ -1,21 +1,24 @@
 "use client";
-import { TipoMesa } from "../../../../../tipos/tipos";
+import { TipoColor, TipoMesa } from "../../../../../tipos/tipos";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { usePrecioAcumulado } from "../../../../../states/states";
-import SeccionEncimera from "./seccionEncimera";
-import SeccionEstructura from "./seccionEstructura";
 import SeccionPrecio from "./seccionPrecio";
 import RutaPC from "./rutaPC";
+import SeccionPersonalizarMesa from "./seccionPersoMesa";
 
-
-export default function CompClienteMesa({mesaSeleccionada}:{mesaSeleccionada: TipoMesa[]}){
+export default function CompClienteMesa({
+  mesaSeleccionada,
+  colores,
+}: {
+  mesaSeleccionada: TipoMesa[];
+  colores: TipoColor[];
+}) {
   const { setPrecioAcumulado } = usePrecioAcumulado();
 
   useEffect(() => {
     if (mesaSeleccionada !== null) {
       const preciosArray = mesaSeleccionada[0].precio.split(",").map(Number);
-      console.log(preciosArray);
       setPrecioAcumulado(preciosArray[0]);
     }
   }, [mesaSeleccionada, setPrecioAcumulado]);
@@ -35,9 +38,20 @@ export default function CompClienteMesa({mesaSeleccionada}:{mesaSeleccionada: Ti
               width={500}
               height={500}
             />
+            <aside className="text-xs mt-2">
+              El grosor por defecto de los materiales{" "}
+              <span className="italic">Silestone</span> y{" "}
+              <span className="italic">Dekton</span> es de 12mm y 8mm
+              respectivamente*{" "}
+            </aside>
+            <aside className="text-xs">
+              La altura de la mesa se calcula considerando la encimera de laminado
+            </aside>
           </section>
-          <SeccionEncimera />
-          <SeccionEstructura />
+          <SeccionPersonalizarMesa
+            mesaSeleccionada={mesaSeleccionada}
+            colores={colores}
+          />
           <SeccionPrecio />
         </div>
       )}

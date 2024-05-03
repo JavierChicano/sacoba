@@ -6,11 +6,12 @@ export interface TipoMesa {
   extension: string | null;
   tipoAmpliable: string | null;
   auxiliar: string | null;
+  grosorTapa:  boolean | null;
   materialTapa: string;
-  dimensiones: string | null;
-  altura: string | null;
-  materialPata: string | null;
-  colorPata: string | null;
+  dimensiones: string;
+  altura: string;
+  materialPata: string;
+  colorPata: string;
   precio: string;
 }
 export interface TipoBanco {

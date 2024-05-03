@@ -144,6 +144,16 @@ export async function selectsColoresBastidorBancos() {
   return todosColores;
 }
 
+export async function selectsColoresMesas() {
+  const todosColores = await db
+    .select()
+    .from(colores)
+    .where(
+      inArray(colores.modelo, ["laminado", "cristal 3mm", "cristal 8mm", "cristal 8mm extraclaro", "silestone g1", "dekton g1", "barniz", "laca"])
+    );
+  return todosColores;
+}
+
 //Select usuario logueado
 export async function selectComprobarUsuario(
   email: string,

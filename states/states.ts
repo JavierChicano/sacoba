@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { TipoBanco, TipoMesa, TipoSilla } from "../tipos/tipos";
 
 // Estado para guardar la visibilidad del modal
 type ModalState = {
@@ -11,6 +10,7 @@ export const useModal = create<ModalState>((set) => ({
   modalVisible: false,
   setModalVisible: (visible) => set({ modalVisible: visible }),
 }));
+
 //Visibilidad modal color bastidor
 type ModalStateBastidor = {
   modalVisibleBastidor: boolean;
@@ -91,14 +91,18 @@ type ColorSeleccionado = {
   colorElegido: string;
   modeloElegido: string;
   rutaImagen: string;
-  setColorSeleccionado: (color: string, modelo: string, rutaImagen: string) => void;
+  grupo?: string; 
+  setColorSeleccionado: (color: string, modelo: string, rutaImagen: string) => void; 
+  setGrupo: (grupo: string) => void; 
 };
 
 export const useColorSeleccionado = create<ColorSeleccionado>((set) => ({
   colorElegido: '',
   modeloElegido: '',
   rutaImagen: '',
+  grupo: 'no hay', 
   setColorSeleccionado: (colorElegido: string, modeloElegido: string, rutaImagen: string)=> set({ colorElegido, modeloElegido, rutaImagen }),
+  setGrupo: (grupo: string) => set({ grupo }),
 }));
 
 //Estado para guardar el color seleccionado del bastidor

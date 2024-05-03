@@ -19,10 +19,10 @@
  16.1- El slider cuando pones ambos en el mismo precio no filtra✅
  17- Que cuando se añada al carrito aparezca una notificacion "Toast" confirmandolo
  18- Que cuando estes en una pagina, el hover se quede fijo, marcándola
+ 19- Agregar "Sugerencia" a contacto
+ 20- Agregar info extra de los laminados en el display de colores 
 
 //Borrar el componente "meteors", si al final no se va a usar
-
-//Modal de colores, que tmb pase por estado la imagen del color seleccionado para ponerlo tmb
 
 //Pagina mesa, sumar un x2, al porcentaje del grupo elegido (silestone o dekton), en funcion del grosor elegido (12mm o 20mm / 8mm o 12mm), esto se muestra si GrosorTapa = TRUE
 -->Hay que tener en cuenta q las q solo tienen 1, puede ser el primero o el segundo
