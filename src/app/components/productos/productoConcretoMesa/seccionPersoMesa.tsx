@@ -4,8 +4,7 @@ import { IconClick } from "@tabler/icons-react";
 import ModalColores from "../modalColores";
 import {
   useColorSeleccionado,
-  useModal,
-  usePrecioAcumulado,
+  useModal
 } from "../../../../../states/states";
 import {
   useIndexMesaFinal,

@@ -22,21 +22,6 @@ export const useModalBastidor = create<ModalStateBastidor>((set) => ({
   setModalVisibleBastidor: (visible) => set({ modalVisibleBastidor: visible }),
 }));
 
-//Estado para acumular el precio
-type PrecioParams = {
-  precioAcumulado: number;
-  setPrecioAcumulado: (precio: number) => void;
-  addPrecioAcumulado: (aumento: number) => void;
-  subPrecioAcumulado: (descuento: number) => void;
-};
-
-export const usePrecioAcumulado = create<PrecioParams>()((set) => ({
-  precioAcumulado: 0,
-  setPrecioAcumulado: (precio: number) => set(() => ({ precioAcumulado: precio })),
-  addPrecioAcumulado: (aumento: number) => set((state) => ({ precioAcumulado: state.precioAcumulado + aumento })),
-  subPrecioAcumulado: (descuento: number) => set((state) => ({ precioAcumulado: state.precioAcumulado - descuento })),
-}));
-
 //Estado para guardar los modulos seleccionados de banco
 type ModuloBanco = {
   dimensiones: string;

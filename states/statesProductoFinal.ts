@@ -12,6 +12,7 @@ type MesaStateFinal = {
     colorPata: string;
     altura: string;
     precio: number;
+    cantidad: number;
   };
   setMesaFinal: (
     modelo: string,
@@ -24,6 +25,7 @@ type MesaStateFinal = {
     altura: string
   ) => void;
   setPrecioMesaFinal: (precio: number) => void;
+  setCantidadMesas: (cantidad: number) => void;
 };
 
 export const useMesaFinal = create<MesaStateFinal>((set) => ({
@@ -37,6 +39,7 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
     colorPata: "",
     altura: "",
     precio: 0,
+    cantidad: 1,
   },
   setMesaFinal: (
     modelo: string,
@@ -59,6 +62,7 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
         colorPata,
         altura,
         precio: state.mesa.precio,
+        cantidad: state.mesa.cantidad,
       },
     })),
   setPrecioMesaFinal(precio) {
@@ -66,6 +70,14 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
       mesa: {
         ...state.mesa,
         precio: precio,
+      },
+    }));
+  },
+  setCantidadMesas(cantidad) {
+    set((state) => ({
+      mesa: {
+        ...state.mesa,
+        cantidad: cantidad,
       },
     }));
   },
@@ -124,6 +136,7 @@ type SillaStateFinal = {
     color: string;
     colorPata: string;
     precio: number;
+    cantidad: number;
   };
   setSillaFinal: (
     modelo: string,
@@ -134,7 +147,9 @@ type SillaStateFinal = {
     precio: number
   ) => void;
   setPrecioSillaFinal: (precio: number) => void;
+  setCantidadSillas: (cantidad: number) => void;
 };
+
 export const useSillaFinal = create<SillaStateFinal>((set) => ({
   silla: {
     modelo: "",
@@ -143,6 +158,7 @@ export const useSillaFinal = create<SillaStateFinal>((set) => ({
     color: "",
     colorPata: "",
     precio: 0,
+    cantidad: 1, // Agregado por mí
   },
   setSillaFinal: (
     modelo: string,
@@ -160,13 +176,21 @@ export const useSillaFinal = create<SillaStateFinal>((set) => ({
         color,
         colorPata,
         precio,
+        cantidad: state.silla.cantidad, // Ajuste aquí
       },
     })),
-  setPrecioSillaFinal: (precio: number) =>
+  setPrecioSillaFinal: (precio) =>
     set((state) => ({
       silla: {
         ...state.silla,
         precio,
+      },
+    })),
+  setCantidadSillas: (cantidad) =>
+    set((state) => ({
+      silla: {
+        ...state.silla,
+        cantidad,
       },
     })),
 }));

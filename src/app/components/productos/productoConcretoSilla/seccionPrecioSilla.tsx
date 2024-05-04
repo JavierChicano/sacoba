@@ -1,7 +1,6 @@
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import {
-  usePrecioAcumulado,
   usePreciosBanco,
 } from "../../../../../states/states";
 import Link from "next/link";
@@ -10,7 +9,7 @@ import { useSillaFinal } from "../../../../../states/statesProductoFinal";
 export default function SeccionPrecioSilla({precio}: {precio:number}) {
   const [cantidad, setCantidad] = useState(1);
   const { precios } = usePreciosBanco();
-  const { silla, setPrecioSillaFinal } = useSillaFinal();
+  const { silla, setPrecioSillaFinal, setCantidadSillas } = useSillaFinal();
 
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
@@ -61,6 +60,7 @@ console.log(silla)
             className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer"
             onClick={() => {
               setPrecioSillaFinal(precioFinal());
+              setCantidadSillas(cantidad)
             }}
           >
             Añadir al carro
@@ -71,6 +71,7 @@ console.log(silla)
             className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer"
             onClick={() => {
               setPrecioSillaFinal(precioFinal());
+              setCantidadSillas(cantidad)
             }}
           >
             Comprar

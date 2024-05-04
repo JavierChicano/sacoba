@@ -13,7 +13,7 @@ export default function SeccionPrecio({
   mesaSeleccionada: TipoMesa[];
 }) {
   //Estados globales
-  const { mesa, setPrecioMesaFinal } = useMesaFinal();
+  const { mesa, setPrecioMesaFinal, setCantidadMesas } = useMesaFinal();
   const { index } = useIndexMesaFinal();
 
   //Estados para concretar el precio final
@@ -114,6 +114,7 @@ console.log(mesa)
             className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer"
             onClick={() => {
               setPrecioMesaFinal(precioFinal());
+              setCantidadMesas(cantidad)
             }}
           >
             Añadir al carro
@@ -124,6 +125,7 @@ console.log(mesa)
             className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer"
             onClick={() => {
               setPrecioMesaFinal(precioFinal());
+              setCantidadMesas(cantidad)
             }}
           >
             Comprar
