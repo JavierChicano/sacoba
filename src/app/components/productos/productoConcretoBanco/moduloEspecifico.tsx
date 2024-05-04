@@ -1,9 +1,9 @@
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import {
-  usePrecioAcumulado,
   usePreciosBanco,
 } from "../../../../../states/states";
+import { useBancoFinal } from "../../../../../states/statesProductoFinal";
 
 type ModuloEspecificoParams = {
   id: number;
@@ -18,18 +18,21 @@ export default function ModuloEspecifico({
 }: {
   datos: ModuloEspecificoParams;
 }) {
-  const [respaldo, setRespaldo] = useState(false);
+  //Estados globales
+  const { precios, modificarPrecio, insertarModificarModulo, modificarCantidad } = usePreciosBanco();
+  const { banco, agregarModulo } = useBancoFinal();
+
+  //Estados para guardar los datos del usuario
   const [respaldoSeleccionado, setRespaldoSeleccionado] = useState(false);
   const [cantidad, setCantidad] = useState(0);
   const [precioTotal, setPrecioTotal] = useState(datos.precio);
-  const { precios, modificarPrecio, insertarModificarModulo, modificarCantidad } = usePreciosBanco();
+
 
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
   };
   const disminuirCantidad = () => {
     if (cantidad > 0) {
-      console.log("ENTRA AQUI")
       setCantidad(cantidad - 1);
     }
   };
@@ -40,8 +43,6 @@ export default function ModuloEspecifico({
       datos.dimensiones === "150"
     ) {
       setCantidad(1);
-      console.log(" AQUI NO DEBERIA")
-
     }
   };
 
@@ -83,6 +84,15 @@ export default function ModuloEspecifico({
     modificarPrecio(datos.id, precioTotal)
   },[cantidad, precioTotal, datos.id, modificarCantidad, modificarPrecio]);
 
+  useEffect(() => {
+    const dimensiones = datos.dimensiones + "cm x 45cm";
+    if(datos.precioRespaldo && cantidad === 1){
+      agregarModulo(dimensiones, respaldoSeleccionado, cantidad, precioTotal, datos.precioRespaldo )
+    }else if(cantidad === 1){
+      agregarModulo(dimensiones, respaldoSeleccionado, cantidad, precioTotal )
+    }
+  }, [cantidad, datos.dimensiones, respaldoSeleccionado, cantidad, precioTotal, datos.precioRespaldo]);
+ 
   return (
     <article className="bg-fondoTerciario p-4 flex flex-col gap-4 border border-colorBase m-1">
       <h1 className="text-xl">Tamaño: <span className="text-lg">{datos.dimensiones}x45 (cm)</span></h1>

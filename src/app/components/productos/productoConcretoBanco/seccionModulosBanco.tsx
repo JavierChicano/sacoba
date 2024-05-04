@@ -13,6 +13,7 @@ import { cn } from "@nextui-org/react";
 import ModalColores from "../modalColores";
 import ModalColoresBastidor from "./modalColoresBastidor";
 import Image from "next/image";
+import { useBancoFinal } from "../../../../../states/statesProductoFinal";
 
 export default function SeccionModulosBanco({
   bancosPosibles,
@@ -23,12 +24,15 @@ export default function SeccionModulosBanco({
   coloresTapizado: TipoColor[];
   coloresBastidor: TipoColor[];
 }) {
-  //Para mostrar y guardar el color seleccionado
+  //Para mostrar y guardar el color seleccionado, estados globales
   const { colorElegido, modeloElegido, rutaImagen } = useColorSeleccionado();
   const { colorElegidoBastidor, modeloElegidoBastidor, rutaImagenBastidor } =
     useColorSeleccionadoBastidor();
   const { modalVisible, setModalVisible } = useModal();
   const { modalVisibleBastidor, setModalVisibleBastidor } = useModalBastidor();
+  const { setBancoFinal } = useBancoFinal();
+
+  //Estado que guarda si ha elegido zocalo o no
   const [zocalo, setZocalo] = useState(false);
 
   function dividirNumeros(cadena: string): number[] {
@@ -42,17 +46,33 @@ export default function SeccionModulosBanco({
 
   //Para mostrar un precio u otro en funcion del tapizado
   const indiceObjeto = modeloElegido === "Tapizado normal" ? 0 : 1;
-
   useEffect(() => {
     if (bancosPosibles[0].zocalo) {
       setZocalo(true);
     }
   }, []);
-
+  useEffect(() => {
+    setBancoFinal(
+      bancosPosibles[0].modelo,
+      modeloElegido,
+      colorElegido,
+      modeloElegidoBastidor,
+      colorElegidoBastidor,
+      zocalo
+    );
+  }, [
+    modeloElegido,
+    colorElegido,
+    modeloElegidoBastidor,
+    colorElegidoBastidor,
+    zocalo,
+  ]);
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 row-span-6">
       <div className="flex justify-between h-14">
-        <h1 className="text-4xl w-32 self-center">Módulos</h1>
+        <h1 className="text-4xl self-center border-b border-colorBaseSecundario w-full">
+          Acabados
+        </h1>
       </div>
       <div className="flex flex-col gap-4">
         <section className="flex items-center gap-2">
@@ -139,7 +159,10 @@ export default function SeccionModulosBanco({
           )}
         </section>
         <section>
-          <h2 className="text-2xl">Cantidad </h2>
+          <h1 className="text-4xl self-center border-b border-colorBaseSecundario w-full mb-2">
+            Módulos
+          </h1>
+
           <div className="grid grid-cols-2">
             {bancosPrecios.map((banco, index) => (
               <ModuloEspecifico

@@ -1,26 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { ReactNode, useEffect } from "react";
-import {
-  usePrecioAcumulado,
-} from "../../../../../states/states";
 import RutaBancoConcreto from "./rutaBancoC";
-import SeccionPrecio from "../productoConcretoMesa/seccionPrecio";
 import SeccionModulosBanco from "./seccionModulosBanco";
 import { TipoBanco, TipoColor } from "../../../../../tipos/tipos";
+import SeccionPrecioBanco from "./seccionPrecioBanco";
 
 export default function CompClienteBanco({bancoSeleccionado, coloresTapizado, coloresBastidor}: {bancoSeleccionado: TipoBanco[], coloresTapizado: TipoColor[], coloresBastidor: TipoColor[]}) {
- 
-  const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
-
-  useEffect(() => {
-    if (bancoSeleccionado !== null) {
-      const preciosArray = bancoSeleccionado[0].precio.split(",").map(Number);
-      console.log(preciosArray);
-    }
-  }, [bancoSeleccionado]);
-
   return (
     // {InsertarDatosACarrito}
     <div>
@@ -47,7 +33,7 @@ export default function CompClienteBanco({bancoSeleccionado, coloresTapizado, co
             <p className="ml-4"> - 2 módulos de 120cm x 45cm y uno de 45cm x 45cm de rincón</p>
             <p className="ml-4"> - O bien, 1 módulo de 150cm x 45cm y otro de 120cm x 45cm</p>
           </div>
-          <SeccionPrecio />
+          <SeccionPrecioBanco bancoSeleccionado={bancoSeleccionado} />
         </div>
       )}
     </div>

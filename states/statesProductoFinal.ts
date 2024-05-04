@@ -176,7 +176,7 @@ export const useSillaFinal = create<SillaStateFinal>((set) => ({
         color,
         colorPata,
         precio,
-        cantidad: state.silla.cantidad, // Ajuste aquí
+        cantidad: state.silla.cantidad,
       },
     })),
   setPrecioSillaFinal: (precio) =>
@@ -193,4 +193,120 @@ export const useSillaFinal = create<SillaStateFinal>((set) => ({
         cantidad,
       },
     })),
+}));
+
+//Estado global para guardar los datos finales del banco
+type BancoStateFinal = {
+  banco: {
+    modelo: string;
+    modulos: {
+      dimensiones: string;
+      respaldo: boolean;
+      precioRespaldo?: number;
+      cantidad: number;
+      precioModulo: number;
+    }[];
+    acabadoTapizado: string;
+    colorTapizado: string;
+    acabadoBastidor: string;
+    colorBastidor: string;
+    zocalo?: boolean;
+    precio: number;
+    cantidad: number;
+  };
+  setBancoFinal: (
+    modelo: string,
+    acabadoTapizado: string,
+    colorTapizado: string,
+    acabadoBastidor: string,
+    colorBastidor: string,
+    zocalo?: boolean
+  ) => void;
+  setPrecioBancoFinal: (precio: number) => void;
+  setCantidadBancos: (cantidad: number) => void;
+  agregarModulo: (
+    dimensiones: string,
+    respaldo: boolean,
+    cantidad: number,
+    precioModulo: number,
+    precioRespaldo?: number
+  ) => void;
+  vaciarModulos: () => void;
+};
+
+export const useBancoFinal = create<BancoStateFinal>((set) => ({
+  banco: {
+    modelo: "",
+    modulos: [],
+    acabadoTapizado: "",
+    colorTapizado: "",
+    acabadoBastidor: "",
+    colorBastidor: "",
+    zocalo: false,
+    precio: 0,
+    cantidad: 1,
+  },
+  setBancoFinal: (
+    modelo,
+    acabadoTapizado,
+    colorTapizado,
+    acabadoBastidor,
+    colorBastidor,
+    zocalo = false
+  ) =>
+    set((state) => ({
+      banco: {
+        ...state.banco,
+        modelo,
+        acabadoTapizado,
+        colorTapizado,
+        acabadoBastidor,
+        colorBastidor,
+        zocalo,
+      },
+    })),
+  setPrecioBancoFinal: (precio) =>
+    set((state) => ({
+      banco: {
+        ...state.banco,
+        precio,
+      },
+    })),
+  setCantidadBancos: (cantidad) =>
+    set((state) => ({
+      banco: {
+        ...state.banco,
+        cantidad,
+      },
+    })),
+  agregarModulo: (
+    dimensiones,
+    respaldo,
+    cantidad,
+    precioModulo,
+    precioRespaldo
+  ) =>
+    set((state) => ({
+      banco: {
+        ...state.banco,
+        modulos: [
+          ...state.banco.modulos,
+          {
+            dimensiones,
+            respaldo,
+            precioRespaldo,
+            cantidad,
+            precioModulo,
+          },
+        ],
+      },
+    })),
+  vaciarModulos: () => {
+    set((state) => ({
+      banco: {
+        ...state.banco,
+        modulos: [],
+      },
+    }));
+  },
 }));
