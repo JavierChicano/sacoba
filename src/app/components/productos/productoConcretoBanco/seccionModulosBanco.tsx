@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { TipoBanco, TipoColor } from "../../../../../tipos/tipos";
 import { IconClick } from "@tabler/icons-react";
-import ModuloEspecifico from "./moduloEspecifico";
 import {
   useColorSeleccionado,
   useColorSeleccionadoBastidor,
@@ -14,6 +13,7 @@ import ModalColores from "../modalColores";
 import ModalColoresBastidor from "./modalColoresBastidor";
 import Image from "next/image";
 import { useBancoFinal } from "../../../../../states/statesProductoFinal";
+import ObjModuloBanco from "./objModuloBanco";
 
 export default function SeccionModulosBanco({
   bancosPosibles,
@@ -30,27 +30,11 @@ export default function SeccionModulosBanco({
     useColorSeleccionadoBastidor();
   const { modalVisible, setModalVisible } = useModal();
   const { modalVisibleBastidor, setModalVisibleBastidor } = useModalBastidor();
-  const { setBancoFinal } = useBancoFinal();
+  const { banco, setBancoFinal } = useBancoFinal();
 
   //Estado que guarda si ha elegido zocalo o no
   const [zocalo, setZocalo] = useState(false);
 
-  function dividirNumeros(cadena: string): number[] {
-    return cadena.split(",").map((numero: string) => parseFloat(numero.trim()));
-  }
-  // Mapeo del array bancosPosibles con los precios separados
-  const bancosPrecios = bancosPosibles.map((banco) => ({
-    ...banco,
-    preciosSeparados: dividirNumeros(banco.precio),
-  }));
-
-  //Para mostrar un precio u otro en funcion del tapizado
-  const indiceObjeto = modeloElegido === "Tapizado normal" ? 0 : 1;
-  useEffect(() => {
-    if (bancosPosibles[0].zocalo) {
-      setZocalo(true);
-    }
-  }, []);
   useEffect(() => {
     setBancoFinal(
       bancosPosibles[0].modelo,
@@ -67,6 +51,7 @@ export default function SeccionModulosBanco({
     colorElegidoBastidor,
     zocalo,
   ]);
+
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 row-span-6">
       <div className="flex justify-between h-14">
@@ -154,6 +139,9 @@ export default function SeccionModulosBanco({
               <input
                 type="checkbox"
                 style={{ width: "20px", height: "20px", marginLeft: "5px" }}
+                onChange={() => {
+                  setZocalo(true);
+                }}
               />
             </label>
           )}
@@ -164,17 +152,8 @@ export default function SeccionModulosBanco({
           </h1>
 
           <div className="grid grid-cols-2">
-            {bancosPrecios.map((banco, index) => (
-              <ModuloEspecifico
-                key={index}
-                datos={{
-                  id: banco.id,
-                  dimensiones: banco.modulo,
-                  respaldo: banco.respaldo,
-                  precioRespaldo: banco.precioRespaldo,
-                  precio: banco.preciosSeparados[indiceObjeto],
-                }}
-              />
+            {bancosPosibles.map((banco, index) => (
+              <ObjModuloBanco key={index} modulo={banco} tapizado={modeloElegido}/>
             ))}
           </div>
         </section>

@@ -8,14 +8,12 @@ import {
 import { TipoBanco } from "../../../../../tipos/tipos";
 import TarjetaDisplayBanco from "./TarjetaDisplayBanco";
 import { cn } from "@nextui-org/react";
-import { usePreciosBanco } from "../../../../../states/states";
 import { useBancoFinal } from "../../../../../states/statesProductoFinal";
 
 export default function ObjBancosTotales({bancosModelos}: {bancosModelos: TipoBanco[]}) {
   const [ocultarFiltro, setOcultarFiltro] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [bancosOrdenados, setBancosOrdenados] = useState<TipoBanco[]>(bancosModelos);
-  const { resetearPrecios } = usePreciosBanco();
   const { vaciarModulos } = useBancoFinal();
 
   useEffect(() => {
@@ -50,8 +48,7 @@ export default function ObjBancosTotales({bancosModelos}: {bancosModelos: TipoBa
     if (!bancosOrdenados.length) {
       setBancosOrdenados(bancosModelos);
     }
-    resetearPrecios();
-  }, [bancosOrdenados, bancosModelos, resetearPrecios]);
+  }, [bancosOrdenados, bancosModelos]);
   return (
     <>
       <div className="w-full mb-4 flex justify-between">

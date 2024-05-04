@@ -4,7 +4,6 @@ import Link from "next/link";
 import { TipoBanco } from "../../../../../tipos/tipos";
 import {
     useBancoFinal,
-  useIndexMesaFinal
 } from "../../../../../states/statesProductoFinal";
 
 export default function SeccionPrecioBanco({
@@ -13,14 +12,11 @@ export default function SeccionPrecioBanco({
     bancoSeleccionado: TipoBanco[];
 }) {
   //Estados globales
-  const { banco, setBancoFinal, setPrecioBancoFinal, setCantidadBancos } = useBancoFinal();
-  const { index } = useIndexMesaFinal();
+  const { banco, setPrecioBancoFinal, setCantidadBancos } = useBancoFinal();
 
   //Estados para concretar el precio final
   const [cantidad, setCantidad] = useState(1);
-  const [precioMesa, setPrecioMesa] = useState(0);
-  const [precioAltura, setPrecioAltura] = useState(0);
-  const [precioGrupo, setPrecioGrupo] = useState(0);
+  const [precioBanco, setPrecioBanco] = useState(0);
 
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
@@ -32,13 +28,24 @@ export default function SeccionPrecioBanco({
   };
 
   const precioFinal = () => {
-    const precio = Math.trunc((precioMesa + precioAltura) * cantidad * precioGrupo);
+    const precio = Math.trunc(precioBanco  * cantidad );
     return precio;
   };
 
   //Aqui se calcula el precio del banco en funcion de la seleccion final
   useEffect(() => {
-  }, []);
+    let costeModulosTotal = 0
+    //Calcular el precio del material
+    banco.modulos.forEach((modulo) => {
+      costeModulosTotal += (modulo.precioModulo*modulo.cantidad)
+    });
+    if(banco.acabadoBastidor === "Laca"){
+      setPrecioBanco(costeModulosTotal*1.2)
+    }else{
+      setPrecioBanco(costeModulosTotal)
+    }
+  }, [banco]);
+  console.log(banco)
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 ">
       <div className="flex justify-between items-center">
@@ -69,10 +76,11 @@ export default function SeccionPrecioBanco({
         </section>
         <section className="flex flex-col gap-4">
           <Link
-            href="/"
+            href="/CarritoCompra"
             className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer"
             onClick={() => {
                 setPrecioBancoFinal(precioFinal());
+                setCantidadBancos(cantidad)
             }}
           >
             Añadir al carro
@@ -82,7 +90,8 @@ export default function SeccionPrecioBanco({
             href="/"
             className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer"
             onClick={() => {
-                setPrecioBancoFinal(precioFinal());
+              setPrecioBancoFinal(precioFinal());
+              setCantidadBancos(cantidad)
             }}
           >
             Comprar
