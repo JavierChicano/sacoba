@@ -39,7 +39,7 @@ export default function CardInfoBanco() {
                 ? "animate-fade-right animate-once animate-ease-in animate-normal animate-duration-[2000ms]"
                 : ""
             }`}
-            src={`/productos/bancos/banco1.png`}
+            src={`/productos/banco.png`}
             alt="Logo de la marca"
             width={500}
             height={500}
