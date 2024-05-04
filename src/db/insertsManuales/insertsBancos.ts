@@ -7,7 +7,7 @@ export async function insertarBancos() {
     //Modelo TRAVEL
     {
       modelo: "TRAVEL",
-      imagen: "banco1.png",
+      imagen: "travel.png",
       modulo: "45",
       materialBastidor: "laminado",
       respaldo: true,
@@ -16,7 +16,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "TRAVEL",
-      imagen: "banco1.png",
+      imagen: "travel.png",
       modulo: "90",
       materialBastidor: "laminado",
       respaldo: true,
@@ -25,7 +25,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "TRAVEL",
-      imagen: "banco1.png",
+      imagen: "travel.png",
       modulo: "120",
       materialBastidor: "laminado",
       respaldo: true,
@@ -34,7 +34,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "TRAVEL",
-      imagen: "banco1.png",
+      imagen: "travel.png",
       modulo: "150",
       materialBastidor: "laminado",
       respaldo: true,
@@ -43,7 +43,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "TRAVEL",
-      imagen: "banco1.png",
+      imagen: "travel.png",
       modulo: "45Rincon",
       materialBastidor: "laminado",
       zocalo: true,
@@ -52,7 +52,7 @@ export async function insertarBancos() {
     //Modelo TRAPEZZE
     {
       modelo: "TRAPEZZE",
-      imagen: "banco2.png",
+      imagen: "trapezze.png",
       modulo: "45",
       materialBastidor: "laminado",
       respaldo: true,
@@ -62,7 +62,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "TRAPEZZE",
-      imagen: "banco2.png",
+      imagen: "trapezze.png",
       modulo: "90",
       materialBastidor: "laminado",
       respaldo: true,
@@ -72,7 +72,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "TRAPEZZE",
-      imagen: "banco2.png",
+      imagen: "trapezze.png",
       modulo: "120",
       materialBastidor: "laminado",
       respaldo: true,
@@ -82,7 +82,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "TRAPEZZE",
-      imagen: "banco2.png",
+      imagen: "trapezze.png",
       modulo: "150",
       materialBastidor: "laminado",
       respaldo: true,
@@ -92,7 +92,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "TRAPEZZE",
-      imagen: "banco2.png",
+      imagen: "trapezze.png",
       modulo: "45Rincon",
       materialBastidor: "laminado",
       respaldo: true,
@@ -103,7 +103,7 @@ export async function insertarBancos() {
     //Modelo SCALA
     {
       modelo: "SCALA",
-      imagen: "banco3.png",
+      imagen: "scala.png",
       modulo: "45",
       materialBastidor: "laminado",
       respaldo: true,
@@ -112,7 +112,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "SCALA",
-      imagen: "banco3.png",
+      imagen: "scala.png",
       modulo: "90",
       materialBastidor: "laminado",
       respaldo: true,
@@ -121,7 +121,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "SCALA",
-      imagen: "banco3.png",
+      imagen: "scala.png",
       modulo: "120",
       materialBastidor: "laminado",
       respaldo: true,
@@ -130,7 +130,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "SCALA",
-      imagen: "banco3.png",
+      imagen: "scala.png",
       modulo: "150",
       materialBastidor: "laminado",
       respaldo: true,
@@ -139,7 +139,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "SCALA",
-      imagen: "banco3.png",
+      imagen: "scala.png",
       modulo: "45Rincon",
       materialBastidor: "laminado",
       zocalo: true,
@@ -148,7 +148,7 @@ export async function insertarBancos() {
     //Modelo CUBE
     {
       modelo: "CUBE",
-      imagen: "banco4.png",
+      imagen: "cube.png",
       modulo: "45",
       materialBastidor: "laminado",
       respaldo: true,
@@ -158,7 +158,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "CUBE",
-      imagen: "banco4.png",
+      imagen: "cube.png",
       modulo: "90",
       materialBastidor: "laminado",
       respaldo: true,
@@ -168,7 +168,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "CUBE",
-      imagen: "banco4.png",
+      imagen: "cube.png",
       modulo: "120",
       materialBastidor: "laminado",
       respaldo: true,
@@ -178,7 +178,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "CUBE",
-      imagen: "banco4.png",
+      imagen: "cube.png",
       modulo: "150",
       materialBastidor: "laminado",
       respaldo: true,
@@ -188,7 +188,7 @@ export async function insertarBancos() {
     },
     {
       modelo: "CUBE",
-      imagen: "banco4.png",
+      imagen: "cube.png",
       modulo: "45Rincon",
       materialBastidor: "laminado",
       respaldo: true,
@@ -199,28 +199,28 @@ export async function insertarBancos() {
     //Modelo HALL
     {
       modelo: "HALL",
-      imagen: "banco5.png",
+      imagen: "hall.png",
       modulo: "45",
       materialBastidor: "laminado",
       precio: "235, 247",
     },
     {
       modelo: "HALL",
-      imagen: "banco5.png",
+      imagen: "hall.png",
       modulo: "90",
       materialBastidor: "laminado",
       precio: "288, 302",
     },
     {
       modelo: "HALL",
-      imagen: "banco5.png",
+      imagen: "hall.png",
       modulo: "120",
       materialBastidor: "laminado",
       precio: "314, 330",
     },
     {
       modelo: "HALL",
-      imagen: "banco5.png",
+      imagen: "hall.png",
       modulo: "150",
       materialBastidor: "laminado",
       precio: "358, 376",

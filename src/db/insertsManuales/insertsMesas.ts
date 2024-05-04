@@ -1202,7 +1202,7 @@ export async function insertarMesas() {
       altura: "75, 112",
       materialPata: "aluminio",
       colorPata: "aluminio",
-      precio: "323, 336, 349, 320, 333, 419, 437",
+      precio: "423, 436, 449, 420, 433, 619, 637",
     },
     {
       modelo: "BERLÍN",
@@ -1215,7 +1215,7 @@ export async function insertarMesas() {
       altura: "75, 112",
       materialPata: "aluminio",
       colorPata: "aluminio",
-      precio: "341, 354, 373, 335, 353, 443, 466",
+      precio: "441, 454, 473, 435, 453, 643, 666",
     },
     {
       modelo: "BERLÍN",
@@ -1228,7 +1228,7 @@ export async function insertarMesas() {
       altura: "75, 112",
       materialPata: "aluminio",
       colorPata: "aluminio",
-      precio: "385, 407, 442, 374, 406, 509, 550",
+      precio: "485, 507, 542, 474, 506, 709, 750",
     },
     {
       modelo: "BERLÍN",
@@ -1241,7 +1241,7 @@ export async function insertarMesas() {
       altura: "75, 112",
       materialPata: "aluminio",
       colorPata: "aluminio",
-      precio: "410, 436, 479, 395, 435, 554, 617",
+      precio: "510, 536, 579, 495, 535, 754, 817",
     },
     {
       modelo: "BERLÍN",
@@ -1255,7 +1255,7 @@ export async function insertarMesas() {
       altura: "75, 112",
       materialPata: "aluminio",
       colorPata: "aluminio",
-      precio: "585, 652, 726, 570, 637, 800, 869",
+      precio: "685, 752, 826, 670, 737, 1000, 1069",
     },
     {
       modelo: "BERLÍN",
@@ -1269,7 +1269,7 @@ export async function insertarMesas() {
       altura: "75, 112",
       materialPata: "aluminio",
       colorPata: "aluminio",
-      precio: "699, 794, 899, 675, 773, 966, 988",
+      precio: "799, 894, 999, 775, 873, 1166, 1188",
     },
     //INSERTS MESA 18
     {
@@ -1282,7 +1282,7 @@ export async function insertarMesas() {
       altura: "75, 112",
       materialPata: "aluminio",
       colorPata: "aluminio",
-      precio: "188, 194, 198, 209, 332",
+      precio: "223, 229, 233, 244, 382",
     },
     {
       modelo: "NIZA",
@@ -1294,7 +1294,7 @@ export async function insertarMesas() {
       altura: "75, 112",
       materialPata: "aluminio",
       colorPata: "aluminio",
-      precio: "217, 236, 258, 276, 411",
+      precio: "252, 271, 293, 311, 461",
     },
     {
       modelo: "NIZA",
@@ -1306,7 +1306,7 @@ export async function insertarMesas() {
       altura: "75, 112",
       materialPata: "aluminio",
       colorPata: "aluminio",
-      precio: "280, 284, 316, 338, 487",
+      precio: "315, 319, 351, 373, 537",
     },
     {
       modelo: "NIZA",
@@ -1318,7 +1318,7 @@ export async function insertarMesas() {
       altura: "75, 112",
       materialPata: "aluminio",
       colorPata: "aluminio",
-      precio: "272, 309, 351, 377, 538",
+      precio: "307, 344, 386, 412, 588",
     },
     {
       modelo: "NIZA",
@@ -1331,7 +1331,7 @@ export async function insertarMesas() {
       altura: "75, 112",
       materialPata: "aluminio",
       colorPata: "aluminio",
-      precio: "393, 454, 521, 596, 809",
+      precio: "428, 489, 556, 631, 859",
     },
     {
       modelo: "NIZA",
@@ -1344,7 +1344,7 @@ export async function insertarMesas() {
       altura: "75, 112",
       materialPata: "aluminio",
       colorPata: "aluminio",
-      precio: "443, 521, 609, 707, 747",
+      precio: "478, 556, 644, 742, 797",
     },
     //INSERTS MESA 19
     {
