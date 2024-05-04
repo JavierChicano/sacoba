@@ -21,7 +21,7 @@ export const mesas = sqliteTable("mesas", {
   imagen: text("imagen").notNull(),
   imagenAclaracion:text("imagen"),
   tipoBase: text("tipoBase", { enum: ["4 patas", "peninsula", "pie central", "alas"]}).notNull(),
-  extension: text("extension", { enum: ["de libro", "fija", "extensible"]}),
+  extension: text("extension", { enum: ["de libro", "fija", "extensible"]}).notNull(),
   tipoAmpliable: text("tipoAmpliable", { enum: ["lateral", "frontal"]}),
   auxiliar: text("auxiliar", { enum: ["doble"]}),
   materialExtensible: text("materialExtensible"),

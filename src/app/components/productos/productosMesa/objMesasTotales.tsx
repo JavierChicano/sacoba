@@ -27,7 +27,7 @@ export default function ObjMesasTotales({
       setMesasOrdenadas(mesasTotales);
     }
   }, []);
-
+console.log(mesasTotales)
   //Filtro de ordenacion
   const ordenarPorReciente = () => {
     const sortedMesas = [...mesasOrdenadas].reverse();
@@ -55,6 +55,10 @@ export default function ObjMesasTotales({
   const [tiposBases, setTiposBases] = useState<string[]>([]);
   const [tiposBaseSeleccionados, setTiposBaseSeleccionados] = useState<string[]>([]);
 
+   //Para poder filtrar las mesas por extension
+   const [tiposExtension, setTiposExtension] = useState<string[]>([]);
+   const [tiposExtensionSeleccionados, setTiposExtensionSeleccionados] = useState<string[]>([]);
+ 
   const handleSelectionChange = (indice: string) => {
     if (indice) {
       const indices = indice.split(",").map(Number);
@@ -65,6 +69,16 @@ export default function ObjMesasTotales({
     }
   };
 
+  const handleSelectionChange2 = (indice: string) => {
+    if (indice) {
+      const indices = indice.split(",").map(Number);
+      const tiposSeleccionados = indices.map((index) => tiposExtension[index]);
+      setTiposExtensionSeleccionados(tiposSeleccionados);
+    } else {
+      setTiposExtensionSeleccionados([]);
+    }
+  };
+  
   // Filtrar las mesas en función de los valores del slider y los tipos de base seleccionados
   useEffect(() => {
     const mesasFiltradasPorPrecio = mesasTotales.filter((mesa) => {
@@ -75,20 +89,34 @@ export default function ObjMesasTotales({
         return precio >= precioMinimo && precio <= precioMaximo;
       }
     });
+    
+    // Filtrar mesas por tipo de base
+    const mesasFiltradasPorTiposBase = tiposBaseSeleccionados.length > 0
+    ? mesasFiltradasPorPrecio.filter((mesa) => tiposBaseSeleccionados.includes(mesa.tipoBase))
+    : mesasFiltradasPorPrecio;
 
-    const mesasFiltradasPorTiposBase = mesasFiltradasPorPrecio.filter((mesa) =>
-      tiposBaseSeleccionados.length > 0
-        ? tiposBaseSeleccionados.includes(mesa.tipoBase)
-        : true
-    );
-    setMesasOrdenadas(mesasFiltradasPorTiposBase);
+    // Filtrar mesas por extensión
+    const mesasFiltradasPorExtension = tiposExtensionSeleccionados.length > 0
+    ? mesasFiltradasPorTiposBase.filter((mesa) => tiposExtensionSeleccionados.includes(mesa.extension))
+    : mesasFiltradasPorTiposBase;
+
+    // Establecer las mesas ordenadas
+    setMesasOrdenadas(mesasFiltradasPorExtension);
+
 
     // Extraer tipos de base únicos
     const tiposBaseUnicos = Array.from(
       new Set(mesasFiltradasPorPrecio.map((mesa) => mesa.tipoBase))
     );
     setTiposBases(tiposBaseUnicos);
-  }, [precioMinimo, precioMaximo, tiposBaseSeleccionados, mesasTotales]);
+
+    // Extraer tipos de extension únicos
+    const tiposExtensionUnicos = Array.from(
+      new Set(mesasFiltradasPorPrecio.map((mesa) => mesa.extension))
+    );
+    setTiposExtension(tiposExtensionUnicos);
+    
+  }, [precioMinimo, precioMaximo, tiposBaseSeleccionados, mesasTotales, tiposExtensionSeleccionados]);
 
   return (
     <>
@@ -178,11 +206,26 @@ export default function ObjMesasTotales({
               radius="none"
               onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
                 const value = event.target.value;
-                console.log("llaves del coche", value);
                 handleSelectionChange(value);
               }}
             >
               {tiposBases.map((tipoBase, index) => (
+                <SelectItem key={index} value={tipoBase}>
+                  {tipoBase}
+                </SelectItem>
+              ))}
+            </Select>
+            <Select
+              label="Por extensión"
+              selectionMode="multiple"
+              className="max-w-xs mt-6"
+              radius="none"
+              onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+                const value = event.target.value;
+                handleSelectionChange2(value);
+              }}
+            >
+              {tiposExtension.map((tipoBase, index) => (
                 <SelectItem key={index} value={tipoBase}>
                   {tipoBase}
                 </SelectItem>

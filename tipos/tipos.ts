@@ -3,7 +3,7 @@ export interface TipoMesa {
   modelo: string;
   imagen: string;
   tipoBase: string;
-  extension: string | null;
+  extension: string;
   tipoAmpliable: string | null;
   auxiliar: string | null;
   grosorTapa:  boolean | null;
