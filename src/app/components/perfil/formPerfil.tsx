@@ -1,17 +1,39 @@
 import { IconBuildingSkyscraper, IconHomeEdit, IconPhone, IconScan, IconUserScan } from "@tabler/icons-react";
-import { useSesion } from "../../../../states/states";
 import { FormCuentaValidation } from "../../../../tipos/tiposForm";
 import { Toaster, toast } from "sonner";
-import { useState } from "react";
-import { TipoUsuario } from "../../../../tipos/tipos";
+import { useEffect, useState } from "react";
+import { TipoUsuario, TipoUsuarioExtended } from "../../../../tipos/tipos";
 import { InsertarUserData } from "./InsertarFormUser";
+import { LeerDatosCookie } from "./cookiePerfil";
+
 
 export default function FormPerfil() {
-  const { sesionON } = useSesion();
-  const usuario = sesionON
-    ? JSON.parse(sessionStorage.getItem("usuario") ?? "null")
-    : null;
+  const [usuario, setUsuario] = useState<TipoUsuarioExtended>({
+    correoElectronico: "",
+    nombre: "",
+    apellidos: "",
+    telefono: "",
+    domicilio: "",
+    cp: "",
+    provincia: ""
+  });
 
+  useEffect(() => {
+    const obtenerUsuario = async () => {
+      try {
+        const cookie = await LeerDatosCookie(); 
+        if(cookie.status){
+          setUsuario(cookie.usuario)
+        }else{
+
+        }
+      } catch (error) {
+        console.error("Error al obtener los datos del usuario:", error);
+      }
+    };
+    obtenerUsuario(); 
+  }, []);
+  console.log(usuario)
   const clientAction = async (formData: FormData) => {
     const newForm = {
       correoElectronico: usuario.correoElectronico,
@@ -72,7 +94,7 @@ export default function FormPerfil() {
         />
       </div>
 
-      {/* INFORMACION EXTRA */}
+       {/* INFORMACION EXTRA */}
       <div className="w-full border-b border-colorBase mt-5 col-span-2">
         <h3>Información extra</h3>
       </div>
@@ -82,7 +104,7 @@ export default function FormPerfil() {
           placeholder="Nº Telefono"
           className="w-full border-b border-colorBase h-14 bg-fondoTerciario text-xl text-white pl-3"
           name="telefono"
-          defaultValue={usuario.telefono || null}
+          defaultValue={usuario.telefono || ""}
         />
         <IconPhone
           className="absolute right-5 self-center w-8"
@@ -95,7 +117,7 @@ export default function FormPerfil() {
           placeholder="Domicilio"
           className="w-full border-b border-colorBase h-14 bg-fondoTerciario text-xl text-white pl-3"
           name="domicilio"
-          defaultValue={usuario.domicilio || null}
+          defaultValue={usuario.domicilio || ""}
         />
         <IconHomeEdit
           className="absolute right-5 self-center w-8"
@@ -108,7 +130,7 @@ export default function FormPerfil() {
           placeholder="Cod Postal"
           className="w-full border-b border-colorBase h-14 bg-fondoTerciario text-xl text-white pl-3"
           name="cp"
-          defaultValue={usuario.cp || null}
+          defaultValue={usuario.cp || ""}
         />
         <IconScan
           className="absolute right-5 self-center w-8"
@@ -121,13 +143,13 @@ export default function FormPerfil() {
           placeholder="Provincia"
           className="w-full border-b border-colorBase h-14 bg-fondoTerciario text-xl text-white pl-3"
           name="provincia"
-          defaultValue={usuario.provincia || null}
+          defaultValue={usuario.provincia || ""}
         />
         <IconBuildingSkyscraper
           className="absolute right-5 self-center w-8"
           height={30}
         />
-      </div>
+      </div> 
       <div className="col-span-2 flex justify-center mt-10">
         <button
           type="submit"

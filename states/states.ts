@@ -56,14 +56,3 @@ export const useColorSeleccionadoBastidor = create<ColorSeleccionadoBastidor>((s
   rutaImagenBastidor: '',
   setColorSeleccionadoBastidor: (colorElegidoBastidor: string, modeloElegidoBastidor: string, rutaImagenBastidor: string) => set({ colorElegidoBastidor, modeloElegidoBastidor, rutaImagenBastidor }),
 }));
-
-//Estado para guardar el estado de la sesion
-type SesionState = {
-  sesionON: boolean;
-  setSesionON: (sesion: boolean) => void;
-};
-
-export const useSesion = create<SesionState>((set) => ({
-  sesionON: false,
-  setSesionON: (sesion) => set({ sesionON: sesion }),
-}));

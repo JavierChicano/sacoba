@@ -1,11 +1,14 @@
 "use server";
 
-import { selectComprobarUsuario } from "@/db/selects";
+import { selectComprobarUsuario } from "@/db/selectsDinamicos";
 import { FormLoginValidation } from "../../../../tipos/tiposForm";
-import { usuarios } from "@/db/schema";
 
-export const ComprobarUsuario = async (nuevoRegistro: unknown) => {
-  const result = FormLoginValidation.safeParse(nuevoRegistro);
+type usuario = {
+  correoElectronico: string,
+  contraseña: string
+}
+export const ComprobarUsuario = async (usuario: usuario) => {
+  const result = FormLoginValidation.safeParse(usuario);
   if (!result.success) {
     let errorMessage = "";
     result.error.issues.forEach((issue) => {
@@ -17,13 +20,13 @@ export const ComprobarUsuario = async (nuevoRegistro: unknown) => {
   }
   try {
     const loginExitoso = await selectComprobarUsuario(
-      result.data.email,
+      result.data.correoElectronico,
       result.data.contraseña
     );
     if(loginExitoso){
         return{
             success: loginExitoso.success,
-            usuario: loginExitoso.usuario
+            token: loginExitoso.token
         }
     }else {
         // Si 'registrarUsuario' devuelve false, consideramos que hubo un error

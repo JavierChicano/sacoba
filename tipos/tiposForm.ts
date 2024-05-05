@@ -3,14 +3,14 @@ const caracteresPermitidos = /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\s]+$/;
 const soloNumeros = /^[0-9]+$/;
 
 export const FormRegistroValidation = z.object({
+  correoElectronico: z.string().email({
+    message: "Email no válido",
+  }),
   nombre: z.string().trim().regex(caracteresPermitidos, {
     message: "El nombre solo puede contener letras",
   }),
   apellidos: z.string().trim().regex(caracteresPermitidos, {
     message: "Los apellidos solo pueden contener letras",
-  }),
-  email: z.string().email({
-    message: "Email no válido",
   }),
   contraseña: z.string().min(7, {
     message:
@@ -19,7 +19,7 @@ export const FormRegistroValidation = z.object({
 });
 
 export const FormLoginValidation = z.object({
-  email: z.string().email({
+  correoElectronico: z.string().email({
     message: "Email no válido",
   }),
   contraseña: z.string().min(7, {

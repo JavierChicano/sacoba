@@ -10,11 +10,10 @@ import { InsertarRegistro } from "./insertarUsuarioRegistro";
 import { FormRegistroValidation } from "../../../../tipos/tiposForm";
 import { redirect } from "next/navigation";
 import { Toaster, toast } from 'sonner'
-import { useSesion } from "../../../../states/states";
+import { setCookie } from "cookies-next"
 
 export default function FormRegistro() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const { sesionON, setSesionON } = useSesion();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -22,9 +21,9 @@ export default function FormRegistro() {
 
   const clientAction = async (formData: FormData) => {
     const newForm = {
+      correoElectronico: formData.get("correoElectronico"),
       nombre: formData.get("nombre"),
       apellidos: formData.get("apellidos"),
-      email: formData.get("correoElectronico"),
       contraseña: formData.get("contraseña"),
     };
 
@@ -41,9 +40,9 @@ export default function FormRegistro() {
       //Manejar el error
       toast.error(response.error)
     } else {
-      setSesionON(true)
-      //Esto guarda que la sesion esta iniciada
-      sessionStorage.setItem("sesionIniciada", "true");
+      //Seteamos la cookie con el token que contiene la informacion del usuario
+      setCookie("client-Token", response.token)
+
       //Si se ha insertado correctamente redirige al perfil
       redirect("/Perfil");
     }

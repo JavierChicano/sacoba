@@ -1,7 +1,6 @@
 import { eq, inArray } from "drizzle-orm";
 import { db } from ".";
-import { bancos, colores, mesas, packs, sillas, usuarios } from "./schema";
-import bcrypt from "bcrypt";
+import { bancos, colores, mesas, packs, sillas } from "./schema";
 
 //Selects de mesas
 export async function selectsMesasTendencia() {
@@ -154,38 +153,3 @@ export async function selectsColoresMesas() {
   return todosColores;
 }
 
-//Select usuario logueado
-export async function selectComprobarUsuario(
-  email: string,
-  contraseña: string
-) {
-  try {
-    // Realizar una consulta SQL para seleccionar el usuario con el correo electrónico dado
-    const usuario = await db
-      .select()
-      .from(usuarios)
-      .where(eq(usuarios.correoElectronico, email))
-      .limit(1);
-
-    if (usuario && usuario.length === 1) {
-      const comparar = bcrypt.compareSync(contraseña, usuario[0].contraseña);
-      if (comparar) {
-        //Para pasar el usuario como objeto pero sin el campo contraseña
-        const { contraseña, ...user } = usuario[0];
-        return {
-          success: true,
-          usuario: user,
-        };
-      } else {
-        //La contraseña no es valida
-        return false;
-      }
-    } else {
-      // Si no se encontró un usuario, devolver false
-      return false;
-    }
-  } catch (error: any) {
-    //Si salta un error en la consulta
-    return false;
-  }
-}

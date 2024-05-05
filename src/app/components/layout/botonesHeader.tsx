@@ -7,13 +7,26 @@ import Link from "next/link";
 import DesplegableCarrito from "./desplegableCarrito";
 import HoverBoton from "./hoverBotones";
 import DesplegableLogin from "./desplegableLogin";
-import { useSesion } from "../../../../states/states";
+import { SesionIniciadaComprobacion } from "./sesionIniciada";
 
 export default function BotonesHeader() {
   const [mostrarDesplegable, setMostrarDesplegable] = useState(false);
   const [mostrarLogin, setMostrarLogin] = useState(false);
-  const { sesionON } = useSesion();
+  const [cookieIniciada, setCookieIniciada] = useState(false);
 
+  //Comprueba si la sesion esta iniciada
+  useEffect(() => {
+    const obtenerUsuario = async () => {
+      try {
+        const cookie = await SesionIniciadaComprobacion(); 
+        setCookieIniciada(cookie.status)
+      } catch (error) {
+        console.error("Error al obtener los datos del usuario:", error);
+      }
+    };
+    obtenerUsuario(); 
+  }, []);
+  
   return (
     <ul className="flex justify-around w-3/4 m-10 text-xl items-center">
       <HoverBoton>
@@ -44,13 +57,13 @@ export default function BotonesHeader() {
               />
             </Link>
 
-            {mostrarDesplegable && sesionON && <DesplegableCarrito />}
+            {mostrarDesplegable && cookieIniciada && <DesplegableCarrito />}
           </div>
           <div
             onMouseEnter={() => setMostrarLogin(true)}
             onMouseLeave={() => setMostrarLogin(false)}
           >
-            {sesionON ? (
+            {cookieIniciada ? (
               <Link href={"/Perfil"}>
                   <IconUser
                     stroke={2}
@@ -64,7 +77,7 @@ export default function BotonesHeader() {
                   size={40}
                 />
             )}
-            {mostrarLogin && !sesionON && <DesplegableLogin />}
+            {mostrarLogin && !cookieIniciada && <DesplegableLogin />}
           </div>
         </div>
       </li>
