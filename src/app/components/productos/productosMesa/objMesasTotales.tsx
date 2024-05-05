@@ -27,7 +27,6 @@ export default function ObjMesasTotales({
       setMesasOrdenadas(mesasTotales);
     }
   }, []);
-console.log(mesasTotales)
   //Filtro de ordenacion
   const ordenarPorReciente = () => {
     const sortedMesas = [...mesasOrdenadas].reverse();

@@ -1,8 +1,6 @@
 "use client";
 import { TipoColor, TipoMesa } from "../../../../../tipos/tipos";
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import { usePrecioAcumulado } from "../../../../../states/states";
 import SeccionPrecio from "./seccionPrecio";
 import RutaPC from "./rutaPC";
 import SeccionPersonalizarMesa from "./seccionPersoMesa";
@@ -14,6 +12,7 @@ export default function CompClienteMesa({
   mesaSeleccionada: TipoMesa[];
   colores: TipoColor[];
 }) {
+  console.log(mesaSeleccionada);
   return (
     <div>
       {mesaSeleccionada && (
@@ -37,8 +36,14 @@ export default function CompClienteMesa({
               respectivamente*{" "}
             </aside>
             <aside className="text-xs">
-              La altura de la mesa se calcula considerando la encimera de laminado
+              La altura de la mesa se calcula considerando la encimera de
+              laminado
             </aside>
+            {mesaSeleccionada[0].extension === "extensible" && (
+              <aside className="text-xs">
+                El material del extensible es de laminado
+              </aside>
+            )}
           </section>
           <SeccionPersonalizarMesa
             mesaSeleccionada={mesaSeleccionada}

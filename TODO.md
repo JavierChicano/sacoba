@@ -36,3 +36,5 @@ Las alturas de las mesas son considerando tapa laminado, el grosor por defecto d
 //Borrar el componente "meteors", si al final no se va a usar
 
 //BORRAR PAGINA "CALCULOPRECIOS" AL FINALIZAR LA PAGINA
+
+//Pagina mesa en concreto, poner opcion de cambiar el color del laminado extensible
