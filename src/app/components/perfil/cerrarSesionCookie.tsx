@@ -1,19 +1,19 @@
 "use server";
+import { deleteCookie, setCookie } from "cookies-next";
 import { verify } from "jsonwebtoken";
 import { cookies } from "next/headers";
 
-export const LeerDatosCookie = async () => {
+export default async function LogOut() {
   const clientToken = cookies().get("client-Token");
 
   if (clientToken !== undefined && clientToken.value !== undefined) {
     try {
-      const user = verify(clientToken.value, process.env.AUTH_USER_TOKEN!);
-      // Convertir el objeto user a JSON
-      const usuarioJSON = JSON.stringify(user);
-      const usuarioObjeto = JSON.parse(usuarioJSON);
+      //Simplemente con pasar la validacion nos vale, ya que no queremos la info
+      verify(clientToken.value, process.env.AUTH_USER_TOKEN!);
+      console.log(verify(clientToken.value, process.env.AUTH_USER_TOKEN!));
+      cookies().delete("client-Token");
       return {
         status: true,
-        usuario: usuarioObjeto.usuario,
       };
     } catch (error) {
       return {
@@ -24,4 +24,4 @@ export const LeerDatosCookie = async () => {
   return {
     status: false,
   };
-};
+}

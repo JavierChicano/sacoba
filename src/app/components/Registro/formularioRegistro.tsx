@@ -5,7 +5,7 @@ import {
   IconMail,
   IconUserScan,
 } from "@tabler/icons-react";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState } from "react";
 import { InsertarRegistro } from "./insertarUsuarioRegistro";
 import { FormRegistroValidation } from "../../../../tipos/tiposForm";
 import { redirect } from "next/navigation";

@@ -1,20 +1,21 @@
 "use client";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+import LogOut from './cerrarSesionCookie';
+import { useRouter } from 'next/navigation';
 
 export default function CerrarSesion() {
+  const router = useRouter();
 
-  const handleBoton = () => {
-
-    //Al cerrar sesion la sesion se borra
-    sessionStorage.clear();
+  const handleBoton = async () => {
+    const response = await LogOut();
+    if (response) {
+      router.push('/');
+    } else {
+      console.log('Ha sucedido un error');
+    }
   };
-
   return (
-    <Link href={"/"}>
-      <button className="bg-red-300 p-2 text-black" onClick={handleBoton}>
+      <button className="bg-red-300 p-2 text-black cursor-pointer" onClick={handleBoton}>
         Cerrar sesion
       </button>
-    </Link>
   );
 }

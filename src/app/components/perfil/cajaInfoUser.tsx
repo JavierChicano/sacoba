@@ -25,7 +25,6 @@ export default function CajaUserInfo() {
     };
     obtenerUsuario(); 
   }, []);
-console.log(usuario)
   //Funcion para poner la primera letra en mayuscula
   const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);

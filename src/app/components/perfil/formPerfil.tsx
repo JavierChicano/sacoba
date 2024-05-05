@@ -25,7 +25,7 @@ export default function FormPerfil() {
         if(cookie.status){
           setUsuario(cookie.usuario)
         }else{
-
+          console.error("Token de cookie no válido");
         }
       } catch (error) {
         console.error("Error al obtener los datos del usuario:", error);
@@ -33,7 +33,7 @@ export default function FormPerfil() {
     };
     obtenerUsuario(); 
   }, []);
-  console.log(usuario)
+  
   const clientAction = async (formData: FormData) => {
     const newForm = {
       correoElectronico: usuario.correoElectronico,
