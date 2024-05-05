@@ -12,7 +12,6 @@ export default function CompClienteMesa({
   mesaSeleccionada: TipoMesa[];
   colores: TipoColor[];
 }) {
-  console.log(mesaSeleccionada);
   return (
     <div>
       {mesaSeleccionada && (

@@ -4,10 +4,8 @@ export interface TipoMesa {
   imagen: string;
   tipoBase: string;
   extension: string;
-  tipoAmpliable: string | null;
-  auxiliar: string | null;
-  grosorTapa:  boolean | null;
   materialTapa: string;
+  grosorTapa:  boolean | null;
   dimensiones: string;
   altura: string;
   materialPata: string;
