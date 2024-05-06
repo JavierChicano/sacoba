@@ -10,7 +10,6 @@ export default async function LogOut() {
     try {
       //Simplemente con pasar la validacion nos vale, ya que no queremos la info
       verify(clientToken.value, process.env.AUTH_USER_TOKEN!);
-      console.log(verify(clientToken.value, process.env.AUTH_USER_TOKEN!));
       cookies().delete("client-Token");
       return {
         status: true,

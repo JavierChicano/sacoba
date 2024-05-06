@@ -2,7 +2,7 @@ import { IconBuildingSkyscraper, IconHomeEdit, IconPhone, IconScan, IconUserScan
 import { FormCuentaValidation } from "../../../../tipos/tiposForm";
 import { Toaster, toast } from "sonner";
 import { useEffect, useState } from "react";
-import { TipoUsuario, TipoUsuarioExtended } from "../../../../tipos/tipos";
+import { TipoUsuarioExtended } from "../../../../tipos/tipos";
 import { InsertarUserData } from "./InsertarFormUser";
 import { LeerDatosCookie } from "./cookiePerfil";
 
@@ -33,7 +33,7 @@ export default function FormPerfil() {
     };
     obtenerUsuario(); 
   }, []);
-  
+
   const clientAction = async (formData: FormData) => {
     const newForm = {
       correoElectronico: usuario.correoElectronico,
