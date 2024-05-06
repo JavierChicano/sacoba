@@ -79,7 +79,6 @@ export default function SeccionPrecio({
       setPrecioAltura(40);
     }
   }, [mesa, index, mesaSeleccionada]);
-console.log(mesa)
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 ">
       <div className="flex justify-between items-center">
