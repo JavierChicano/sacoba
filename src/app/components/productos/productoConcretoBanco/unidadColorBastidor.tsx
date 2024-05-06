@@ -37,8 +37,8 @@ export default function UnidadColorBastidor({ color }: { color: TipoColor }) {
       onMouseLeave={() => setHovered(false)}
     >
       {hovered && (
-        <div className="absolute top-0 left-0 w-full h-full bg-black/80 flex flex-col justify-center items-center pointer-events-none z-10">
-          <p className="text-white text-xl text-center">{color.nombreColor}</p>
+        <div className="absolute top-0 left-0 w-full h-full bg-black/80 flex flex-col justify-center items-center pointer-events-none z-10  flex-wrap">
+          <p className="text-white text-xl text-center text-wrap">{color.nombreColor}</p>
         </div>
       )}
       <div

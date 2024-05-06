@@ -4,7 +4,9 @@ import { IconClick } from "@tabler/icons-react";
 import ModalColores from "../modalColores";
 import {
   useColorSeleccionado,
-  useModal
+  useColorSeleccionadoBastidor,
+  useModal,
+  useModalBastidor,
 } from "../../../../../states/states";
 import {
   useIndexMesaFinal,
@@ -15,6 +17,7 @@ import Image from "next/image";
 import ObjMesaPacks from "../packConcreto/objDimensionesMesaPack";
 import ObjColorBastidor from "./objColorBastidorMesa";
 import ObjAlturaMesa from "./objAlturaMesa";
+import ModalColoresBastidor from "../productoConcretoBanco/modalColoresBastidor";
 
 export default function SeccionPersonalizarMesa({
   mesaSeleccionada,
@@ -25,8 +28,11 @@ export default function SeccionPersonalizarMesa({
 }) {
   //Estado globales
   const { modalVisible, setModalVisible } = useModal();
+  const { modalVisibleBastidor, setModalVisibleBastidor } = useModalBastidor();
   const { colorElegido, modeloElegido, rutaImagen, grupo } =
     useColorSeleccionado();
+  const { colorElegidoBastidor, rutaImagenBastidor } =
+    useColorSeleccionadoBastidor();
   const { setMesaFinal } = useMesaFinal();
   const { setIndexMesaFinal } = useIndexMesaFinal();
 
@@ -35,7 +41,9 @@ export default function SeccionPersonalizarMesa({
   const [coloresPataMesa, setColoresPataMesa] = useState<string[]>([]);
   const [alturasMesa, setAlturasMesa] = useState<string[]>([]);
   const [coloresFiltrados, setColoresFiltrados] = useState<TipoColor[]>([]);
+  const [coloresExtensible, setColoresExtensible] = useState<TipoColor[]>([]);
   const [grosorTapa, setGrosorTapa] = useState(false);
+  const [extensible, setExtensible] = useState(false);
 
   //Estados para ver el indice de la seleccion del usuario
   const [indexDimension, setIndexDimension] = useState(0);
@@ -80,9 +88,13 @@ export default function SeccionPersonalizarMesa({
       setColorPataElegido(coloresPataMesa[0]);
       setDimension(dimensionesMesa[0]);
       setAlturaElegida(alturasMesa[0]);
+
+      //Verificar si la mes es extensible o no
+      if (mesaSeleccionada[0].extension === "extensible") {
+        setExtensible(true);
+      }
     }
   }, [mesaSeleccionada]);
-
   //Para filtrar los colores que pertenecen a esta mesa
   useEffect(() => {
     if (mesaSeleccionada.length > 0) {
@@ -96,6 +108,10 @@ export default function SeccionPersonalizarMesa({
         )
       );
       setColoresFiltrados(modelosFiltrados);
+      const laminadosExtensible = colores.filter((color) =>
+        color.modelo.includes("laminado")
+      );
+      setColoresExtensible(laminadosExtensible);
     }
   }, [colores, mesaSeleccionada]);
   //Para comprobar si en ese material existen varios grosores
@@ -116,8 +132,8 @@ export default function SeccionPersonalizarMesa({
         setGrosorTapa(false);
       }
     });
-    if(modelo!=="silestone g1" && modelo !== "dekton g1"){
-        setGrosorElegido("no hay");
+    if (modelo !== "silestone g1" && modelo !== "dekton g1") {
+      setGrosorElegido("no hay");
     }
   }, [modeloElegido]);
   //Guarda en los estados globales todos los datos recogidos de los estados locales
@@ -131,9 +147,16 @@ export default function SeccionPersonalizarMesa({
       colorElegido,
       grosorElegido,
       colorPataElegido,
+      colorElegidoBastidor,
       alturaElegida
     );
-    setIndexMesaFinal(indexDimension, modeloElegido, grupo, grosorElegido, indexAltura);
+    setIndexMesaFinal(
+      indexDimension,
+      modeloElegido,
+      grupo,
+      grosorElegido,
+      indexAltura
+    );
   }, [
     dimension,
     modeloElegido,
@@ -143,6 +166,7 @@ export default function SeccionPersonalizarMesa({
     colorPataElegido,
     alturaElegida,
     indexDimension,
+    colorElegidoBastidor,
     indexAltura,
   ]);
 
@@ -198,6 +222,46 @@ export default function SeccionPersonalizarMesa({
           />
         </div>
       </div>
+      {/* Elegir color del laminado, en el caso de que la mesa sea extensible */}
+      {extensible && (
+        <aside>
+          <section className="flex items-center gap-2">
+            <h2 className="text-2xl">Elige color del laminado extensible</h2>
+            <span
+              className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase"
+              onClick={() => {
+                setModalVisibleBastidor(true);
+              }}
+            >
+              Elegir <IconClick stroke={2} />
+            </span>
+            {modalVisibleBastidor && (
+              <ModalColoresBastidor colores={coloresExtensible} />
+            )}
+          </section>
+          <div
+            className={cn(
+              colorElegidoBastidor === ""
+                ? "hidden"
+                : "flex gap-5 whitespace-nowrap items-center flex-wrap mt-3"
+            )}
+          >
+            <h2 className="text-xl">
+              Color:{" "}
+              <span className="text-colorBase">{colorElegidoBastidor}</span>
+            </h2>
+            <div>
+              <Image
+                src={rutaImagenBastidor}
+                alt={`Color del laminado extensible`}
+                width={50}
+                height={50}
+              />
+            </div>
+          </div>
+        </aside>
+      )}
+
       {/* Ver los diferentes grosores del material, en el caso de que se pueda */}
       {grosorTapa && (
         <section className="flex items-center">

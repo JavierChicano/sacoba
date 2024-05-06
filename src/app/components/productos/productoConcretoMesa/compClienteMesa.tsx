@@ -32,15 +32,18 @@ export default function CompClienteMesa({
               El grosor por defecto de los materiales{" "}
               <span className="italic">Silestone</span> y{" "}
               <span className="italic">Dekton</span> es de 12mm y 8mm
-              respectivamente*{" "}
+              respectivamente*.
             </aside>
             <aside className="text-xs">
               La altura de la mesa se calcula considerando la encimera de
-              laminado
+              laminado.
+            </aside>
+            <aside className="text-xs">
+             *Se utiliza un tablero de 16mm por debajo para dar robusted a la encimera.
             </aside>
             {mesaSeleccionada[0].extension === "extensible" && (
               <aside className="text-xs">
-                El material del extensible es de laminado
+                El material del extensible es de laminado, pudiendo personalizar su color
               </aside>
             )}
           </section>

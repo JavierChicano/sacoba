@@ -10,6 +10,7 @@ type MesaStateFinal = {
     color: string;
     grosor?: string;
     colorPata: string;
+    colorExtensible?: string;
     altura: string;
     precio: number;
     cantidad: number;
@@ -22,6 +23,7 @@ type MesaStateFinal = {
     color: string,
     grosor: string | undefined,
     colorPata: string,
+    colorExtensible: string | undefined,
     altura: string
   ) => void;
   setPrecioMesaFinal: (precio: number) => void;
@@ -37,6 +39,7 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
     color: "",
     grosor: undefined,
     colorPata: "",
+    colorExtensible: undefined,
     altura: "",
     precio: 0,
     cantidad: 1,
@@ -49,6 +52,7 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
     color: string,
     grosor: string | undefined,
     colorPata: string,
+    colorExtensible: string | undefined,
     altura: string
   ) =>
     set((state) => ({
@@ -60,6 +64,7 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
         color,
         grosor,
         colorPata,
+        colorExtensible,
         altura,
         precio: state.mesa.precio,
         cantidad: state.mesa.cantidad,
@@ -235,113 +240,113 @@ type BancoStateFinal = {
   vaciarModulos: () => void;
 };
 export const useBancoFinal = create<BancoStateFinal>((set) => ({
-    banco: {
-      modelo: "",
-      modulos: [],
-      acabadoTapizado: "",
-      colorTapizado: "",
-      acabadoBastidor: "",
-      colorBastidor: "",
-      zocalo: false,
-      precio: 0,
-      cantidad: 1,
-    },
-    setBancoFinal: (
-      modelo,
-      acabadoTapizado,
-      colorTapizado,
-      acabadoBastidor,
-      colorBastidor,
-      zocalo = false
-    ) =>
-      set((state) => ({
-        banco: {
-          ...state.banco,
-          modelo,
-          acabadoTapizado,
-          colorTapizado,
-          acabadoBastidor,
-          colorBastidor,
-          zocalo,
-        },
-      })),
-    setPrecioBancoFinal: (precio) =>
-      set((state) => ({
-        banco: {
-          ...state.banco,
-          precio,
-        },
-      })),
-    setCantidadBancos: (cantidad) =>
-      set((state) => ({
-        banco: {
-          ...state.banco,
+  banco: {
+    modelo: "",
+    modulos: [],
+    acabadoTapizado: "",
+    colorTapizado: "",
+    acabadoBastidor: "",
+    colorBastidor: "",
+    zocalo: false,
+    precio: 0,
+    cantidad: 1,
+  },
+  setBancoFinal: (
+    modelo,
+    acabadoTapizado,
+    colorTapizado,
+    acabadoBastidor,
+    colorBastidor,
+    zocalo = false
+  ) =>
+    set((state) => ({
+      banco: {
+        ...state.banco,
+        modelo,
+        acabadoTapizado,
+        colorTapizado,
+        acabadoBastidor,
+        colorBastidor,
+        zocalo,
+      },
+    })),
+  setPrecioBancoFinal: (precio) =>
+    set((state) => ({
+      banco: {
+        ...state.banco,
+        precio,
+      },
+    })),
+  setCantidadBancos: (cantidad) =>
+    set((state) => ({
+      banco: {
+        ...state.banco,
+        cantidad,
+      },
+    })),
+  agregarModulo: (
+    dimensiones,
+    respaldo,
+    cantidad,
+    precioModulo,
+    precioRespaldo
+  ) =>
+    set((state) => {
+      // Buscamos si ya existe un módulo con estas dimensiones
+      const existingIndex = state.banco.modulos.findIndex(
+        (modulo) => modulo.dimensiones === dimensiones
+      );
+      if (existingIndex !== -1) {
+        // Si ya existe un módulo con estas dimensiones, lo sobrescribimos
+        const updatedModulos = [...state.banco.modulos];
+        updatedModulos[existingIndex] = {
+          dimensiones,
+          respaldo,
           cantidad,
-        },
-      })),
-    agregarModulo: (
-      dimensiones,
-      respaldo,
-      cantidad,
-      precioModulo,
-      precioRespaldo
-    ) =>
-      set((state) => {
-        // Buscamos si ya existe un módulo con estas dimensiones
-        const existingIndex = state.banco.modulos.findIndex(
-          (modulo) => modulo.dimensiones === dimensiones
-        );
-        if (existingIndex !== -1) {
-          // Si ya existe un módulo con estas dimensiones, lo sobrescribimos
-          const updatedModulos = [...state.banco.modulos];
-          updatedModulos[existingIndex] = {
-            dimensiones,
-            respaldo,
-            cantidad,
-            precioModulo,
-            precioRespaldo,
-          };
-  
-          return {
-            banco: {
-              ...state.banco,
-              modulos: updatedModulos,
-            },
-          };
-        } else {
-          // Si no existe, agregamos un nuevo módulo
-          return {
-            banco: {
-              ...state.banco,
-              modulos: [
-                ...state.banco.modulos,
-                {
-                  dimensiones,
-                  respaldo,
-                  cantidad,
-                  precioModulo,
-                  precioRespaldo,
-                },
-              ],
-            },
-          };
-        }
-      }),
-    eliminarModulo: (dimensiones) =>
-      set((state) => ({
-        banco: {
-          ...state.banco,
-          modulos: state.banco.modulos.filter(
-            (modulo) => modulo.dimensiones !== dimensiones
-          ),
-        },
-      })),
-    vaciarModulos: () => {
-      set((state) => ({
-        banco: {
-          ...state.banco,
-          modulos: [],
-        },
-      }));
-    },
-  }));
+          precioModulo,
+          precioRespaldo,
+        };
+
+        return {
+          banco: {
+            ...state.banco,
+            modulos: updatedModulos,
+          },
+        };
+      } else {
+        // Si no existe, agregamos un nuevo módulo
+        return {
+          banco: {
+            ...state.banco,
+            modulos: [
+              ...state.banco.modulos,
+              {
+                dimensiones,
+                respaldo,
+                cantidad,
+                precioModulo,
+                precioRespaldo,
+              },
+            ],
+          },
+        };
+      }
+    }),
+  eliminarModulo: (dimensiones) =>
+    set((state) => ({
+      banco: {
+        ...state.banco,
+        modulos: state.banco.modulos.filter(
+          (modulo) => modulo.dimensiones !== dimensiones
+        ),
+      },
+    })),
+  vaciarModulos: () => {
+    set((state) => ({
+      banco: {
+        ...state.banco,
+        modulos: [],
+      },
+    }));
+  },
+}));
