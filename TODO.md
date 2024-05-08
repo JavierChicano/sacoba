@@ -23,7 +23,8 @@
  19- Agregar "Sugerencia" a contacto
  20- Agregar info extra de los laminados en el display de colores 
  21- Modificar precio mesas con patas de alta estabilidad ✅
- 22- Hacer "middleWares" de autorizacion
+ 22- Hacer "middleWares" de autorizacion✅
+  22.1- MiddleWares para admins
  23- Quitar el precio de 0€ antes de que el usuario haya hecho las selecciones
 
 //PAGINA AYUDA

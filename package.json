@@ -21,6 +21,7 @@
     "express": "^4.19.2",
     "framer-motion": "^11.0.13",
     "geist": "^1.2.2",
+    "jose": "^5.2.4",
     "jsonwebtoken": "^9.0.2",
     "next": "14.1.0",
     "next-app": "^0.0.0",
