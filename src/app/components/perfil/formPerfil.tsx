@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { TipoUsuarioExtended } from "../../../../tipos/tipos";
 import { InsertarUserData } from "./InsertarFormUser";
 import { LeerDatosCookie } from "./cookiePerfil";
-
+import { setCookie } from "cookies-next";
 
 export default function FormPerfil() {
   const [usuario, setUsuario] = useState<TipoUsuarioExtended>({
@@ -32,7 +32,7 @@ export default function FormPerfil() {
       }
     };
     obtenerUsuario(); 
-  }, []);
+  },[]);
 
   const clientAction = async (formData: FormData) => {
     const newForm = {
@@ -57,8 +57,8 @@ export default function FormPerfil() {
       //Manejar el error
       toast.error(response.error);
     } else {
-      //Si se ejecuta correctamente
-      sessionStorage.setItem("usuario", JSON.stringify(newForm))
+      //Si se ejecuta correctamente, seteamos un nuevo token
+      setCookie("client-Token", response.token)
     }
   };
   return (

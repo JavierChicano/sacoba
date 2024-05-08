@@ -2,6 +2,7 @@
 import { registrarUsuario } from "@/db/inserts";
 import { FormCuentaValidation } from "../../../../tipos/tiposForm";
 import { actualizarUsuario } from "@/db/updates";
+import { cookies } from "next/headers";
 
 export const InsertarUserData = async (nuevoRegistro: unknown) => {
   const result = FormCuentaValidation.safeParse(nuevoRegistro);
@@ -31,9 +32,10 @@ export const InsertarUserData = async (nuevoRegistro: unknown) => {
     const insercionExitosa = await actualizarUsuario(usuario);
 
     // Si 'registrarUsuario' devuelve true, consideramos que la inserción fue exitosa
-    if (insercionExitosa) {
+    if (insercionExitosa.success) {
       // Si llegamos aquí, la inserción fue exitosa
       return {
+        token: insercionExitosa.token,
         success: true,
       };
     } else {

@@ -25,7 +25,7 @@ export default function BotonesHeader() {
       }
     };
     obtenerUsuario(); 
-  }, []);
+  });
   
   return (
     <ul className="flex justify-around w-3/4 m-10 text-xl items-center">

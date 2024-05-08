@@ -16,8 +16,9 @@
  14- Crear la tabla packs para la pagina de packs✅
  15- Cambiar el texto de sacoba, para una buena renderizacion
  16- Crear un slider en mesas filtros para setear el precio✅
- 16.1- El slider cuando pones ambos en el mismo precio no filtra✅
+  16.1- El slider cuando pones ambos en el mismo precio no filtra✅
  17- Que cuando se añada al carrito aparezca una notificacion "Toast" confirmandolo
+  17.1- Poner notificaciones toast en las acciones que requieran conexcion con la BBDD
  18- Que cuando estes en una pagina, el hover se quede fijo, marcándola
  19- Agregar "Sugerencia" a contacto
  20- Agregar info extra de los laminados en el display de colores 
@@ -27,10 +28,10 @@
 
 //PAGINA AYUDA
 ¿Quiere mas opciones de personalizacion?, mire el catálogo y consulte disponibilidad y precio, puesto que en la página se ha reducido la oferta y aunque se trate de abarcar todos los aspectos y variantes de personalización, no estas cubiertas todas por lavores de simplificacion hacia el usuario
+¿Prefiere ver las mesas en persona y asesorarse con un profesional?, no hay problema, disponemos de tienda física en patatin patatan
 
-Las alturas de las mesas son considerando tapa laminado, el grosor por defecto de silestone 12mm y dekton 8mm
-
-//AÑADIR IMAGENES ACLARACION
+Dudas acerca de productos
+    Las alturas de las mesas son considerando tapa laminado, el grosor por defecto de silestone 12mm y dekton 8mm
 
 //TENER EN CUENTA TIEMPOS DE CARGA EN LOS INSERTS EN LA BBDD
 
