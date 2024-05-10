@@ -6,6 +6,7 @@ import { useColorSeleccionado, useModal } from "../../../../states/states";
 export default function UnidadColor({ color }: { color: TipoColor }) {
   const [ hovered, setHovered ] = useState(false);
   const [ rutaIMG, setRutaIMG ] =  useState("");
+  const [ acabadosDisponibles, setAcabadosDisponibles ] =  useState("");
   const [ nombreModelo, setNombreModelo ] =  useState("");
   const { setModalVisible } = useModal();
   const { setColorSeleccionado, setGrupo } =
@@ -33,6 +34,9 @@ export default function UnidadColor({ color }: { color: TipoColor }) {
     }else{
       setRutaIMG(`/colores/${color.modelo}/${color.imagenColor}`)
       setNombreModelo(color.modelo)
+    }
+    //Ver acabados disponibles de los laminados
+    if(color.modelo === "laminado"){
     }
   },[])
   return (

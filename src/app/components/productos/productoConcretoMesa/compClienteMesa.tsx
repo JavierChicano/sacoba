@@ -36,7 +36,7 @@ export default function CompClienteMesa({
             </aside>
             <aside className="text-xs">
               La altura de la mesa se calcula considerando la encimera de
-              laminado.
+              laminado, que tiene un grosor de 20mm.
             </aside>
             <aside className="text-xs">
              *Se utiliza un tablero de 16mm por debajo para dar robusted a la encimera.

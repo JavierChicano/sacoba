@@ -53,7 +53,7 @@ export default function DisplayColores({
         </div>
       ))}
 
-      {modelo === "laminado" && <p className="text-xs">AQUI HAY Q HACER LEYENDA DE CANTOS Y COSAS</p>}
+      {modelo === "laminado" && <p className="text-xs">Los laminados tienen un grosor de 20mm</p>}
       {(modelo === "silestone g1" || modelo === "dekton g1") && <p className="text-xs">En funcion del grupo el material se encarece*</p>}
       <p className="text-xs">La representacion es una estimación del color del material real</p>
     </section>
