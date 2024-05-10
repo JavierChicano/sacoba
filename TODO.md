@@ -2,7 +2,8 @@
  1 - Crear el desplegable para boton producto ✅
  2 - Hacer el hover de los botones del header ✅
  3 - Ejecutar los inserts de la BBDD ✅
- 4 - Retocar contador en "divInfo.tsx" para que quede mas bonito
+ 4 - Retocar contador en "divInfo.tsx" para que quede mas bonito✅
+ 4.1 - Poner que inicie cuando sea visible 
  5 - Cambiar imagenes de "nuestrosProductos.tsx" ✅
  6 - Poner el hover de los botones del header en el footer tmb ✅
  7 - Arreglar visualizacion en producto ✅
@@ -18,10 +19,10 @@
  16- Crear un slider en mesas filtros para setear el precio✅
   16.1- El slider cuando pones ambos en el mismo precio no filtra✅
  17- Que cuando se añada al carrito aparezca una notificacion "Toast" confirmandolo
-  17.1- Poner notificaciones toast en las acciones que requieran conexcion con la BBDD
+  17.1- Poner notificaciones toast en las acciones que requieran conexion con la BBDD
  18- Que cuando estes en una pagina, el hover se quede fijo, marcándola
  19- Agregar "Sugerencia" a contacto
- 20- Agregar info extra de los laminados en el display de colores 
+ 20- Agregar info extra de los laminados en el display de colores ✅
  21- Modificar precio mesas con patas de alta estabilidad ✅
  22- Hacer "middleWares" de autorizacion✅
   22.1- MiddleWares para admins
@@ -40,4 +41,3 @@ Dudas acerca de productos
 
 //BORRAR PAGINA "CALCULOPRECIOS" AL FINALIZAR LA PAGINA
 
-//Pagina mesa en concreto, poner opcion de cambiar el color del laminado extensible

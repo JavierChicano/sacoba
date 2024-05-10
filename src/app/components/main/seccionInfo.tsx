@@ -12,26 +12,26 @@ export default function SeccionInfo() {
       />
       <DivInfo
         datos={{
-          numero: 10,
-          texto: "Tipos de tapas",
+          numero: 31,
+          texto: "Modelos de sillas",
         }}
       />
       <DivInfo
         datos={{
-          numero: 20,
+          numero: 5,
+          texto: "Modelos de bancos",
+        }}
+      />
+      <DivInfo
+        datos={{
+          numero: 9,
           texto: "Materiales diferentes",
         }}
-      />
+      /> 
       <DivInfo
         datos={{
-          numero: 100,
+          numero: 266,
           texto: "Colores diferentes",
-        }}
-      />
-      <DivInfo
-        datos={{
-          numero: 90,
-          texto: "Modelos de sillas",
         }}
       />
     </section>
