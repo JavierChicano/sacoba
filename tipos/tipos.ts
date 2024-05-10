@@ -51,12 +51,7 @@ export interface TipoColor {
   nombreColor: string;
   imagenColor: string;
   grupo: string | null;
-  acabadoMate: boolean | null;
-  acabadoEfectoNatural: boolean | null;
-  acabadoBrillo: boolean | null;
-  cantoColorBrillo: boolean | null;
-  cantoColorMate: boolean | null;
-  cantoColorAcabadoNatural: boolean | null;
+  acabado: string | null;
 }
 
 export interface TipoUsuario {
