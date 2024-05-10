@@ -49,7 +49,6 @@ export default function UnidadColor({ color }: { color: TipoColor }) {
           mayuscula(cambiarNombresModelo(nombreModelo)),
           rutaIMG
         );
-        console.log(acabadosDisponibles[0])
       }
     }else{
       setColorSeleccionado( color.nombreColor, mayuscula(cambiarNombresModelo(nombreModelo)), rutaIMG);
