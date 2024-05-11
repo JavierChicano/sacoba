@@ -59,6 +59,7 @@ export default function FormularioContacto() {
           <option value="Producto">Producto</option>
           <option value="Duda">Duda</option>
           <option value="Error">Error</option>
+          <option value="Sugerencia">Sugerencia</option>
           <option value="Otro">Otro</option>
         </select>
         <textarea
