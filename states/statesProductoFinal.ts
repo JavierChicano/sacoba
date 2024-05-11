@@ -3,6 +3,7 @@ import { create } from "zustand";
 // Estado global para guardar los datos finales de la mesa
 type MesaStateFinal = {
   mesa: {
+    producto: string;
     modelo: string;
     dimension: string;
     acabado: string;
@@ -32,6 +33,7 @@ type MesaStateFinal = {
 
 export const useMesaFinal = create<MesaStateFinal>((set) => ({
   mesa: {
+    producto: "Mesa",
     modelo: "",
     dimension: "",
     acabado: "",
@@ -57,6 +59,7 @@ export const useMesaFinal = create<MesaStateFinal>((set) => ({
   ) =>
     set((state) => ({
       mesa: {
+        ...state.mesa,
         modelo,
         dimension,
         acabado,

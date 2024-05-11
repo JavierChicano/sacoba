@@ -24,6 +24,7 @@ export default function SeccionPrecio({
   const [precioMesa, setPrecioMesa] = useState(0);
   const [precioAltura, setPrecioAltura] = useState(0);
   const [precioGrupo, setPrecioGrupo] = useState(0);
+  const [guardarCarro, setGuardarCarro] = useState(false);
 
   const ajustarNombre = () => {
     const modelo = index.acabado.toLowerCase().replace(/ (\w+)$/i, " g1");
@@ -85,34 +86,45 @@ export default function SeccionPrecio({
     }
   }, [mesa, index, mesaSeleccionada]);
 
-  //Funciones para agregar lo elegido a la BBDD
-  const handleCarrito = async (mesa: any) => {
-    const result = await InsertarCarrito(mesa);
-  //  localStorage.clear()
-    // Si la consulta da error
-    if (!result.success) {
-      toast.error(result.message);
-    } else {
-      if (result.usuario === "no iniciado") {
-        const mesaJson = JSON.stringify(mesa);
-        // Guardamos la seleccion en el localStore
-        let carrito = localStorage.getItem("carrito");
-        //Comprueba si ya hay objetos almacenados
-        if(carrito !== null){
-          let carritoObj = JSON.parse(carrito)
-          let arrayCarrito = [carritoObj]
-          arrayCarrito.push(mesa)
-          localStorage.setItem("carrito", JSON.stringify(arrayCarrito));
-        }else{
-          //Si es el primer objeto en almacenarse
-          localStorage.setItem("carrito", mesaJson)
-        }
-      }
-      toast.success(result.message);
-    }
-  };
+  useEffect(() => {
+    // localStorage.clear()
+    //Funciones para agregar lo elegido a la BBDD
+    const handleCarrito = async () => {
+      const result = await InsertarCarrito(mesa);
+      // Si la consulta da error
+      if (!result.success) {
+        toast.error(result.message);
+      } else {
+        if (result.usuario === "no iniciado") {
+          const mesaJson = JSON.stringify(mesa);
+          // Guardamos la seleccion en el localStore
+          let carrito = localStorage.getItem("carrito");
+          //Comprueba si ya hay objetos almacenados
+          if (carrito !== null) {
+            let carritoObj = JSON.parse(carrito);
+            if (!Array.isArray(carritoObj)) {
+              carritoObj = [carritoObj]; // Si no es un array, lo convertimos en uno
+          }
+          
+          let nuevoCarrito = [...carritoObj, mesa];
+            console.log(nuevoCarrito);
+            localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
 
-  const handleComprar = async (mesa: any) => {
+          } else {
+            //Si es el primer objeto en almacenarse
+            localStorage.setItem("carrito", mesaJson);
+          }
+        }
+        toast.success(result.message);
+      }
+    };
+    //Solo lanzamos la funcion si hemos clickado en Añadir Carro
+    if (guardarCarro === true) {
+      handleCarrito();
+    }
+  }, [mesa.precio]);
+
+  const handleComprar = async () => {
     // AQUI HAY  Q HACER MAS PROCESOS
   };
   return (
@@ -150,7 +162,7 @@ export default function SeccionPrecio({
               onClick={() => {
                 setPrecioMesaFinal(precioFinal());
                 setCantidadMesas(cantidad);
-                handleCarrito(mesa);
+                setGuardarCarro(true);
               }}
             >
               Añadir al carro
@@ -161,7 +173,7 @@ export default function SeccionPrecio({
               onClick={() => {
                 setPrecioMesaFinal(precioFinal());
                 setCantidadMesas(cantidad);
-                handleComprar(mesa);
+                handleComprar();
               }}
             >
               Comprar

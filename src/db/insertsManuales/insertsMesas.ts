@@ -1078,7 +1078,7 @@ export async function insertarMesas() {
 
     //INSERTA MESA 14
     {
-      modelo: "ZÚRICH",
+      modelo: "ZURICH",
       imagen: "zurich.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -1092,7 +1092,7 @@ export async function insertarMesas() {
       tendencia: true,
     },
     {
-      modelo: "ZÚRICH",
+      modelo: "ZURICH",
       imagen: "zurich.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -1104,7 +1104,7 @@ export async function insertarMesas() {
       precio: "518, 529, 559, 586, 504, 544",
     },
     {
-      modelo: "ZÚRICH",
+      modelo: "ZURICH",
       imagen: "zurich.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -1116,7 +1116,7 @@ export async function insertarMesas() {
       precio: "518, 529, 559, 586, 504, 544",
     },    
     {
-      modelo: "ZÚRICH",
+      modelo: "ZURICH",
       imagen: "zurich.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -1129,7 +1129,7 @@ export async function insertarMesas() {
       precio: "520, 530, 563, 592, 509, 545",
     },
     {
-      modelo: "ZÚRICH",
+      modelo: "ZURICH",
       imagen: "zurich.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -1142,7 +1142,7 @@ export async function insertarMesas() {
       precio: "564, 574, 620, 630, 555, 595",
     },
     {
-      modelo: "ZÚRICH",
+      modelo: "ZURICH",
       imagen: "zurich.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -1155,7 +1155,7 @@ export async function insertarMesas() {
       precio: "603, 613, 666, 712, 591, 638",
     },
     {
-      modelo: "ZÚRICH",
+      modelo: "ZURICH",
       imagen: "zurich.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -1169,7 +1169,7 @@ export async function insertarMesas() {
       precio: "752, 762, 840, 933, 747, 761",
     },
     {
-      modelo: "ZÚRICH",
+      modelo: "ZURICH",
       imagen: "zurich.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -1381,7 +1381,7 @@ export async function insertarMesas() {
     },
     //INSERTS MESA 17
     {
-      modelo: "BERLÍN",
+      modelo: "BERLIN",
       imagen: "berlin.png",
       tipoBase: "pie central",
       extension: "fija",
@@ -1393,7 +1393,7 @@ export async function insertarMesas() {
       precio: "423, 436, 449, 420, 433, 619, 637",
     },
     {
-      modelo: "BERLÍN",
+      modelo: "BERLIN",
       imagen: "berlin.png",
       tipoBase: "pie central",
       extension: "fija",
@@ -1405,7 +1405,7 @@ export async function insertarMesas() {
       precio: "466, 480, 494, 462, 477, 681, 701",
     },
     {
-      modelo: "BERLÍN",
+      modelo: "BERLIN",
       imagen: "berlin.png",
       tipoBase: "pie central",
       extension: "fija",
@@ -1417,7 +1417,7 @@ export async function insertarMesas() {
       precio: "466, 480, 494, 462, 477, 681, 701",
     },    
     {
-      modelo: "BERLÍN",
+      modelo: "BERLIN",
       imagen: "berlin.png",
       tipoBase: "pie central",
       extension: "fija",
@@ -1429,7 +1429,7 @@ export async function insertarMesas() {
       precio: "441, 454, 473, 435, 453, 643, 666",
     },
     {
-      modelo: "BERLÍN",
+      modelo: "BERLIN",
       imagen: "berlin.png",
       tipoBase: "pie central",
       extension: "fija",
@@ -1441,7 +1441,7 @@ export async function insertarMesas() {
       precio: "485, 507, 542, 474, 506, 709, 750",
     },
     {
-      modelo: "BERLÍN",
+      modelo: "BERLIN",
       imagen: "berlin.png",
       tipoBase: "pie central",
       extension: "fija",
@@ -1453,7 +1453,7 @@ export async function insertarMesas() {
       precio: "510, 536, 579, 495, 535, 754, 817",
     },
     {
-      modelo: "BERLÍN",
+      modelo: "BERLIN",
       imagen: "berlin.png",
       tipoBase: "pie central",
       extension: "fija",
@@ -1466,7 +1466,7 @@ export async function insertarMesas() {
       precio: "685, 752, 826, 670, 737, 1000, 1069",
     },
     {
-      modelo: "BERLÍN",
+      modelo: "BERLIN",
       imagen: "berlin.png",
       tipoBase: "pie central",
       extension: "fija",
@@ -1911,7 +1911,7 @@ export async function insertarMesas() {
     },
     //INSERT MESA 22
     {
-      modelo: "AURA luxe",
+      modelo: "AURA",
       imagen: "aura.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -1924,7 +1924,7 @@ export async function insertarMesas() {
       precio: "406, 425, 438, 473",
     },
     {
-      modelo: "AURA luxe",
+      modelo: "AURA",
       imagen: "aura.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -1936,7 +1936,7 @@ export async function insertarMesas() {
       precio: "447, 468, 482, 520",
     },
     {
-      modelo: "AURA luxe",
+      modelo: "AURA",
       imagen: "aura.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -1948,7 +1948,7 @@ export async function insertarMesas() {
       precio: "447, 468, 482, 520",
     },    
     {
-      modelo: "AURA luxe",
+      modelo: "AURA",
       imagen: "aura.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -1961,7 +1961,7 @@ export async function insertarMesas() {
       precio: "426, 450, 466, 489",
     },
     {
-      modelo: "AURA luxe",
+      modelo: "AURA",
       imagen: "aura.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -1974,7 +1974,7 @@ export async function insertarMesas() {
       precio: "572, 633, 692, 781",
     },
     {
-      modelo: "AURA luxe",
+      modelo: "AURA",
       imagen: "aura.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -2068,7 +2068,7 @@ export async function insertarMesas() {
     },
     //INSERT MESA 24
     {
-      modelo: "CÁDIZ",
+      modelo: "CADIZ",
       imagen: "cadiz.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -2082,7 +2082,7 @@ export async function insertarMesas() {
       nuevo: true,
     },
     {
-      modelo: "CÁDIZ",
+      modelo: "CADIZ",
       imagen: "cadiz.png",
       tipoBase: "4 patas",
       extension: "fija",
@@ -2094,7 +2094,7 @@ export async function insertarMesas() {
       precio: "342, 353, 370, 385, 395, 419",
     },
     {
-      modelo: "CÁDIZ",
+      modelo: "CADIZ",
       imagen: "cadiz.png",
       tipoBase: "4 patas",
       extension: "fija",
@@ -2106,7 +2106,7 @@ export async function insertarMesas() {
       precio: "342, 353, 370, 385, 395, 419",
     },    
     {
-      modelo: "CÁDIZ",
+      modelo: "CADIZ",
       imagen: "cadiz.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -2119,7 +2119,7 @@ export async function insertarMesas() {
       precio: "371, 376, 393, 393, 410, 421, 452",
     },
     {
-      modelo: "CÁDIZ",
+      modelo: "CADIZ",
       imagen: "cadiz.png",
       tipoBase: "4 patas",
       extension: "extensible",
@@ -2132,7 +2132,7 @@ export async function insertarMesas() {
       precio: "423, 492, 502, 545, 584, 659",
     },
     {
-      modelo: "CÁDIZ",
+      modelo: "CADIZ",
       imagen: "cadiz.png",
       tipoBase: "4 patas",
       extension: "extensible",
