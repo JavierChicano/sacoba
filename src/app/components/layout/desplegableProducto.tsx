@@ -3,17 +3,21 @@ import Link from "next/link";
 import { IconArmchair, IconDesk } from "@tabler/icons-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { cn } from "@nextui-org/react";
 
 export default function DesplegableProducto() {
   const [isHovered, setIsHovered] = useState(false);
   const pathName = usePathname();
+
+  //Verficia que estamos en la pagina producto...
+  const contieneProducto = /Producto/i.test(pathName);
 
   return (
     <aside className="flex flex-col">
       <li
         id="dropdownHoverButton"
         onMouseEnter={() => setIsHovered(true)}
-        className="w-36 flex justify-center cursor-pointer"
+        className={cn(contieneProducto ? "w-36 flex justify-center cursor-pointer font-bold text-colorBase" : "w-36 flex justify-center cursor-pointer")}
       >
         Productos
       </li>

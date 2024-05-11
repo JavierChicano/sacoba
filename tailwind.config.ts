@@ -34,6 +34,7 @@ const config: Config = {
       },
       colors: {
         fondo: "var(--fondo)",
+        fondoHeader: "var(--fondo-header)",
         fondoSecundario: "var(--fondo-secundario)",
         fondoTerciario: "var(--fondo-terciario)",
         colorBase: "var(--color-base)",

@@ -27,6 +27,7 @@
   --background-end-rgb: 255, 255, 255;
 
   --fondo: #f3f3f3;
+  --fondo-header: #f3f3f33f;
   --fondo-secundario: #a8a8aa;
   --fondo-terciario: #7e838f;
   --color-base: #e09145;
@@ -39,6 +40,7 @@
   --background-end-rgb: 0, 0, 0;
 
   --fondo: #17181d;
+  --fondo-header: #17181d41;
   --fondo-secundario: #2e3138;
   --fondo-terciario: #5e636e;
   --color-base: #e09145;

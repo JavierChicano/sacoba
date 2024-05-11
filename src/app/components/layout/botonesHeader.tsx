@@ -8,12 +8,17 @@ import DesplegableCarrito from "./desplegableCarrito";
 import HoverBoton from "./hoverBotones";
 import DesplegableLogin from "./desplegableLogin";
 import { SesionIniciadaComprobacion } from "./sesionIniciada";
+import { usePathname } from "next/navigation";
+import { cn } from "@nextui-org/react";
 
 export default function BotonesHeader() {
+  const pathName = usePathname();
   const [mostrarDesplegable, setMostrarDesplegable] = useState(false);
   const [mostrarLogin, setMostrarLogin] = useState(false);
   const [cookieIniciada, setCookieIniciada] = useState(false);
 
+  //Verficia que estamos en la pagina producto...
+  const contieneProducto = /Producto/i.test(pathName);
   //Comprueba si la sesion esta iniciada
   useEffect(() => {
     const obtenerUsuario = async () => {
@@ -28,18 +33,18 @@ export default function BotonesHeader() {
   });
   
   return (
-    <ul className="flex justify-around w-3/4 m-10 text-xl items-center">
+    <ul className={cn(contieneProducto ? "flex justify-around w-3/4 m-10 text-xl items-center bg-fondoHeader p-2 rounded-lg backdrop-blur-xl": "flex justify-around w-3/4 m-10 text-xl items-center")}>
       <HoverBoton>
-        <p className="text-center">Outlet</p>
+        <p className={cn(pathName === "/Outlet" ? "text-center font-bold text-colorBase" : "text-center")}>Outlet</p>
       </HoverBoton>
       <HoverBoton>
-        <p className="text-center">
+        <p className={cn(pathName === "/Packs" ? "text-center font-bold text-colorBase" : "text-center")}>
           <Link href="/Packs/">Packs</Link>
         </p>
       </HoverBoton>
       <DesplegableProducto />
       <HoverBoton>
-        <p className="text-center">
+        <p className={cn(pathName === "/Contacto" ? "text-center font-bold text-colorBase" : "text-center")}>
           <Link href="/Contacto/">Contacto</Link>
         </p>
       </HoverBoton>
