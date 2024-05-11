@@ -1,7 +1,7 @@
 import { TipoConsulta, TipoUsuario } from "../../tipos/tipos";
 import { db } from "./index";
-import { consultas, usuarios } from "./schema";
-import jwt from "jsonwebtoken"
+import { carrito, consultas, usuarios } from "./schema";
+import jwt from "jsonwebtoken";
 
 export async function registrarUsuario({ usuario }: { usuario: TipoUsuario }) {
   try {
@@ -13,28 +13,28 @@ export async function registrarUsuario({ usuario }: { usuario: TipoUsuario }) {
     });
     // Crear el token de usuario
     const tokenGenerado = jwt.sign(
-        {
-          // El token expira en 7 días
-          exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
-          //Contiene la informacion del usuario
-          usuario: {
-            correoElectronico: usuario.correoElectronico,
-            nombre: usuario.nombre,
-            apellidos: usuario.apellidos,
-          },
+      {
+        // El token expira en 7 días
+        exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
+        //Contiene la informacion del usuario
+        usuario: {
+          correoElectronico: usuario.correoElectronico,
+          nombre: usuario.nombre,
+          apellidos: usuario.apellidos,
         },
-        process.env.AUTH_USER_TOKEN!
-      );
+      },
+      process.env.AUTH_USER_TOKEN!
+    );
 
     // Si la inserción se realiza sin errores, devolvemos true
     return {
       success: true,
-      token: tokenGenerado
+      token: tokenGenerado,
     };
   } catch (error) {
     // Si ocurre algún error, devolvemos false
     return {
-        success: false
+      success: false,
     };
   }
 }
@@ -50,6 +50,31 @@ export async function registrarConsulta({
       nombre: consulta.nombre,
       motivo: consulta.motivo,
       consulta: consulta.consulta,
+    });
+    // Si la inserción se realiza sin errores, devolvemos true
+    return true;
+  } catch (error) {
+    // Si ocurre algún error, devolvemos false
+    return false;
+  }
+}
+
+export async function registrarCarrito({
+  producto,
+  tipoProduc,
+  correo
+}: {
+  producto: any,
+  tipoProduc: "mesa" | "silla" | "banco" | "pack",
+  correo: string
+}) {
+  try {
+    await db.insert(carrito).values({
+      cliente: correo,
+      tipoProducto: tipoProduc,
+      modelo: producto.modelo,
+      detallesProducto: JSON.stringify(producto),
+      precioIndividual: producto.precio
     });
     // Si la inserción se realiza sin errores, devolvemos true
     return true;

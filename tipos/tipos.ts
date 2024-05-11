@@ -77,3 +77,20 @@ export interface TipoConsulta {
   motivo: string;
   consulta: string;
 }
+export interface TipoCarrito {
+  cliente: string;
+  tipoProducto: string;
+  modelo: string;
+  detallesProducto: string;
+  precioIndividual: number;
+}
+
+export interface TipoPedido {
+  cliente: string;
+  tipoProducto: string;
+  modelo: string;
+  detallesProducto: string;
+  fecha: string;
+  factura: string;
+  precio: number;
+}

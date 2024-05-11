@@ -40,6 +40,7 @@ export default function FormRegistro() {
       //Manejar el error
       toast.error(response.error)
     } else {
+      localStorage.clear()
       //Seteamos la cookie con el token que contiene la informacion del usuario
       setCookie("client-Token", response.token)
 

@@ -38,6 +38,7 @@ export default function FormLogin() {
       //Manejar el error
       toast.error(response.error);
     } else {
+      localStorage.clear()
       setCookie("client-Token", response.token)
       //Si se ha insertado correctamente redirige al perfil
       redirect("/Perfil");
