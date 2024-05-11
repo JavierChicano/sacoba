@@ -109,3 +109,23 @@ export const consultas = sqliteTable("consultas", {
   motivo: text("motivo").notNull(),
   consulta: text("consulta").notNull(),
 });
+
+export const carrito = sqliteTable("carrito", {
+  id: integer("id").primaryKey({autoIncrement: true}),
+  cliente: text("cliente").notNull().references(() => usuarios.correoElectronico),
+  tipoProducto: text("tipoProducto", { enum: ["mesa", "silla", "banco", "pack"]}).notNull(),
+  modelo: text("modelo").notNull(),
+  detallesProducto: text("detallesProducto").notNull(),
+  precioIndividual: integer("precioIndividual").notNull(),
+});
+
+export const pedidos = sqliteTable("pedidos", {
+  id: integer("id").primaryKey({autoIncrement: true}),
+  cliente: text("cliente").notNull().references(() => usuarios.correoElectronico),
+  tipoProducto: text("tipoProducto", { enum: ["mesa", "silla", "banco", "pack"]}).notNull(),
+  modelo: text("modelo").notNull(),
+  detallesProducto: text("detallesProducto").notNull(),
+  fecha: text("fecha").notNull(),
+  factura: text("factura").notNull(),
+  precio: integer("precio").notNull(),
+});
