@@ -3,7 +3,7 @@
  2 - Hacer el hover de los botones del header ✅
  3 - Ejecutar los inserts de la BBDD ✅
  4 - Retocar contador en "divInfo.tsx" para que quede mas bonito✅
- 4.1 - Poner que inicie cuando sea visible 
+  4.1 - Poner que inicie cuando sea visible 
  5 - Cambiar imagenes de "nuestrosProductos.tsx" ✅
  6 - Poner el hover de los botones del header en el footer tmb ✅
  7 - Arreglar visualizacion en producto ✅

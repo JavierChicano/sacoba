@@ -18,7 +18,7 @@ export default function BotonesHeader() {
   const [cookieIniciada, setCookieIniciada] = useState(false);
 
   //Verficia que estamos en la pagina producto...
-  const contieneProducto = /Producto/i.test(pathName);
+  const contieneProducto = /^\/Producto(?!\/)/i.test(pathName);
   //Comprueba si la sesion esta iniciada
   useEffect(() => {
     const obtenerUsuario = async () => {
