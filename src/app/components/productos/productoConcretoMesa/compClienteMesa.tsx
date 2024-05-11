@@ -4,6 +4,9 @@ import Image from "next/image";
 import SeccionPrecio from "./seccionPrecio";
 import RutaPC from "./rutaPC";
 import SeccionPersonalizarMesa from "./seccionPersoMesa";
+import { useMesaFinal } from "../../../../../states/statesProductoFinal";
+import { useEffect, useState } from "react";
+import { boolean } from "drizzle-orm/mysql-core";
 
 export default function CompClienteMesa({
   mesaSeleccionada,
@@ -12,6 +15,13 @@ export default function CompClienteMesa({
   mesaSeleccionada: TipoMesa[];
   colores: TipoColor[];
 }) {
+  const { mesa } = useMesaFinal();
+  const [estadoPrecio, setEstadoPrecio] = useState(false);
+  useEffect(() => {
+    if (mesa.color !== "") {
+      setEstadoPrecio(true);
+    }
+  }, [mesa]);
   return (
     <div>
       {mesaSeleccionada && (
@@ -39,11 +49,13 @@ export default function CompClienteMesa({
               laminado, que tiene un grosor de 20mm.
             </aside>
             <aside className="text-xs">
-             *Se utiliza un tablero de 16mm por debajo para dar robusted a la encimera.
+              *Se utiliza un tablero de 16mm por debajo para dar robusted a la
+              encimera.
             </aside>
             {mesaSeleccionada[0].extension === "extensible" && (
               <aside className="text-xs">
-                El material del extensible es de laminado, pudiendo personalizar su color
+                El material del extensible es de laminado, pudiendo personalizar
+                su color
               </aside>
             )}
           </section>
@@ -51,7 +63,10 @@ export default function CompClienteMesa({
             mesaSeleccionada={mesaSeleccionada}
             colores={colores}
           />
-          <SeccionPrecio mesaSeleccionada={mesaSeleccionada} />
+          {/* Solo se muestra la seccion final del precio cuando haya uno establecido */}
+          {estadoPrecio && (
+            <SeccionPrecio mesaSeleccionada={mesaSeleccionada} />
+          )}
         </div>
       )}
     </div>

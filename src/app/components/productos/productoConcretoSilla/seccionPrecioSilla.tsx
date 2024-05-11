@@ -1,14 +1,10 @@
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import {
-  usePreciosBanco,
-} from "../../../../../states/states";
 import Link from "next/link";
 import { useSillaFinal } from "../../../../../states/statesProductoFinal";
 
 export default function SeccionPrecioSilla({precio}: {precio:number}) {
   const [cantidad, setCantidad] = useState(1);
-  const { precios } = usePreciosBanco();
   const { silla, setPrecioSillaFinal, setCantidadSillas } = useSillaFinal();
 
   const aumentarCantidad = () => {
@@ -25,7 +21,6 @@ export default function SeccionPrecioSilla({precio}: {precio:number}) {
     return precioCalculado;
   };
 
-console.log(silla)
   return (
     <section className="bg-fondoSecundario flex flex-col p-8 ">
       <div className="flex justify-between items-center gap-4">

@@ -108,7 +108,6 @@ export default function SeccionPersonalizarSilla({
     }
   }, [indexPrecio, precioFinal, sillaSeleccionada, modeloElegido]);
 
-  console.log(sillaSeleccionada)
   //Guarda en los estados globales todos los datos recogidos de los estados locales
   useEffect(() => {
     //Guardamos en el estado global mesa los datos
@@ -183,7 +182,7 @@ export default function SeccionPersonalizarSilla({
           ))}
         </div>
       </section>
-      <SeccionPrecioSilla precio={precioFinal} />
+      {precioFinal !== 0 && <SeccionPrecioSilla precio={precioFinal} />}
     </>
   );
 }

@@ -25,9 +25,14 @@ export default function SeccionModulosBanco({
   coloresBastidor: TipoColor[];
 }) {
   //Para mostrar y guardar el color seleccionado, estados globales
-  const { colorElegido, modeloElegido, rutaImagen } = useColorSeleccionado();
-  const { colorElegidoBastidor, modeloElegidoBastidor, rutaImagenBastidor } =
-    useColorSeleccionadoBastidor();
+  const { colorElegido, modeloElegido, rutaImagen, setColorSeleccionado } =
+    useColorSeleccionado();
+  const {
+    colorElegidoBastidor,
+    modeloElegidoBastidor,
+    rutaImagenBastidor,
+    setColorSeleccionadoBastidor,
+  } = useColorSeleccionadoBastidor();
   const { modalVisible, setModalVisible } = useModal();
   const { modalVisibleBastidor, setModalVisibleBastidor } = useModalBastidor();
   const { banco, setBancoFinal } = useBancoFinal();
@@ -51,6 +56,15 @@ export default function SeccionModulosBanco({
     colorElegidoBastidor,
     zocalo,
   ]);
+
+  useEffect(() => {
+    if (colorElegido.length > 0) {
+      setColorSeleccionado("", "", "");
+    }
+    if (colorElegidoBastidor.length > 0) {
+      setColorSeleccionadoBastidor("", "", "");
+    }
+  }, []);
 
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 row-span-6">
@@ -153,7 +167,11 @@ export default function SeccionModulosBanco({
 
           <div className="grid grid-cols-2">
             {bancosPosibles.map((banco, index) => (
-              <ObjModuloBanco key={index} modulo={banco} tapizado={modeloElegido}/>
+              <ObjModuloBanco
+                key={index}
+                modulo={banco}
+                tapizado={modeloElegido}
+              />
             ))}
           </div>
         </section>

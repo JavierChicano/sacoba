@@ -7,7 +7,7 @@ import SeccionPersonalizarSilla from "./seccionPersoSilla";
 export default function CompClienteSilla({sillaSeleccionada, colores}: {sillaSeleccionada: TipoSilla[], colores: TipoColor[]}) {
 
     return(
-    <div>
+    <div className="max-w-7xl w-full">
       {sillaSeleccionada && (
         <div className=" max-w-7xl grid grid-cols-2 w-full gap-6">
           <RutaSillaConcreta />
