@@ -11,6 +11,17 @@ export const useModal = create<ModalState>((set) => ({
   setModalVisible: (visible) => set({ modalVisible: visible }),
 }));
 
+// Estado para guardar el precio acumulado
+type PrecioState = {
+  precioAcumulado: number;
+  setPrecioAcumulado: (precio: number) => void;
+};
+
+export const usePrecioAcumulado = create<PrecioState>((set) => ({
+  precioAcumulado: 0,
+  setPrecioAcumulado: (precio) => set({ precioAcumulado: precio }),
+}));
+
 //Visibilidad modal color bastidor
 type ModalStateBastidor = {
   modalVisibleBastidor: boolean;
