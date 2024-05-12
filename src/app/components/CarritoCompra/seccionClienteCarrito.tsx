@@ -6,16 +6,14 @@ import { useEffect, useState } from "react";
 import { LeerDatosCookie } from "../perfil/cookiePerfil";
 import { RecogerDatosCarrito } from "./recogerDatosCarrito";
 import RutaCarrito from "./rutaCarrito";
-import { carrito } from "@/db/schema";
 import { usePrecioTotalCarrito } from "../../../../states/states";
 
 export default function CompClienteCarrito() {
   const [objetosCarro, setObjetosCarro] = useState<string[]>([]);
   const [sesionIniciada, setSesionIniciada] = useState(false);
   const [carritoVacio, setCarritoVacio] = useState(false);
-  const [precioConjunto, setprecioConjunto] = useState(0);
-  const {totalProductos } = usePrecioTotalCarrito()
-
+  const { totalProductos } = usePrecioTotalCarrito();
+  
   useEffect(() => {
     const obtenerUsuario = async () => {
       try {
@@ -28,9 +26,13 @@ export default function CompClienteCarrito() {
           );
           //Si la consulta sale bn
           if (consulta.success && consulta.carrito !== undefined) {
-            const detallesProductos = consulta.carrito.map((producto) =>
-              JSON.parse(producto.detallesProducto)
-            );
+            const detallesProductos = consulta.carrito.map((producto) => {
+              const detalles = JSON.parse(producto.detallesProducto);
+              return {
+                ...detalles,
+                id: producto.id,
+              };
+            });
             setObjetosCarro(detallesProductos.reverse());
           } else {
             if (consulta.message === "El carrito está vacio") {
@@ -42,7 +44,15 @@ export default function CompClienteCarrito() {
           let carritoString = localStorage.getItem("carrito");
           if (carritoString !== null) {
             const carritoObjeto = JSON.parse(carritoString);
-            setObjetosCarro(carritoObjeto.reverse());
+            if(carritoObjeto.length > 1){
+              setObjetosCarro(carritoObjeto);
+            }else{
+              //Si el carrito tiene un solo objeto hay que convertirlo a array
+              const carroArray = [carritoObjeto]
+              setObjetosCarro(carroArray);
+            }
+          } else {
+            setCarritoVacio(true);
           }
         }
       } catch (error) {
