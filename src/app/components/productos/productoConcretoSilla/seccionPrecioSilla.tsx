@@ -54,7 +54,7 @@ export default function SeccionPrecioSilla({precio}: {precio:number}) {
             href="/"
             className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer"
             onClick={() => {
-              setPrecioSillaFinal(precioFinal());
+              setPrecioSillaFinal(precio);
               setCantidadSillas(cantidad)
             }}
           >

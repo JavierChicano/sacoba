@@ -7,11 +7,14 @@ import { LeerDatosCookie } from "../perfil/cookiePerfil";
 import { RecogerDatosCarrito } from "./recogerDatosCarrito";
 import RutaCarrito from "./rutaCarrito";
 import { carrito } from "@/db/schema";
+import { usePrecioTotalCarrito } from "../../../../states/states";
 
 export default function CompClienteCarrito() {
   const [objetosCarro, setObjetosCarro] = useState<string[]>([]);
   const [sesionIniciada, setSesionIniciada] = useState(false);
   const [carritoVacio, setCarritoVacio] = useState(false);
+  const [precioConjunto, setprecioConjunto] = useState(0);
+  const {totalProductos } = usePrecioTotalCarrito()
 
   useEffect(() => {
     const obtenerUsuario = async () => {
@@ -28,7 +31,7 @@ export default function CompClienteCarrito() {
             const detallesProductos = consulta.carrito.map((producto) =>
               JSON.parse(producto.detallesProducto)
             );
-            setObjetosCarro(detallesProductos);
+            setObjetosCarro(detallesProductos.reverse());
           } else {
             if (consulta.message === "El carrito está vacio") {
               setCarritoVacio(true);
@@ -73,7 +76,7 @@ export default function CompClienteCarrito() {
       ) : (
         <>
           <ul className="w-full flex justify-around text-3xl border-b border-colorBase">
-            <li className="w-1/2 pl-10">Producto</li>
+            <li className="w-1/2 pl-5 ">Producto</li>
             <li className="w-1/2">
               <ul className="flex justify-around">
                 <li className="w-32 flex justify-center">Unidad</li>
@@ -83,11 +86,11 @@ export default function CompClienteCarrito() {
             </li>
           </ul>
           {objetosCarro.map((objeto, index) => (
-            <SeccionInfoProducto producto={objeto} key={index} />
+            <SeccionInfoProducto producto={objeto} key={index} clave={index} />
           ))}
-          <section className="w-full flex justify-between items-center text-2xl mt-4">
+          <section className="w-full flex justify-between items-center text-2xl">
             <aside className="w-1/2 flex justify-center gap-2 cursor-pointer underline">
-              <Link href="/" className="flex items-center">
+              <Link href="/" className="flex items-center hover:text-colorBase">
                 <IconArrowNarrowLeft stroke={2} />
                 Seguir comprando
               </Link>
@@ -102,7 +105,7 @@ export default function CompClienteCarrito() {
                 <span className="w-32"></span>
                 <div className="w-60 flex flex-col justify-end gap-3">
                   <div className="flex justify-center items-center text-3xl">
-                    Total: XXX€
+                    Total: {totalProductos}€
                   </div>
                   <h1 className="p-2 bg-fondoSecundario border flex justify-center border-colorBase hover:bg-colorBase cursor-pointer">
                     Proceder al pago

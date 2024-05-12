@@ -41,9 +41,7 @@ export default function SeccionPrecio({
   };
 
   const precioFinal = () => {
-    const precio = Math.trunc(
-      (precioMesa + precioAltura) * cantidad * precioGrupo
-    );
+    const precio = Math.trunc((precioMesa + precioAltura) * precioGrupo);
     return precio;
   };
 
@@ -104,12 +102,11 @@ export default function SeccionPrecio({
             let carritoObj = JSON.parse(carrito);
             if (!Array.isArray(carritoObj)) {
               carritoObj = [carritoObj]; // Si no es un array, lo convertimos en uno
-          }
-          
-          let nuevoCarrito = [...carritoObj, mesa];
+            }
+
+            let nuevoCarrito = [...carritoObj, mesa];
             console.log(nuevoCarrito);
             localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
-
           } else {
             //Si es el primer objeto en almacenarse
             localStorage.setItem("carrito", mesaJson);
@@ -132,7 +129,7 @@ export default function SeccionPrecio({
       <section className="bg-fondoSecundario flex flex-col gap-4 p-8 ">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl">Total: {precioFinal()}€</h1>
+            <h1 className="text-3xl">Total: {precioFinal() * cantidad}€</h1>
             {/* <p className="text-sm flex justify-end"> Iva incluido*</p> */}
           </div>
           <section className="flex w-36 border-[1px] border-fondoTerciario justify-between">
@@ -171,7 +168,7 @@ export default function SeccionPrecio({
             <div
               className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer"
               onClick={() => {
-                setPrecioMesaFinal(precioFinal());
+                setPrecioMesaFinal(precioFinal() * cantidad);
                 setCantidadMesas(cantidad);
                 handleComprar();
               }}

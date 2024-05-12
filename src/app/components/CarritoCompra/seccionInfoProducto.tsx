@@ -2,11 +2,15 @@
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { usePrecioTotalCarrito } from "../../../../states/states";
 
-export default function SeccionInfoProducto({ producto }: { producto: any }) {
+export default function SeccionInfoProducto({ producto, clave }: { producto: any, clave: number }) {
   const [cantidad, setCantidad] = useState(1);
   const [total, setTotal] = useState(1);
   const [infoExtra, setInfoExtra] = useState("");
+
+  //Estado global para guarda la suma de todos los precios
+  const {setSumaTotal} = usePrecioTotalCarrito()
 
   const precioTotal = () => {
     setTotal(cantidad * producto.precio);
@@ -24,9 +28,17 @@ export default function SeccionInfoProducto({ producto }: { producto: any }) {
     return modelo;
   };
 
+  useEffect(()=>{
+    precioTotal();
+  },[cantidad])
+
+  //Setear el precio total, estado global
+  useEffect(()=>{
+    setSumaTotal(clave, total)
+  },[total])
+
   useEffect(() => {
     setCantidad(producto.cantidad);
-    precioTotal();
     if(producto.producto === "Mesa"){
       setInfoExtra(producto.dimension + "cm")
     }else if(producto.producto === "Silla"){
@@ -36,7 +48,6 @@ export default function SeccionInfoProducto({ producto }: { producto: any }) {
     }
   }, []);
 
-  console.log(producto);
   return (
     <section className="flex mt-4 border-b border-colorBase pb-4 justify-between w-full items-center">
       <div className="w-1/2 flex gap-8">
@@ -57,7 +68,7 @@ export default function SeccionInfoProducto({ producto }: { producto: any }) {
         </div>
       </div>
       <div className="w-1/2 flex justify-around">
-        <span className="w-32 flex justify-center">{Math.round(producto.precio/producto.cantidad)}€</span>
+        <span className="w-32 flex justify-center text-xl">{producto.precio}€</span>
         <div className="flex h-10 w-32 justify-center">
           <div
             className="bg-fondoTerciario p-2 flex justify-center hover:bg-colorBase cursor-pointer"
@@ -68,7 +79,7 @@ export default function SeccionInfoProducto({ producto }: { producto: any }) {
           >
             <IconMinus stroke={2} />
           </div>
-          <div className="bg-fondoSecundario w-8  p-2 flex justify-center ">
+          <div className="bg-fondoSecundario w-8  p-2 flex justify-center">
             {cantidad}
           </div>
           <div
@@ -81,7 +92,7 @@ export default function SeccionInfoProducto({ producto }: { producto: any }) {
             <IconPlus stroke={2} />
           </div>
         </div>
-        <span className="w-32 flex justify-center">{total}€</span>
+        <span className="w-32 flex justify-center text-xl">{total}€</span>
       </div>
     </section>
   );

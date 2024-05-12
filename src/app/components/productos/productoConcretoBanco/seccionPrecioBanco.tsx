@@ -87,7 +87,7 @@ export default function SeccionPrecioBanco({
                 href="/CarritoCompra"
                 className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer"
                 onClick={() => {
-                  setPrecioBancoFinal(precioFinal());
+                  setPrecioBancoFinal(precioBanco);
                   setCantidadBancos(cantidad);
                 }}
               >

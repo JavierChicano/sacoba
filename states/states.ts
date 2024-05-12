@@ -67,3 +67,24 @@ export const useColorSeleccionadoBastidor = create<ColorSeleccionadoBastidor>((s
   rutaImagenBastidor: '',
   setColorSeleccionadoBastidor: (colorElegidoBastidor: string, modeloElegidoBastidor: string, rutaImagenBastidor: string) => set({ colorElegidoBastidor, modeloElegidoBastidor, rutaImagenBastidor }),
 }));
+
+//Guardar precio total carrito
+type CarritoState = {
+  totalProductos: number;
+  setSumaTotal: (key: number, sumaTotal: number) => void;
+};
+
+export const usePrecioTotalCarrito = create<CarritoState>((set) => {
+  const sumaTotalMap: Record<number, number> = {};
+
+  const setSumaTotal = (key: number, sumaTotal: number) => {
+    sumaTotalMap[key] = sumaTotal;
+    const totalProductos = Object.values(sumaTotalMap).reduce((total, suma) => total + suma, 0);
+    set({ totalProductos, setSumaTotal }); // Pasamos setSumaTotal como parte del estado
+  };
+
+  return {
+    totalProductos: 0,
+    setSumaTotal, // Aquí definimos setSumaTotal
+  };
+});
