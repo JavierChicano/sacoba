@@ -127,9 +127,7 @@ export async function selectsColoresTapizadoBancos() {
   const todosColores = await db
     .select()
     .from(colores)
-    .where(
-      inArray(colores.modelo, ["tapizado nvA", "tapizado nvC"])
-    );
+    .where(inArray(colores.modelo, ["tapizado nvA", "tapizado nvC"]));
   return todosColores;
 }
 
@@ -137,19 +135,21 @@ export async function selectsColoresBastidorBancos() {
   const todosColores = await db
     .select()
     .from(colores)
-    .where(
-      inArray(colores.modelo, ["laminado", "barniz", "laca"])
-    );
+    .where(inArray(colores.modelo, ["laminado", "barniz", "laca"]));
   return todosColores;
 }
 
-export async function selectsColoresMesas() {
+export async function selectsColoresMesas(modelo: string) {
+  const todasMesas = await db
+    .selectDistinct({
+      materialTapa: mesas.materialTapa,
+    })
+    .from(mesas)
+    .where(eq(mesas.modelo, modelo));
+  const valoresMesas = todasMesas.map((mesa) => mesa.materialTapa);
   const todosColores = await db
     .select()
     .from(colores)
-    .where(
-      inArray(colores.modelo, ["laminado", "cristal 3mm", "cristal 8mm", "cristal 8mm extraclaro", "silestone g1", "dekton g1", "barniz", "laca"])
-    );
+    .where(inArray(colores.modelo, valoresMesas));
   return todosColores;
 }
-

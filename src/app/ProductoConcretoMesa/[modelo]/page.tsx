@@ -3,7 +3,7 @@ import CompClienteMesa from "../../components/productos/productoConcretoMesa/com
 
 export default async function ProductoConcreto({ params }: { params: {modelo: string} }) {
   const promiseMesas = selectsMesaSeleccionada(params.modelo);
-  const promiseColores = selectsColoresMesas();
+  const promiseColores = selectsColoresMesas(params.modelo);
   const [mesas, colores] = await Promise.all([promiseMesas, promiseColores])
 
   return (
