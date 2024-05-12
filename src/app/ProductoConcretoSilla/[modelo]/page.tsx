@@ -3,7 +3,7 @@ import { selectsColoresSillas, selectsSillaSeleccionada } from "@/db/selects";
 
 export default async function ProductoConcretoSilla({ params }: { params: {modelo: string} }) {
   const promiseSillas = selectsSillaSeleccionada(params.modelo);
-  const promiseColores = selectsColoresSillas();
+  const promiseColores = selectsColoresSillas(params.modelo);
 
   const [sillas, colores] = await Promise.all([promiseSillas, promiseColores])
 

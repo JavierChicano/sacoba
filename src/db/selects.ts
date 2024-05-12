@@ -24,7 +24,7 @@ export async function selectsMesasModelo() {
 }
 export async function selectsMesaSeleccionada(modelo: string) {
   const todasMesas = await db
-    .selectDistinct()
+    .select()
     .from(mesas)
     .where(eq(mesas.modelo, modelo));
   return todasMesas;
@@ -97,19 +97,22 @@ export async function selectsPackSeleccionado(modelo: string) {
 }
 
 //Selects de colores
-export async function selectsColoresSillas() {
+export async function selectsColoresSillas(modelo: string) {
+  const todasSillas = await db
+    .select({
+      materialAsiento: sillas.materialAsiento,
+    })
+    .from(sillas)
+    .where(eq(sillas.modelo, modelo))
+    .limit(1);
+
+  const cadena = todasSillas[0].materialAsiento;
+  const valores = cadena.split(", ");
   const todosColores = await db
     .select()
     .from(colores)
-    .where(
-      inArray(colores.modelo, [
-        "laca",
-        "laminado",
-        "barniz",
-        "tapizado nvC",
-        "tapizado nvA",
-      ])
-    );
+    .where(inArray(colores.modelo, valores));
+    //Este error no tiene importancia
   return todosColores;
 }
 
@@ -141,12 +144,14 @@ export async function selectsColoresBastidorBancos() {
 
 export async function selectsColoresMesas(modelo: string) {
   const todasMesas = await db
-    .selectDistinct({
+    .select({
       materialTapa: mesas.materialTapa,
     })
     .from(mesas)
     .where(eq(mesas.modelo, modelo));
+
   const valoresMesas = todasMesas.map((mesa) => mesa.materialTapa);
+
   const todosColores = await db
     .select()
     .from(colores)

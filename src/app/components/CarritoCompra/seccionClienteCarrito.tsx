@@ -45,11 +45,11 @@ export default function CompClienteCarrito() {
           if (carritoString !== null) {
             const carritoObjeto = JSON.parse(carritoString);
             if(carritoObjeto.length > 1){
-              setObjetosCarro(carritoObjeto);
+              setObjetosCarro(carritoObjeto.reverse());
             }else{
               //Si el carrito tiene un solo objeto hay que convertirlo a array
               const carroArray = [carritoObjeto]
-              setObjetosCarro(carroArray);
+              setObjetosCarro(carroArray.reverse());
             }
           } else {
             setCarritoVacio(true);
