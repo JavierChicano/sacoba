@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 export default function SeccionInfoProducto({ producto }: { producto: any }) {
   const [cantidad, setCantidad] = useState(1);
   const [total, setTotal] = useState(1);
+  const [infoExtra, setInfoExtra] = useState("");
 
   const precioTotal = () => {
     setTotal(cantidad * producto.precio);
@@ -22,17 +23,26 @@ export default function SeccionInfoProducto({ producto }: { producto: any }) {
     const modelo = producto.modelo.toLowerCase();
     return modelo;
   };
+
   useEffect(() => {
     setCantidad(producto.cantidad);
     precioTotal();
+    if(producto.producto === "Mesa"){
+      setInfoExtra(producto.dimension + "cm")
+    }else if(producto.producto === "Silla"){
+      setInfoExtra(producto.formato)
+    }else if (producto.producto === "Banco"){
+      setInfoExtra("Modulos: " + producto.modulos.length)
+    }
   }, []);
+
   console.log(producto);
   return (
     <section className="flex mt-4 border-b border-colorBase pb-4 justify-between w-full items-center">
       <div className="w-1/2 flex gap-8">
-        <div className="w-40">
+        <div className="w-40 h-36">
           <Image
-            className="w-full h-fll rounded-lg"
+            className="w-full h-full rounded-lg"
             src={`/productos/${producto.producto}s/${modelo()}.png`}
             alt="Imagen mesa"
             width={500}
@@ -43,10 +53,11 @@ export default function SeccionInfoProducto({ producto }: { producto: any }) {
           <h1 className="text-3xl">{producto.modelo}</h1>
           <h2 className="text-lg">{producto.acabado}</h2>
           <h2 className="text-lg">{producto.color}</h2>
+          <h2 className="text-lg">{infoExtra}</h2>
         </div>
       </div>
       <div className="w-1/2 flex justify-around">
-        <span className="w-32 flex justify-center">{Math.round(producto.precio/cantidad)}€</span>
+        <span className="w-32 flex justify-center">{Math.round(producto.precio/producto.cantidad)}€</span>
         <div className="flex h-10 w-32 justify-center">
           <div
             className="bg-fondoTerciario p-2 flex justify-center hover:bg-colorBase cursor-pointer"

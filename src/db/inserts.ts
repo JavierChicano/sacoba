@@ -61,17 +61,15 @@ export async function registrarConsulta({
 
 export async function registrarCarrito({
   producto,
-  tipoProduc,
   correo
 }: {
   producto: any,
-  tipoProduc: "mesa" | "silla" | "banco" | "pack",
   correo: string
 }) {
   try {
     await db.insert(carrito).values({
       cliente: correo,
-      tipoProducto: tipoProduc,
+      tipoProducto: producto.producto,
       modelo: producto.modelo,
       detallesProducto: JSON.stringify(producto),
       precioIndividual: producto.precio

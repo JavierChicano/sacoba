@@ -1,5 +1,5 @@
 import { db } from ".";
-import { usuarios } from "./schema";
+import { carrito, usuarios } from "./schema";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -28,7 +28,7 @@ export async function selectComprobarUsuario(
             // El token expira en 7 días
             exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
             //Contiene la informacion del usuario
-            usuario: user
+            usuario: user,
           },
           process.env.AUTH_USER_TOKEN!
         );
@@ -47,5 +47,30 @@ export async function selectComprobarUsuario(
   } catch (error: any) {
     //Si salta un error en la consulta
     return false;
+  }
+}
+export async function selectCarritoUsuario(email: string) {
+  try {
+    const carritoUsuario = await db
+      .select()
+      .from(carrito)
+      .where(eq(carrito.cliente, email));
+    //Comprobamos si hay registros
+    if (carritoUsuario.length > 0) {
+      return {
+        success: true,
+        carrito: carritoUsuario,
+      };
+    } else {
+      return {
+        success: false,
+        message: "El carrito está vacio",
+      };
+    }
+  } catch (error: any) {
+    //Si salta un error en la consulta
+    return {
+      success: false,
+    };
   }
 }

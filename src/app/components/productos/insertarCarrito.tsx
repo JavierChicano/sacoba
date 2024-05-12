@@ -10,10 +10,8 @@ export const InsertarCarrito = async (mesa: any) => {
     const cookie = await LeerDatosCookie();
     //La sesion esta iniciada
     if (cookie.status) {
-      console.log("sesion iniciada true");
       const insercion = await registrarCarrito({
         producto: mesa,
-        tipoProduc: "mesa",
         correo: cookie.usuario.correoElectronico,
       });
       if (insercion) {

@@ -138,6 +138,7 @@ export const useIndexMesaFinal = create<StateIndexMesaFinal>((set) => ({
 // Estado global para guardar los datos finales de la silla
 type SillaStateFinal = {
   silla: {
+    producto: string;
     modelo: string;
     formato: string;
     acabado: string;
@@ -160,6 +161,7 @@ type SillaStateFinal = {
 
 export const useSillaFinal = create<SillaStateFinal>((set) => ({
   silla: {
+    producto: "Silla",
     modelo: "",
     formato: "",
     acabado: "",
@@ -178,6 +180,7 @@ export const useSillaFinal = create<SillaStateFinal>((set) => ({
   ) =>
     set((state) => ({
       silla: {
+        ...state.silla,
         modelo,
         formato,
         acabado,
@@ -206,6 +209,7 @@ export const useSillaFinal = create<SillaStateFinal>((set) => ({
 //Estado global para guardar los datos finales del banco
 type BancoStateFinal = {
   banco: {
+    producto: string,
     modelo: string;
     modulos: {
       dimensiones: string;
@@ -244,6 +248,7 @@ type BancoStateFinal = {
 };
 export const useBancoFinal = create<BancoStateFinal>((set) => ({
   banco: {
+    producto: "Banco",
     modelo: "",
     modulos: [],
     acabadoTapizado: "",
