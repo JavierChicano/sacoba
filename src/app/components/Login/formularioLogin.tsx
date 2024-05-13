@@ -38,15 +38,36 @@ export default function FormLogin() {
       //Manejar el error
       toast.error(response.error);
     } else {
-      localStorage.clear()
-      setCookie("client-Token", response.token)
+      localStorage.clear();
+      setCookie("client-Token", response.token);
       //Si se ha insertado correctamente redirige al perfil
       redirect("/Perfil");
     }
   };
 
+  let isSubmitting = false;
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // Verificar si ya se está procesando un envío
+    if (isSubmitting) {
+      return; // Si es así, salir de la función sin hacer nada
+    }
+    // Marcar que se está procesando un envío
+    isSubmitting = true;
+    const formData = new FormData(event.currentTarget);
+    await clientAction(formData);
+    // Esperar 3 segundos antes de permitir otro envío
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // Marcar que ya no se está procesando un envío
+    isSubmitting = false;
+  };
+
   return (
-    <form className="flex flex-col gap-4 max-w-lg w-full" action={clientAction}>
+    <form
+      className="flex flex-col gap-4 max-w-lg w-full"
+      onSubmit={handleSubmit}
+    >
       <div className="flex relative w-full">
         <input
           type="email"
