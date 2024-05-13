@@ -57,8 +57,10 @@ export default function FormPerfil() {
       //Manejar el error
       toast.error(response.error);
     } else {
+      toast.success(response.message);
       //Si se ejecuta correctamente, seteamos un nuevo token
       setCookie("client-Token", response.token)
+      
     }
   };
   return (

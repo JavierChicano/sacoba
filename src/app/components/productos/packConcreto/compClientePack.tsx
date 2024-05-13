@@ -1,11 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TipoColor, TipoPack } from "../../../../../tipos/tipos";
 import RutaPackConcreto from "./rutaPackConcreto";
 import SeccionMesaPack from "./seccionMesaPack";
 import Image from "next/image";
 import ImagenesSillas from "./imagenesSillas";
 import ElegirPack from "./seccionElegirPack";
+import { usePackFinal } from "../../../../../states/statesProductoFinal";
 
 export default function CompClientePack({
   packSeleccionado,
@@ -14,8 +15,17 @@ export default function CompClientePack({
   packSeleccionado: TipoPack[];
   colores: TipoColor[];
 }) {
+  //Estado golbal para guardar la seleccion del pack elegida
+  const { pack, setSillaPack } = usePackFinal();
+
+  //Estados locales para guardar momentaneamente la información
   const [modeloSeleccionada, setModeloSeleccionada] = useState("");
   const [formatoSeleccionado, setFormatoSeleccionado] = useState("Silla");
+
+  //Seteo de la seleccion final de la silla del pack
+  useEffect(()=>{
+    setSillaPack(modeloSeleccionada, formatoSeleccionado)
+  },[modeloSeleccionada, formatoSeleccionado])
 
   return (
     <div>

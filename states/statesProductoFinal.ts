@@ -168,7 +168,7 @@ export const useSillaFinal = create<SillaStateFinal>((set) => ({
     color: "",
     colorPata: "",
     precio: 0,
-    cantidad: 1, // Agregado por mí
+    cantidad: 1, 
   },
   setSillaFinal: (
     modelo: string,
@@ -357,4 +357,101 @@ export const useBancoFinal = create<BancoStateFinal>((set) => ({
       },
     }));
   },
+}));
+
+
+// Estado global para guardar los datos finales de los packs
+type PackStateFinal = {
+  pack: {
+    producto: string;
+    modelo: string;
+    dimension: string;
+    acabado: string;
+    color: string;
+    cajon?: boolean;
+    precioMesa: number;
+    modeloSilla: string;
+    formatoSilla: string;
+    packElegido: string;
+    cantidadSillasExtra: number;
+    precio: number;
+  };
+
+  setMesaPack: (
+    modelo: string,
+    dimension: string,
+    acabado: string,
+    color: string,
+    cajon: boolean | undefined,
+    precioMesa: number,
+  ) => void;
+  setSillaPack:(
+    modeloSilla: string,
+    formatoSilla: string,
+  ) => void;
+  setPackResto: (
+    packElegido: string,
+    cantidadSillasExtra: number,
+    precio: number
+  ) => void;
+};
+
+export const usePackFinal = create<PackStateFinal>((set) => ({
+  pack: {
+    producto: "Pack",
+    modelo: "",
+    dimension: "",
+    acabado: "",
+    color: "",
+    cajon: undefined,
+    precioMesa: 0,
+    modeloSilla: "",
+    formatoSilla: "",
+    packElegido: "",
+    cantidadSillasExtra: 0,
+    precio: 0,
+  },
+  setMesaPack: (
+    modelo: string,
+    dimension: string,
+    acabado: string,
+    color: string,
+    cajon: boolean | undefined,
+    precioMesa: number
+  ) =>
+    set((state) => ({
+      pack: {
+        ...state.pack,
+        modelo,
+        dimension,
+        acabado,
+        color,
+        cajon,
+        precioMesa,
+      },
+    })),
+  setSillaPack: (
+    modeloSilla: string,
+    formatoSilla: string,
+  ) =>
+    set((state) => ({
+      pack: {
+        ...state.pack,
+        modeloSilla,
+        formatoSilla,
+      },
+    })),
+  setPackResto: (
+    packElegido: string,
+    cantidadSillasExtra: number,
+    precio: number
+  ) =>
+    set((state) => ({
+      pack: {
+        ...state.pack,
+        packElegido,
+        cantidadSillasExtra,
+        precio,
+      },
+    })),
 }));

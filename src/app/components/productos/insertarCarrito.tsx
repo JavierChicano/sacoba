@@ -1,18 +1,16 @@
 "use server";
-
-import { usuarios } from "@/db/schema";
 import { LeerDatosCookie } from "../perfil/cookiePerfil";
 import { registrarCarrito } from "@/db/inserts";
 
-export const InsertarCarrito = async (mesa: any) => {
+export const InsertarCarrito = async (producto: any) => {
   // Comprobar si la sesion esta iniciada
   try {
     const cookie = await LeerDatosCookie();
     //La sesion esta iniciada
     if (cookie.status) {
-      console.log(mesa)
+      console.log(producto)
       const insercion = await registrarCarrito({
-        producto: mesa,
+        producto: producto,
         correo: cookie.usuario.correoElectronico,
       });
       if (insercion) {

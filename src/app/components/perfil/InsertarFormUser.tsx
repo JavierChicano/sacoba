@@ -37,6 +37,7 @@ export const InsertarUserData = async (nuevoRegistro: unknown) => {
       return {
         token: insercionExitosa.token,
         success: true,
+        message: "Información actualizada correctamente"
       };
     } else {
       // Si 'registrarUsuario' devuelve false, consideramos que hubo un error

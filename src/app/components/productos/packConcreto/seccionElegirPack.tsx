@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePrecioAcumulado } from "../../../../../states/states";
 import Link from "next/link";
+import { usePackFinal } from "../../../../../states/statesProductoFinal";
 
 export default function ElegirPack({
   mesa,
@@ -13,10 +14,14 @@ export default function ElegirPack({
   modelo: string;
   formato: string;
 }) {
+  //Estados globales
+  const { setPackResto, pack } = usePackFinal();
+  const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
+
+  //Estados locales para guardar la seleccion momentaneamente
   const [packSeleccionado, setPackSeleccionado] = useState("Mesa y 2 sillas");
   const [cantidad, setCantidad] = useState(0);
   const [cantidadSillas, setCantidadSillas] = useState(0);
-  const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
   const [precioSillas, setPrecioSillas] = useState(0);
 
   const aumentarCantidad = () => {
@@ -26,23 +31,30 @@ export default function ElegirPack({
     if (cantidad > 0) {
       setCantidad(cantidad - 1);
     }
-    console.log("modelo",modelo+formato)
+    console.log("modelo", modelo + formato);
   };
   useEffect(() => {
     if (packSeleccionado == "Mesa") {
       setPrecioSillas(0);
-      setCantidadSillas(0)
-      setCantidad(0)
+      setCantidadSillas(0);
     } else if (packSeleccionado == "Mesa y 2 sillas") {
       setPrecioSillas(106);
-      setCantidadSillas(2)
-      setCantidad(0)
+      setCantidadSillas(2);
     } else if (packSeleccionado == "Mesa y 4 sillas") {
       setPrecioSillas(212);
-      setCantidadSillas(4)
-      setCantidad(0)
+      setCantidadSillas(4);
     }
+    setCantidad(0);
   }, [packSeleccionado]);
+  const precioFinal = () => {
+    const precio = precioAcumulado + precioSillas + 64 * cantidad;
+    return precio;
+  };
+
+  //Seteo de la seleccion final del pack
+  useEffect(() => {
+    setPackResto(packSeleccionado, cantidad, precioFinal());
+  }, [packSeleccionado, cantidad, precioAcumulado, precioSillas]);
 
   return (
     <section className="grid grid-cols-2 w-full">
@@ -60,14 +72,17 @@ export default function ElegirPack({
           }`}
         >
           <Image
-            src={`/productos/packs/${modelo}${formato === "Silla" ? "Silla" : "Tab"}.png`}
+            src={`/productos/packs/${modelo}${
+              formato === "Silla" ? "Silla" : "Tab"
+            }.png`}
             width={300}
             height={300}
             alt="foto silla"
             className="h-full w-auto"
           />
           <div className="absolute text-5xl bottom-2 right-6">
-            <span className="text-3xl">x</span>{cantidadSillas+cantidad}
+            <span className="text-3xl">x</span>
+            {cantidadSillas + cantidad}
           </div>
         </div>
       </div>
@@ -129,9 +144,7 @@ export default function ElegirPack({
         <section className="w-full h-full flex items-end justify-between">
           {precioAcumulado ? (
             <>
-              <h1 className="text-3xl">
-                Total: {precioAcumulado + precioSillas + 64 * cantidad}€
-              </h1>
+              <h1 className="text-3xl">Total: {precioFinal()}€</h1>
               <section className="flex gap-4">
                 <Link
                   href="/"

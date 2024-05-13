@@ -10,7 +10,7 @@ import { IconClick } from "@tabler/icons-react";
 import ModalColores from "../modalColores";
 import { cn } from "@nextui-org/react";
 import Image from "next/image";
-
+import { usePackFinal } from "../../../../../states/statesProductoFinal";
 
 export default function SeccionMesaPack({
   packSeleccionado,
@@ -19,8 +19,14 @@ export default function SeccionMesaPack({
   packSeleccionado: TipoPack[];
   colores: TipoColor[];
 }) {
-  const [dimensionesMesa, setDimensionesMesa] = useState<string[]>([]);
+  //Estados globales
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
+  //Para manejar el modal de los colores
+  const { modalVisible, setModalVisible } = useModal();
+  const { colorElegido, modeloElegido, rutaImagen } = useColorSeleccionado();
+  const { setMesaPack } = usePackFinal();
+ 
+  const [dimensionesMesa, setDimensionesMesa] = useState<string[]>([]);
   const [preciosMesa, setPreciosMesa] = useState<number[]>([]);
 
   //Estados para almacenar las dimensiones de la mesas elegidas
@@ -34,14 +40,11 @@ export default function SeccionMesaPack({
     setIndexPrecio(index);
   };
 
-  //Para manejar el modal de los colores
-  const { modalVisible, setModalVisible } = useModal();
-  const { colorElegido, modeloElegido, rutaImagen } = useColorSeleccionado();
-
   useEffect(() => {
     if (packSeleccionado.length > 0) {
       const dimensionesMesa = packSeleccionado[0].dimensiones.split(",");
       setDimensionesMesa(dimensionesMesa);
+      setDimension(dimensionesMesa[0])
     }
   }, [packSeleccionado]);
 
@@ -99,6 +102,11 @@ export default function SeccionMesaPack({
     }
   }, [preciosMesa, indexPrecio, cajonSeleccionado]);
 
+  //Seteo de la seleccion final de la mesa del pack
+  useEffect(()=>{
+    setMesaPack(packSeleccionado[0].modelo, dimension, modeloElegido, colorElegido, cajonSeleccionado, precioAcumulado)
+  },[dimension, modeloElegido, colorElegido, cajonSeleccionado, precioAcumulado])
+
   return (
     <section className="bg-fondoSecundario col-span-3 p-8 flex flex-col gap-4">
       <h1 className="text-4xl">Dimensiones</h1>
@@ -128,7 +136,9 @@ export default function SeccionMesaPack({
       </section>
       <div
         className={cn(
-          colorElegido === "" ? "hidden" : "flex gap-5 whitespace-nowrap items-center flex-wrap"
+          colorElegido === ""
+            ? "hidden"
+            : "flex gap-5 whitespace-nowrap items-center flex-wrap"
         )}
       >
         <h2 className="text-xl">
@@ -138,13 +148,13 @@ export default function SeccionMesaPack({
           Color: <span className="text-colorBase">{colorElegido}</span>
         </h2>
         <div>
-            <Image
-              src={rutaImagen}
-              alt={`Color ${modeloElegido}`}
-              width={50}
-              height={50}
-            />
-          </div>
+          <Image
+            src={rutaImagen}
+            alt={`Color ${modeloElegido}`}
+            width={50}
+            height={50}
+          />
+        </div>
       </div>
       {/* Solo se muestra si la mesa tiene la posibilidad de cajon */}
       {cajon && (

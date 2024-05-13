@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { TipoBanco } from "../../../../../tipos/tipos";
 import { useBancoFinal } from "../../../../../states/statesProductoFinal";
+import { Toaster, toast } from "sonner";
+import { InsertarCarrito } from "../insertarCarrito";
 
 export default function SeccionPrecioBanco({
   bancoSeleccionado,
@@ -16,6 +18,7 @@ export default function SeccionPrecioBanco({
   const [cantidad, setCantidad] = useState(1);
   const [precioBanco, setPrecioBanco] = useState(0);
   const [mostrarCompra, setMostrarCompra] = useState(false);
+  const [guardarCarro, setGuardarCarro] = useState(false);
 
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
@@ -45,13 +48,50 @@ export default function SeccionPrecioBanco({
     }
 
     //Solo mostramos la opcion de compra cuando todas las selecciones esten definidas
-    if (banco.colorBastidor  && banco.colorTapizado) {
+    if (banco.colorBastidor && banco.colorTapizado) {
       setMostrarCompra(true);
-    }else{
-      setMostrarCompra(false)
+    } else {
+      setMostrarCompra(false);
     }
   }, [banco]);
-  console.log(banco);
+
+  useEffect(() => {
+    // localStorage.clear()
+    //Funciones para agregar lo elegido a la BBDD
+    const handleCarrito = async () => {
+      const result = await InsertarCarrito(banco);
+      // Si la consulta da error
+      if (!result.success) {
+        toast.error(result.message);
+      } else {
+        if (result.usuario === "no iniciado") {
+          const mesaJson = JSON.stringify(banco);
+          // Guardamos la seleccion en el localStore
+          let carrito = localStorage.getItem("carrito");
+          //Comprueba si ya hay objetos almacenados
+          if (carrito !== null) {
+            let carritoObj = JSON.parse(carrito);
+            if (!Array.isArray(carritoObj)) {
+              carritoObj = [carritoObj]; // Si no es un array, lo convertimos en uno
+            }
+
+            let nuevoCarrito = [...carritoObj, banco];
+            console.log(nuevoCarrito);
+            localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
+          } else {
+            //Si es el primer objeto en almacenarse
+            localStorage.setItem("carrito", mesaJson);
+          }
+        }
+        toast.success(result.message);
+      }
+    };
+    //Solo lanzamos la funcion si hemos clickado en Añadir Carro
+    if (guardarCarro === true) {
+      handleCarrito();
+    }
+  }, [guardarCarro]);
+
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 ">
       <div className="flex justify-between items-center">
@@ -83,19 +123,18 @@ export default function SeccionPrecioBanco({
         <section className="flex flex-col gap-4">
           {mostrarCompra ? (
             <>
-              <Link
-                href="/CarritoCompra"
+              <div
                 className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer"
                 onClick={() => {
                   setPrecioBancoFinal(precioBanco);
                   setCantidadBancos(cantidad);
+                  setGuardarCarro(true);
                 }}
               >
                 Añadir al carro
-              </Link>
+              </div>
               {/* Este te tiene q llevar a la pagina de compra */}
-              <Link
-                href="/"
+              <div
                 className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer"
                 onClick={() => {
                   setPrecioBancoFinal(precioFinal());
@@ -103,7 +142,7 @@ export default function SeccionPrecioBanco({
                 }}
               >
                 Comprar
-              </Link>
+              </div>
             </>
           ) : (
             <p className="w-32 text-center text-red-400">
@@ -112,6 +151,7 @@ export default function SeccionPrecioBanco({
           )}
         </section>
       </div>
+      <Toaster position="top-right" richColors />
     </section>
   );
 }

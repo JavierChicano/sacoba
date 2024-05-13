@@ -60,15 +60,18 @@ export default function SeccionInfoProducto({
   const modificarCantidadBBDD = async (cantidadCalculada: number) => {
     const productoConNuevaCantidad = {
       ...producto,
-      cantidad: cantidadCalculada 
+      cantidad: cantidadCalculada,
     };
     const response = await ModificarCantidadProducto(productoConNuevaCantidad);
     //Si la consulta a la BBDD, seguramente sea porq la sesion no esta iniciada
-    if(!response){
+    if (!response) {
       let carritoString = localStorage.getItem("carrito");
       if (carritoString !== null) {
         const carritoObjeto = JSON.parse(carritoString);
-        const productosActualizados = reemplazarProducto(carritoObjeto, productoConNuevaCantidad);
+        const productosActualizados = reemplazarProducto(
+          carritoObjeto,
+          productoConNuevaCantidad
+        );
         localStorage.setItem("carrito", JSON.stringify(productosActualizados));
       }
     }
@@ -126,26 +129,30 @@ export default function SeccionInfoProducto({
 }
 
 const reemplazarProducto = (productos: any, nuevoProducto: any) => {
-  return productos.map((producto: any) => {
-    // Comprobamos si los productos son iguales excepto en la cantidad
-    if (
-      producto.producto === nuevoProducto.producto &&
-      producto.modelo === nuevoProducto.modelo &&
-      producto.dimension === nuevoProducto.dimension &&
-      producto.acabado === nuevoProducto.acabado &&
-      producto.grupo === nuevoProducto.grupo &&
-      producto.color === nuevoProducto.color &&
-      producto.grosor === nuevoProducto.grosor &&
-      producto.colorPata === nuevoProducto.colorPata &&
-      producto.colorExtensible === nuevoProducto.colorExtensible &&
-      producto.altura === nuevoProducto.altura &&
-      producto.precio === nuevoProducto.precio
-    ) {
-      // Si son iguales excepto en la cantidad, reemplazamos el antiguo por el nuevo
-      return nuevoProducto;
-    } else {
-      // Si no coinciden, mantenemos el producto existente
-      return producto;
-    }
-  });
+  if (productos.length > 1) {
+    return productos.map((producto: any) => {
+      // Comprobamos si los productos son iguales excepto en la cantidad
+      if (
+        producto.producto === nuevoProducto.producto &&
+        producto.modelo === nuevoProducto.modelo &&
+        producto.dimension === nuevoProducto.dimension &&
+        producto.acabado === nuevoProducto.acabado &&
+        producto.grupo === nuevoProducto.grupo &&
+        producto.color === nuevoProducto.color &&
+        producto.grosor === nuevoProducto.grosor &&
+        producto.colorPata === nuevoProducto.colorPata &&
+        producto.colorExtensible === nuevoProducto.colorExtensible &&
+        producto.altura === nuevoProducto.altura &&
+        producto.precio === nuevoProducto.precio
+      ) {
+        // Si son iguales excepto en la cantidad, reemplazamos el antiguo por el nuevo
+        return nuevoProducto;
+      } else {
+        // Si no coinciden, mantenemos el producto existente
+        return producto;
+      }
+    });
+  } else {
+    return nuevoProducto;
+  }
 };

@@ -3,7 +3,7 @@
  2 - Hacer el hover de los botones del header ✅
  3 - Ejecutar los inserts de la BBDD ✅
  4 - Retocar contador en "divInfo.tsx" para que quede mas bonito✅
-  4.1 - Poner que inicie cuando sea visible 
+  4.1 - Poner que inicie cuando sea visible ✅
  5 - Cambiar imagenes de "nuestrosProductos.tsx" ✅
  6 - Poner el hover de los botones del header en el footer tmb ✅
  7 - Arreglar visualizacion en producto ✅
@@ -18,7 +18,7 @@
  15- Cambiar el texto de sacoba, para una buena renderizacion
  16- Crear un slider en mesas filtros para setear el precio✅
   16.1- El slider cuando pones ambos en el mismo precio no filtra✅
- 17- Que cuando se añada al carrito aparezca una notificacion "Toast" confirmandolo
+ 17- Que cuando se añada al carrito aparezca una notificacion "Toast" confirmandolo✅
   17.1- Poner notificaciones toast en las acciones que requieran conexion con la BBDD
  18- Que cuando estes en una pagina, el hover se quede fijo, marcándola✅
  19- Agregar "Sugerencia" a contacto✅
@@ -28,7 +28,7 @@
   22.1- MiddleWares para admins
  23- Quitar el precio de 0€ antes de que el usuario haya hecho las selecciones✅
  24- Desabilitar el hover del carrito en la pagina del carrito y hoverearlo en naranja
- 25- Hacer el estado global para guardar datos de los packs
+ 25- Hacer el estado global para guardar datos de los packs✅
 
 //PAGINA AYUDA
 ¿Quiere mas opciones de personalizacion?, mire el catálogo y consulte disponibilidad y precio, puesto que en la página se ha reducido la oferta y aunque se trate de abarcar todos los aspectos y variantes de personalización, no estas cubiertas todas por lavores de simplificacion hacia el usuario
