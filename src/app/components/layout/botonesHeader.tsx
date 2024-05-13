@@ -59,7 +59,7 @@ export default function BotonesHeader() {
             <Link href="/CarritoCompra">
               <IconoCarrito
                 size={40}
-                color={mostrarDesplegable ? "orange" : "currentColor"}
+                color={(mostrarDesplegable || pathName === "/CarritoCompra") ? "orange" : "currentColor"}
               />
             </Link>
 
@@ -74,7 +74,8 @@ export default function BotonesHeader() {
                   <IconUser
                     stroke={2}
                     size={40}
-                    color={mostrarLogin ? "orange" : "currentColor"}
+                    color={(mostrarLogin || pathName === "/Perfil") ? "orange" : "currentColor"}
+
                   />
               </Link>
             ) : (
