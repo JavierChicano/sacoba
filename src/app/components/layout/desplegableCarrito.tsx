@@ -66,15 +66,15 @@ export default function DesplegableCarrito() {
       <div className="bg-fondoSecundario p-5 shadow-lg shadow-fondoSecundario z-50">
         {!carritoVacio ? (
           <>
-            {/* <section className="bg-fondoTerciario flex justify-center h-32 items-center text-4xl">Cesta de productos</section> */}
-            <section className="flex flex-col gap-3 border-b border-colorBase pb-2 h-[416px] overflow-y-scroll">
+            <section className="flex flex-col gap-3 border-b border-colorBase pb-2 max-h-[416px] overflow-y-scroll">
               {objetosCarro.map((objeto, index) => (
                 <ProductoCarrito producto={objeto} key={index} clave={index} />
               ))}
             </section>
             <div className="my-4 text-2xl">Total: {Math.round(totalProductos)}€</div>
-            <div className="bg-fondoTerciario flex justify-center items-center h-16 text-2xl cursor-pointer hover:bg-colorBase">
-              Proceder al pago
+            <div className="grid grid-cols-2 gap-2 h-16 text-xl">
+              <Link href="/" className="bg-fondoTerciario hover:bg-colorBase p-2 h-full flex justify-center items-center">Proceder al pago</Link>
+              <Link href="/" className="bg-fondoTerciario hover:bg-colorBase p-2 h-full flex justify-center items-center">Ir al carrito</Link>
             </div>
           </>
         ) : (
