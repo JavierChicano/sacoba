@@ -11,6 +11,7 @@ import { ComprobarUsuario } from "./comprobarUsuario";
 import { Toaster, toast } from "sonner";
 import { FormLoginValidation } from "../../../../tipos/tiposForm";
 import { setCookie } from "cookies-next";
+import { InsertarCarritoExistente } from "../Registro/insertarCarritoLocal";
 
 export default function FormLogin() {
   const [showPassword, setShowPassword] = useState(false);
@@ -38,7 +39,13 @@ export default function FormLogin() {
       //Manejar el error
       toast.error(response.error);
     } else {
-      localStorage.clear();
+      //Chequeamos si el cliente tiene productos en el carrito
+      const carritoString = localStorage.getItem("carrito");
+      if (carritoString !== null) {
+        const carritoObjeto = JSON.parse(carritoString);
+        await InsertarCarritoExistente(carritoObjeto, result.data.correoElectronico)
+        localStorage.clear();
+      }
       setCookie("client-Token", response.token);
       //Si se ha insertado correctamente redirige al perfil
       redirect("/Perfil");
