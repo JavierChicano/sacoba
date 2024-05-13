@@ -375,6 +375,7 @@ type PackStateFinal = {
     packElegido: string;
     cantidadSillasExtra: number;
     precio: number;
+    cantidad: number;
   };
 
   setMesaPack: (
@@ -410,6 +411,7 @@ export const usePackFinal = create<PackStateFinal>((set) => ({
     packElegido: "",
     cantidadSillasExtra: 0,
     precio: 0,
+    cantidad: 1,
   },
   setMesaPack: (
     modelo: string,
