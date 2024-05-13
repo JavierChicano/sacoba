@@ -8,12 +8,14 @@ import {
 import React, { useState } from "react";
 import { InsertarRegistro } from "./insertarUsuarioRegistro";
 import { FormRegistroValidation } from "../../../../tipos/tiposForm";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Toaster, toast } from 'sonner'
 import { setCookie } from "cookies-next"
 
 export default function FormRegistro() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -30,6 +32,7 @@ export default function FormRegistro() {
     //Validacion del lado del cliente
     const result = FormRegistroValidation.safeParse(newForm);
     if (!result.success) {
+      setIsLoading(false);
       toast.error(result.error.issues[0].message)
       return;
     }
@@ -45,14 +48,22 @@ export default function FormRegistro() {
       setCookie("client-Token", response.token)
 
       //Si se ha insertado correctamente redirige al perfil
-      redirect("/Perfil");
+      router.push("/Perfil");
     }
+    setIsLoading(false);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); 
+    if (isLoading) return;
+    const formData = new FormData(event.currentTarget);
+    await clientAction(formData);
   };
 
   return (
     <form
       className="flex flex-col gap-4 max-w-lg mb:max-w-sm"
-      action={clientAction}
+      onSubmit={handleSubmit}
     >
       <div className="flex gap-4 w-full relative">
         <div className="flex w-1/2 relative">
@@ -122,7 +133,7 @@ export default function FormRegistro() {
       <button
         type="submit"
         className=" w-2/3 bg-colorBase h-14 self-center text-2xl hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"
-      >
+        disabled={isLoading}>
         Crear cuenta
       </button>
       <Toaster position="top-right" richColors />
