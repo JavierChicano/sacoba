@@ -327,7 +327,7 @@ export async function insertarMesas() {
     },
     {
       modelo: "LEGNA",
-      imagen: "ejemplo.png",
+      imagen: "legna.png",
       tipoBase: "4 patas",
       extension: "fija",
       materialTapa: "laminado",
@@ -336,12 +336,11 @@ export async function insertarMesas() {
       altura: "76, 92, 102",
       materialPata: "madera",
       colorPata: "madera",
-      tendencia: true,
       precio: "207, 219, 227, 245, 260, 295, 226, 261",
     },
     {
       modelo: "LEGNA",
-      imagen: "ejemplo.png",
+      imagen: "legna.png",
       tipoBase: "4 patas",
       extension: "fija",
       materialTapa: "silestone g1",
@@ -354,7 +353,7 @@ export async function insertarMesas() {
     },
     {
       modelo: "LEGNA",
-      imagen: "ejemplo.png",
+      imagen: "legna.png",
       tipoBase: "4 patas",
       extension: "fija",
       materialTapa: "dekton g1",
