@@ -5,6 +5,7 @@ import { TipoBanco } from "../../../../../tipos/tipos";
 import { useBancoFinal } from "../../../../../states/statesProductoFinal";
 import { Toaster, toast } from "sonner";
 import { InsertarCarrito } from "../insertarCarrito";
+import Euro from "../../euro";
 
 export default function SeccionPrecioBanco({
   bancoSeleccionado,
@@ -30,7 +31,7 @@ export default function SeccionPrecioBanco({
   };
 
   const precioFinal = () => {
-    const precio = Math.trunc(precioBanco * cantidad);
+    const precio = Math.round(precioBanco * cantidad);
     return precio;
   };
 
@@ -96,7 +97,7 @@ export default function SeccionPrecioBanco({
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 ">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl">Total: {precioFinal()}€</h1>
+          <h1 className="text-3xl">Total: {precioFinal()}<Euro/></h1>
           {/* <p className="text-sm flex justify-end"> Iva incluido*</p> */}
         </div>
         <section className="flex w-36 border-[1px] border-fondoTerciario justify-between">

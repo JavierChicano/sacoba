@@ -9,6 +9,7 @@ import {
 import { InsertarCarrito } from "../insertarCarrito";
 import { Toaster, toast } from "sonner";
 import { usuarios } from "@/db/schema";
+import Euro from "../../euro";
 
 export default function SeccionPrecio({
   mesaSeleccionada,
@@ -41,7 +42,7 @@ export default function SeccionPrecio({
   };
 
   const precioFinal = () => {
-    const precio = Math.trunc((precioMesa + precioAltura) * precioGrupo);
+    const precio = Math.round((precioMesa + precioAltura) * precioGrupo);
     return precio;
   };
 
@@ -129,7 +130,7 @@ export default function SeccionPrecio({
       <section className="bg-fondoSecundario flex flex-col gap-4 p-8 ">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl">Total: {precioFinal() * cantidad}€</h1>
+            <h1 className="text-3xl">Total: {precioFinal() * cantidad}<Euro/></h1>
             {/* <p className="text-sm flex justify-end"> Iva incluido*</p> */}
           </div>
           <section className="flex w-36 border-[1px] border-fondoTerciario justify-between">

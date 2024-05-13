@@ -2,6 +2,7 @@ import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { TipoBanco } from "../../../../../tipos/tipos";
 import { useEffect, useState } from "react";
 import { useBancoFinal } from "../../../../../states/statesProductoFinal";
+import Euro from "../../euro";
 
 export default function ObjModuloBanco({
   modulo,
@@ -45,7 +46,7 @@ export default function ObjModuloBanco({
   useEffect(() => {
     const preciosModulo = modulo.precio.split(",");
     const costeModulo = parseFloat(preciosModulo[indexPrecio]);
-    setCosteModulo(costeModulo);
+    setCosteModulo(Math.round(costeModulo));
   }, [modulo, indexPrecio]);
 
   useEffect(() => {
@@ -130,7 +131,7 @@ export default function ObjModuloBanco({
         </div>
       </section>
       <aside>
-        <h2 className="text-xl">Precio unidad: {costeModulo}€</h2>
+        <h2 className="text-xl">Precio unidad: {costeModulo}<span className="text-xs align-super">€</span></h2>
       </aside>
     </aside>
   );

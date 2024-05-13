@@ -97,7 +97,7 @@ export default function SeccionInfoProducto({
       </div>
       <div className="w-1/2 flex justify-around">
         <span className="w-32 flex justify-center text-xl">
-          {producto.precio}€
+          {Math.round(producto.precio)}€
         </span>
         <div className="flex h-10 w-32 justify-center">
           <div
@@ -122,7 +122,7 @@ export default function SeccionInfoProducto({
             <IconPlus stroke={2} />
           </div>
         </div>
-        <span className="w-32 flex justify-center text-xl">{total}€</span>
+        <span className="w-32 flex justify-center text-xl">{Math.round(total)}€</span>
       </div>
     </section>
   );

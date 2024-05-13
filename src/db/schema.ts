@@ -116,7 +116,7 @@ export const carrito = sqliteTable("carrito", {
   tipoProducto: text("tipoProducto", { enum: ["mesa", "silla", "banco", "pack"]}).notNull(),
   modelo: text("modelo").notNull(),
   detallesProducto: text("detallesProducto").notNull(),
-  precioIndividual: integer("precioIndividual").notNull(),
+  precioTotal: integer("precioTotal").notNull(),
 });
 
 export const pedidos = sqliteTable("pedidos", {

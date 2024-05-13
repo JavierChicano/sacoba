@@ -9,7 +9,6 @@ export const ModificarCantidadProducto = async (productoConNuevaCantidad: any) =
         return true
     }else{
         //Si la sesion no esta iniciada
-        console.log("AQUI")
         return false
     }
   } catch (error) {

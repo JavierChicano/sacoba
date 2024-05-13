@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePrecioTotalCarrito } from "../../../../states/states";
 import { LeerDatosCookie } from "../perfil/cookiePerfil";
 import { RecogerDatosCarrito } from "../CarritoCompra/recogerDatosCarrito";
+import Euro from "../euro";
 
 export default function DesplegableCarrito() {
   const [objetosCarro, setObjetosCarro] = useState<string[]>([]);

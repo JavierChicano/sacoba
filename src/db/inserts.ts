@@ -72,7 +72,7 @@ export async function registrarCarrito({
       tipoProducto: producto.producto,
       modelo: producto.modelo,
       detallesProducto: JSON.stringify(producto),
-      precioIndividual: producto.precio
+      precioTotal: producto.precio*producto.cantidad
     });
     // Si la inserción se realiza sin errores, devolvemos true
     return true;

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSillaFinal } from "../../../../../states/statesProductoFinal";
 import { Toaster, toast } from "sonner";
 import { InsertarCarrito } from "../insertarCarrito";
+import Euro from "../../euro";
 
 export default function SeccionPrecioSilla({ precio }: { precio: number }) {
   const { silla, setPrecioSillaFinal, setCantidadSillas } = useSillaFinal();
@@ -20,7 +21,7 @@ export default function SeccionPrecioSilla({ precio }: { precio: number }) {
   };
 
   const precioFinal = () => {
-    const precioCalculado = Math.trunc(precio * cantidad);
+    const precioCalculado = Math.round(precio * cantidad);
     return precioCalculado;
   };
 
@@ -68,7 +69,7 @@ export default function SeccionPrecioSilla({ precio }: { precio: number }) {
       <section className="bg-fondoSecundario flex flex-col p-8 ">
         <div className="flex justify-between items-center gap-4">
           <div>
-            <h1 className="text-3xl">Total: {precioFinal()}€</h1>
+            <h1 className="text-3xl">Total: {precioFinal()}<Euro/></h1>
             {/* <p className="text-sm flex justify-end"> Iva incluido*</p> */}
           </div>
           <section className="flex w-36 border-[1px] border-fondoTerciario justify-between">
