@@ -9,6 +9,7 @@
  7 - Arreglar visualizacion en producto ✅
  8 - Cambio de tema oscuro y claro, fixear funcionamiento ✅
  8.1 - Ajustas los colores del tema claro 
+ 8.2- Chequear el boton de modo oscuro y claro (funciona raro)
  9 - Cambiar el hosting de la BBDD ✅
  10- Configurar skeleton onLoading para el await de la consulta
  11- Pasarle los datos a la page "productoConcreto" ✅

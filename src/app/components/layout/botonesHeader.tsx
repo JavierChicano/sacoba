@@ -32,6 +32,7 @@ export default function BotonesHeader() {
     obtenerUsuario(); 
   });
   
+  
   return (
     <ul className={cn(contieneProducto ? "flex justify-around w-3/4 m-10 text-xl items-center bg-fondoHeader p-2 rounded-lg backdrop-blur-xl": "flex justify-around w-3/4 m-10 text-xl items-center")}>
       <HoverBoton>
@@ -62,7 +63,7 @@ export default function BotonesHeader() {
               />
             </Link>
 
-            {mostrarDesplegable && cookieIniciada && <DesplegableCarrito />}
+            {mostrarDesplegable && <DesplegableCarrito />}
           </div>
           <div
             onMouseEnter={() => setMostrarLogin(true)}
