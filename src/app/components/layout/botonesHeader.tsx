@@ -63,7 +63,7 @@ export default function BotonesHeader() {
               />
             </Link>
 
-            {mostrarDesplegable && <DesplegableCarrito />}
+            {mostrarDesplegable && pathName !== "/CarritoCompra" && <DesplegableCarrito />}
           </div>
           <div
             onMouseEnter={() => setMostrarLogin(true)}
