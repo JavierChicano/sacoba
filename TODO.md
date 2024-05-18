@@ -31,6 +31,7 @@
  24- Desabilitar el hover del carrito en la pagina del carrito y hoverearlo en naranja ✅
  25- Hacer el estado global para guardar datos de los packs✅
  26- Cambiar info de los productos en el main
+ 27- Boton eliminar elemento del carro✅
 
 //PAGINA AYUDA
 ¿Quiere mas opciones de personalizacion?, mire el catálogo y consulte disponibilidad y precio, puesto que en la página se ha reducido la oferta y aunque se trate de abarcar todos los aspectos y variantes de personalización, no estas cubiertas todas por lavores de simplificacion hacia el usuario

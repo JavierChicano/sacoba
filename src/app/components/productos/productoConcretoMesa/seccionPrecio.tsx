@@ -1,6 +1,5 @@
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { TipoMesa } from "../../../../../tipos/tipos";
 import {
   useIndexMesaFinal,
@@ -106,7 +105,7 @@ export default function SeccionPrecio({
             }
 
             let nuevoCarrito = [...carritoObj, mesa];
-            console.log(nuevoCarrito);
+            console.log(nuevoCarrito)
             localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
           } else {
             //Si es el primer objeto en almacenarse

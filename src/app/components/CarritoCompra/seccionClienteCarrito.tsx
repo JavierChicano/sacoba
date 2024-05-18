@@ -7,61 +7,73 @@ import { LeerDatosCookie } from "../perfil/cookiePerfil";
 import { RecogerDatosCarrito } from "./recogerDatosCarrito";
 import RutaCarrito from "./rutaCarrito";
 import { usePrecioTotalCarrito } from "../../../../states/states";
-import Euro from "../euro";
 
 export default function CompClienteCarrito() {
   const [objetosCarro, setObjetosCarro] = useState<string[]>([]);
   const [sesionIniciada, setSesionIniciada] = useState(false);
   const [carritoVacio, setCarritoVacio] = useState(false);
+  const [refrescar, setRefrescar] = useState(false);
   const { totalProductos } = usePrecioTotalCarrito();
-  
-  useEffect(() => {
-    const obtenerUsuario = async () => {
-      try {
-        const cookie = await LeerDatosCookie();
-        //Si la sesion esta iniciada
-        if (cookie.status) {
-          setSesionIniciada(true);
-          const consulta = await RecogerDatosCarrito(
-            cookie.usuario.correoElectronico
-          );
-          //Si la consulta sale bn
-          if (consulta.success && consulta.carrito !== undefined) {
-            const detallesProductos = consulta.carrito.map((producto) => {
-              const detalles = JSON.parse(producto.detallesProducto);
-              return {
-                ...detalles,
-                id: producto.id,
-              };
-            });
-            setObjetosCarro(detallesProductos.reverse());
-          } else {
-            if (consulta.message === "El carrito está vacio") {
-              setCarritoVacio(true);
-            }
-          }
+
+  const obtenerUsuario = async () => {
+    try {
+      const cookie = await LeerDatosCookie();
+      //Si la sesion esta iniciada
+      if (cookie.status) {
+        setSesionIniciada(true);
+        const consulta = await RecogerDatosCarrito(
+          cookie.usuario.correoElectronico
+        );
+        //Si la consulta sale bn
+        if (consulta.success && consulta.carrito !== undefined) {
+          const detallesProductos = consulta.carrito.map((producto) => {
+            const detalles = JSON.parse(producto.detallesProducto);
+            return {
+              ...detalles,
+              id: producto.id,
+            };
+          });
+          setObjetosCarro(detallesProductos.reverse());
         } else {
-          //Si la sesion no esta iniciada
-          let carritoString = localStorage.getItem("carrito");
-          if (carritoString !== null) {
-            const carritoObjeto = JSON.parse(carritoString);
-            if(carritoObjeto.length > 1){
-              setObjetosCarro(carritoObjeto.reverse());
-            }else{
-              //Si el carrito tiene un solo objeto hay que convertirlo a array
-              const carroArray = [carritoObjeto]
-              setObjetosCarro(carroArray.reverse());
-            }
-          } else {
+          if (consulta.message === "El carrito está vacio") {
             setCarritoVacio(true);
           }
         }
-      } catch (error) {
-        console.error("Error al obtener los datos del usuario:", error);
+      } else {
+        //Si la sesion no esta iniciada
+        let carritoString = localStorage.getItem("carrito");
+        if (carritoString !== null) {
+          const carritoObjeto = JSON.parse(carritoString);
+          if (carritoObjeto.length > 1) {
+            setObjetosCarro(carritoObjeto.reverse());
+          } else {
+            //Si el carrito tiene un solo objeto hay que convertirlo a array
+            const carroArray = [carritoObjeto];
+            setObjetosCarro(carroArray.reverse());
+          }
+        } else {
+          setCarritoVacio(true);
+        }
       }
-    };
+    } catch (error) {
+      console.error("Error al obtener los datos del usuario:", error);
+    }
+  };
+
+  //lanzar la funcion al cargar la pagina
+  useEffect(() => {
     obtenerUsuario();
   }, []);
+
+  const recargarCarritoLocal = () => {
+    let carritoString = localStorage.getItem("carrito");
+    if (carritoString !== null) {
+      const carritoObjeto = JSON.parse(carritoString);
+      setObjetosCarro(carritoObjeto.reverse());
+    }else{
+      setCarritoVacio(true);
+    }
+  };
 
   return (
     <section className="w-full">
@@ -97,7 +109,13 @@ export default function CompClienteCarrito() {
             </li>
           </ul>
           {objetosCarro.map((objeto, index) => (
-            <SeccionInfoProducto producto={objeto} key={index} clave={index} />
+            <SeccionInfoProducto
+              producto={objeto}
+              key={index}
+              clave={index}
+              onDelete={obtenerUsuario}
+              onDeleteLocal={recargarCarritoLocal}
+            />
           ))}
           <section className="w-full flex justify-between items-center text-2xl">
             <aside className="w-1/2 flex justify-center gap-2 cursor-pointer underline">
@@ -116,7 +134,7 @@ export default function CompClienteCarrito() {
                 <span className="w-32"></span>
                 <div className="w-60 flex flex-col justify-end gap-3">
                   <div className="flex justify-center items-center text-3xl">
-                    Total: {totalProductos}<Euro/>
+                    Total: {Math.round(totalProductos)}€
                   </div>
                   <h1 className="p-2 bg-fondoSecundario border flex justify-center border-colorBase hover:bg-colorBase cursor-pointer">
                     Proceder al pago

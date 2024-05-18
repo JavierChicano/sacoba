@@ -30,13 +30,13 @@ export default function ProductoCarrito({
   }, [cantidad]);
   return (
     <article className="grid grid-cols-[1fr_2fr] gap-4">
-      <div className="w-full h-full">
+      <div className="w-32 h-28">
         <Image
           className="w-full h-full cursor-pointer rounded-lg"
           src={`/productos/${producto.producto}s/${modelo()}.png`}
-          alt="Imagen mesa"
-          width={500}
-          height={500}
+          alt={`Imagen de ${producto.producto}${modelo()}`}
+          width={300}
+          height={300}
         />
       </div>
       <section>

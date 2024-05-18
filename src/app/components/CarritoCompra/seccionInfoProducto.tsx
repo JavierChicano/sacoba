@@ -4,13 +4,20 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePrecioTotalCarrito } from "../../../../states/states";
 import { ModificarCantidadProducto } from "./modificarCantidadProducto";
+import BotonPapelera from "./botonPapelera";
+import { EliminarProductoCarrito } from "./EliminarProductoCarrito";
+import { Toaster, toast } from "sonner";
 
 export default function SeccionInfoProducto({
   producto,
   clave,
+  onDelete,
+  onDeleteLocal
 }: {
   producto: any;
   clave: number;
+  onDelete: () => Promise<void>;
+  onDeleteLocal: () => void;
 }) {
   const [cantidad, setCantidad] = useState(1);
   const [total, setTotal] = useState(1);
@@ -63,7 +70,7 @@ export default function SeccionInfoProducto({
       cantidad: cantidadCalculada,
     };
     const response = await ModificarCantidadProducto(productoConNuevaCantidad);
-    //Si la consulta a la BBDD, seguramente sea porq la sesion no esta iniciada
+    //Si la consulta a la BBDD es false, seguramente sea porq la sesion no esta iniciada
     if (!response) {
       let carritoString = localStorage.getItem("carrito");
       if (carritoString !== null) {
@@ -76,24 +83,52 @@ export default function SeccionInfoProducto({
       }
     }
   };
+  
+  const eliminarElemento = async () => {
+    const response = await EliminarProductoCarrito(producto);
+    
+    //Si la consulta a la BBDD es false, seguramente sea porq la sesion no esta iniciada
+    if (!response) {
+      let carritoString = localStorage.getItem("carrito");
+      if (carritoString !== null) {
+        const carritoObjeto = JSON.parse(carritoString);
+        if (carritoObjeto.length > 1) {
+          const productosActualizados = eliminarProducto(carritoObjeto, producto);
+          console.log("ACTUZALIZADO", productosActualizados)
+          localStorage.setItem("carrito",JSON.stringify(productosActualizados));
+        } else {
+          localStorage.removeItem("carrito");
+        }
+        setSumaTotal(clave, 0);
+        onDeleteLocal();
+      }
+    } else {
+      toast.success("Producto eliminado del carrito");
+      setSumaTotal(clave, 0);
+      await onDelete();
+    }
+  };
   return (
     <section className="flex mt-4 border-b border-colorBase pb-4 justify-between w-full items-center">
-      <div className="w-1/2 flex gap-8">
-        <div className="w-40 h-36">
-          <Image
-            className="w-full h-full rounded-lg"
-            src={`/productos/${producto.producto}s/${modelo()}.png`}
-            alt="Imagen mesa"
-            width={500}
-            height={500}
-          />
+      <div className="w-1/2 flex gap-8 justify-between">
+        <div className="flex gap-8">
+          <div className="w-40 h-36">
+            <Image
+              className="w-full h-full rounded-lg"
+              src={`/productos/${producto.producto}s/${modelo()}.png`}
+              alt={`Imagen de ${producto.producto}${modelo()}`}
+              width={500}
+              height={500}
+            />
+          </div>
+          <div>
+            <h1 className="text-3xl">{producto.modelo}</h1>
+            <h2 className="text-lg">{producto.acabado}</h2>
+            <h2 className="text-lg">{producto.color}</h2>
+            <h2 className="text-lg">{infoExtra}</h2>
+          </div>
         </div>
-        <div>
-          <h1 className="text-3xl">{producto.modelo}</h1>
-          <h2 className="text-lg">{producto.acabado}</h2>
-          <h2 className="text-lg">{producto.color}</h2>
-          <h2 className="text-lg">{infoExtra}</h2>
-        </div>
+        <BotonPapelera onDelete={eliminarElemento} />
       </div>
       <div className="w-1/2 flex justify-around">
         <span className="w-32 flex justify-center text-xl">
@@ -122,8 +157,11 @@ export default function SeccionInfoProducto({
             <IconPlus stroke={2} />
           </div>
         </div>
-        <span className="w-32 flex justify-center text-xl">{Math.round(total)}€</span>
+        <span className="w-32 flex justify-center text-xl">
+          {Math.round(total)}€
+        </span>
       </div>
+      <Toaster position="top-right" richColors />
     </section>
   );
 }
@@ -155,4 +193,23 @@ const reemplazarProducto = (productos: any, nuevoProducto: any) => {
   } else {
     return nuevoProducto;
   }
+};
+
+const eliminarProducto = (productos: any, productoAEliminar: any) => {
+  return productos.filter((producto: any) => {
+    // Filtramos para excluir el producto a eliminar
+    return !(
+      producto.producto === productoAEliminar.producto &&
+      producto.modelo === productoAEliminar.modelo &&
+      producto.dimension === productoAEliminar.dimension &&
+      producto.acabado === productoAEliminar.acabado &&
+      producto.grupo === productoAEliminar.grupo &&
+      producto.color === productoAEliminar.color &&
+      producto.grosor === productoAEliminar.grosor &&
+      producto.colorPata === productoAEliminar.colorPata &&
+      producto.colorExtensible === productoAEliminar.colorExtensible &&
+      producto.altura === productoAEliminar.altura &&
+      producto.precio === productoAEliminar.precio
+    );
+  });
 };
