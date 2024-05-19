@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Outlet() {
   return (
     <main className="flex flex-col items-center">
@@ -5,7 +7,7 @@ export default function Outlet() {
         <h1 className="text-5xl">Disponible próximamente</h1>
         <h1>
           Para mas información contáctenos{" "}
-          <span className="text-colorBase">atencionCliente@gmail.com</span>
+          <p className="text-colorBase cursor-pointer"><Link href="mailto:atencionCliente@sacoba.es">atencionCliente@sacoba.es</Link></p>
         </h1>
         <h1>
           O visite nuestra tienda{" "}

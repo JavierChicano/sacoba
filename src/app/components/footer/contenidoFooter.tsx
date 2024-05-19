@@ -27,15 +27,16 @@ export default function ContenidoFooter() {
         <section className="pl-20">
           <TituloFooter titulo="Contacto" />
           <ul className="mt-4">
-            <li>Formulario de contacto</li>
+            <li><Link href={"/Contacto/"}>Formulario de contacto</Link></li>
             <li>Atencion al cliente:</li>
-            <li className="text-colorBase">atencionCliente@gmail.com</li>
+            <p className="text-colorBase cursor-pointer"><Link href="mailto:atencionCliente@sacoba.es">atencionCliente@sacoba.es</Link></p>
+
           </ul>
         </section>
         <section className="pl-20">
           <TituloFooter titulo="About" />
           <ul className="mt-4">
-            <li>Descargar catálogo</li>
+            <li><Link href={"/catalogo.pdf"} download={"catalogo.pdf"} >Descargar catálogo</Link></li>
             <li>Quienes somos</li>
           </ul>
         </section>
@@ -55,8 +56,10 @@ export default function ContenidoFooter() {
           </ul>
         </section>
         <section className="mt-10 pl-20">
-          <TituloFooter titulo="Redes" />
-          <div></div>
+          <TituloFooter titulo="Ayuda" />
+          <ul className="mt-4">
+            <li><Link href={"/Ayuda/"}>Preguntas frecuentes</Link></li>
+          </ul>
         </section>
       </div>
       <aside className="w-full flex flex-col items-center gap-4">
