@@ -32,6 +32,7 @@
  25- Hacer el estado global para guardar datos de los packs✅
  26- Cambiar info de los productos en el main
  27- Boton eliminar elemento del carro✅
+ 28- Hacer acordeon para pagina AYUDA
 
 //PAGINA AYUDA
 ¿Quiere mas opciones de personalizacion?, mire el catálogo y consulte disponibilidad y precio, puesto que en la página se ha reducido la oferta y aunque se trate de abarcar todos los aspectos y variantes de personalización, no estas cubiertas todas por lavores de simplificacion hacia el usuario
@@ -39,10 +40,6 @@
 
 Dudas acerca de productos
     Las alturas de las mesas son considerando tapa laminado, el grosor por defecto de silestone 12mm y dekton 8mm
-
-//TENER EN CUENTA TIEMPOS DE CARGA EN LOS INSERTS EN LA BBDD
-
-//Borrar el componente "meteors", si al final no se va a usar
 
 //BORRAR PAGINA "CALCULOPRECIOS" AL FINALIZAR LA PAGINA
 
