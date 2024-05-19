@@ -12,11 +12,13 @@ import { useRouter } from "next/navigation";
 import { Toaster, toast } from "sonner";
 import { setCookie } from "cookies-next";
 import { InsertarCarritoExistente } from "./insertarCarritoLocal";
+import { Spinner } from "@nextui-org/react";
 
 export default function FormRegistro() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -39,16 +41,21 @@ export default function FormRegistro() {
     }
 
     //Validacion del lado del servidor
+    setLoading(true);
     const response = await InsertarRegistro(result.data);
     if (response?.error) {
       //Manejar el error
       toast.error(response.error);
+      setLoading(false);
     } else {
       //Chequeamos si el cliente tiene productos en el carrito
       const carritoString = localStorage.getItem("carrito");
       if (carritoString !== null) {
         const carritoObjeto = JSON.parse(carritoString);
-        await InsertarCarritoExistente(carritoObjeto, result.data.correoElectronico)
+        await InsertarCarritoExistente(
+          carritoObjeto,
+          result.data.correoElectronico
+        );
         localStorage.clear();
       }
       //Seteamos la cookie con el token que contiene la informacion del usuario
@@ -137,13 +144,17 @@ export default function FormRegistro() {
         )}
       </div>
 
-      <button
-        type="submit"
-        className=" w-2/3 bg-colorBase h-14 self-center text-2xl hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"
-        disabled={isLoading}
-      >
-        Crear cuenta
-      </button>
+      {loading ? (
+        <Spinner color="warning" />
+      ) : (
+        <button
+          type="submit"
+          className=" w-2/3 bg-colorBase h-14 self-center text-2xl hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"
+          disabled={isLoading}
+        >
+          Crear cuenta
+        </button>
+      )}
       <Toaster position="top-right" richColors />
       <style jsx>{`
         input::placeholder {

@@ -47,7 +47,7 @@ export default function CalculoPrecios() {
           {precio.toFixed(2)}€
         </div>
         <div className="flex text-2xl w-full justify-between">
-          <h1>Base imponible "sin iva":</h1>
+          <h1>Base imponible -sin iva-:</h1>
           {(precio / 1.21).toFixed(2)}€
         </div>
         <div className="flex text-2xl w-full justify-between">

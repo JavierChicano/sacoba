@@ -12,9 +12,11 @@ import { Toaster, toast } from "sonner";
 import { FormLoginValidation } from "../../../../tipos/tiposForm";
 import { setCookie } from "cookies-next";
 import { InsertarCarritoExistente } from "../Registro/insertarCarritoLocal";
+import { Spinner } from "@nextui-org/react";
 
 export default function FormLogin() {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -34,16 +36,21 @@ export default function FormLogin() {
     }
 
     //Validacion del lado del servidor
+    setLoading(true);
     const response = await ComprobarUsuario(result.data);
     if (response?.error) {
       //Manejar el error
       toast.error(response.error);
+      setLoading(false);
     } else {
       //Chequeamos si el cliente tiene productos en el carrito
       const carritoString = localStorage.getItem("carrito");
       if (carritoString !== null) {
         const carritoObjeto = JSON.parse(carritoString);
-        await InsertarCarritoExistente(carritoObjeto, result.data.correoElectronico)
+        await InsertarCarritoExistente(
+          carritoObjeto,
+          result.data.correoElectronico
+        );
         localStorage.clear();
       }
       setCookie("client-Token", response.token);
@@ -53,10 +60,7 @@ export default function FormLogin() {
   };
 
   return (
-    <form
-      className="flex flex-col gap-4 max-w-lg w-full"
-      action={clientAction}
-    >
+    <form className="flex flex-col gap-4 max-w-lg w-full" action={clientAction}>
       <div className="flex relative w-full">
         <input
           type="email"
@@ -91,13 +95,16 @@ export default function FormLogin() {
           />
         )}
       </div>
-
-      <button
-        type="submit"
-        className=" w-2/3 bg-colorBase h-14 self-center text-2xl hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"
-      >
-        Entrar
-      </button>
+      {loading ? (
+        <Spinner color="warning" />
+      ) : (
+        <button
+          type="submit"
+          className="w-2/3 bg-colorBase h-14 self-center text-2xl hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"
+        >
+          Entrar
+        </button>
+      )}
       <Toaster position="top-right" richColors />
       <style jsx>{`
         input::placeholder {
