@@ -11,7 +11,7 @@ export default function CompClienteBanco({bancoSeleccionado, coloresTapizado, co
     // {InsertarDatosACarrito}
     <div>
       {bancoSeleccionado && (
-        <div className=" max-w-7xl grid grid-cols-2 w-full gap-6">
+        <div className="max-w-7xl grid grid-cols-2 w-full gap-6">
           <RutaBancoConcreto />
           <h1 className="text-4xl border-b-2 border-colorBase col-span-2 ">
             {bancoSeleccionado[0].modelo}

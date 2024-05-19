@@ -36,7 +36,9 @@ export default function BotonesHeader() {
   return (
     <ul className={cn(contieneProducto ? "flex justify-around w-3/4 m-10 text-xl items-center bg-fondoHeader p-2 rounded-lg backdrop-blur-xl": "flex justify-around w-3/4 m-10 text-xl items-center")}>
       <HoverBoton>
-        <p className={cn(pathName === "/Outlet" ? "text-center font-bold text-colorBase" : "text-center")}>Outlet</p>
+        <p className={cn(pathName === "/Outlet" ? "text-center font-bold text-colorBase" : "text-center")}>          
+          <Link href="/Outlet/">Outlet</Link>
+        </p>
       </HoverBoton>
       <HoverBoton>
         <p className={cn(pathName === "/Packs" ? "text-center font-bold text-colorBase" : "text-center")}>
