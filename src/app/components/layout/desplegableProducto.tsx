@@ -29,7 +29,7 @@ export default function DesplegableProducto() {
         } animate-fade-down animate-ease-out`}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <ul className=" text-xl text-contraste bg-slate-500/50">
+        <ul className=" text-xl text-contraste bg-slate-500/70">
           <li>
             <Link
               href="/ProductoMesa/"
@@ -70,7 +70,7 @@ export default function DesplegableProducto() {
               Bancos
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               href="/ProductoAMedida/"
               className={`flex gap-4 items-center px-4 py-2 ${
@@ -87,7 +87,7 @@ export default function DesplegableProducto() {
               />
               A medida
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </aside>

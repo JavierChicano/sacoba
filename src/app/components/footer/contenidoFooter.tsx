@@ -19,9 +19,9 @@ export default function ContenidoFooter() {
             <li>
               <Link href="/ProductoBanco/">Bancos</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/ProductoAMedida/">A medida</Link>
-            </li>
+            </li> */}
           </ul>
         </section>
         <section className="pl-20">
