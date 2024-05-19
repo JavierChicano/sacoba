@@ -100,7 +100,7 @@ export default function DesplegableCarrito() {
                 Proceder al pago
               </Link>
               <Link
-                href="/"
+                href="/CarritoCompra"
                 className="bg-colorBase p-2 h-full flex justify-center items-center"
               >
                 Ir al carrito

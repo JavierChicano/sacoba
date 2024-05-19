@@ -74,9 +74,9 @@ export default function ProductoCarrito({
       </div>
       <section>
         <h1 className="text-3xl">{producto.modelo}</h1>
-        <div className="grid grid-cols-3 gap-4">
-          <div className="col-span-2">
-            <span>{producto.acabado}</span>
+        <div className="grid grid-cols-3 gap-4 text-lg">
+          <div className="col-span-2 flex flex-col">
+            <span>{producto.acabado || producto.acabadoTapizado}</span>
             <div>
               Precio: {Math.round(producto.precio * producto.cantidad)}€
             </div>

@@ -61,6 +61,8 @@ export default function SeccionInfoProducto({
       setInfoExtra(producto.formato);
     } else if (producto.producto === "Banco") {
       setInfoExtra("Modulos: " + producto.modulos.length);
+    } else if (producto.producto === "Pack") {
+      setInfoExtra("Pack: " + producto.packElegido);
     }
   }, []);
 
@@ -94,7 +96,6 @@ export default function SeccionInfoProducto({
         const carritoObjeto = JSON.parse(carritoString);
         if (carritoObjeto.length > 1) {
           const productosActualizados = eliminarProducto(carritoObjeto, producto);
-          console.log("ACTUZALIZADO", productosActualizados)
           localStorage.setItem("carrito",JSON.stringify(productosActualizados));
         } else {
           localStorage.removeItem("carrito");
@@ -123,8 +124,8 @@ export default function SeccionInfoProducto({
           </div>
           <div>
             <h1 className="text-3xl">{producto.modelo}</h1>
-            <h2 className="text-lg">{producto.acabado}</h2>
-            <h2 className="text-lg">{producto.color}</h2>
+            <h2 className="text-lg">{producto.acabado || producto.acabadoTapizado}</h2>
+            <h2 className="text-lg">{producto.color || producto.colorTapizado}</h2>
             <h2 className="text-lg">{infoExtra}</h2>
           </div>
         </div>
