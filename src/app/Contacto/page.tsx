@@ -11,15 +11,20 @@ export default function Contacto() {
       >
         <div className=" max-w-7xl flex flex-col items-center ">
           <RutaContacto />
-          <div className="grid grid-cols-2 gap-60 ">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-60 ">
+            <h1 className="flex text-black text-5xl font-bold lg:hidden w-full justify-center mb-5">
+              Contáctanos
+            </h1>
             <FormularioContacto />
             <section className="flex justify-end items-end mb-20">
-              <h1 className="text-black text-6xl font-bold">Contáctanos</h1>
+              <h1 className="text-black text-6xl font-bold lg:block hidden">
+                Contáctanos
+              </h1>
             </section>
           </div>
         </div>
       </div>
-      <InfoExtra/>
+      <InfoExtra />
     </main>
   );
 }

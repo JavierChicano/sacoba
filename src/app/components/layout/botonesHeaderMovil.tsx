@@ -56,7 +56,7 @@ export default function BotonesHeaderMovil({
                 : "text-center"
             )}
           >
-            <Link href="/Outlet/">Outlet</Link>
+            <Link href="/Outlet/" onClick={onClose}>Outlet</Link>
           </p>
           <p
             className={cn(
@@ -65,7 +65,7 @@ export default function BotonesHeaderMovil({
                 : "text-center"
             )}
           >
-            <Link href="/Packs/">Packs</Link>
+            <Link href="/Packs/" onClick={onClose}>Packs</Link>
           </p>
           <p
             className={cn(
@@ -84,12 +84,12 @@ export default function BotonesHeaderMovil({
                 : "text-center"
             )}
           >
-            <Link href="/Contacto/">Contacto</Link>
+            <Link href="/Contacto/" onClick={onClose}>Contacto</Link>
           </p>
           <li className="w-36 flex justify-around items-center">
             <div className="absolute flex items-center z-50">
               <BotonTema />
-              <Link href="/CarritoCompra">
+              <Link href="/CarritoCompra" onClick={onClose}>
                 <IconoCarrito
                   size={40}
                   color={
@@ -98,7 +98,7 @@ export default function BotonesHeaderMovil({
                 />
               </Link>
               {cookieIniciada ? (
-                <Link href={"/Perfil"}>
+                <Link href={"/Perfil"} onClick={onClose}>
                   <IconUser
                     stroke={2}
                     size={40}

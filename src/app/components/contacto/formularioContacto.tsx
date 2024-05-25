@@ -30,7 +30,7 @@ export default function FormularioContacto() {
     }
   };
   return (
-    <section className="bg-fondoSecundario p-12 -mb-12">
+    <section className="bg-fondoSecundario p-12 lg:-mb-12">
       <form className="flex flex-col gap-4 max-w-72" action={clientAction}>
         <input
           type="email"
@@ -70,7 +70,7 @@ export default function FormularioContacto() {
         ></textarea>
         <button
           type="submit"
-          className="bg-colorBase h-14 mt-10 -mr-12 w-3/4 self-end text-2xl flex justify-start items-center pl-3 hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"
+          className="bg-colorBase h-14 mt-5 lg:mt-10 -mr-12 w-3/4 self-end text-2xl flex justify-start items-center pl-3 hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"
         >
           Enviar
         </button>
