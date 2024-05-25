@@ -18,6 +18,7 @@ import ObjMesaPacks from "../packConcreto/objDimensionesMesaPack";
 import ObjColorBastidor from "./objColorBastidorMesa";
 import ObjAlturaMesa from "./objAlturaMesa";
 import ModalColoresBastidor from "../productoConcretoBanco/modalColoresBastidor";
+import { useTheme } from "next-themes";
 
 export default function SeccionPersonalizarMesa({
   mesaSeleccionada,
@@ -26,7 +27,8 @@ export default function SeccionPersonalizarMesa({
   mesaSeleccionada: TipoMesa[];
   colores: TipoColor[];
 }) {
-  //Estado globales
+  //Estados globales
+  const { theme } = useTheme();
   const { modalVisible, setModalVisible } = useModal();
   const { modalVisibleBastidor, setModalVisibleBastidor } = useModalBastidor();
   const { colorElegido, modeloElegido, rutaImagen, grupo } =
@@ -208,10 +210,10 @@ export default function SeccionPersonalizarMesa({
         )}
       >
         <h2 className="text-xl">
-          Acabado: <span className="text-colorBase">{modeloElegido}</span>
+          Acabado: <span className={theme==="light"? "text-white" : "text-colorBase"}>{modeloElegido}</span>
         </h2>
         <h2 className="text-xl">
-          Color: <span className="text-colorBase">{colorElegido}</span>
+          Color: <span className={theme==="light"? "text-white" : "text-colorBase"}>{colorElegido}</span>
         </h2>
         <div>
           <Image
@@ -248,7 +250,7 @@ export default function SeccionPersonalizarMesa({
           >
             <h2 className="text-xl">
               Color:{" "}
-              <span className="text-colorBase">{colorElegidoBastidor}</span>
+              <span className={theme==="light"? "text-white" : "text-colorBase"}>{colorElegidoBastidor}</span>
             </h2>
             <div>
               <Image

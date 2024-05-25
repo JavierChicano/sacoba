@@ -8,15 +8,15 @@
  6 - Poner el hover de los botones del header en el footer tmb ✅
  7 - Arreglar visualizacion en producto ✅
  8 - Cambio de tema oscuro y claro, fixear funcionamiento ✅
- 8.1 - Ajustas los colores del tema claro 
- 8.2- Chequear el boton de modo oscuro y claro (funciona raro)
+ 8.1 - Ajustas los colores del tema claro ✅
+ 8.2- Chequear el boton de modo oscuro y claro (funciona raro)✅
  9 - Cambiar el hosting de la BBDD ✅
  10- Configurar skeleton onLoading para el await de la consulta
  11- Pasarle los datos a la page "productoConcreto" ✅
  12- Hacer ventana modal con los colores en la page "productoConcreto"✅
  13- Crear la tabla outlet para la pagina de outlet
  14- Crear la tabla packs para la pagina de packs✅
- 15- Cambiar el texto de sacoba, para una buena renderizacion
+ 15- Cambiar el texto de sacoba, para una buena renderizacion✅
  16- Crear un slider en mesas filtros para setear el precio✅
   16.1- El slider cuando pones ambos en el mismo precio no filtra✅
  17- Que cuando se añada al carrito aparezca una notificacion "Toast" confirmandolo✅
@@ -33,6 +33,7 @@
  26- Cambiar info de los productos en el main
  27- Boton eliminar elemento del carro✅
  28- Hacer acordeon para pagina AYUDA
+ 29- Terminar el perfil
 
 //PAGINA AYUDA
 ¿Quiere mas opciones de personalizacion?, mire el catálogo y consulte disponibilidad y precio, puesto que en la página se ha reducido la oferta y aunque se trate de abarcar todos los aspectos y variantes de personalización, no estas cubiertas todas por lavores de simplificacion hacia el usuario

@@ -123,7 +123,7 @@ export default function ObjMesasTotales({
         <h1 className="text-3xl pt-10 flex items-end">
           Mesas totales ({mesasOrdenadas.length})
         </h1>
-        <section className="bg-contraste mt-10 text-black flex items-center gap-8 p-4 rounded-lg relative">
+        <section className="bg-white mt-10 text-black flex items-center gap-8 p-4 rounded-lg relative">
           <span
             className="flex gap-2 cursor-pointer"
             onClick={() => setOcultarFiltro(!ocultarFiltro)}
@@ -151,7 +151,7 @@ export default function ObjMesasTotales({
             <ul
               className={cn(
                 isHovered
-                  ? "absolute pt-[52px] -mt-4 right-0 top-5 bg-contraste flex flex-col rounded-lg"
+                  ? "absolute pt-[52px] -mt-4 right-0 top-5 bg-white flex flex-col rounded-lg"
                   : "hidden"
               )}
             >

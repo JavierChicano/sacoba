@@ -11,6 +11,7 @@ import ModalColores from "../modalColores";
 import { cn } from "@nextui-org/react";
 import Image from "next/image";
 import { usePackFinal } from "../../../../../states/statesProductoFinal";
+import { useTheme } from "next-themes";
 
 export default function SeccionMesaPack({
   packSeleccionado,
@@ -20,7 +21,9 @@ export default function SeccionMesaPack({
   colores: TipoColor[];
 }) {
   //Estados globales
+  const { theme } = useTheme();
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
+
   //Para manejar el modal de los colores
   const { modalVisible, setModalVisible } = useModal();
   const { colorElegido, modeloElegido, rutaImagen } = useColorSeleccionado();
@@ -142,10 +145,10 @@ export default function SeccionMesaPack({
         )}
       >
         <h2 className="text-xl">
-          Acabado: <span className="text-colorBase">{modeloElegido}</span>
+          Acabado: <span className={theme === "light" ? "text-white" : "text-colorBase"}>{modeloElegido}</span>
         </h2>
         <h2 className="text-xl">
-          Color: <span className="text-colorBase">{colorElegido}</span>
+          Color: <span className={theme === "light" ? "text-white" : "text-colorBase"}>{colorElegido}</span>
         </h2>
         <div>
           <Image

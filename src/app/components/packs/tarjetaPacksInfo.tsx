@@ -5,6 +5,7 @@ import Image from "next/image";
 import { IconArrowRightBar } from "@tabler/icons-react";
 import Link from "next/link";
 import router from "next/router";
+import { useTheme } from "next-themes";
 
 export default function TarjetaDisplayPacks({
   datos,
@@ -13,6 +14,8 @@ export default function TarjetaDisplayPacks({
   datos: TipoPack;
   posicion: number;
 }) {
+  const { theme } = useTheme();
+
   const handleClick = () => {
     router.push(`/PackConcreto/${datos.modelo}`);
   };
@@ -26,7 +29,7 @@ export default function TarjetaDisplayPacks({
     return precioString.split(",").map((precio) => parseFloat(precio.trim()));
   };
   const precios = obtenerArrayPrecio(datos.precio);
-  console.log(precios);
+
   return (
     <>
       {/* Esto simplemente es un relleno de codigo, para situar correctamente los section */}
@@ -86,7 +89,7 @@ export default function TarjetaDisplayPacks({
               <Link
                 href={`/PackConcreto/${datos.modelo}`}
                 onClick={handleClick}
-                className="underline text-colorBase"
+                className={theme === "light" ? "underline text-white" : "underline text-colorBase"}
               >
                 Ver opciones de compra
               </Link>

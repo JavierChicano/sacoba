@@ -28,7 +28,7 @@ export default function TarjetaDisplayInfo({ datos }: { datos: TipoMesa }) {
           className="absolute top-0 left-0 w-full h-full bg-black/80 flex flex-col justify-center items-center pointer-events-none z-10"
         >
           <p className="text-white text-3xl">{datos.modelo}</p>
-          <h1 className="text-2xl">Desde {precios[0]}€</h1>
+          <h1 className="text-white text-2xl">Desde {precios[0]}€</h1>
         </div>
       )}
 

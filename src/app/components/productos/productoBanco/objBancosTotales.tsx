@@ -56,7 +56,7 @@ export default function ObjBancosTotales({bancosModelos}: {bancosModelos: TipoBa
           Bancos totales ({bancosModelos.length})
         </h1>
         <section
-          className="bg-contraste mt-10 text-black flex flex-col items-center gap-8 p-4 rounded-lg "
+          className="bg-white mt-10 text-black flex flex-col items-center gap-8 p-4 rounded-lg "
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -64,7 +64,7 @@ export default function ObjBancosTotales({bancosModelos}: {bancosModelos: TipoBa
             Ordenar por <IconSquareRoundedChevronDown stroke={2} className={cn(!isHovered ? "block" : "hidden")}/>
             <IconSquareRoundedChevronUp stroke={2} className={cn(isHovered ? "block" : "hidden")}/> 
           </span>
-          <ul className={cn(isHovered ? "absolute pt-16 -mt-4  bg-contraste z-10 flex flex-col rounded-lg" : "hidden")}>
+          <ul className={cn(isHovered ? "absolute pt-16 -mt-4  bg-white z-10 flex flex-col rounded-lg" : "hidden")}>
           <li className="hover:bg-colorBase px-4 py-2 cursor-pointer " onClick={ordenarPorReciente}>Más reciente</li>
             <li className="hover:bg-colorBase px-4 py-2 cursor-pointer " onClick={ordenarPorPrecioAlto}>Precio: alto - bajo</li>
             <li className="hover:bg-colorBase px-4 py-2 cursor-pointer rounded-b-lg" onClick={ordenarPorPrecioBajo}>Precio: bajo - alto</li>

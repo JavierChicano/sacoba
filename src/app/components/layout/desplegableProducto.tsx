@@ -19,17 +19,17 @@ export default function DesplegableProducto() {
       <li
         id="dropdownHoverButton"
         onMouseEnter={() => setIsHovered(true)}
-        className={cn(contieneProducto ? "w-36 flex justify-center cursor-pointer font-bold text-colorBase z-20" : "w-36 flex justify-center cursor-pointer z-20")}
+        className={cn(contieneProducto ? "w-36 flex justify-center cursor-pointer font-bold text-colorBase" : "w-36 flex justify-center cursor-pointer")}
       >
         Productos
       </li>
 
       <div
         id="dropdownHover"
-        className={`absolute pt-10 z-10 ${isHovered ? "block" : "hidden"} ${pathName === "/" && isHovered ? "backdrop-blur-xl" : ""} animate-fade-down animate-ease-out`}
+        className={`absolute pt-10 z-10 ${isHovered ? "block" : "hidden"} animate-fade-down animate-ease-out`}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <ul className=" text-xl text-contraste bg-slate-500/70">
+        <ul className=" text-xl text-contraste bg-slate-500/80">
           <li>
             <Link
               href="/ProductoMesa/"

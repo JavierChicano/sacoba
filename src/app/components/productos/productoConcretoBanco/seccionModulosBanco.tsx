@@ -14,6 +14,7 @@ import ModalColoresBastidor from "./modalColoresBastidor";
 import Image from "next/image";
 import { useBancoFinal } from "../../../../../states/statesProductoFinal";
 import ObjModuloBanco from "./objModuloBanco";
+import { useTheme } from "next-themes";
 
 export default function SeccionModulosBanco({
   bancosPosibles,
@@ -25,6 +26,7 @@ export default function SeccionModulosBanco({
   coloresBastidor: TipoColor[];
 }) {
   //Para mostrar y guardar el color seleccionado, estados globales
+  const { theme } = useTheme();
   const { colorElegido, modeloElegido, rutaImagen, setColorSeleccionado } =
     useColorSeleccionado();
   const {
@@ -94,10 +96,10 @@ export default function SeccionModulosBanco({
           )}
         >
           <h2 className="text-xl">
-            Acabado: <span className="text-colorBase">{modeloElegido}</span>
+            Acabado: <span className={theme==="light"? "text-white" : "text-colorBase"}>{modeloElegido}</span>
           </h2>
           <h2 className="text-xl">
-            Color: <span className="text-colorBase">{colorElegido}</span>
+            Color: <span className={theme==="light"? "text-white" : "text-colorBase"}>{colorElegido}</span>
           </h2>
           <div>
             <Image
@@ -132,11 +134,11 @@ export default function SeccionModulosBanco({
           >
             <h2 className="text-xl">
               Acabado:{" "}
-              <span className="text-colorBase">{modeloElegidoBastidor}</span>
+              <span className={theme==="light"? "text-white" : "text-colorBase"}>{modeloElegidoBastidor}</span>
             </h2>
             <h2 className="text-xl">
               Color:{" "}
-              <span className="text-colorBase">{colorElegidoBastidor}</span>
+              <span className={theme==="light"? "text-white" : "text-colorBase"}>{colorElegidoBastidor}</span>
             </h2>
             <div>
               <Image

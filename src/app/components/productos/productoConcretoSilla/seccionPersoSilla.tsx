@@ -9,6 +9,7 @@ import ColorEstructuraSilla from "./colorEstructuraSilla";
 import SeccionPrecioSilla from "./seccionPrecioSilla";
 import Image from "next/image";
 import { useSillaFinal } from "../../../../../states/statesProductoFinal";
+import { useTheme } from "next-themes";
 
 export default function SeccionPersonalizarSilla({
   sillaSeleccionada,
@@ -21,6 +22,7 @@ export default function SeccionPersonalizarSilla({
   const { modalVisible, setModalVisible } = useModal();
   const { colorElegido, modeloElegido, rutaImagen } = useColorSeleccionado();
   const { setSillaFinal } = useSillaFinal();
+  const { theme } = useTheme();
 
   //Estados para coger las variables de la silla
   const [coloresBastidor, setColoresBastidor] = useState<string[]>([]);
@@ -153,10 +155,10 @@ export default function SeccionPersonalizarSilla({
           )}
         >
           <h2 className="text-xl">
-            Acabado: <span className="text-colorBase">{modeloElegido}</span>
+            Acabado: <span className={theme==="light"? "text-white" : "text-colorBase"}>{modeloElegido}</span>
           </h2>
           <h2 className="text-xl">
-            Color: <span className="text-colorBase">{colorElegido}</span>
+            Color: <span className={theme==="light"? "text-white" : "text-colorBase"}>{colorElegido}</span>
           </h2>
           <div>
             <Image

@@ -48,7 +48,7 @@ export default function FormularioContacto() {
         />
 
         <select
-          className="border-b border-colorBase h-14 bg-fondoTerciario text-xl text-colorBaseSecundario pl-3"
+          className="border-b border-colorBase h-14 bg-fondoTerciario text-xl text-[#f1be8f] pl-3"
           defaultValue="default"
           name="motivo"
           required
