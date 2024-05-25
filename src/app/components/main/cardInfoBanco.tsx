@@ -3,8 +3,10 @@ import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 export default function CardInfoBanco() {
+  const { theme } = useTheme();
   const [isVisible, setIsVisible] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0.5,
@@ -61,10 +63,10 @@ export default function CardInfoBanco() {
             } ${isVisible ? "opacity-100" : "opacity-0"}`}
           >
             <span className="flex items-center gap-4 text-xl h-24 self-start">
-              <span className="w-20 flex justify-end">Módulos</span>
+              <span className="w-20 flex justify-end">Tapizados</span>
               <div className="w-12 h-12">
                 <Image
-                  className="w-full h-full filter invert"
+                  className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
                   alt="iconoDescriptivo"
                   src="/iconosMain/capasNegra.png"
                   width={100}
@@ -73,10 +75,10 @@ export default function CardInfoBanco() {
               </div>
             </span>
             <span className="flex items-center gap-4 text-xl h-24 self-center">
-              dddd
+            Módulos
               <div className=" w-12 h-12">
                 <Image
-                  className="w-full h-full filter invert"
+                  className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
                   alt="iconoDescriptivo"
                   src="/iconosMain/superficeNegra.png"
                   width={100}
@@ -88,7 +90,7 @@ export default function CardInfoBanco() {
               Bastidores
               <div className="w-6 h-10">
                 <Image
-                  className="w-full h-full filter invert"
+                  className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
                   alt="iconoDescriptivo"
                   src="/iconosMain/pataNegra.png"
                   width={200}
@@ -100,7 +102,7 @@ export default function CardInfoBanco() {
               dsd
               <div className=" w-12 h-12">
                 <Image
-                  className="w-full h-full filter invert"
+                  className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
                   alt="iconoDescriptivo"
                   src="/iconosMain/mesaNegra.png"
                   width={100}
@@ -116,7 +118,7 @@ export default function CardInfoBanco() {
                 <span className="text-colorBase w-20 flex justify-end">Ir a ver</span>
                 <div className=" w-12 h-12">
                   <Image
-                    className="filter invert"
+                    className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
                     src="/iconos/banco.png"
                     alt="Logo de la marca"
                     width={50}

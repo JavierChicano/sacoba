@@ -4,29 +4,29 @@ import { IconArmchair, IconDesk } from "@tabler/icons-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@nextui-org/react";
+import { useTheme } from "next-themes";
 
 export default function DesplegableProducto() {
   const [isHovered, setIsHovered] = useState(false);
   const pathName = usePathname();
+  const { theme } = useTheme();
 
   //Verficia que estamos en la pagina producto...
   const contieneProducto = /Producto/i.test(pathName);
 
   return (
-    <aside className="flex flex-col">
+    <aside className="flex flex-col ">
       <li
         id="dropdownHoverButton"
         onMouseEnter={() => setIsHovered(true)}
-        className={cn(contieneProducto ? "w-36 flex justify-center cursor-pointer font-bold text-colorBase" : "w-36 flex justify-center cursor-pointer")}
+        className={cn(contieneProducto ? "w-36 flex justify-center cursor-pointer font-bold text-colorBase z-20" : "w-36 flex justify-center cursor-pointer z-20")}
       >
         Productos
       </li>
 
       <div
         id="dropdownHover"
-        className={`absolute pt-10 z-10   ${
-          isHovered ? "block" : "hidden"
-        } animate-fade-down animate-ease-out`}
+        className={`absolute pt-10 z-10 ${isHovered ? "block" : "hidden"} ${pathName === "/" && isHovered ? "backdrop-blur-xl" : ""} animate-fade-down animate-ease-out`}
         onMouseLeave={() => setIsHovered(false)}
       >
         <ul className=" text-xl text-contraste bg-slate-500/70">
@@ -37,7 +37,7 @@ export default function DesplegableProducto() {
                 pathName === "/ProductoMesa" ? "bg-colorBase text-black" : "hover:bg-fondoTerciario"
               }`}
             >
-              <IconDesk stroke={1} color="white"/>
+              <IconDesk stroke={1} color={theme === "light" ? "black" : (pathName === "/ProductoMesa" ? "black" : "white")}/>
               Mesas
             </Link>
           </li>
@@ -48,7 +48,7 @@ export default function DesplegableProducto() {
                 pathName === "/ProductoSilla" ? "bg-colorBase text-black" : "hover:bg-fondoTerciario"
               }`}
             >
-              <IconArmchair stroke={1} color="white"/>
+              <IconArmchair stroke={1} color={theme === "light" ? "black" : (pathName === "/ProductoSilla" ? "black" : "white")}/>
               Sillas
             </Link>
           </li>
@@ -60,8 +60,7 @@ export default function DesplegableProducto() {
               }`}
             >
               <Image
-                className={`w-auto h-6  ${
-                  pathName === "/ProductoBanco" ? "filter none" : "filter invert"}`}
+              className={theme === "light" ? "w-auto h-6" : (pathName === "/ProductoBanco" ? "black w-auto h-6" : "w-auto h-6 filter invert")}
                 src="/iconos/banco.png"
                 alt="Logo de la marca"
                 width={50}

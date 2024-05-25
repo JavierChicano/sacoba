@@ -33,6 +33,7 @@
   --color-base: #e09145;
   --color-secundario: #5e636e;
   --contraste: #17181d; 
+  --contraste-opacidad: #17181dc7; 
 }
 [data-theme="dark"] {
   --foreground-rgb: 255, 255, 255;
@@ -46,6 +47,7 @@
   --color-base: #e09145;
   --color-secundario: #f1be8f;
   --contraste: #f3f3f3;
+  --contraste-opacidad: #f3f3f3cb;
 }
 
 body {

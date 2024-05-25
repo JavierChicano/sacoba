@@ -1,12 +1,13 @@
 "use client";
 import { IconArmchair } from "@tabler/icons-react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 export default function CardInfoSilla() {
-  
+  const { theme } = useTheme();
   const [isVisible, setIsVisible] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0.5, // Cambia este valor según tus necesidades
@@ -27,7 +28,7 @@ export default function CardInfoSilla() {
           <div className={`flex flex-col items-center w-72 ${isVisible ? 'animate-fade-right animate-once animate-ease-in animate-normal animate-duration-[2000ms]' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
             <span className="flex items-center gap-4 text-xl h-24 self-end">
               <div ref={ref} className=" w-12 h-12">
-                <Image className="w-full h-full filter invert"
+                <Image className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
                   alt="iconoDescriptivo"
                   src="/iconosMain/capasNegra.png"
                   width={100}
@@ -40,7 +41,7 @@ export default function CardInfoSilla() {
             <span className="flex items-center gap-4 text-xl h-24 w-44 self-center">
               
               <div className=" w-12 h-12">
-                <Image className="w-full h-full filter invert"
+                <Image className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
                   alt="iconoDescriptivo"
                   src="/iconosMain/superficeNegra.png"
                   width={100}
@@ -52,7 +53,7 @@ export default function CardInfoSilla() {
             <span className="flex items-center gap-4 text-xl h-24 self-start">
               
               <div className="w-6 h-10">
-                <Image className="w-full h-full filter invert"
+                <Image className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
                   alt="iconoDescriptivo"
                   src="/iconosMain/pataNegra.png"
                   width={100}
@@ -64,7 +65,7 @@ export default function CardInfoSilla() {
             <span className="flex items-center gap-4 text-xl h-24 w-44 self-center">
               
               <div className=" w-12 h-12">
-                <Image className="w-full h-full filter invert"
+                <Image className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
                   alt="iconoDescriptivo"
                   src="/iconosMain/mesaNegra.png"
                   width={100}

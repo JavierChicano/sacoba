@@ -18,8 +18,8 @@ export default function TextoAnimado() {
           cursor: pointer;
           /* button styling */
           --border-right: 6px;
-          --text-stroke-color: rgba(255, 255, 255, 0.6);
-          --animation-color: #e09145;
+          --text-stroke-color: var(--contraste-opacidad);
+          --animation-color: var(--color-base);
           --fs-size: 3em; 
           letter-spacing: 3px;
           text-decoration: none;

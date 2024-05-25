@@ -4,9 +4,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { IconDesk } from "@tabler/icons-react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 export default function CardInfoMesa() {
   const [isVisible, setIsVisible] = useState(false);
+  const { theme } = useTheme();
   const { ref, inView } = useInView({
     threshold: 0.5,
     triggerOnce: true,
@@ -65,7 +67,7 @@ export default function CardInfoMesa() {
               <span className="w-20 flex justify-end">Tapas</span>
               <div className="w-12 h-12">
                 <Image
-                  className="w-full h-full filter invert"
+                  className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
                   alt="iconoDescriptivo"
                   src="/iconosMain/capasNegra.png"
                   width={100}
@@ -77,7 +79,7 @@ export default function CardInfoMesa() {
               <p className="w-32 flex justify-end">Tamaños</p>
               <div className=" w-12 h-12">
                 <Image
-                  className="w-full h-full filter invert"
+                  className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
                   alt="iconoDescriptivo"
                   src="/iconosMain/superficeNegra.png"
                   width={100}
@@ -89,7 +91,7 @@ export default function CardInfoMesa() {
               Patas
               <div className="w-10 h-10">
                 <Image
-                  className="w-full h-full filter invert"
+                  className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
                   alt="iconoDescriptivo"
                   src="/iconosMain/pataNegra.png"
                   width={200}
@@ -101,7 +103,7 @@ export default function CardInfoMesa() {
               Estructuras
               <div className=" w-12 h-12">
                 <Image
-                  className="w-full h-full filter invert"
+                  className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
                   alt="iconoDescriptivo"
                   src="/iconosMain/mesaNegra.png"
                   width={100}
