@@ -22,12 +22,10 @@ const dekton = [
   { path: "Spectra.png" },
   { path: "Taga.png" },
 ];
-export default function SeccionMarcas() {
+export default function SeccionMarcasMovil() {
   return (
-    <section className="hidden w-full text-center grid-cols-3 gap-y-10 lg:grid">
-      <h1 className="text-5xl col-span-3">Marcas premiun de nuestras mesas</h1>
-      <div></div>
-      <section className="text-left col-span-2 border-y-2 border-l-2 border-colorBase p-5 -ml-5 border-color-gradient-right flex flex-col pr-72 gap-8 hover:bg-colorBaseSecundario transition-all hover:text-fondo">
+    <section className="flex flex-col w-full text-center gap-y-10 lg:hidden mt-10">
+      <section className="border-y-2 border-l-2 border-colorBase p-5 border-color-gradient-right flex flex-col gap-8">
         <Image
           src="/marcas/silestone.png"
           alt="Logo marca silestone"
@@ -41,7 +39,7 @@ export default function SeccionMarcas() {
           más destacadas. Su composición única garantiza una superficie que se
           mantendrá impecable con el paso del tiempo.
         </p>
-        <section className="flex flex-wrap gap-x-8 gap-y-2 max-w-2xl">
+        <section className="flex flex-wrap gap-x-8 gap-y-2 max-w-2xl justify-center">
           {silestone.map((color, index) => (
             <ColorSilestone
               key={index}
@@ -51,7 +49,7 @@ export default function SeccionMarcas() {
           ))}
         </section>
       </section>
-      <section className="text-left col-span-2 border-y-2 border-r-2 border-colorBase p-5 -mr-5 border-color-gradient-left flex flex-col pl-72 gap-8 hover:bg-colorBaseSecundario transition-all hover:text-fondo">
+      <section className="col-span-2 border-y-2 border-r-2 border-colorBase p-5 border-color-gradient-left flex flex-col gap-8 ">
         <Image
           className="self-end"
           src="/marcas/dekton.png"
@@ -66,7 +64,7 @@ export default function SeccionMarcas() {
           uso en exteriores, ofreciendo una solución duradera y versátil para
           una variedad de aplicaciones.
         </p>
-        <section className="flex flex-wrap gap-x-8 gap-y-2 max-w-2xl self-end justify-end">
+        <section className="flex flex-wrap gap-x-8 gap-y-2 max-w-2xl justify-center">
           {dekton.map((color, index) => (
             <ColorDekton key={index} color={color.path} />
           ))}

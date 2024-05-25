@@ -17,7 +17,7 @@ export default function SeccionInfo() {
   }, [inView]);
   return (
     <section
-      className="flex gap-10 w-3/4 justify-around border-2 border-colorBase p-10 mb-32"
+      className="hidden lg:flex gap-10 w-3/4 justify-around border-2 border-colorBase p-10 mb-24 mt-10"
       ref={ref}
     >
       {isVisible && (

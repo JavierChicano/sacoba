@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { TextGenerateEffect } from "./generadorTexto";
-const texto = "¡Personaliza tu mesa a medida! Elige la encimera y estructura por separado. Recomendamos comenzar con la encimera y luego seleccionar la estructura. Proceso de personalización detallado para una mesa única.";
+const texto = "¡Personaliza tu mesa a medida! Elige la encimera y estructura por separado. Consiguiendo un proceso de personalización detallado para una mesa única.";
 
 export default function CardProductoAMedida() {
   const [hovered, setHovered] = useState(false);
@@ -21,9 +21,9 @@ export default function CardProductoAMedida() {
   }, [inView]);
 
   return (
-    <section ref={ref} className="flex w-full flex-col items-center h-screen">
+    <section ref={ref} className="flex w-full flex-col items-center lg:h-screen h-1/2">
       <p
-        className={`flex text-5xl justify-center h-40 items-center ${
+        className={`flex text-4xl lg:text-5xl justify-center h-24 lg:h-40 items-center ${
           isVisible
             ? "animate-fade-down animate-duration-[3000ms] animate-ease-out"
             : ""
@@ -31,7 +31,7 @@ export default function CardProductoAMedida() {
       >
         A medida
       </p>
-      <div className={`flex self-center `}>
+      <div className={`flex self-center w-3/4 lg:w-full`}>
         <TextGenerateEffect words={texto} view={isVisible} />
       </div>
       <div>
@@ -45,9 +45,9 @@ export default function CardProductoAMedida() {
               <span className="text-white text-4xl"> Ir a: <span className="border-b border-colorBase">A medida</span></span>
             </div>
           )}
-          <Link href="/ProductoAMedida/">
+          <Link href="/ProductoAMedida/" className="w-full flex justify-center">
             <Image
-              className={`w-full h-full ${
+              className={`lg:w-full w-3/4 ${
                 isVisible
                   ? "animate-fade animate-duration-[2000ms] animate-ease-linear"
                   : ""

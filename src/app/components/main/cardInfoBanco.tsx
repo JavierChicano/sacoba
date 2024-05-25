@@ -20,9 +20,9 @@ export default function CardInfoBanco() {
   }, [inView]);
 
   return (
-    <section className="flex w-full flex-col items-center h-screen">
+    <section className="flex w-full flex-col items-center lg:h-screen h-1/2">
       <p
-        className={`flex text-5xl justify-center h-40 items-center ${
+        className={`flex text-4xl lg:text-5xl justify-center lg:h-40 items-center ${
           isVisible
             ? "animate-fade-down animate-duration-[3000ms] animate-ease-out"
             : ""
@@ -30,25 +30,27 @@ export default function CardInfoBanco() {
       >
         Bancos
       </p>
-      <div className="flex gap-10 items-start">
+      <div className="flex lg:gap-10 items-start flex-col lg:flex-row">
         <div
           ref={ref}
-          className={`w-full h-full ${isVisible ? "opacity-100" : "opacity-0"}`}
+          className={`w-full h-full flex justify-center ${isVisible ? "opacity-100" : "opacity-0"}`}
         >
+          <Link href={"/ProductoBanco/"} className="w-full flex justify-center">
           <Image
-            className={`w-full h-full ${
+            className={`w-3/4 lg:w-full ${
               isVisible
                 ? "animate-fade-right animate-once animate-ease-in animate-normal animate-duration-[2000ms]"
                 : ""
             }`}
             src={`/productos/banco.png`}
-            alt="Logo de la marca"
+            alt="Imagen de producto banco"
             width={500}
             height={500}
           />
+          </Link>
         </div>
         <div
-          className={` border border-colorBase h-40 self-center ${
+          className={`hidden lg:block border border-colorBase h-40 self-center ${
             isVisible
               ? "animate-fade-down animate-ease-out animate-normal animate-once animate-duration-[3000ms]"
               : ""
@@ -56,7 +58,7 @@ export default function CardInfoBanco() {
         ></div>
         <div>
           <div
-            className={`flex flex-col items-center w-72 ${
+            className={`hidden lg:flex flex-col items-center w-72 ${
               isVisible
                 ? "animate-fade-left animate-once animate-ease-in animate-normal animate-duration-[2500ms]"
                 : ""
@@ -66,7 +68,11 @@ export default function CardInfoBanco() {
               <span className="w-20 flex justify-end">Tapizados</span>
               <div className="w-12 h-12">
                 <Image
-                  className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
+                  className={
+                    theme === "light"
+                      ? "w-full h-full"
+                      : "w-full h-full filter invert"
+                  }
                   alt="iconoDescriptivo"
                   src="/iconosMain/capasNegra.png"
                   width={100}
@@ -75,10 +81,14 @@ export default function CardInfoBanco() {
               </div>
             </span>
             <span className="flex items-center gap-4 text-xl h-24 self-center">
-            Módulos
+              Módulos
               <div className=" w-12 h-12">
                 <Image
-                  className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
+                  className={
+                    theme === "light"
+                      ? "w-full h-full"
+                      : "w-full h-full filter invert"
+                  }
                   alt="iconoDescriptivo"
                   src="/iconosMain/superficeNegra.png"
                   width={100}
@@ -90,7 +100,11 @@ export default function CardInfoBanco() {
               Bastidores
               <div className="w-6 h-10">
                 <Image
-                  className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
+                  className={
+                    theme === "light"
+                      ? "w-full h-full"
+                      : "w-full h-full filter invert"
+                  }
                   alt="iconoDescriptivo"
                   src="/iconosMain/pataNegra.png"
                   width={200}
@@ -102,7 +116,11 @@ export default function CardInfoBanco() {
               dsd
               <div className=" w-12 h-12">
                 <Image
-                  className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
+                  className={
+                    theme === "light"
+                      ? "w-full h-full"
+                      : "w-full h-full filter invert"
+                  }
                   alt="iconoDescriptivo"
                   src="/iconosMain/mesaNegra.png"
                   width={100}
@@ -115,12 +133,18 @@ export default function CardInfoBanco() {
                 href="/ProductoBanco/"
                 className="flex items-center gap-4 text-xl h-24 "
               >
-                <span className="text-colorBase w-20 flex justify-end">Ir a ver</span>
+                <span className="text-colorBase w-20 flex justify-end underline decoration-colorBase">
+                  Ir a ver
+                </span>
                 <div className=" w-12 h-12">
                   <Image
-                    className={theme === "light" ? "w-full h-full" : "w-full h-full filter invert"}
+                    className={
+                      theme === "light"
+                        ? "w-full h-full"
+                        : "w-full h-full filter invert"
+                    }
                     src="/iconos/banco.png"
-                    alt="Logo de la marca"
+                    alt="Icono de un banco"
                     width={50}
                     height={50}
                   />
@@ -130,6 +154,25 @@ export default function CardInfoBanco() {
           </div>
         </div>
       </div>
+      <Link
+        href="/ProductoBanco/"
+        className="flex lg:hidden items-center w-full justify-center text-2xl underline decoration-colorBase gap-4 mt-2"
+      >
+        <span className="text-colorBase w-20 flex justify-end">Ir a ver</span>
+        <div className=" w-12 h-12">
+          <Image
+            className={
+              theme === "light"
+                ? "w-full h-full"
+                : "w-full h-full filter invert"
+            }
+            src="/iconos/banco.png"
+            alt="Icono de un banco"
+            width={50}
+            height={50}
+          />
+        </div>
+      </Link>
     </section>
   );
 }
