@@ -1,7 +1,7 @@
 "use client"
 export default function TextoAnimado() {
   return (
-    <div className="mt-10">
+    <div className="mt-10 lg:block hidden">
       <button className="button " data-text="Awesome">
         <span className="actual-text">&nbsp;Sacoba&nbsp;</span>
         <span aria-hidden="true" className="hover-text" >

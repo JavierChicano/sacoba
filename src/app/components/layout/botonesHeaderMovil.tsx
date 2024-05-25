@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { IconoCarrito } from "../iconos/iconoCarrito";
 import BotonTema from "./botonCambioTema";
-import { IconUser } from "@tabler/icons-react";
+import { IconUser, IconX } from "@tabler/icons-react";
 import DesplegableProducto from "./desplegableProducto";
 import Link from "next/link";
 import DesplegableCarrito from "./desplegableCarrito";
@@ -10,15 +10,15 @@ import DesplegableLogin from "./desplegableLogin";
 import { SesionIniciadaComprobacion } from "./sesionIniciada";
 import { usePathname } from "next/navigation";
 import { cn } from "@nextui-org/react";
+import { useTheme } from "next-themes";
 
-export default function BotonesHeader() {
+export default function BotonesHeaderMovil({ onClose }:{onClose: () => void}) {
+  const { theme } = useTheme()
   const pathName = usePathname();
   const [mostrarDesplegable, setMostrarDesplegable] = useState(false);
   const [mostrarLogin, setMostrarLogin] = useState(false);
   const [cookieIniciada, setCookieIniciada] = useState(false);
 
-  //Verficia que estamos en la pagina producto...
-  const contieneProducto = /^\/Producto(?!\/)/i.test(pathName);
   //Comprueba si la sesion esta iniciada
   useEffect(() => {
     const obtenerUsuario = async () => {
@@ -34,23 +34,18 @@ export default function BotonesHeader() {
   
   
   return (
-    <ul className={cn(contieneProducto ? "lg:flex justify-around w-3/4 m-10 text-xl items-center bg-fondoHeader p-2 rounded-lg backdrop-blur-xl hidden": "lg:flex justify-around w-3/4 m-10 text-xl items-center hidden")}>
-      <HoverBoton>
+    <ul className={`flex lg:hidden fixed top-0 right-0 w-full h-screen z-50 flex-col items-center justify-center gap-10 text-4xl backdrop-blur-sm ${theme==="light" ? "bg-white/20" : "bg-black/20"}`}>
+        <div className="w-4/5 flex justify-end"><IconX size={50} onClick={onClose}/></div>
         <p className={cn(pathName === "/Outlet" ? "text-center font-bold text-colorBase" : "text-center")}>          
           <Link href="/Outlet/">Outlet</Link>
         </p>
-      </HoverBoton>
-      <HoverBoton>
         <p className={cn(pathName === "/Packs" ? "text-center font-bold text-colorBase" : "text-center")}>
           <Link href="/Packs/">Packs</Link>
         </p>
-      </HoverBoton>
       <DesplegableProducto />
-      <HoverBoton>
         <p className={cn(pathName === "/Contacto" ? "text-center font-bold text-colorBase" : "text-center")}>
           <Link href="/Contacto/">Contacto</Link>
         </p>
-      </HoverBoton>
       <li className="w-36 flex justify-around items-center">
         <div className="absolute flex items-center z-50">
           <BotonTema />
