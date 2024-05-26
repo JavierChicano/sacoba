@@ -8,14 +8,14 @@ export default function BotonTema() {
   const { setTheme, theme } = useTheme();
 
   return (
-    <div className="w-auto h-12 flex items-center">
+    <div className="flex items-center">
       <div className="toggle">
         <button
           onClick={() => {
             theme === "dark" ? setTheme("light") : setTheme("dark");
           }}
           className={cn(
-            "rounded-full flex items-center justify-center w-10 h-10",
+            "rounded-full flex items-center justify-center lg:w-10 lg:h-10 w-12 h-12",
             theme === "dark" ? "bg-white" : "bg-black"
           )}
         >

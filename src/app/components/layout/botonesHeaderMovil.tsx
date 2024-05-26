@@ -56,7 +56,9 @@ export default function BotonesHeaderMovil({
                 : "text-center"
             )}
           >
-            <Link href="/Outlet/" onClick={onClose}>Outlet</Link>
+            <Link href="/Outlet/" onClick={onClose}>
+              Outlet
+            </Link>
           </p>
           <p
             className={cn(
@@ -65,7 +67,9 @@ export default function BotonesHeaderMovil({
                 : "text-center"
             )}
           >
-            <Link href="/Packs/" onClick={onClose}>Packs</Link>
+            <Link href="/Packs/" onClick={onClose}>
+              Packs
+            </Link>
           </p>
           <p
             className={cn(
@@ -84,35 +88,58 @@ export default function BotonesHeaderMovil({
                 : "text-center"
             )}
           >
-            <Link href="/Contacto/" onClick={onClose}>Contacto</Link>
+            <Link href="/Contacto/" onClick={onClose}>
+              Contacto
+            </Link>
           </p>
           <li className="w-36 flex justify-around items-center">
             <div className="absolute flex items-center z-50">
               <BotonTema />
-              <Link href="/CarritoCompra" onClick={onClose}>
+              <Link href="/CarritoCompraMovil" onClick={onClose}>
                 <IconoCarrito
-                  size={40}
+                  size={50}
                   color={
-                    pathName === "/CarritoCompra" ? "orange" : "currentColor"
+                    pathName === "/CarritoCompraMovil" ? "orange" : "currentColor"
                   }
                 />
               </Link>
-              {cookieIniciada ? (
+              {cookieIniciada && (
                 <Link href={"/Perfil"} onClick={onClose}>
                   <IconUser
                     stroke={2}
-                    size={40}
+                    size={50}
                     color={pathName === "/Perfil" ? "orange" : "currentColor"}
                   />
                 </Link>
-              ) : (
-                <IconUser stroke={2} size={40} />
               )}
             </div>
           </li>
+          {!cookieIniciada && (
+            <li className="w-full grid grid-cols-2 text-2xl gap-2 p-2">
+              <Link
+                href={"/Registro"}
+                onClick={onClose}
+                className="border border-colorBase bg-fondoSecundario flex justify-center p-2 cursor-pointer"
+              >
+                Registrate
+              </Link>
+              <Link
+                href={"/Login"}
+                onClick={onClose}
+                className="bg-colorBase p-2 flex justify-center"
+              >
+                Inicia sesion
+              </Link>
+            </li>
+          )}
         </ul>
       )}
-      {mostrarDesplegable && <DesplegableProductoMovil onBack={()=>setMostrarDesplegable(false)} onClose={onClose}/>}
+      {mostrarDesplegable && (
+        <DesplegableProductoMovil
+          onBack={() => setMostrarDesplegable(false)}
+          onClose={onClose}
+        />
+      )}
     </>
   );
 }
