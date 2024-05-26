@@ -19,7 +19,7 @@ export default function TarjetaDisplayInfo({ datos }: { datos: TipoMesa }) {
   
   return (
     <div 
-      className="relative w-full h-full min-w-[300px]"
+      className="relative w-full h-full lg:min-w-[300px] min-w-48"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -36,7 +36,7 @@ export default function TarjetaDisplayInfo({ datos }: { datos: TipoMesa }) {
       onClick={handleClick}
       >
         <Image
-          className="w-full h-60 cursor-pointer"
+          className="w-full lg:h-60 h-40  cursor-pointer"
           src={`/productos/mesas/${datos.imagen}`}
           alt="Imagen mesa"
           width={500}

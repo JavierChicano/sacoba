@@ -41,9 +41,9 @@ export default function ObjMesasNovedades({
 
   return (
     <>
-      <section className="flex justify-between pt-10 pb-5 w-full">
-        <h1 className="text-4xl">Novedades</h1>
-        <span className="flex items-center gap-1">
+      <section className="flex justify-between pt-10 lg:pb-5 pb-2 w-full">
+        <h1 className="text-3xl lg:text-4xl">Novedades</h1>
+        <span className="lg:flex items-center gap-1 hidden">
           <div onClick={scrollToLeft}>
             <IconArrowIzquierda />
           </div>
@@ -55,13 +55,13 @@ export default function ObjMesasNovedades({
       <div
         ref={containerRef}
         className={cn(
-          "max-w-7xl flex flex-row gap-4 pb-2",
+          "w-screen lg:max-w-7xl flex flex-row gap-4 pb-2 lg:p-0 px-4",
           "overflow-x-scroll"
         )}
         style={{ scrollBehavior: "smooth"}}
         onScroll={handleScroll}
       >
-        <div ref={contentRef} className="flex" style={{ minWidth: "100%" }}>
+        <div ref={contentRef} className="flex w-screen">
           {mesasNovedad.length > 0 ? (
             mesasNovedad.map((mesa, index) => (
               <div key={index} style={{ marginRight: "16px" }}>

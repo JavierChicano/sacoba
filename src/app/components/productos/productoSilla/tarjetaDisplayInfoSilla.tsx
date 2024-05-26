@@ -21,7 +21,7 @@ export default function TarjetaDisplayInfoSilla({ datos }: { datos: TipoSilla })
   
     return(
 <div 
-      className="relative w-full h-full min-w-[300px]"
+      className="relative w-full h-full lg:min-w-[300px] min-w-48"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -37,7 +37,7 @@ export default function TarjetaDisplayInfoSilla({ datos }: { datos: TipoSilla })
       <Link href={`/ProductoConcretoSilla/${datos.modelo}`}
        onClick={handleClick}>
         <Image
-          className="w-full h-60 cursor-pointer"
+          className="w-full lg:h-60 h-40  cursor-pointer"
           src={`/productos/sillas/${datos.imagen}`}
           alt="Imagen silla"
           width={500}

@@ -52,7 +52,7 @@ export default function ObjBancosTotales({bancosModelos}: {bancosModelos: TipoBa
   return (
     <>
       <div className="w-full mb-4 flex justify-between">
-        <h1 className="text-3xl pt-10 flex items-end">
+        <h1 className="text-2xl lg:text-3xl pt-10 flex items-end">
           Bancos totales ({bancosModelos.length})
         </h1>
         <section

@@ -33,7 +33,10 @@ const config: Config = {
           to: { height: "0" },
         },
       },
-      
+      gridTemplateColumns: {
+        // Clase personalizada para estilo de columnas
+        'auto-fit-minmax': 'repeat(auto-fit, minmax(300px, 1fr))',
+      },
       colors: {
         fondo: "var(--fondo)",
         fondoHeader: "var(--fondo-header)",

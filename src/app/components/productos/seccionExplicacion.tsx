@@ -9,11 +9,11 @@ export default function SeccionExplicacion({ datos }: { datos: SeccionExplicacio
     const { titulo, explicacionp1, explicacionp2 } = datos;
   
     return (
-    <section className=" grid grid-cols-[1fr_2fr] gap-8">
-      <div className="text-4xl border-r-2 border-colorBase flex items-center">{titulo}</div>
+    <section className="flex flex-col lg:grid lg:grid-cols-[1fr_2fr] gap-8">
+      <div className="text-2xl lg:text-4xl border-r-2 border-colorBase flex items-center">{titulo}</div>
       <div className="flex flex-col gap-8">
         <p>{explicacionp1}</p>
-        <p>{explicacionp2}</p></div>
+        <p className="hidden lg:block">{explicacionp2}</p></div>
     </section>
   );
 }

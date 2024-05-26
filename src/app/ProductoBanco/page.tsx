@@ -14,7 +14,7 @@ export default async function ProductoBanco() {
 
   return (
     <main className="flex flex-col items-center">
-      <div className=" max-w-7xl flex flex-col items-center">
+      <div className="w-screen lg:max-w-7xl flex flex-col items-center p-4 lg:p-0">
         <RutaP pagina="Bancos" />
         <SeccionExplicacion
           datos={{

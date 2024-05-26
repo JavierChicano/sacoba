@@ -119,11 +119,11 @@ export default function ObjMesasTotales({
 
   return (
     <>
-      <div className="w-full mb-4 flex justify-between">
-        <h1 className="text-3xl pt-10 flex items-end">
+      <div className="w-full mb-4 flex flex-col lg:flex-row justify-between">
+        <h1 className="text-xl lg:text-3xl pt-10 flex items-end">
           Mesas totales ({mesasOrdenadas.length})
         </h1>
-        <section className="bg-white mt-10 text-black flex items-center gap-8 p-4 rounded-lg relative">
+        <section className="bg-white mt-4 lg:mt-10 text-black flex items-center justify-center gap-2 p-2 lg:gap-8 lg:p-4 rounded-lg relative text-xl lg:text-lg">
           <span
             className="flex gap-2 cursor-pointer"
             onClick={() => setOcultarFiltro(!ocultarFiltro)}
@@ -131,7 +131,7 @@ export default function ObjMesasTotales({
             {ocultarFiltro ? "Mostrar filtros" : "Ocultar filtros"}{" "}
             <IconAdjustmentsHorizontal stroke={2} />
           </span>
-          <div className="w-[1px] h-full border border-colorBase"></div>
+          <div className="w-[1px] h-10 lg:h-full border border-colorBase"></div>
           <span
             className="flex cursor-pointer z-10"
             onMouseEnter={() => setIsHovered(true)}
@@ -179,11 +179,10 @@ export default function ObjMesasTotales({
       </div>
 
       <div
-        className="max-w-7xl w-full self-start gap-4 grid"
-        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}
+        className="max-w-7xl w-full self-start gap-4 grid lg:grid-cols-auto-fit-minmax grid-cols-2"
       >
         {!ocultarFiltro && (
-          <aside className="row-span-1 bg-fondoSecundario relative p-4">
+          <aside className="row-span-1 bg-fondoSecundario relative p-4 lg:col-span-1 col-span-2">
             <Slider
               label="Filtrar precios"
               step={100}
@@ -201,7 +200,7 @@ export default function ObjMesasTotales({
             <Select
               label="Por tipo de estructura"
               selectionMode="multiple"
-              className="max-w-xs mt-6"
+              className="lg:max-w-xs mt-6"
               radius="none"
               onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
                 const value = event.target.value;
@@ -217,7 +216,7 @@ export default function ObjMesasTotales({
             <Select
               label="Por extensión"
               selectionMode="multiple"
-              className="max-w-xs mt-6"
+              className="lg:max-w-xs mt-6"
               radius="none"
               onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
                 const value = event.target.value;

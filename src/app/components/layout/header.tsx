@@ -33,7 +33,7 @@ export default function Header() {
   return (
     <header
     className={cn({
-      'w-full h-fit flex lg:flex-col lg:items-center bg-center bg-cover': !['/Login', '/Registro', '/Cuenta'].includes(pathName),
+      'w-full h-fit flex flex-col items-center bg-center bg-cover': !['/Login', '/Registro', '/Cuenta'].includes(pathName),
       'hidden': ['/Login', '/Registro', '/Cuenta'].includes(pathName)
     })}
       style={{ backgroundImage: `url('${backgroundImage}')` }}
@@ -42,7 +42,7 @@ export default function Header() {
       <DivLogo />
       <BotonesHeader/>
       {title && (
-        <h1 className="text-6xl h-96 flex items-center mb-20">{title}</h1>
+        <h1 className="text-4xl lg:text-6xl h-60 lg:h-96 flex items-center lg:mb-20">{title}</h1>
       )}
     </header>
   );
