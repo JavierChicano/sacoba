@@ -66,8 +66,8 @@ export default function SeccionPrecioSilla({ precio }: { precio: number }) {
 
   return (
     <>
-      <section className="bg-fondoSecundario flex flex-col p-8 ">
-        <div className="flex justify-between items-center gap-4">
+      <section className="bg-fondoSecundario flex flex-col p-8 col-span-2 lg:col-span-1">
+        <div className="flex justify-between items-center flex-wrap">
           <div>
             <h1 className="text-3xl">Total: {precioFinal()}<Euro/></h1>
             {/* <p className="text-sm flex justify-end"> Iva incluido*</p> */}
@@ -93,9 +93,9 @@ export default function SeccionPrecioSilla({ precio }: { precio: number }) {
               <IconPlus stroke={2} />
             </div>
           </section>
-          <section className="flex flex-col gap-4">
+          <section className="flex lg:flex-col gap-4 w-full lg:w-auto justify-center lg:mt-0 mt-6">
             <div
-              className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer"
+              className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer flex-grow"
               onClick={() => {
                 setPrecioSillaFinal(precio);
                 setCantidadSillas(cantidad);
@@ -106,7 +106,7 @@ export default function SeccionPrecioSilla({ precio }: { precio: number }) {
             </div>
             {/* Este te tiene q llevar a la pagina de compra */}
             <div
-              className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer"
+              className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer flex-grow"
               onClick={() => {
                 setPrecioSillaFinal(precioFinal());
                 setCantidadSillas(cantidad);

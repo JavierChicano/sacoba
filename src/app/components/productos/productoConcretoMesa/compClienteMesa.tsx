@@ -27,14 +27,14 @@ export default function CompClienteMesa({
       {mesaSeleccionada && (
         <div className="max-w-7xl grid grid-cols-2 w-full gap-6">
           <RutaPC />
-          <h1 className="text-4xl border-b-2 border-colorBase col-span-2">
+          <h1 className="text-3xl lg:text-4xl border-b-2 border-colorBase col-span-2">
             {mesaSeleccionada[0].modelo}
           </h1>
-          <section className="row-span-3">
+          <section className="row-span-2 lg:col-span-1 col-span-2 h-fit">
             <Image
               className="w-full h-full max-h-[500px]"
               src={`/productos/mesas/${mesaSeleccionada[0].imagen}`}
-              alt="Imagen mesa"
+              alt={`Imagen mesa ${mesaSeleccionada[0].modelo}`}
               width={500}
               height={500}
             />

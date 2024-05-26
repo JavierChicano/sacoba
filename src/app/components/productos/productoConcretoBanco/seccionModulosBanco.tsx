@@ -69,9 +69,9 @@ export default function SeccionModulosBanco({
   }, []);
 
   return (
-    <section className="bg-fondoSecundario flex flex-col gap-4 p-8 row-span-6">
+    <section className="bg-fondoSecundario flex flex-col gap-4 p-8 row-span-6 col-span-2 lg:col-span-1">
       <div className="flex justify-between h-14">
-        <h1 className="text-4xl self-center border-b border-colorBaseSecundario w-full">
+        <h1 className="text-3xl lg:text-4xl self-center border-b border-colorBaseSecundario w-full">
           Acabados
         </h1>
       </div>
@@ -163,11 +163,11 @@ export default function SeccionModulosBanco({
           )}
         </section>
         <section>
-          <h1 className="text-4xl self-center border-b border-colorBaseSecundario w-full mb-2">
+          <h1 className="text-3xl lg:text-4xl self-center border-b border-colorBaseSecundario w-full mb-2">
             Módulos
           </h1>
 
-          <div className="grid grid-cols-2">
+          <div className="grid lg:grid-cols-2">
             {bancosPosibles.map((banco, index) => (
               <ObjModuloBanco
                 key={index}

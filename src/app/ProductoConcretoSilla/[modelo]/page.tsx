@@ -9,7 +9,7 @@ export default async function ProductoConcretoSilla({ params }: { params: {model
 
   console.log
   return (
-    <main className="flex flex-col items-center">
+    <main className="flex flex-col items-center p-4 lg:p-0">
         <CompClienteSilla sillaSeleccionada={sillas} colores={colores}/> 
     </main>
   );

@@ -12,7 +12,7 @@ export default function ColorEstructuraSilla({datos}:{datos: ColorEstructuraSill
         <div
         className={cn(
             selected ? "bg-colorBase" : "bg-fondoTerciario", 
-            "self-center p-2 cursor-pointer flex justify-center", "flex-grow"
+            "self-center p-2 cursor-pointer flex justify-center", "flex-grow w-full lg:w-auto"
         )}
         onClick={() => onSelect(color)} 
     >

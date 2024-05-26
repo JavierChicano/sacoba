@@ -7,7 +7,7 @@ export default async function ProductoConcreto({ params }: { params: {modelo: st
   const [mesas, colores] = await Promise.all([promiseMesas, promiseColores])
 
   return (
-    <main className="flex flex-col items-center">
+    <main className="flex flex-col items-center p-4 lg:p-0">
       <CompClienteMesa mesaSeleccionada={mesas} colores={colores} />
     </main>
   );

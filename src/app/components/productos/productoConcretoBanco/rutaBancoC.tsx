@@ -3,7 +3,7 @@ import React from "react";
 
 export default function RutaBancoConcreto() {
   return (
-    <div className="w-full">
+    <div className="w-full col-span-2">
       <ul className="flex">
         <li className="text-gray-400">
           <Link href="/">Main</Link> |&nbsp;{" "}

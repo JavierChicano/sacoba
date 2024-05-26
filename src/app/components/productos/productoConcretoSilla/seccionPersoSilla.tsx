@@ -118,9 +118,9 @@ export default function SeccionPersonalizarSilla({
 
   return (
     <>
-      <section className="bg-fondoSecundario flex flex-col gap-4 p-8">
-        <aside className="text-4xl flex items-end gap-4">
-          Formato: <span className="text-2xl">{formato}</span>
+      <section className="bg-fondoSecundario flex flex-col gap-4 p-8 col-span-2 lg:col-span-1">
+        <aside className="text-3xl lg:text-4xl flex items-end gap-4">
+          Formato: <span className="text-lg lg:text-2xl">{formato}</span>
         </aside>
         <div className="flex gap-2 flex-wrap justify-around">
           {sillaSeleccionada.map((silla, index) => (
@@ -169,7 +169,7 @@ export default function SeccionPersonalizarSilla({
             />
           </div>
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
           <h2 className="text-2xl mr-4">Color del bastidor</h2>
           {coloresBastidor.map((color, index) => (
             <ColorEstructuraSilla

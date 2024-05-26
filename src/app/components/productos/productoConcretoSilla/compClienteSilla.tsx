@@ -11,10 +11,10 @@ export default function CompClienteSilla({sillaSeleccionada, colores}: {sillaSel
       {sillaSeleccionada && (
         <div className=" max-w-7xl grid grid-cols-2 w-full gap-6">
           <RutaSillaConcreta />
-          <h1 className="text-4xl border-b-2 border-colorBase col-span-2">
+          <h1 className="text-3xl lg:text-4xl border-b-2 border-colorBase col-span-2">
             {sillaSeleccionada[0].modelo}
           </h1>
-          <div>
+          <div className="lg:col-span-1 col-span-2">
             <Image
               className="w-full h-full max-h-[500px]"
               src={`/productos/sillas/${sillaSeleccionada[0].imagen}`}

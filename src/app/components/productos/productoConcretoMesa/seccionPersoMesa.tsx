@@ -173,8 +173,8 @@ export default function SeccionPersonalizarMesa({
   ]);
 
   return (
-    <section className="bg-fondoSecundario flex flex-col gap-4 p-8">
-      <aside className="text-4xl flex items-end gap-4 border-b border-colorBaseSecundario">
+    <section className="bg-fondoSecundario flex flex-col gap-4 p-8 col-span-2 lg:col-span-1">
+      <aside className="text-3xl lg:text-4xl flex items-end gap-4 border-b border-colorBaseSecundario">
         Encimera
       </aside>
       <div className="flex gap-2 flex-wrap">
