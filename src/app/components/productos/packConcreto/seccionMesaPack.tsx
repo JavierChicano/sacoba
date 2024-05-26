@@ -111,9 +111,9 @@ export default function SeccionMesaPack({
   },[dimension, modeloElegido, colorElegido, cajonSeleccionado, precioAcumulado])
 
   return (
-    <section className="bg-fondoSecundario col-span-3 p-8 flex flex-col gap-4">
-      <h1 className="text-4xl">Dimensiones</h1>
-      <div className="flex gap-5">
+    <section className="bg-fondoSecundario lg:col-span-3 p-2 lg:p-8 flex flex-col gap-4">
+      <h1 className="text-3xl lg:text-4xl">Dimensiones</h1>
+      <div className="flex gap-5 lg:flex-row flex-wrap">
         {dimensionesMesa.map((dimension, index) => (
           <ObjMesaPacks
             key={index}
@@ -173,7 +173,7 @@ export default function SeccionMesaPack({
       )}
       <section className="flex h-full items-end">
         {precioAcumulado && (
-          <h1 className="text-3xl">Precio de la mesa: {precioAcumulado}€</h1>
+          <h1 className="text-2xl lg:text-3xl">Precio de la mesa: {precioAcumulado}€</h1>
         )}
       </section>
     </section>

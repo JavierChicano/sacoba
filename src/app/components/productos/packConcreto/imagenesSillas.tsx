@@ -16,22 +16,22 @@ export default function ImagenesSillas({
 
   return (
     <div
-      className={`flex flex-col items-center cursor-pointer gap-10 h-42 ${
+      className={`flex flex-col items-center cursor-pointer lg:gap-10 h-42 ${
         selected ? "border-b border-colorBase" : ""
       }`}
       onClick={() => onSelect(nombre)}
     >
-      <h1 className="text-4xl">{nombre}</h1>
-      <div className="h-80">
+      <h1 className="text-2xl lg:text-4xl">{nombre}</h1>
+      <div className="lg:h-80 h-60">
         <Image
           src={`/productos/packs/${img}.png`}
           width={200}
           height={200}
           alt={`foto silla ${nombre}`}
-          className="h-full"
+          className="h-full w-auto"
         />
       </div>
-      {selected && <h1 className="text-2xl">Seleccionada: {nombre}</h1>}
+      {selected && <h1 className="text-lg lg:text-2xl">Seleccionada: {nombre}</h1>}
     </div>
   );
 }

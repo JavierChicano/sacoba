@@ -42,6 +42,7 @@ const config: Config = {
         colorBase: "var(--color-base)",
         colorBaseSecundario: "var(--color-secundario)",
         contraste: "var(--contraste)",
+        contrasteOpacidad: "var(--contraste-opacidad)"
       },
     },
   },

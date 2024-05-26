@@ -31,8 +31,8 @@ export default function AcabadoLaminado({
       <Image
         src={`/colores/laminado/ACABADOS/${acabadoTrim}.png`}
         alt={`Acabado ${acabado}`}
-        width={35}
-        height={35}
+        width={40}
+        height={40}
       />
     </div>
   );

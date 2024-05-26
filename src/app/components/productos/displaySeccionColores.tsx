@@ -42,10 +42,10 @@ export default function DisplayColores({
     <section>
       {colorModelo.map((item, index) => (
         <div key={index} className="mb-4">
-          <h2 className="text-4xl mb-4 mt-6">
+          <h2 className="text-2xl lg:text-4xl mb-2 lg:mb-4 mt-6">
             {mayuscula(cambiarNombresModelo(item.modelo))}
           </h2>
-          <ul className="flex list-none flex-wrap gap-4">
+          <ul className="flex list-none flex-wrap gap-4 justify-center lg:justify-normal">
             {item.colores.map((color, colorIndex) => (
               <UnidadColor color={color} key={colorIndex} />
             ))}

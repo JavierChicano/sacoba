@@ -37,10 +37,10 @@ export default function ModalColoresBastidor({ colores }: { colores: TipoColor[]
       onClick={closeModal}
     >
       <section
-        className="flex bg-fondo sm:h-4/5 sm:w-3/5 h-full w-full p-16 sm:px-20 flex-col overflow-y-scroll"
+        className="flex bg-fondo sm:h-4/5 sm:w-3/5 h-full w-full p-10 lg:p-16 sm:px-20 flex-col overflow-y-scroll"
         onClick={(e) => e.stopPropagation()}
       >
-        <h1 className="text-5xl border-b border-colorBase flex justify-between">
+        <h1 className="text-4xl lg:text-5xl border-b border-colorBase flex justify-between">
           Acabados
           <IconSquareX
             stroke={2}

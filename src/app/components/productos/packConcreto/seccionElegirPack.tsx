@@ -99,7 +99,7 @@ export default function ElegirPack({
 
   return (
     <>
-      <section className="grid grid-cols-2 w-full">
+      <section className="lg:grid lg:grid-cols-2 w-full">
         <div className="flex justify-end relative">
           <Image
             src={`/productos/packs/${mesa}.png`}
@@ -109,7 +109,7 @@ export default function ElegirPack({
             className="h-full"
           />
           <div
-            className={`absolute h-60 w-60 bottom-0 right-0 bg-black/50 p-4 flex justify-center ${
+            className={`absolute w-40 h-40 lg:h-60 lg:w-60 bottom-0 right-0 bg-black/50 p-4 flex justify-center ${
               packSeleccionado === "Mesa" ? "hidden" : "block"
             }`}
           >
@@ -158,7 +158,7 @@ export default function ElegirPack({
             Mesa y 4 sillas
           </aside>
           <section className="w-full flex gap-4 items-center mt-8 mb-8">
-            <h1 className="text-2xl">
+            <h1 className="text-xl lg:text-2xl">
               Añadir sillas extra <span className="text-xl">(64€/u)</span>
             </h1>
             <aside className="flex w-36 border-[1px] border-fondoTerciario justify-between">
@@ -185,11 +185,11 @@ export default function ElegirPack({
           </section>
           <section className="w-full h-full flex items-end justify-between">
             {precioAcumulado ? (
-              <>
+              <div className="flex flex-col lg:flex-row justify-between w-full lg:gap-0 gap-4">
                 <h1 className="text-3xl">Total: {precioFinal()}€</h1>
-                <section className="flex gap-4">
+                <section className="flex gap-4 w-full lg:w-auto text-xl lg:text-base">
                   <div
-                    className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer"
+                    className="bg-fondoTerciario border-[1px] border-colorBase p-2 lg:w-32 w-1/2 flex justify-center hover:bg-colorBase cursor-pointer"
                     onClick={() => {
                       setGuardarCarro(true);
                     }}
@@ -198,7 +198,7 @@ export default function ElegirPack({
                   </div>
                   {/* Este te tiene q llevar a la pagina de compra */}
                   <div
-                    className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer"
+                    className="bg-colorBase p-2 lg:w-32 w-1/2 flex justify-center cursor-pointer"
                     onClick={() => {
                       // setGuardarCarro(true);
                     }}
@@ -206,7 +206,7 @@ export default function ElegirPack({
                     Comprar
                   </div>
                 </section>
-              </>
+              </div>
             ) : (
               <h1 className="text-red-500">
                 Para ver el precio, configura la mesa primero

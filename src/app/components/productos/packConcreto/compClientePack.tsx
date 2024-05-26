@@ -23,22 +23,22 @@ export default function CompClientePack({
   const [formatoSeleccionado, setFormatoSeleccionado] = useState("Silla");
 
   //Seteo de la seleccion final de la silla del pack
-  useEffect(()=>{
-    setSillaPack(modeloSeleccionada, formatoSeleccionado)
-  },[modeloSeleccionada, formatoSeleccionado])
+  useEffect(() => {
+    setSillaPack(modeloSeleccionada, formatoSeleccionado);
+  }, [modeloSeleccionada, formatoSeleccionado]);
 
   return (
     <div>
-      <div className="max-w-7xl flex flex-col w-full gap-y-10">
+      <div className="max-w-7xl flex flex-col w-full gap-y-10 p-4 lg:p-0">
         <RutaPackConcreto modelo={packSeleccionado[0].modelo} />
-        <h1 className="text-4xl flex justify-center w-full">
+        <h1 className="text-xl lg:text-4xl flex justify-center w-full">
           Primero, configura la mesa a tu gusto
         </h1>
-        <h1 className="text-4xl border-b-2 border-colorBase">
+        <h1 className="text-3xl lg:text-4xl border-b-2 border-colorBase">
           {packSeleccionado[0].modelo}
         </h1>
-        <section className="grid grid-cols-5">
-          <div className="relative col-span-2 h-[400px]">
+        <section className="lg:grid lg:grid-cols-5 flex flex-col">
+          <div className="relative col-span-2 lg:h-[400px] h-80">
             <Image
               className="w-full h-full max-h-[500px]"
               src={`/productos/packs/${packSeleccionado[0].imagenMesa}`}
@@ -46,7 +46,7 @@ export default function CompClientePack({
               width={400}
               height={400}
             />
-            <div className="absolute h-32 bottom-0 text-2xl bg-gradient-to-b from-transparent to-black/90 w-full pl-5 flex items-end pb-5">
+            <div className="absolute h-32 bottom-0 text-2xl bg-gradient-to-b from-transparent to-black/90 w-full pl-5 flex items-end pb-5 text-white">
               {packSeleccionado[0].descripcion}
             </div>
           </div>
@@ -55,12 +55,12 @@ export default function CompClientePack({
             colores={colores}
           />
         </section>
-        <h1 className="text-4xl flex justify-center w-full mt-10">
+        <h1 className="text-2xl lg:text-4xl flex justify-center w-full lg:mt-10 text-center">
           Selecciona el modelo y formato deseado
         </h1>
         <aside className="flex justify-center gap-4">
           <div
-            className={`flex justify-center text-3xl py-2 px-4 w-72 cursor-pointer ${
+            className={`flex justify-center text-2xl lg:text-3xl py-2 px-4 lg:w-72 cursor-pointer ${
               formatoSeleccionado === "Silla"
                 ? "bg-colorBase"
                 : "bg-fondoSecundario"
@@ -70,7 +70,7 @@ export default function CompClientePack({
             Silla
           </div>
           <div
-            className={`flex justify-center text-2xl py-2 px-4 w-72 items-center cursor-pointer ${
+            className={`flex justify-center text-2xl py-2 px-4 lg:w-72 items-center cursor-pointer ${
               formatoSeleccionado === "Taburete con respaldo"
                 ? "bg-colorBase"
                 : "bg-fondoSecundario"
@@ -81,12 +81,12 @@ export default function CompClientePack({
           </div>
         </aside>
 
-        <section className="grid grid-cols-3 gap-10 w-full">
+        <section className="flex flex-wrap lg:grid lg:grid-cols-3 gap-4 lg:gap-10 w-full justify-center">
           <ImagenesSillas
             datos={{
               nombre: "Soria",
               img: formatoSeleccionado === "Silla" ? "SoriaSilla" : "SoriaTab",
-              selected:modeloSeleccionada === "Soria",
+              selected: modeloSeleccionada === "Soria",
               onSelect: setModeloSeleccionada,
             }}
           />
@@ -94,7 +94,7 @@ export default function CompClientePack({
             datos={{
               nombre: "Onda",
               img: formatoSeleccionado === "Silla" ? "OndaSilla" : "OndaTab",
-              selected:modeloSeleccionada === "Onda",
+              selected: modeloSeleccionada === "Onda",
               onSelect: setModeloSeleccionada,
             }}
           />
@@ -102,7 +102,7 @@ export default function CompClientePack({
             datos={{
               nombre: "Ker",
               img: formatoSeleccionado === "Silla" ? "KerSilla" : "KerTab",
-              selected:modeloSeleccionada === "Ker",
+              selected: modeloSeleccionada === "Ker",
               onSelect: setModeloSeleccionada,
             }}
           />
@@ -110,7 +110,7 @@ export default function CompClientePack({
 
         {modeloSeleccionada !== "" && (
           <>
-            <h1 className="text-4xl flex justify-center w-full mt-10">
+            <h1 className="text-2xl lg:text-4xl flex justify-center w-full mt-10">
               Aqui tiene los diferentes packs
             </h1>
             <ElegirPack

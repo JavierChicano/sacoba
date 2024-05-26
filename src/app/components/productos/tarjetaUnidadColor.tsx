@@ -83,8 +83,8 @@ export default function UnidadColor({ color }: { color: TipoColor }) {
     <li
       className={
         color.modelo === "laminado"
-          ? "rounded-lg w-40 relative"
-          : "rounded-lg w-36 relative"
+          ? "rounded-lg lg:w-40 w-36 relative"
+          : "rounded-lg lg:w-36 w-24 relative"
       }
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

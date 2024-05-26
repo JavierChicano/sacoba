@@ -23,9 +23,9 @@ export default function DisplayColoresBastidor({colorModelo}:{colorModelo: Color
         <section>
             {colorModelo.map((item, index) => (
                 <div key={index}>
-                    <h2 className="text-4xl mb-4 mt-6">{mayuscula(cambiarNombresModelo(item.modelo))}</h2>
+                    <h2 className="text-2xl lg:text-4xl mb-2 lg:mb-4 mt-6">{mayuscula(cambiarNombresModelo(item.modelo))}</h2>
                     {/* Aquí puedes iterar sobre los colores de este modelo */}
-                    <ul className="flex list-none flex-wrap gap-4">
+                    <ul className="flex list-none flex-wrap gap-4 justify-center lg:justify-normal">
                         {item.colores.map((color, colorIndex) => (
                             <UnidadColorBastidor color={color} key={colorIndex}/>
                         ))}
