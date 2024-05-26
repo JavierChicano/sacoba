@@ -31,7 +31,7 @@ export default function DesplegableProductoMovil({
         <IconArrowBackUp size={50} onClick={onBack} />
         <IconX size={50} onClick={onClose} />
       </div>
-      <li className="w-full pl-10">
+      <li className="w-full px-10">
         <Link
           href="/ProductoMesa/"
           className={`grid grid-cols-3 gap-2 px-4 py-2 ${
@@ -58,7 +58,7 @@ export default function DesplegableProductoMovil({
           <span className="col-span-2">Mesas</span>
         </Link>
       </li>
-      <li className="w-full pl-10">
+      <li className="w-full px-10">
         <Link
           href="/ProductoSilla/"
           className={`grid grid-cols-3 gap-2 items-center px-4 py-2 ${
@@ -84,7 +84,7 @@ export default function DesplegableProductoMovil({
           <span className="col-span-2">Sillas</span>
         </Link>
       </li>
-      <li className="w-full pl-10">
+      <li className="w-full px-10">
         <Link
           href="/ProductoBanco/"
           className={`grid grid-cols-3 gap-2 items-center px-4 py-2 ${
@@ -112,7 +112,7 @@ export default function DesplegableProductoMovil({
           <span className="col-span-2">Bancos</span>
         </Link>
       </li>
-      <li className="w-full pl-10">
+      <li className="w-full px-10">
         <Link
           href="/ProductoAMedida/"
           className={`grid grid-cols-3 gap-2 items-center px-4 py-2 ${

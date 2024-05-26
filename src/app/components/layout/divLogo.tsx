@@ -19,7 +19,7 @@ export default function DivLogo() {
           />
         </div>
       </Link>
-      <h1 className="text-[40px] block lg:hidden">Sacoba</h1>
+      <Link className="text-[40px] block lg:hidden" href="/">Sacoba</Link>
       <IconMenu2 className="lg:hidden block" onClick={()=>setVerNav(true)} size={50}/>
       {verNav && <BotonesHeaderMovil onClose={()=>setVerNav(false)}/>}
     </div>

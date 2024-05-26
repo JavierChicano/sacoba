@@ -7,9 +7,9 @@ export default function CuadroEleccion() {
   const [hovered, setHovered] = useState(false);
   const [hovered2, setHovered2] = useState(false);
   return (
-    <section className="text-5xl flex gap-12 my-20">
+    <section className="lg:text-5xl flex gap-12 lg:my-20 my-10 flex-col lg:flex-row">
       <div
-        className="relative w-96 h-96"
+        className="relative lg:w-96 lg:h-96 w-80 h-72 self-center"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
@@ -29,9 +29,9 @@ export default function CuadroEleccion() {
           />
         </Link>
       </div>
-      <div className="w-[1px] border border-colorBase"></div>
+      <div className="w-[1px] border border-colorBase hidden lg:flex"></div>
       <div
-        className="relative w-96 h-96"
+        className="relative lg:w-96 lg:h-96 w-80 h-72 self-center"
         onMouseEnter={() => setHovered2(true)}
         onMouseLeave={() => setHovered2(false)}
       >
