@@ -11,22 +11,18 @@ import { usePackFinal } from "../../../../../states/statesProductoFinal";
 export default function CompClientePack({
   packSeleccionado,
   colores,
+  coloresSilla
 }: {
   packSeleccionado: TipoPack[];
   colores: TipoColor[];
+  coloresSilla: TipoColor[];
 }) {
-  //Estado golbal para guardar la seleccion del pack elegida
-  const { pack, setSillaPack } = usePackFinal();
 
   //Estados locales para guardar momentaneamente la información
   const [modeloSeleccionada, setModeloSeleccionada] = useState("");
   const [formatoSeleccionado, setFormatoSeleccionado] = useState("Silla");
 
-  //Seteo de la seleccion final de la silla del pack
-  useEffect(() => {
-    setSillaPack(modeloSeleccionada, formatoSeleccionado);
-  }, [modeloSeleccionada, formatoSeleccionado]);
-
+  
   return (
     <div>
       <div className="max-w-7xl flex flex-col w-full gap-y-10 p-4 lg:p-0">
@@ -37,8 +33,8 @@ export default function CompClientePack({
         <h1 className="text-3xl lg:text-4xl border-b-2 border-colorBase">
           {packSeleccionado[0].modelo}
         </h1>
-        <section className="lg:grid lg:grid-cols-5 flex flex-col">
-          <div className="relative col-span-2 lg:h-[400px] h-80">
+        <section className="lg:grid lg:grid-cols-5 flex flex-col ">
+          <div className="relative col-span-2">
             <Image
               className="w-full h-full max-h-[500px]"
               src={`/productos/packs/${packSeleccionado[0].imagenMesa}`}
@@ -115,6 +111,7 @@ export default function CompClientePack({
             </h1>
             <ElegirPack
               mesa={packSeleccionado[0].modelo}
+              coloresSilla={coloresSilla}
               modelo={modeloSeleccionada}
               formato={formatoSeleccionado}
             />

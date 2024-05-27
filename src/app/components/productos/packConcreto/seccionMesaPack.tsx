@@ -28,12 +28,13 @@ export default function SeccionMesaPack({
   const { modalVisible, setModalVisible } = useModal();
   const { colorElegido, modeloElegido, rutaImagen } = useColorSeleccionado();
   const { setMesaPack } = usePackFinal();
- 
+
   const [dimensionesMesa, setDimensionesMesa] = useState<string[]>([]);
   const [preciosMesa, setPreciosMesa] = useState<number[]>([]);
 
   //Estados para almacenar las dimensiones de la mesas elegidas
   const [dimensionElegida, setDimensionElegida] = useState(0);
+  const [bastidorElegido, setBastidorElegido] = useState("Blanco");
   const [dimension, setDimension] = useState("");
   const [indexPrecio, setIndexPrecio] = useState(0);
 
@@ -47,7 +48,7 @@ export default function SeccionMesaPack({
     if (packSeleccionado.length > 0) {
       const dimensionesMesa = packSeleccionado[0].dimensiones.split(",");
       setDimensionesMesa(dimensionesMesa);
-      setDimension(dimensionesMesa[0])
+      setDimension(dimensionesMesa[0]);
     }
   }, [packSeleccionado]);
 
@@ -106,9 +107,24 @@ export default function SeccionMesaPack({
   }, [preciosMesa, indexPrecio, cajonSeleccionado]);
 
   //Seteo de la seleccion final de la mesa del pack
-  useEffect(()=>{
-    setMesaPack(packSeleccionado[0].modelo, dimension, modeloElegido, colorElegido, cajonSeleccionado, precioAcumulado)
-  },[dimension, modeloElegido, colorElegido, cajonSeleccionado, precioAcumulado])
+  useEffect(() => {
+    setMesaPack(
+      packSeleccionado[0].modelo,
+      dimension,
+      modeloElegido,
+      colorElegido,
+      cajonSeleccionado,
+      bastidorElegido,
+      precioAcumulado
+    );
+  }, [
+    dimension,
+    modeloElegido,
+    colorElegido,
+    cajonSeleccionado,
+    bastidorElegido,
+    precioAcumulado,
+  ]);
 
   return (
     <section className="bg-fondoSecundario lg:col-span-3 p-2 lg:p-8 flex flex-col gap-4">
@@ -145,10 +161,16 @@ export default function SeccionMesaPack({
         )}
       >
         <h2 className="text-xl">
-          Acabado: <span className={theme === "light" ? "text-white" : "text-colorBase"}>{modeloElegido}</span>
+          Acabado:{" "}
+          <span className={theme === "light" ? "text-white" : "text-colorBase"}>
+            {modeloElegido}
+          </span>
         </h2>
         <h2 className="text-xl">
-          Color: <span className={theme === "light" ? "text-white" : "text-colorBase"}>{colorElegido}</span>
+          Color:{" "}
+          <span className={theme === "light" ? "text-white" : "text-colorBase"}>
+            {colorElegido}
+          </span>
         </h2>
         <div>
           <Image
@@ -171,9 +193,36 @@ export default function SeccionMesaPack({
           />
         </div>
       )}
+      <section className="flex items-center gap-8">
+        <h2 className="text-2xl">Color Bastidor</h2>
+        <aside className="flex items-center text-xl gap-2 flex-grow">
+          <div
+            className={`cursor-pointer p-2 ${
+              bastidorElegido === "Blanco"
+                ? "bg-colorBase"
+                : "bg-fondoTerciario"
+            }`}
+            onClick={() => setBastidorElegido("Blanco")}
+          >
+            Blanco
+          </div>
+          <div
+            className={`cursor-pointer p-2 ${
+              bastidorElegido === "Aluminio"
+                ? "bg-colorBase"
+                : "bg-fondoTerciario"
+            }`}
+            onClick={() => setBastidorElegido("Aluminio")}
+          >
+            Aluminio
+          </div>
+        </aside>
+      </section>
       <section className="flex h-full items-end">
         {precioAcumulado && (
-          <h1 className="text-2xl lg:text-3xl">Precio de la mesa: {precioAcumulado}€</h1>
+          <h1 className="text-2xl lg:text-3xl">
+            Precio de la mesa: {precioAcumulado}€
+          </h1>
         )}
       </section>
     </section>

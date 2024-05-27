@@ -1,31 +1,50 @@
-import { IconMinus, IconPlus } from "@tabler/icons-react";
+import { IconClick, IconMinus, IconPlus } from "@tabler/icons-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { usePrecioAcumulado } from "../../../../../states/states";
+import {
+  useColorSeleccionado,
+  useColorSeleccionadoBastidor,
+  useModal,
+  useModalBastidor,
+  usePrecioAcumulado,
+} from "../../../../../states/states";
 import Link from "next/link";
 import { usePackFinal } from "../../../../../states/statesProductoFinal";
 import { Toaster, toast } from "sonner";
 import { InsertarCarrito } from "../insertarCarrito";
+import ModalColores from "../modalColores";
+import { cn } from "@nextui-org/react";
+import { useTheme } from "next-themes";
+import { TipoColor } from "../../../../../tipos/tipos";
+import ModalColoresBastidor from "../productoConcretoBanco/modalColoresBastidor";
 
 export default function ElegirPack({
   mesa,
   modelo,
   formato,
+  coloresSilla,
 }: {
   mesa: string;
   modelo: string;
   formato: string;
+  coloresSilla: TipoColor[];
 }) {
   //Estados globales
-  const { setPackResto, pack } = usePackFinal();
+  const { theme } = useTheme();
+  const { setPackResto, pack, setSillaPack } = usePackFinal();
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
+  const { modalVisibleBastidor, setModalVisibleBastidor } = useModalBastidor();
+  const { colorElegidoBastidor, modeloElegidoBastidor, rutaImagenBastidor } =
+    useColorSeleccionadoBastidor();
 
   //Estados locales para guardar la seleccion momentaneamente
-  const [packSeleccionado, setPackSeleccionado] = useState("Mesa y 2 sillas");
+  const [packSeleccionado, setPackSeleccionado] = useState("Mesa");
   const [cantidad, setCantidad] = useState(0);
   const [cantidadSillas, setCantidadSillas] = useState(0);
   const [precioSillas, setPrecioSillas] = useState(0);
   const [guardarCarro, setGuardarCarro] = useState(false);
+  const [formatoElegido, setFormatoElegido] = useState("");
+  const [costeTapizado, setCosteTapizado] = useState(1);
 
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
@@ -36,30 +55,55 @@ export default function ElegirPack({
     }
     console.log("modelo", modelo + formato);
   };
+
+  useEffect(() => {
+    if (formato === "Taburete con respaldo") {
+      setFormatoElegido("Taburete");
+    } else {
+      setFormatoElegido(formato);
+    }
+  }, [formato]);
+
+  useEffect(() => {
+    if (modeloElegidoBastidor === "Tapizado premium") {
+      setCosteTapizado(1.05);
+    } else {
+      setCosteTapizado(1);
+    }
+  }, [modeloElegidoBastidor]);
+
   useEffect(() => {
     if (packSeleccionado == "Mesa") {
       setPrecioSillas(0);
       setCantidadSillas(0);
-    } else if (packSeleccionado == "Mesa y 2 sillas") {
+      setCosteTapizado(1);
+    } else if (packSeleccionado == `Mesa y 2 ${formatoElegido}s`) {
       setPrecioSillas(106);
       setCantidadSillas(2);
-    } else if (packSeleccionado == "Mesa y 4 sillas") {
+    } else if (packSeleccionado == `Mesa y 4 ${formatoElegido}s`) {
       setPrecioSillas(212);
       setCantidadSillas(4);
     }
     setCantidad(0);
   }, [packSeleccionado]);
+
   const precioFinal = () => {
-    const precio = precioAcumulado + precioSillas + 64 * cantidad;
+    const precio = Math.round(
+      (precioAcumulado + precioSillas + 64 * cantidad) * costeTapizado
+    );
     return precio;
   };
+
+  //Seteo de la seleccion final de la silla del pack
+  useEffect(() => {
+    setSillaPack(modelo, formato, modeloElegidoBastidor, colorElegidoBastidor);
+  }, [modelo, formato, modeloElegidoBastidor, colorElegidoBastidor]);
 
   //Seteo de la seleccion final del pack
   useEffect(() => {
     setPackResto(packSeleccionado, cantidad, precioFinal());
   }, [packSeleccionado, cantidad, precioAcumulado, precioSillas]);
 
-  
   useEffect(() => {
     // localStorage.clear()
     //Funciones para agregar lo elegido a la BBDD
@@ -81,7 +125,6 @@ export default function ElegirPack({
             }
 
             let nuevoCarrito = [...carritoObj, pack];
-            console.log(nuevoCarrito);
             localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
           } else {
             //Si es el primer objeto en almacenarse
@@ -139,25 +182,81 @@ export default function ElegirPack({
           </aside>
           <aside
             className={`text-3xl p-2 w-full flex justify-center cursor-pointer ${
-              packSeleccionado === "Mesa y 2 sillas"
+              packSeleccionado === `Mesa y 2 ${formatoElegido}s`
                 ? "bg-colorBase"
                 : "bg-fondoTerciario"
             }`}
-            onClick={() => setPackSeleccionado("Mesa y 2 sillas")}
+            onClick={() => setPackSeleccionado(`Mesa y 2 ${formatoElegido}s`)}
           >
-            Mesa y 2 sillas
+            Mesa y 2 {formatoElegido}s
           </aside>
           <aside
             className={`text-3xl p-2 w-full flex justify-center cursor-pointer ${
-              packSeleccionado === "Mesa y 4 sillas"
+              packSeleccionado === `Mesa y 4 ${formatoElegido}s`
                 ? "bg-colorBase"
                 : "bg-fondoTerciario"
             }`}
-            onClick={() => setPackSeleccionado("Mesa y 4 sillas")}
+            onClick={() => setPackSeleccionado(`Mesa y 4 ${formatoElegido}s`)}
           >
-            Mesa y 4 sillas
+            Mesa y 4 {formatoElegido}s
           </aside>
-          <section className="w-full flex gap-4 items-center mt-8 mb-8">
+          {packSeleccionado !== "Mesa" && (
+            <>
+              <section className="flex items-center gap-2 self-start">
+                <h2 className="text-xl">
+                  Elige color y textura del tapizado para {formatoElegido}
+                </h2>
+                <span
+                  className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase"
+                  onClick={() => {
+                    setModalVisibleBastidor(true);
+                  }}
+                >
+                  Elegir <IconClick stroke={2} />
+                </span>
+                {modalVisibleBastidor && (
+                  <ModalColoresBastidor colores={coloresSilla} />
+                )}
+              </section>
+              <div
+                className={cn(
+                  colorElegidoBastidor === ""
+                    ? "hidden"
+                    : "flex gap-5 whitespace-nowrap items-center flex-wrap mt-4 self-start"
+                )}
+              >
+                <h2 className="text-xl">
+                  Acabado:{" "}
+                  <span
+                    className={
+                      theme === "light" ? "text-white" : "text-colorBase"
+                    }
+                  >
+                    {modeloElegidoBastidor}
+                  </span>
+                </h2>
+                <h2 className="text-xl">
+                  Color:{" "}
+                  <span
+                    className={
+                      theme === "light" ? "text-white" : "text-colorBase"
+                    }
+                  >
+                    {colorElegidoBastidor}
+                  </span>
+                </h2>
+                <div>
+                  <Image
+                    src={rutaImagenBastidor}
+                    alt={`Color ${modeloElegidoBastidor}`}
+                    width={50}
+                    height={50}
+                  />
+                </div>
+              </div>
+            </>
+          )}
+          <section className="w-full flex gap-4 items-center mt-4 mb-6">
             <h1 className="text-xl lg:text-2xl">
               Añadir sillas extra <span className="text-xl">(64€/u)</span>
             </h1>

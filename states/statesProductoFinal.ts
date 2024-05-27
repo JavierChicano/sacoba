@@ -168,7 +168,7 @@ export const useSillaFinal = create<SillaStateFinal>((set) => ({
     color: "",
     colorPata: "",
     precio: 0,
-    cantidad: 1, 
+    cantidad: 1,
   },
   setSillaFinal: (
     modelo: string,
@@ -209,7 +209,7 @@ export const useSillaFinal = create<SillaStateFinal>((set) => ({
 //Estado global para guardar los datos finales del banco
 type BancoStateFinal = {
   banco: {
-    producto: string,
+    producto: string;
     modelo: string;
     modulos: {
       dimensiones: string;
@@ -359,7 +359,6 @@ export const useBancoFinal = create<BancoStateFinal>((set) => ({
   },
 }));
 
-
 // Estado global para guardar los datos finales de los packs
 type PackStateFinal = {
   pack: {
@@ -369,10 +368,13 @@ type PackStateFinal = {
     acabado: string;
     color: string;
     cajon?: boolean;
+    colorBastidor: string;
     precioMesa: number;
     modeloSilla: string;
     formatoSilla: string;
     packElegido: string;
+    tapizadoSilla: string;
+    colorSilla: string;
     cantidadSillasExtra: number;
     precio: number;
     cantidad: number;
@@ -384,11 +386,14 @@ type PackStateFinal = {
     acabado: string,
     color: string,
     cajon: boolean | undefined,
-    precioMesa: number,
+    colorBastidor: string,
+    precioMesa: number
   ) => void;
-  setSillaPack:(
+  setSillaPack: (
     modeloSilla: string,
     formatoSilla: string,
+    tapizadoSilla: string,
+    colorSilla: string,
   ) => void;
   setPackResto: (
     packElegido: string,
@@ -405,10 +410,13 @@ export const usePackFinal = create<PackStateFinal>((set) => ({
     acabado: "",
     color: "",
     cajon: undefined,
+    colorBastidor: "",
     precioMesa: 0,
     modeloSilla: "",
     formatoSilla: "",
     packElegido: "",
+    tapizadoSilla: "",
+    colorSilla: "",
     cantidadSillasExtra: 0,
     precio: 0,
     cantidad: 1,
@@ -419,6 +427,7 @@ export const usePackFinal = create<PackStateFinal>((set) => ({
     acabado: string,
     color: string,
     cajon: boolean | undefined,
+    colorBastidor: string,
     precioMesa: number
   ) =>
     set((state) => ({
@@ -429,18 +438,23 @@ export const usePackFinal = create<PackStateFinal>((set) => ({
         acabado,
         color,
         cajon,
+        colorBastidor,
         precioMesa,
       },
     })),
   setSillaPack: (
     modeloSilla: string,
     formatoSilla: string,
+    tapizadoSilla: string,
+    colorSilla: string,
   ) =>
     set((state) => ({
       pack: {
         ...state.pack,
         modeloSilla,
         formatoSilla,
+        tapizadoSilla,
+        colorSilla,
       },
     })),
   setPackResto: (
