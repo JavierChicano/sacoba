@@ -21,7 +21,7 @@ export default function DesplegableProducto() {
         onMouseEnter={() => setIsHovered(true)}
         className={cn(
           contieneProducto
-            ? "w-36 flex justify-center cursor-pointer font-bold text-colorBase"
+            ? "w-36 flex justify-center cursor-pointer font-bold text-colorBase "
             : "w-36 flex justify-center cursor-pointer"
         )}
       >
@@ -35,7 +35,7 @@ export default function DesplegableProducto() {
         } animate-fade-down animate-ease-out`}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <ul className=" text-xl text-contraste bg-slate-500/80">
+        <ul className=" text-xl text-white bg-slate-500/80">
           <li>
             <Link
               href="/ProductoMesa/"
@@ -47,13 +47,7 @@ export default function DesplegableProducto() {
             >
               <IconDesk
                 stroke={1}
-                color={
-                  theme === "light"
-                    ? "black"
-                    : pathName === "/ProductoMesa"
-                    ? "black"
-                    : "white"
-                }
+                color={pathName === "/ProductoMesa" ? "black" : "white"}
               />
               Mesas
             </Link>
@@ -69,13 +63,7 @@ export default function DesplegableProducto() {
             >
               <IconArmchair
                 stroke={1}
-                color={
-                  theme === "light"
-                    ? "black"
-                    : pathName === "/ProductoSilla"
-                    ? "black"
-                    : "white"
-                }
+                color={pathName === "/ProductoSilla" ? "black" : "white"}
               />
               Sillas
             </Link>
@@ -91,9 +79,7 @@ export default function DesplegableProducto() {
             >
               <Image
                 className={
-                  theme === "light"
-                    ? "w-auto h-6"
-                    : pathName === "/ProductoBanco"
+                  pathName === "/ProductoBanco"
                     ? "black w-auto h-6"
                     : "w-auto h-6 filter invert"
                 }
@@ -116,9 +102,7 @@ export default function DesplegableProducto() {
             >
               <Image
                 className={
-                  theme === "light"
-                    ? "w-auto h-6"
-                    : pathName === "/ProductoAMedida"
+                  pathName === "/ProductoAMedida"
                     ? "black w-auto h-6"
                     : "w-auto h-6 filter invert"
                 }
