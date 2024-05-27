@@ -34,6 +34,13 @@ export default function ObjModuloBanco({
       setCantidad(cantidad - 1);
     }
   };
+  const precioConRespaldo = () => {
+    if (respaldoSeleccionado && modulo.precioRespaldo) {
+      setCosteModulo(costeModulo + modulo.precioRespaldo);  
+    } else if (modulo.precioRespaldo) {
+      setCosteModulo(costeModulo - modulo.precioRespaldo)
+    }
+  };
   useEffect(() => {
     if (
       modulo.modulo === "45Rincon" ||
@@ -56,13 +63,6 @@ export default function ObjModuloBanco({
       setIndexPrecio(1);
     }
   }, [tapizado]);
-  useEffect(() => {
-    if (respaldoSeleccionado && modulo.precioRespaldo) {
-      setCosteModulo(costeModulo + modulo.precioRespaldo);  
-    } else if (modulo.precioRespaldo) {
-      setCosteModulo(costeModulo - modulo.precioRespaldo)
-    }
-  }, [respaldoSeleccionado]);
 
   useEffect(() => {
     //Para modulos con respaldo y que lo haya seleccionado
@@ -82,6 +82,7 @@ export default function ObjModuloBanco({
         eliminarModulo(dimensionesModulo())
     }
   }, [cantidad, modulo.modulo, respaldoSeleccionado, costeModulo, modulo.precioRespaldo]);
+  
   return (
     <aside className="bg-fondoTerciario p-4 flex flex-col gap-4 border border-colorBase m-1">
       <h1 className="text-xl">
@@ -97,8 +98,11 @@ export default function ObjModuloBanco({
                 Añadir respaldo: {modulo.precioRespaldo}€
                 <input
                   type="checkbox"
-                  checked={respaldoSeleccionado}
-                  onChange={(e) => setRespaldoSeleccionado(e.target.checked)}
+                  checked={(respaldoSeleccionado)}
+                  onChange={(e) => {
+                    setRespaldoSeleccionado(e.target.checked);
+                    precioConRespaldo();
+                  }}
                   style={{ width: "20px", height: "20px", marginLeft: "5px" }}
                 />
               </label>
