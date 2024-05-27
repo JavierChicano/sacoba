@@ -148,12 +148,10 @@ export default function CardInfoMesa() {
         </div>
         <Link
           href="/ProductoMesa/"
-          className="flex lg:hidden items-center w-full justify-center text-2xl underline decoration-colorBase gap-4"
+          className="flex lg:hidden items-center w-full justify-center text-2xl underline decoration-colorBase gap-4 mt-2"
         >
           <span className="text-colorBase w-20 flex justify-end">Ir a ver</span>
-          <div className="w-12 h-12">
-            <IconDesk size={50} />
-          </div>
+          <IconDesk size={35} />
         </Link>
       </div>
     </section>

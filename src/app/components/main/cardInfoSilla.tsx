@@ -148,9 +148,7 @@ export default function CardInfoSilla() {
         href="/ProductoSilla/"
         className="flex lg:hidden items-center w-full justify-center text-2xl underline decoration-colorBase gap-4 mt-2"
       >
-        <div className=" w-12 h-12">
-          <IconArmchair size={50} />
-        </div>
+          <IconArmchair size={35} />
         <span className="text-colorBase w-20 flex justify-start">Ir a ver</span>
       </Link>
     </section>

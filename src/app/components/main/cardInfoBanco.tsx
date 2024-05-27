@@ -159,7 +159,7 @@ export default function CardInfoBanco() {
         className="flex lg:hidden items-center w-full justify-center text-2xl underline decoration-colorBase gap-4 mt-2"
       >
         <span className="text-colorBase w-20 flex justify-end">Ir a ver</span>
-        <div className=" w-12 h-12">
+        <div className="w-12 h-12">
           <Image
             className={
               theme === "light"
@@ -168,8 +168,8 @@ export default function CardInfoBanco() {
             }
             src="/iconos/banco.png"
             alt="Icono de un banco"
-            width={50}
-            height={50}
+            width={35}
+            height={35}
           />
         </div>
       </Link>
