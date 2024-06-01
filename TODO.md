@@ -38,16 +38,7 @@
  30- Mirar porq el texto en claro al principio funciona mal
  31- Mirar que el carro local guarde correctamente cuando se loguea el user
 
-//PAGINA AYUDA
-¿Quiere mas opciones de personalizacion?, mire el catálogo y consulte disponibilidad y precio, puesto que en la página se ha reducido la oferta y aunque se trate de abarcar todos los aspectos y variantes de personalización, no estas cubiertas todas por lavores de simplificacion hacia el usuario
-¿Prefiere ver las mesas en persona y asesorarse con un profesional?, no hay problema, disponemos de tienda física en patatin patatan
-Cual es la garantia de los productos y devoluciones
-Calculos de precios
-    El precio varia en funcion del material seleccionado, todos los colores dentro del mismo material tienen el mismo precio, salvo en Silestone y Dekton que aparte de eso tmb influye el grupo del material seleccionado
-
-Dudas acerca de productos
-    Las alturas de las mesas son considerando tapa laminado, el grosor por defecto de silestone 12mm y dekton 8mm
-
+ 
 //BORRAR PAGINA "CALCULOPRECIOS" AL FINALIZAR LA PAGINA
 
 //Hacer un nuevo color "text-invertido" para el modo claro

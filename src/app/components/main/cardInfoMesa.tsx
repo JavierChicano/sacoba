@@ -140,7 +140,17 @@ export default function CardInfoMesa() {
                   Ir a ver
                 </span>
                 <div className="w-12 h-12">
-                  <IconDesk size={50} />
+                  <Image
+                    className={
+                      theme === "light"
+                        ? "w-full h-full filter invert"
+                        : "w-full h-full "
+                    }
+                    src="/iconosMain/Walking.png"
+                    alt="Icono de un banco"
+                    width={50}
+                    height={50}
+                  />
                 </div>
               </Link>
             </span>
