@@ -91,7 +91,7 @@ export default function FormNuevaPassword({
       ) : (
         <button
           type="submit"
-          className="w-2/3 bg-colorBase h-14 self-center text-2xl hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"
+          className="px-3 md:w-2/3 bg-colorBase h-14 self-center text-2xl hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"
         >
           Actualizar contraseña
         </button>

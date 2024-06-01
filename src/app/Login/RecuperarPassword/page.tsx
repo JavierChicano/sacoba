@@ -4,16 +4,17 @@ import Link from "next/link";
 
 export default function RecuperarContraseña() {
   return (
-    <main
-      className="grid grid-cols-2 h-screen bg-[#2e3138]"
-      style={{
-        backgroundImage: "url('/fondos/prueba1.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+    <main className="relative grid grid-cols-2 h-screen">
+      <div
+        className="absolute inset h-screen w-full hidden md:block"
+        style={{
+          backgroundImage: "url('/fondos/prueba1.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
       <CompoLogo />
-      <section className="flex p-10 items-center justify-center col-span-2 sm:col-span-1 text-black">
+      <section className="flex p-10 justify-center items-center col-span-2 sm:col-span-1 text-contraste md:text-black z-10 bg-fondo md:bg-transparent">
         <div className="flex flex-col gap-5 max-w-lg w-full">
           <ul className="flex h-20">
             <li className="text-slate-600">
@@ -24,7 +25,7 @@ export default function RecuperarContraseña() {
             </li>
             <li>Recuperar contraseña</li>
           </ul>
-          <h1 className="text-4xl font-bold text-nowrap">
+          <h1 className="text-4xl font-bold md:text-nowrap">
             Recuperar contraseña
           </h1>
           <section className="max-w-md flex flex-col gap-5 w-full">
