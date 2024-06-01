@@ -102,7 +102,7 @@ export default function CardInfoSilla() {
                   height={100}
                 />
               </div>
-              dssd
+              Estilos
             </span>
             <span className="self-end">
               <Link
@@ -110,7 +110,17 @@ export default function CardInfoSilla() {
                 className="flex items-center gap-4 text-xl h-24 "
               >
                 <div className="w-12 h-12">
-                  <IconArmchair size={50} />
+                <Image
+                    className={
+                      theme === "light"
+                        ? "w-full h-full filter invert"
+                        : "w-full h-full "
+                    }
+                    src="/iconosMain/Walking.png"
+                    alt="Icono de un banco"
+                    width={50}
+                    height={50}
+                  />
                 </div>
                 <span className="text-colorBase w-20 flex justify-start underline decoration-colorBase">
                   Ir a ver

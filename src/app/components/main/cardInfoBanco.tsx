@@ -113,7 +113,7 @@ export default function CardInfoBanco() {
               </div>
             </span>
             <span className="flex items-center gap-4 text-xl h-24 self-center">
-              dsd
+              Respaldos
               <div className=" w-12 h-12">
                 <Image
                   className={
@@ -140,10 +140,10 @@ export default function CardInfoBanco() {
                   <Image
                     className={
                       theme === "light"
-                        ? "w-full h-full"
-                        : "w-full h-full filter invert"
+                        ? "w-full h-full filter invert"
+                        : "w-full h-full "
                     }
-                    src="/iconos/banco.png"
+                    src="/iconosMain/Walking.png"
                     alt="Icono de un banco"
                     width={50}
                     height={50}
