@@ -25,7 +25,7 @@ export default function Registro() {
           <h1 className="text-5xl font-bold">Crear una nueva cuenta</h1>
           <h4>
             ¿Ya eres socio?{" "}
-            <Link href="/Login" className="text-colorBaseSecundario underline">
+            <Link href="/Login" className="text-colorBaseSecundario underline font-semibold">
               Inicia sesion
             </Link>
           </h4>

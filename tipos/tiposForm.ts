@@ -28,6 +28,11 @@ export const FormLoginValidation = z.object({
   }),
 });
 
+export const FormRecuperarValidation = z.object({
+  correoElectronico: z.string().email({
+    message: "Email no válido",
+  })
+});
 
 export const FormCuentaValidation = z.object({
   correoElectronico: z.string().email({

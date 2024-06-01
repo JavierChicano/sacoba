@@ -74,3 +74,39 @@ export async function selectCarritoUsuario(email: string) {
     };
   }
 }
+
+//Comprobar existencia email usuario
+export async function selectComprobarCorreoElectronico(email: string) {
+  try {
+    // Realizar una consulta SQL para seleccionar el usuario con el correo electrónico dado
+    const usuario = await db
+      .select()
+      .from(usuarios)
+      .where(eq(usuarios.correoElectronico, email))
+      .limit(1);
+      
+    //Comprobamos si hay resultados
+    if (usuario && usuario.length === 1) {
+      const tokenGenerado = jwt.sign(
+        {
+          // El token expira en 10 minutos
+          exp: Math.floor(Date.now() / 1000) + 600,
+          //Contiene la informacion del usuario
+          usuario: {
+            correoElectronico: usuario[0].correoElectronico
+          },
+        },
+        process.env.AUTH_USER_TOKEN!
+      );
+      return {
+        success: true,
+        token: tokenGenerado
+      };
+    }
+    //Si el user no existe
+    return false;
+  } catch (error: any) {
+    //Si salta un error en la consulta
+    return false;
+  }
+}

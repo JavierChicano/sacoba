@@ -4,12 +4,14 @@ import BotonesHeader from "./botonesHeader";
 import DivLogo from "./divLogo";
 import { useState, useEffect } from "react";
 import { cn } from "@nextui-org/react";
-import BotonesHeaderMovil from "./botonesHeaderMovil";
+
+const hiddenPaths = ['/Registro', '/Cuenta'];
 
 export default function Header() {
   const pathName = usePathname();
   const [backgroundImage, setBackgroundImage] = useState("");
   const [title, setTitle] = useState("");
+  const isHiddenPath = pathName.startsWith('/Login') || hiddenPaths.includes(pathName);
 
   useEffect(() => {
     if (pathName === "/ProductoMesa") {
@@ -30,14 +32,14 @@ export default function Header() {
     }
   }, [pathName]);
 
+
   return (
     <header
     className={cn({
-      'w-full h-fit flex flex-col items-center bg-center bg-cover': !['/Login', '/Registro', '/Cuenta'].includes(pathName),
-      'hidden': ['/Login', '/Registro', '/Cuenta'].includes(pathName)
+      'w-full h-fit flex flex-col items-center bg-center bg-cover': !isHiddenPath,
+      'hidden': isHiddenPath
     })}
       style={{ backgroundImage: `url('${backgroundImage}')` }}
-      
     >
       <DivLogo />
       <BotonesHeader/>
