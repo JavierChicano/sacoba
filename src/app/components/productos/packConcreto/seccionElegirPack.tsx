@@ -17,6 +17,7 @@ import { cn } from "@nextui-org/react";
 import { useTheme } from "next-themes";
 import { TipoColor } from "../../../../../tipos/tipos";
 import ModalColoresBastidor from "../productoConcretoBanco/modalColoresBastidor";
+import { string } from "zod";
 
 export default function ElegirPack({
   mesa,
@@ -45,6 +46,8 @@ export default function ElegirPack({
   const [guardarCarro, setGuardarCarro] = useState(false);
   const [formatoElegido, setFormatoElegido] = useState("");
   const [costeTapizado, setCosteTapizado] = useState(1);
+  const [verCosteTotal, setVerCosteTotal] = useState(false);
+  const [textWarning, setTextWarning] = useState("Para ver el precio, configura la mesa primero");
 
   const aumentarCantidad = () => {
     setCantidad(cantidad + 1);
@@ -103,6 +106,21 @@ export default function ElegirPack({
   useEffect(() => {
     setPackResto(packSeleccionado, cantidad, precioFinal());
   }, [packSeleccionado, cantidad, precioAcumulado, precioSillas]);
+
+  //Ver precio pack hasta que este todo seteado
+  useEffect(() => {
+    if(precioAcumulado && packSeleccionado === "Mesa"){
+      setVerCosteTotal(true)
+    }else if(precioAcumulado && modeloElegidoBastidor !== ""){
+      setVerCosteTotal(true)
+    }else if(!precioAcumulado ) {
+      setVerCosteTotal(false)
+      setTextWarning("Para ver el precio, configura la mesa primero")
+    }else{
+      setVerCosteTotal(false)
+      setTextWarning("Para ver el precio, termine de elegir el acabado de las sillas")
+    }
+  }, [precioAcumulado, packSeleccionado, modeloElegidoBastidor]);
 
   useEffect(() => {
     // localStorage.clear()
@@ -283,7 +301,7 @@ export default function ElegirPack({
             </aside>
           </section>
           <section className="w-full h-full flex items-end justify-between">
-            {precioAcumulado ? (
+            {verCosteTotal ? (
               <div className="flex flex-col lg:flex-row justify-between w-full lg:gap-0 gap-4">
                 <h1 className="text-3xl">Total: {precioFinal()}€</h1>
                 <section className="flex gap-4 w-full lg:w-auto text-xl lg:text-base">
@@ -299,7 +317,7 @@ export default function ElegirPack({
                   <div
                     className="bg-colorBase p-2 lg:w-32 w-1/2 flex justify-center cursor-pointer"
                     onClick={() => {
-                      // setGuardarCarro(true);
+                      
                     }}
                   >
                     Comprar
@@ -308,7 +326,7 @@ export default function ElegirPack({
               </div>
             ) : (
               <h1 className="text-red-500">
-                Para ver el precio, configura la mesa primero
+                {textWarning}
               </h1>
             )}
           </section>
