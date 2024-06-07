@@ -2,15 +2,6 @@
 // import { NextRequest, NextResponse } from "next/server";
 // import Stripe from "stripe";
 
-// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-
-// export async function GET(res: Request) {
-//   const prices = await stripe.prices.list({
-//     limit: 4,
-//   });
-//   return NextResponse.json(prices.data.reverse());
-// }
-
 // //WEBHOOK; creacion de eventos
 // export async function POST(req: NextRequest, res: NextResponse) {
 //   const payload = await req.text();
