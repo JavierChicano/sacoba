@@ -4,10 +4,12 @@ export async function sendEmail(emailData: any) {
     const response = await fetch("../../api/send/", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", // Asegúrate de enviar el Content-Type correcto
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(emailData),
     });
+    console.log(response);
+
     if (response.ok) {
       console.log("ok");
     } else {

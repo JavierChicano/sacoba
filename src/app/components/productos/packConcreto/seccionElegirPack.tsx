@@ -2,22 +2,18 @@ import { IconClick, IconMinus, IconPlus } from "@tabler/icons-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import {
-  useColorSeleccionado,
   useColorSeleccionadoBastidor,
-  useModal,
   useModalBastidor,
   usePrecioAcumulado,
 } from "../../../../../states/states";
-import Link from "next/link";
 import { usePackFinal } from "../../../../../states/statesProductoFinal";
 import { Toaster, toast } from "sonner";
 import { InsertarCarrito } from "../insertarCarrito";
-import ModalColores from "../modalColores";
 import { cn } from "@nextui-org/react";
 import { useTheme } from "next-themes";
 import { TipoColor } from "../../../../../tipos/tipos";
 import ModalColoresBastidor from "../productoConcretoBanco/modalColoresBastidor";
-import { string } from "zod";
+import BotonCompraPack from "./botonCompraPack";
 
 export default function ElegirPack({
   mesa,
@@ -123,7 +119,6 @@ export default function ElegirPack({
   }, [precioAcumulado, packSeleccionado, modeloElegidoBastidor]);
 
   useEffect(() => {
-    // localStorage.clear()
     //Funciones para agregar lo elegido a la BBDD
     const handleCarrito = async () => {
       const result = await InsertarCarrito(pack);
@@ -314,14 +309,7 @@ export default function ElegirPack({
                     Añadir al carro
                   </div>
                   {/* Este te tiene q llevar a la pagina de compra */}
-                  <div
-                    className="bg-colorBase p-2 lg:w-32 w-1/2 flex justify-center cursor-pointer"
-                    onClick={() => {
-                      
-                    }}
-                  >
-                    Comprar
-                  </div>
+                 <BotonCompraPack pack={pack}/>
                 </section>
               </div>
             ) : (

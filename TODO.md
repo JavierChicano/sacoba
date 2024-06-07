@@ -32,13 +32,14 @@
  25- Hacer el estado global para guardar datos de los packs✅
  26- Cambiar info de los productos en el main
  27- Boton eliminar elemento del carro✅
- 28- Hacer acordeon para pagina AYUDA
+ 28- Hacer acordeon para pagina AYUDA✅
+  28.1- Completas de rellenar preguntas en la pagina
  29- Terminar el perfil  
   29.1- Responsive del perfil
  30- Mirar porq el texto en claro al principio funciona mal
  31- Mirar que el carro local guarde correctamente cuando se loguea el user
 
- 
+
 //BORRAR PAGINA "CALCULOPRECIOS" AL FINALIZAR LA PAGINA
 
 //Hacer un nuevo color "text-invertido" para el modo claro
