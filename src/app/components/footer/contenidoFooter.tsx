@@ -50,7 +50,7 @@ export default function ContenidoFooter() {
         <section className="lg:mt-10 lg:pl-20">
           <TituloFooter titulo="Legal" />
           <ul className="mt-4">
-            <li>Aviso legal</li>
+          <li><Link href={"/AvisoLegal/"}>Aviso legal</Link></li>
             <li>Política de privacidad</li>
             <li>Condiciones de venta</li>
           </ul>
