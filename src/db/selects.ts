@@ -1,4 +1,4 @@
-import { eq, inArray } from "drizzle-orm";
+import { eq, inArray, and } from "drizzle-orm";
 import { db } from ".";
 import { bancos, colores, mesas, packs, sillas } from "./schema";
 
@@ -103,16 +103,10 @@ export async function selectsColoresSillas(modelo: string) {
       materialAsiento: sillas.materialAsiento,
     })
     .from(sillas)
-    .where(eq(sillas.modelo, modelo))
-    .limit(1);
+    .where(eq(sillas.modelo, modelo));
 
   const cadena = todasSillas[0].materialAsiento;
-  const valores = cadena.split(", ");
-  const todosColores = await db
-    .select()
-    .from(colores)
-    .where(inArray(colores.modelo, valores));
-    //Este error no tiene importancia
+  const todosColores = await parcheConsulta(cadena);
   return todosColores;
 }
 
@@ -157,4 +151,54 @@ export async function selectsColoresMesas(modelo: string) {
     .from(colores)
     .where(inArray(colores.modelo, valoresMesas));
   return todosColores;
+}
+
+async function parcheConsulta(cadena: string) {
+  switch (cadena) {
+    case "tapizado nvC, tapizado nvA":
+      const coloresOpcion0 = await db
+        .select()
+        .from(colores)
+        .where(inArray(colores.modelo, ["tapizado nvC", "tapizado nvA"]));
+      return coloresOpcion0;
+
+    case "tapizado nvC, tapizado nvA, laca":
+      const coloresOpcion1 = await db
+        .select()
+        .from(colores)
+        .where(
+          inArray(colores.modelo, ["tapizado nvC", "tapizado nvA", "laca"])
+        );
+      return coloresOpcion1;
+    case "tapizado nvC, tapizado nvA, laca, barniz":
+      const coloresOpcion2 = await db
+        .select()
+        .from(colores)
+        .where(
+          inArray(colores.modelo, [
+            "tapizado nvC",
+            "tapizado nvA",
+            "laca",
+            "barniz",
+          ])
+        );
+      return coloresOpcion2;
+    case "tapizado nvC, tapizado nvA, laminado, laca, barniz":
+      const coloresOpcion3 = await db
+        .select()
+        .from(colores)
+        .where(
+          inArray(colores.modelo, [
+            "tapizado nvC",
+            "tapizado nvA",
+            "laminado",
+            "laca",
+            "barniz",
+          ])
+        );
+      return coloresOpcion3;
+
+    default:
+      throw new Error("Valor no reconocido");
+  }
 }
