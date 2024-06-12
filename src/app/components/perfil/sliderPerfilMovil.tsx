@@ -24,7 +24,7 @@ export default function SliderPerfilMovil() {
   };
 
   return (
-    <section className="w-full flex flex-col gap-10 ">
+    <section className="w-full flex flex-col gap-10 md:hidden">
       <aside className="flex justify-between w-fit self-center">
         <div className=" border-x border-gray-400 px-4">
           <IconUserScan
