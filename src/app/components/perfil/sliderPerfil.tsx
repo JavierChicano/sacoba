@@ -6,8 +6,9 @@ import HoverBotonPerfil from "./hoverBotonesPerfil";
 
 export default function SliderPerfil() {
   const [itemSeleccionado, setItemSeleccionado] = useState('Info user');
+  
   return (
-    <section className="w-full grid grid-cols-[1fr_2px_5fr] gap-10">
+    <section className="w-full hidden md:grid grid-cols-[1fr_2px_5fr] gap-10 ">
       <aside className="flex flex-col gap-12 text-2xl">
         <h1 className="text-5xl">Cuenta</h1>
         <ul className="flex flex-col gap-6">

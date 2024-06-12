@@ -76,7 +76,7 @@ export default function FormPerfil() {
           defaultValue={usuario.nombre}
         />
         <IconUserScan
-          className="absolute right-5 self-center w-8"
+          className="absolute right-5 self-center w-8 hidden md:block"
           height={30}
         />
       </div>
@@ -91,7 +91,7 @@ export default function FormPerfil() {
           defaultValue={usuario.apellidos}
         />
         <IconUserScan
-          className="absolute right-5 self-center w-8"
+          className="absolute right-5 self-center w-8 hidden md:block"
           height={30}
         />
       </div>
@@ -109,7 +109,7 @@ export default function FormPerfil() {
           defaultValue={usuario.telefono || ""}
         />
         <IconPhone
-          className="absolute right-5 self-center w-8"
+          className="absolute right-5 self-center w-8 hidden md:block"
           height={30}
         />
       </div>
@@ -122,7 +122,7 @@ export default function FormPerfil() {
           defaultValue={usuario.domicilio || ""}
         />
         <IconHomeEdit
-          className="absolute right-5 self-center w-8"
+          className="absolute right-5 self-center w-8 hidden md:block"
           height={30}
         />
       </div>
@@ -135,7 +135,7 @@ export default function FormPerfil() {
           defaultValue={usuario.cp || ""}
         />
         <IconScan
-          className="absolute right-5 self-center w-8"
+          className="absolute right-5 self-center w-8 hidden md:block"
           height={30}
         />
       </div>
@@ -148,14 +148,14 @@ export default function FormPerfil() {
           defaultValue={usuario.provincia || ""}
         />
         <IconBuildingSkyscraper
-          className="absolute right-5 self-center w-8"
+          className="absolute right-5 self-center w-8 hidden md:block"
           height={30}
         />
       </div> 
       <div className="col-span-2 flex justify-center mt-10">
         <button
           type="submit"
-          className=" w-1/3 bg-colorBase h-14 self-center text-2xl hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"
+          className="p-2 md:w-1/3 bg-colorBase h-14 self-center text-2xl hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"
         >
           Guardar cambios
         </button>

@@ -30,9 +30,9 @@ export default function CajaUserInfo() {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
   return (
-    <section className="flex flex-col gap-12 px-28">
+    <section className="flex flex-col gap-12 md:px-28">
       {usuario && <aside>
-         <h1 className="text-5xl">
+         <h1 className="md:text-5xl text-3xl">
           {capitalizeFirstLetter(usuario.nombre) +
             " " +
             capitalizeFirstLetter(usuario.apellidos)}
