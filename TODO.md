@@ -33,9 +33,10 @@
  26- Cambiar info de los productos en el main
  27- Boton eliminar elemento del carro✅
  28- Hacer acordeon para pagina AYUDA✅
-  28.1- Completas de rellenar preguntas en la pagina
- 29- Terminar el perfil  
+  28.1- Completas de rellenar preguntas en la pagina✅
+ 29- Terminar el perfil  ✅
   29.1- Responsive del perfil
+  29.2- Completar resto paginas perfil
  30- Mirar porq el texto en claro al principio funciona mal
  31- Mirar que el carro local guarde correctamente cuando se loguea el user
 

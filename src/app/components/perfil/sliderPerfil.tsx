@@ -12,10 +12,7 @@ export default function SliderPerfil() {
         <h1 className="text-5xl">Cuenta</h1>
         <ul className="flex flex-col gap-6">
           <HoverBotonPerfil>
-            <li onClick={() => setItemSeleccionado('Info user')}>Info user</li>
-          </HoverBotonPerfil>
-          <HoverBotonPerfil>
-            <li onClick={() => setItemSeleccionado('Guardados')}>Guardados</li>
+            <li onClick={() => setItemSeleccionado('Info user')}>Usuario</li>
           </HoverBotonPerfil>
           <HoverBotonPerfil>
             <li onClick={() => setItemSeleccionado('Pedidos')}>Pedidos</li>

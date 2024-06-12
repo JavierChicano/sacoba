@@ -15,7 +15,7 @@ export default function CerrarSesion() {
   };
   return (
       <button className="bg-red-300 p-2 text-black cursor-pointer" onClick={handleBoton}>
-        Cerrar sesion
+        Cerrar sesión
       </button>
   );
 }

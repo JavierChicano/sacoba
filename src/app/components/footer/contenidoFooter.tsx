@@ -28,7 +28,7 @@ export default function ContenidoFooter() {
           <TituloFooter titulo="Contacto" />
           <ul className="mt-4">
             <li><Link href={"/Contacto/"}>Formulario de contacto</Link></li>
-            <li>Atencion al cliente:</li>
+            <li>Atención al cliente:</li>
             <p className="text-colorBase cursor-pointer text-sm lg:text-base"><Link href="mailto:atencionCliente@sacoba.es">atencionCliente@sacoba.es</Link></p>
 
           </ul>

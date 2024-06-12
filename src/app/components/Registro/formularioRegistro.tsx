@@ -12,7 +12,8 @@ import { useRouter } from "next/navigation";
 import { Toaster, toast } from "sonner";
 import { setCookie } from "cookies-next";
 import { InsertarCarritoExistente } from "./insertarCarritoLocal";
-import { Spinner } from "@nextui-org/react";
+import { Checkbox, Spinner } from "@nextui-org/react";
+import Link from "next/link";
 
 export default function FormRegistro() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -143,7 +144,17 @@ export default function FormRegistro() {
           />
         )}
       </div>
-
+      <div className="text-white pl-1 flex items-center">
+        <input
+          type="checkbox"
+          name="terminos"
+          required
+          className="checkbox-input"
+        />
+        <Link href={"/AvisoLegal"} className="underline ">
+          Aceptar términos y condiciones
+        </Link>
+      </div>
       {loading ? (
         <Spinner color="warning" />
       ) : (
@@ -163,6 +174,12 @@ export default function FormRegistro() {
         textarea::placeholder {
           color: #f1be8f;
           padding-top: -1px;
+        }
+        .checkbox-input {
+          width: 15px; 
+          height: 15px; 
+          margin-right: 10px; 
+          transform: scale(1.5);
         }
       `}</style>
     </form>

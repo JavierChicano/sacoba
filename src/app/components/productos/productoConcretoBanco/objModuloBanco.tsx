@@ -23,7 +23,7 @@ export default function ObjModuloBanco({
   const [costeModulo, setCosteModulo] = useState(0);
 
   const dimensionesModulo = () => {
-    const dimensiones = modulo.modulo + " cm x 45cm";
+    const dimensiones = modulo.modulo + " cm x 45 cm";
     return dimensiones;
   };
   const aumentarCantidad = () => {

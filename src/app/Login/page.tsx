@@ -26,7 +26,7 @@ export default function Login() {
           <h4>
             ¿No tienes cuenta?{" "}
             <Link href="/Registro" className="text-colorBaseSecundario underline font-semibold">
-              Registrate
+              Regístrate
             </Link>
           </h4>
           <FormLogin />

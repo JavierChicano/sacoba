@@ -30,7 +30,7 @@ export default function Registro() {
               href="/Login"
               className="text-colorBaseSecundario underline font-semibold"
             >
-              Inicia sesion
+              Inicia sesión
             </Link>
           </h4>
 
