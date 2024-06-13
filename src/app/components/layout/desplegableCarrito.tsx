@@ -43,12 +43,12 @@ export default function DesplegableCarrito() {
         let carritoString = localStorage.getItem("carrito");
         if (carritoString !== null) {
           const carritoObjeto = JSON.parse(carritoString);
-          if (carritoObjeto.length > 1) {
-            setObjetosCarro(carritoObjeto.reverse());
-          } else {
+          if ((carritoObjeto[0] === undefined)) {
             //Si el carrito tiene un solo objeto hay que convertirlo a array
             const carroArray = [carritoObjeto];
             setObjetosCarro(carroArray.reverse());
+          } else {
+            setObjetosCarro(carritoObjeto.reverse());
           }
         } else {
           setCarritoVacio(true);
@@ -60,6 +60,7 @@ export default function DesplegableCarrito() {
       setLoading(false); // Marcar la carga como completada, independientemente de si hubo un error o no
     }
   };
+  console.log(objetosCarro);
 
   //lanzar la funcion al cargar la pagina
   useEffect(() => {
@@ -138,4 +139,3 @@ export default function DesplegableCarrito() {
     </>
   );
 }
-  

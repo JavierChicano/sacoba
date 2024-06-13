@@ -66,7 +66,6 @@ export default function ProductoCarrito({
             carritoObjeto,
             producto
           );
-          console.log("ACTUZALIZADO", productosActualizados);
           localStorage.setItem(
             "carrito",
             JSON.stringify(productosActualizados)
