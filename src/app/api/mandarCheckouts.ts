@@ -11,7 +11,6 @@ export async function checkoutPack(pack: any) {
       if (response.ok) {
         const session = await response.json();
         window.location.href = session.url;
-        console.log("ok");
       } else {
         console.log(response);
       }

@@ -16,6 +16,9 @@ import * as React from "react";
 interface Props {
   token: string;
 }
+const imgUrl = process.env.VERCEL_URL
+? `https://${process.env.VERCEL_URL}`
+: "http://localhost:3000";
 
 
 export const TemplateReseteoPassword = ({ token }: Props) => {
@@ -31,7 +34,7 @@ export const TemplateReseteoPassword = ({ token }: Props) => {
         <Body className="bg-[#f6f9fc] p-3">
           <Container className="bg-[#ffffff] p-10">
             <Img
-              src={`${baseUrl}/static/logo.png`}
+              src={`${imgUrl}/static/logo.png`}
               width="40"
               height="33"
               alt="Logo Sacoba"

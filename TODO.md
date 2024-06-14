@@ -38,7 +38,6 @@
   29.1- Responsive del perfil
   29.2- Completar resto paginas perfil
  30- Mirar porq el texto en claro al principio funciona mal
- 31- Mirar que el carro local guarde correctamente cuando se loguea el user
 
 
 //BORRAR PAGINA "CALCULOPRECIOS" AL FINALIZAR LA PAGINA
