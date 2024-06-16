@@ -31,8 +31,7 @@ export default function ElegirPack({
   const { setPackResto, pack, setSillaPack } = usePackFinal();
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
   const { modalVisibleBastidor, setModalVisibleBastidor } = useModalBastidor();
-  const { colorElegidoBastidor, modeloElegidoBastidor, rutaImagenBastidor } =
-    useColorSeleccionadoBastidor();
+  const { colorElegidoBastidor, modeloElegidoBastidor, rutaImagenBastidor } = useColorSeleccionadoBastidor();
 
   //Estados locales para guardar la seleccion momentaneamente
   const [packSeleccionado, setPackSeleccionado] = useState("Mesa");
@@ -52,7 +51,6 @@ export default function ElegirPack({
     if (cantidad > 0) {
       setCantidad(cantidad - 1);
     }
-    console.log("modelo", modelo + formato);
   };
 
   useEffect(() => {
@@ -101,7 +99,7 @@ export default function ElegirPack({
   //Seteo de la seleccion final del pack
   useEffect(() => {
     setPackResto(packSeleccionado, cantidad, precioFinal());
-  }, [packSeleccionado, cantidad, precioAcumulado, precioSillas]);
+  }, [packSeleccionado, cantidad, precioAcumulado, precioSillas, costeTapizado]);
 
   //Ver precio pack hasta que este todo seteado
   useEffect(() => {
@@ -152,7 +150,7 @@ export default function ElegirPack({
       handleCarrito();
     }
   }, [guardarCarro]);
-
+console.log(pack)
   return (
     <>
       <section className="lg:grid lg:grid-cols-2 w-full">

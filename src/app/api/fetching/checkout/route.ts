@@ -9,12 +9,15 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const pack = body.pack;
   console.log(pack)
+  const imagenes = generarImagenes(pack)
+  console.log(imagenes)
+
   try {
     //Creacion del producto
     const productoCreado = await stripe.products.create({
       name: `${pack.producto}`,
       description: `${generarDescripcion(pack)}`,
-      images: [`${baseUrl}/productos/packs/malta.png`]
+      images: imagenes
     });
 
     //Creacion del precio el producto
@@ -22,7 +25,7 @@ export async function POST(req: NextRequest) {
       currency: 'eur',
       unit_amount: `${pack.precio*100}`,
       product: `${productoCreado.id}`,
-      nickname: 'Precio del pack'
+      nickname: 'Precio del pack',
     });
     
     //Creacion de la sesion de pago
@@ -35,7 +38,25 @@ export async function POST(req: NextRequest) {
       ],
       mode: "payment",
       success_url: `${baseUrl}/?success=true`,
-      cancel_url: `${baseUrl}/?canceled=true`,
+      cancel_url: `${baseUrl}/Packs`,
+      shipping_address_collection: {
+        allowed_countries: ['ES'], 
+      },
+      custom_fields: [
+        {
+          key: "tipoEnvio",
+          label: {
+            type: "custom",
+            custom: "Tipo de Envío",
+          },
+          type: "text",
+        },
+      ],
+      custom_text: {
+        submit: {
+          message: 'Te enviaremos la factura al correo electronico',
+        },
+      }
     });
 
     return NextResponse.json({ url: session.url }, { status: 200 });
@@ -69,6 +90,18 @@ function generarDescripcion(pack: any){
   if (pack.packElegido === 'Mesa') {
     return `Pack ${pack.packElegido} modelo ${pack.modelo}. Dimensiones de la mesa ${pack.dimension}, material ${pack.acabado}, color ${pack.color}.`;
 } else {
-    return `Pack "${pack.packElegido}", modelo ${pack.modelo}. Dimensiones de la mesa ${pack.dimension}, material ${pack.acabado}, color ${pack.color}. ${numSillas} ${formato} del modelo ${pack.modeloSilla} ${pack.cantidadSillasExtra !== 0 ? `más ${pack.cantidadSillasExtra} extra` : ""}, material ${pack.tapizadoSilla}, color ${pack.colorSilla}.`;
+    return `Pack "${pack.packElegido}", modelo ${pack.modelo}. Dimensiones de la mesa ${pack.dimension}, material ${pack.acabado}, color ${pack.color}. ${numSillas} ${formato} del modelo ${pack.modeloSilla} ${pack.cantidadSillasExtra !== 0 ? `más ${pack.cantidadSillasExtra} extra,` : ","} material ${pack.tapizadoSilla}, color ${pack.colorSilla}.`;
 }
+}
+
+function generarImagenes(pack: any){
+  var arrayImagenes = []
+  const modelo = pack.modelo.toLowerCase()
+  const modeloSilla = pack.modeloSilla.toLowerCase()
+  if(pack.packElegido === 'Mesa' ){
+    arrayImagenes = [`${baseUrl}/productos/packs/${modelo}.png`]
+  }else {
+    arrayImagenes = [`${baseUrl}/productos/packs/${modelo}.png`, `${baseUrl}/productos/packs/${modeloSilla}.png`]
+  }
+  return arrayImagenes
 }

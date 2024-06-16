@@ -104,7 +104,7 @@ export default function SeccionMesaPack({
     } else {
       setPrecioAcumulado(preciosMesa[indexPrecio]);
     }
-  }, [preciosMesa, indexPrecio, cajonSeleccionado]);
+  }, [preciosMesa, indexPrecio, cajonSeleccionado, packSeleccionado, mesaConCajon, setPrecioAcumulado]);
 
   //Seteo de la seleccion final de la mesa del pack
   useEffect(() => {
@@ -125,7 +125,6 @@ export default function SeccionMesaPack({
     bastidorElegido,
     precioAcumulado,
   ]);
-
   return (
     <section className="bg-fondoSecundario lg:col-span-3 p-2 lg:p-8 flex flex-col gap-4">
       <h1 className="text-3xl lg:text-4xl">Dimensiones</h1>
@@ -219,7 +218,7 @@ export default function SeccionMesaPack({
         </aside>
       </section>
       <section className="flex h-full items-end">
-        {precioAcumulado && (
+        {preciosMesa.length > 0 && (
           <h1 className="text-2xl lg:text-3xl">
             Precio de la mesa: {precioAcumulado}€
           </h1>
