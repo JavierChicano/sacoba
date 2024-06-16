@@ -33,6 +33,7 @@
   --color-secundario: #f1be8f;
   --contraste: #17181d; 
   --contraste-opacidad: #17181dc7; 
+  --text-invertido: #fff;
 }
 [data-theme="dark"] {
   --foreground-rgb: 255, 255, 255;
@@ -47,6 +48,7 @@
   --color-secundario: #f1be8f;
   --contraste: #f3f3f3;
   --contraste-opacidad: #f3f3f3cb;
+  --text-invertido: #000000;
 }
 
 body {
