@@ -9,6 +9,7 @@ import { InsertarCarrito } from "../insertarCarrito";
 import { Toaster, toast } from "sonner";
 import { usuarios } from "@/db/schema";
 import Euro from "../../euro";
+import BotonCompraMesa from "./botonCompraMesa";
 
 export default function SeccionPrecio({
   mesaSeleccionada,
@@ -105,7 +106,7 @@ export default function SeccionPrecio({
             }
 
             let nuevoCarrito = [...carritoObj, mesa];
-            console.log(nuevoCarrito)
+            console.log(nuevoCarrito);
             localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
           } else {
             //Si es el primer objeto en almacenarse
@@ -121,15 +122,20 @@ export default function SeccionPrecio({
     }
   }, [mesa.precio]);
 
-  const handleComprar = async () => {
-    // AQUI HAY  Q HACER MAS PROCESOS
-  };
+  useEffect(() => {
+    setPrecioMesaFinal(precioFinal() * cantidad);
+    setCantidadMesas(cantidad);
+  }, [cantidad, precioMesa, precioAltura, precioGrupo]);
+
   return (
     <>
       <section className="bg-fondoSecundario flex flex-col gap-4 p-8 col-span-2 lg:col-span-1">
         <div className="flex justify-between items-center flex-wrap">
           <div>
-            <h1 className="text-3xl">Total: {precioFinal() * cantidad}<Euro/></h1>
+            <h1 className="text-3xl">
+              Total: {precioFinal() * cantidad}
+              <Euro />
+            </h1>
             {/* <p className="text-sm flex justify-end"> Iva incluido*</p> */}
           </div>
           <section className="flex w-36 border-[1px] border-fondoTerciario justify-between">
@@ -164,17 +170,7 @@ export default function SeccionPrecio({
             >
               Añadir al carro
             </div>
-            {/* Este te tiene q llevar a la pagina de compra */}
-            <div
-              className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer flex-grow"
-              onClick={() => {
-                setPrecioMesaFinal(precioFinal() * cantidad);
-                setCantidadMesas(cantidad);
-                handleComprar();
-              }}
-            >
-              Comprar
-            </div>
+            <BotonCompraMesa mesa={mesa}/>
           </section>
         </div>
       </section>

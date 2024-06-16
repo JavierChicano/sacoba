@@ -6,6 +6,7 @@ import { useBancoFinal } from "../../../../../states/statesProductoFinal";
 import { Toaster, toast } from "sonner";
 import { InsertarCarrito } from "../insertarCarrito";
 import Euro from "../../euro";
+import BotonCompraBanco from "./botonCompraBanco";
 
 export default function SeccionPrecioBanco({
   bancoSeleccionado,
@@ -33,6 +34,15 @@ export default function SeccionPrecioBanco({
   const precioFinal = () => {
     const precio = Math.round(precioBanco * cantidad);
     return precio;
+  };
+
+  //Setea las ultimas opciones antes de mandar el producto final a comprar
+  const handleClick = async () => {
+    await new Promise<void>((resolve) => {
+      setPrecioBancoFinal(Math.round(precioBanco));
+      setCantidadBancos(cantidad);
+      resolve();
+    });
   };
 
   //Aqui se calcula el precio del banco en funcion de la seleccion final
@@ -77,7 +87,6 @@ export default function SeccionPrecioBanco({
             }
 
             let nuevoCarrito = [...carritoObj, banco];
-            console.log(nuevoCarrito);
             localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
           } else {
             //Si es el primer objeto en almacenarse
@@ -93,11 +102,19 @@ export default function SeccionPrecioBanco({
     }
   }, [guardarCarro]);
 
+  useEffect(() => {
+    setPrecioBancoFinal(Math.round(precioBanco));
+    setCantidadBancos(cantidad);
+  }, [cantidad, precioBanco]);
+
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 col-span-2 lg:col-span-1">
       <div className="flex justify-between items-center flex-wrap">
         <div>
-          <h1 className="text-3xl">Total: {precioFinal()}<Euro/></h1>
+          <h1 className="text-3xl">
+            Total: {precioFinal()}
+            <Euro />
+          </h1>
           {/* <p className="text-sm flex justify-end"> Iva incluido*</p> */}
         </div>
         <section className="flex w-36 border-[1px] border-fondoTerciario justify-between">
@@ -127,23 +144,12 @@ export default function SeccionPrecioBanco({
               <div
                 className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer flex-grow"
                 onClick={() => {
-                  setPrecioBancoFinal(precioBanco);
-                  setCantidadBancos(cantidad);
                   setGuardarCarro(true);
                 }}
               >
                 Añadir al carro
               </div>
-              {/* Este te tiene q llevar a la pagina de compra */}
-              <div
-                className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer flex-grow"
-                onClick={() => {
-                  setPrecioBancoFinal(precioFinal());
-                  setCantidadBancos(cantidad);
-                }}
-              >
-                Comprar
-              </div>
+              <BotonCompraBanco banco={banco} />
             </>
           ) : (
             <p className="w-32 text-center text-red-400">

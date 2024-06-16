@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ModalCheckoutEnvio from "../../modalCheckoutEnvio";
 
-export default function BotonCompraPack(pack: any) {
+export default function BotonCompraSilla(silla: any) {
   const [displayModal, setDisplayModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -11,8 +11,8 @@ export default function BotonCompraPack(pack: any) {
   const handleCloseModal = () => {
     setDisplayModal(false);
   };
-  //Comvertir el objeto pack, a un objeto universal de "productos"
-  const productos = [pack.pack]
+  //Comvertir el objeto silla, a un objeto universal de "productos"
+  const productos = [silla.silla]
   const producto = {productos}
 
   return (

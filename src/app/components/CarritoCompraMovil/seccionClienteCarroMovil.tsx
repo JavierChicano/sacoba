@@ -7,6 +7,7 @@ import { usePrecioTotalCarrito } from "../../../../states/states";
 import { RecogerDatosCarrito } from "../CarritoCompra/recogerDatosCarrito";
 import RutaCarrito from "../CarritoCompra/rutaCarrito";
 import ProductoCarrito from "../layout/productoCarrito";
+import BotonCompraCarrito from "../CarritoCompra/botonCompraCarrito";
 
 export default function CompClienteCarritoMovil() {
   const [objetosCarro, setObjetosCarro] = useState<string[]>([]);
@@ -119,12 +120,7 @@ export default function CompClienteCarritoMovil() {
               Total: {Math.round(totalProductos)}€
             </div>
             <div className="grid grid-cols-2 gap-2 h-16 text-xl">
-              <Link
-                href="/"
-                className="border border-colorBase bg-fondoTerciario hover:bg-colorBase p-2 h-full flex justify-center items-center"
-              >
-                Proceder al pago
-              </Link>
+              <BotonCompraCarrito  productos={objetosCarro}/>
               <Link
                 href="/CarritoCompra"
                 className="bg-colorBase p-2 h-full flex justify-center items-center"

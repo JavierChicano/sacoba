@@ -6,6 +6,7 @@ import { usePrecioTotalCarrito } from "../../../../states/states";
 import { LeerDatosCookie } from "../perfil/cookiePerfil";
 import { RecogerDatosCarrito } from "../CarritoCompra/recogerDatosCarrito";
 import Euro from "../euro";
+import BotonCompraCarrito from "../CarritoCompra/botonCompraCarrito";
 
 export default function DesplegableCarrito() {
   const [objetosCarro, setObjetosCarro] = useState<string[]>([]);
@@ -43,7 +44,7 @@ export default function DesplegableCarrito() {
         let carritoString = localStorage.getItem("carrito");
         if (carritoString !== null) {
           const carritoObjeto = JSON.parse(carritoString);
-          if ((carritoObjeto[0] === undefined)) {
+          if (carritoObjeto[0] === undefined) {
             //Si el carrito tiene un solo objeto hay que convertirlo a array
             const carroArray = [carritoObjeto];
             setObjetosCarro(carroArray.reverse());
@@ -99,12 +100,7 @@ export default function DesplegableCarrito() {
                   Total: {Math.round(totalProductos)}€
                 </div>
                 <div className="grid grid-cols-2 gap-2 h-16 text-xl">
-                  <Link
-                    href="/"
-                    className="border border-colorBase bg-fondoTerciario hover:bg-colorBase p-2 h-full flex justify-center items-center"
-                  >
-                    Proceder al pago
-                  </Link>
+                  <BotonCompraCarrito productos={objetosCarro} />
                   <Link
                     href="/CarritoCompra"
                     className="bg-colorBase p-2 h-full flex justify-center items-center"

@@ -7,6 +7,7 @@ import { LeerDatosCookie } from "../perfil/cookiePerfil";
 import { RecogerDatosCarrito } from "./recogerDatosCarrito";
 import RutaCarrito from "./rutaCarrito";
 import { usePrecioTotalCarrito } from "../../../../states/states";
+import BotonCompraCarrito from "./botonCompraCarrito";
 
 export default function CompClienteCarrito() {
   const [objetosCarro, setObjetosCarro] = useState<string[]>([]);
@@ -138,9 +139,7 @@ export default function CompClienteCarrito() {
                   <div className="flex justify-center items-center text-3xl">
                     Total: {Math.round(totalProductos)}€
                   </div>
-                  <h1 className="p-2 bg-fondoSecundario border flex justify-center border-colorBase hover:bg-colorBase cursor-pointer">
-                    Proceder al pago
-                  </h1>
+                  <BotonCompraCarrito productos={objetosCarro}/>
                 </div>
               </div>
             </aside>

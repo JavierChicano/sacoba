@@ -10,7 +10,6 @@ export default function ModalCheckoutEnvio({
   displayModal: boolean;
   onClose: () => void;
 }) {
-  console.log(productos)
 
   return (
     <aside
@@ -51,8 +50,9 @@ export default function ModalCheckoutEnvio({
         >
           <h1 className="lg:text-3xl text-xl">A domicilio</h1>
           <ul className="list-disc pl-4 lg:pl-6 text-xs lg:text-xl ">
-            <li>+30€ extra</li>
+            <li>Sobreprecio de 30€</li>
             <li>Incluye montaje de la mesa</li>
+            <li>Solo disponible para la Comunidad de Madrid</li>
           </ul>
         </aside>
       </section>

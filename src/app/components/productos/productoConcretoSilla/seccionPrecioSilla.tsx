@@ -5,6 +5,7 @@ import { useSillaFinal } from "../../../../../states/statesProductoFinal";
 import { Toaster, toast } from "sonner";
 import { InsertarCarrito } from "../insertarCarrito";
 import Euro from "../../euro";
+import BotonCompraSilla from "./botonCompraSilla";
 
 export default function SeccionPrecioSilla({ precio }: { precio: number }) {
   const { silla, setPrecioSillaFinal, setCantidadSillas } = useSillaFinal();
@@ -64,12 +65,20 @@ export default function SeccionPrecioSilla({ precio }: { precio: number }) {
     }
   }, [guardarCarro]);
 
+  useEffect(() => {
+    setPrecioSillaFinal(precioFinal());
+    setCantidadSillas(cantidad);
+  }, [cantidad, precio]);
+
   return (
     <>
       <section className="bg-fondoSecundario flex flex-col p-8 col-span-2 lg:col-span-1">
         <div className="flex justify-between items-center flex-wrap">
           <div>
-            <h1 className="text-3xl">Total: {precioFinal()}<Euro/></h1>
+            <h1 className="text-3xl">
+              Total: {precioFinal()}
+              <Euro />
+            </h1>
             {/* <p className="text-sm flex justify-end"> Iva incluido*</p> */}
           </div>
           <section className="flex w-36 border-[1px] border-fondoTerciario justify-between">
@@ -105,15 +114,7 @@ export default function SeccionPrecioSilla({ precio }: { precio: number }) {
               Añadir al carro
             </div>
             {/* Este te tiene q llevar a la pagina de compra */}
-            <div
-              className="bg-colorBase p-2 w-32 flex justify-center cursor-pointer flex-grow"
-              onClick={() => {
-                setPrecioSillaFinal(precioFinal());
-                setCantidadSillas(cantidad);
-              }}
-            >
-              Comprar
-            </div>
+            <BotonCompraSilla silla={silla}/>
           </section>
         </div>
       </section>

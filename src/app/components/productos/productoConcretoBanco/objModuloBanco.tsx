@@ -34,8 +34,9 @@ export default function ObjModuloBanco({
       setCantidad(cantidad - 1);
     }
   };
-  const precioConRespaldo = () => {
-    if (respaldoSeleccionado && modulo.precioRespaldo) {
+  const precioConRespaldo = (e: boolean) => {
+    setRespaldoSeleccionado(e)
+    if (!respaldoSeleccionado && modulo.precioRespaldo) {
       setCosteModulo(costeModulo + modulo.precioRespaldo);  
     } else if (modulo.precioRespaldo) {
       setCosteModulo(costeModulo - modulo.precioRespaldo)
@@ -98,10 +99,9 @@ export default function ObjModuloBanco({
                 Añadir respaldo: {modulo.precioRespaldo}€
                 <input
                   type="checkbox"
-                  checked={(respaldoSeleccionado)}
+                  checked={respaldoSeleccionado}
                   onChange={(e) => {
-                    setRespaldoSeleccionado(e.target.checked);
-                    precioConRespaldo();
+                    precioConRespaldo(e.target.checked);
                   }}
                   style={{ width: "20px", height: "20px", marginLeft: "5px" }}
                 />
