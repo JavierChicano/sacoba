@@ -23,7 +23,7 @@ export default function DesplegableProductoMovil({
 
   return (
     <ul
-      className={`flex lg:hidden fixed top-0 right-0 w-full h-screen z-50 flex-col items-center justify-center gap-10 text-4xl backdrop-blur-sm ${
+      className={`flex lg:hidden fixed top-0 right-0 w-full h-screen z-50 flex-col items-center justify-center gap-10 text-4xl backdrop-blur-lg ${
         theme === "light" ? "bg-white/20" : "bg-black/20"
       }`}
     >

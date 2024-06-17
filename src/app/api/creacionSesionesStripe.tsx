@@ -119,7 +119,6 @@ export async function dividirProductos(productos: any) {
       console.error("Error al dividir los productos", error);
     }
   }
-  console.log(resultados);
   return resultados;
 }
 
