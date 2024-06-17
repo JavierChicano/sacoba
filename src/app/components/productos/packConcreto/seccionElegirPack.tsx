@@ -150,13 +150,12 @@ export default function ElegirPack({
       handleCarrito();
     }
   }, [guardarCarro]);
-console.log(pack)
   return (
     <>
       <section className="lg:grid lg:grid-cols-2 w-full">
         <div className="flex justify-end relative">
           <Image
-            src={`/productos/packs/${mesa}.png`}
+            src={`/productos/packs/${mesa.toLocaleLowerCase()}.png`}
             width={500}
             height={500}
             alt="foto mesa"
