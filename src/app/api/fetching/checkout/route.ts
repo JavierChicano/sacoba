@@ -9,21 +9,26 @@ const baseUrl = process.env.VERCEL_URL
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const productosJuntos = body.productos;
-  console.log(productosJuntos)
-  const prueba = await dividirProductos(productosJuntos)
+  const productosDivididos = await dividirProductos(productosJuntos)
 
   try {
     //Creacion de la sesion de pago
     const session = await stripe.checkout.sessions.create({
-      line_items: prueba,
+      line_items: productosDivididos,
       mode: "payment",
       success_url: `${baseUrl}/?success=true`,
       cancel_url: `${baseUrl}/`,
       custom_text: {
         submit: {
-          message: 'Te enviaremos la factura al correo electronico',
+          message: "Te enviaremos la factura al correo electronico",
         },
-      }
+        terms_of_service_acceptance: {
+          message: `Acepto las [condiciones de venta](${baseUrl}/CondicionesVenta)`,
+        },
+      },      
+      consent_collection: {
+        terms_of_service: 'required',
+      },
     });
 
     return NextResponse.json({ url: session.url }, { status: 200 });

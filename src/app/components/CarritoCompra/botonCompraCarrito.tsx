@@ -3,7 +3,6 @@ import ModalCheckoutEnvio from "../modalCheckoutEnvio";
 
 export default function BotonCompraCarrito(productos: any) {
   const [displayModal, setDisplayModal] = useState(false);
-  console.log(productos);
   const handleOpenModal = () => {
     setDisplayModal(true);
   };

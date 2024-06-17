@@ -122,3 +122,26 @@ export async function dividirProductos(productos: any) {
   console.log(resultados);
   return resultados;
 }
+
+export async function productoEnvio() {
+  //Creacion del producto
+  const crearProductoEnvio = await stripe.products.create({
+   name: `Envio`,
+   description: `Coste del envio a domicilio, incluye el montaje del producto`,
+   images: [`${baseUrl}/imgEnvio.png`],
+ });
+
+ //Creacion del precio el producto
+ const priceProductoEnvio = await stripe.prices.create({
+   currency: "eur",
+   unit_amount: `${30 * 100}`,
+   product: `${crearProductoEnvio.id}`,
+   nickname: "Precio del envio a domicilio",
+ });
+
+ // Guardar los datos 
+ return {
+   price: priceProductoEnvio.id,
+   quantity: 1,
+ }
+}

@@ -19,6 +19,7 @@ export default function InfoExtra() {
         <section>
           <h1 className="text-4xl mb-2">Contacto</h1>
           <p className="text-colorBase cursor-pointer"><Link href="mailto:atencionCliente@sacoba.es">atencionCliente@sacoba.es</Link></p>
+          <p>Teléfono: 916 04 96 04</p>
         </section>
       </div>
     </aside>
