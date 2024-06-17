@@ -88,17 +88,17 @@ export default function CompClientePack({
           />
           <ImagenesSillas
             datos={{
-              nombre: "Ker",
+              nombre: "Onda",
               img: formatoSeleccionado === "Silla" ? "OndaSilla" : "OndaTab",
-              selected: modeloSeleccionada === "Ker",
+              selected: modeloSeleccionada === "Onda",
               onSelect: setModeloSeleccionada,
             }}
           />
           <ImagenesSillas
             datos={{
-              nombre: "Onda",
+              nombre: "Ker",
               img: formatoSeleccionado === "Silla" ? "KerSilla" : "KerTab",
-              selected: modeloSeleccionada === "Onda",
+              selected: modeloSeleccionada === "Ker",
               onSelect: setModeloSeleccionada,
             }}
           />
