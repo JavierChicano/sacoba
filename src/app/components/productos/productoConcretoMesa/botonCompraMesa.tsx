@@ -16,8 +16,8 @@ export default function BotonCompraMesa(mesa: any) {
   const producto = {productos}
 
   return (
-    <div>
-      <button onClick={handleOpenModal} className="bg-colorBase p-2 lg:w-32 w-1/2 flex justify-center cursor-pointer">Comprar</button>
+    <div className="w-1/2 border border-colorBase">
+      <button onClick={handleOpenModal} className="bg-colorBase p-2 lg:w-32 w-full flex justify-center cursor-pointer">Comprar</button>
       <ModalCheckoutEnvio
         productos={producto}
         displayModal={displayModal}
