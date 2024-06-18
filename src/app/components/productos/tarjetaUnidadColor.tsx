@@ -102,7 +102,7 @@ export default function UnidadColor({ color }: { color: TipoColor }) {
         <Image
           src={
             color.grupo
-              ? `/colores/${color.modelo}/${color.grupo}/${color.imagenColor} `
+              ? `/colores/${color.modelo.replace(/ g1/i, "")}/${color.grupo}/${color.imagenColor} `
               : `/colores/${color.modelo}/${color.imagenColor}`
           }
           alt={`Color ${color.nombreColor}`}
