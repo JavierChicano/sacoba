@@ -1,4 +1,5 @@
 import { dividirProductos, productoEnvio } from "@/app/api/creacionSesionesStripe";
+import { LeerDatosCookie } from "@/app/components/perfil/cookiePerfil";
 import { NextRequest, NextResponse } from "next/server";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -13,9 +14,18 @@ export async function POST(req: NextRequest) {
   //Sumamos el coste del envio al pedido
   const envio = await productoEnvio()
   productosDivididos.push(envio)
+
+  let correoElectonico = undefined;
+
+  //Si el usuario esta logueado usamos su correo
+  const user = await LeerDatosCookie();
+  if (user.status) {
+    correoElectonico = user.usuario.correoElectronico;
+  }
   try {
     //Creacion de la sesion de pago
     const session = await stripe.checkout.sessions.create({
+      customer_email: correoElectonico,
       line_items: productosDivididos,
       mode: "payment",
       success_url: `${baseUrl}/?success=true`,

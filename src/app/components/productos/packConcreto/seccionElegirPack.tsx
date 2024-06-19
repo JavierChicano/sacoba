@@ -214,7 +214,7 @@ export default function ElegirPack({
             <>
               <section className="flex items-center gap-2 self-start">
                 <h2 className="text-xl">
-                  Elige color y textura del tapizado para {formatoElegido}
+                  Acabado del tapizado para {formatoElegido}
                 </h2>
                 <span
                   className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase"

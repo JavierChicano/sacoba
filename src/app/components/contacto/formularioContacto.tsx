@@ -3,6 +3,7 @@ import { Toaster, toast } from "sonner";
 import { FormConsultaValidation } from "../../../../tipos/tiposForm";
 import { InsertarConsulta } from "./insertarConsulta";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default function FormularioContacto() {
   const clientAction = async (formData: FormData) => {
@@ -41,7 +42,7 @@ export default function FormularioContacto() {
         />
         <input
           type="text"
-          placeholder="Nombre completo"
+          placeholder="Nombre"
           name="nombre"
           className="border-b border-colorBase h-14 bg-fondoTerciario text-xl text-white pl-3"
           required
@@ -54,7 +55,7 @@ export default function FormularioContacto() {
           required
         >
           <option value="default" disabled>
-            Motivo consulta
+            Asunto
           </option>
           <option value="Producto">Producto</option>
           <option value="Duda">Duda</option>
@@ -68,6 +69,17 @@ export default function FormularioContacto() {
           name="consulta"
           required
         ></textarea>
+        <div className="text-white flex items-center gap-2">
+        <input
+          type="checkbox"
+          name="terminos"
+          required
+          className="checkbox-input"
+        />
+        <Link href={"/AvisoLegal"} className="underline">
+          Aceptar términos y condiciones
+        </Link>
+      </div>
         <button
           type="submit"
           className="bg-colorBase h-14 mt-5 lg:mt-10 -mr-12 w-3/4 self-end text-2xl flex justify-start items-center pl-3 hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"

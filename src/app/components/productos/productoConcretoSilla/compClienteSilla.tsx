@@ -4,7 +4,7 @@ import RutaSillaConcreta from "./rutaSillaConcreta";
 import Image from "next/image";
 import SeccionPersonalizarSilla from "./seccionPersoSilla";
 
-export default function CompClienteSilla({sillaSeleccionada, colores}: {sillaSeleccionada: TipoSilla[], colores: TipoColor[]}) {
+export default function sCompClienteSilla({sillaSeleccionada, colores}: {sillaSeleccionada: TipoSilla[], colores: TipoColor[]}) {
 
     return(
     <div className="max-w-7xl w-full">

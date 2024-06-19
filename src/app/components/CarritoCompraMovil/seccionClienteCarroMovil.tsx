@@ -118,6 +118,8 @@ export default function CompClienteCarritoMovil() {
             )}
             <div className="my-4 text-2xl self-start">
               Total: {Math.round(totalProductos)}€
+              <p className="text-base">Impuestos incluidos</p>
+
             </div>
             <div className="grid grid-cols-2 gap-2 h-16 text-xl">
               <BotonCompraCarrito  productos={objetosCarro}/>

@@ -136,7 +136,7 @@ export default function SeccionPersonalizarSilla({
           ))}
         </div>
         <section className="flex items-center gap-2">
-          <h2 className="text-2xl">Elige color y textura</h2>
+          <h2 className="text-2xl">Acabado del asiento</h2>
           <span
             className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase"
             onClick={() => {
@@ -170,7 +170,7 @@ export default function SeccionPersonalizarSilla({
           </div>
         </div>
         <div className="flex gap-2 lg:items-center flex-col lg:flex-row">
-          <h2 className="text-2xl mr-4">Color del bastidor</h2>
+          <h2 className="text-2xl mr-4">Color de las patas</h2>
           {coloresBastidor.map((color, index) => (
             <ColorEstructuraSilla
               key={index}

@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import {
     generarDescripcionBanco,
   generarDescripcionMesa,
@@ -5,6 +6,7 @@ import {
   generarDescripcionSilla,
   generarImagenesPack,
 } from "./funcionesInfoCheckout";
+import { verify } from "jsonwebtoken";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const baseUrl = process.env.VERCEL_URL
@@ -144,3 +146,4 @@ export async function productoEnvio() {
    quantity: 1,
  }
 }
+

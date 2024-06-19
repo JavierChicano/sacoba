@@ -11,10 +11,10 @@ export default function BotonCompraCarrito(productos: any) {
     setDisplayModal(false);
   };
   return (
-    <div>
+    <div className="w-full flex justify-end">
       <button
         onClick={handleOpenModal}
-        className="p-2 bg-fondoSecundario border flex justify-center border-colorBase hover:bg-colorBase cursor-pointer h-full items-center"
+        className=" w-full p-2 bg-fondoSecundario border flex justify-center border-colorBase hover:bg-colorBase cursor-pointer h-full items-center"
       >
         Proceder al pago
       </button>

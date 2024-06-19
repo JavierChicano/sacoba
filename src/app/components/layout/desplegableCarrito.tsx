@@ -61,7 +61,6 @@ export default function DesplegableCarrito() {
       setLoading(false); // Marcar la carga como completada, independientemente de si hubo un error o no
     }
   };
-  console.log(objetosCarro);
 
   //lanzar la funcion al cargar la pagina
   useEffect(() => {
@@ -98,12 +97,13 @@ export default function DesplegableCarrito() {
                 </section>
                 <div className="my-4 text-2xl">
                   Total: {Math.round(totalProductos)}€
-                </div>
-                <div className="grid grid-cols-2 gap-2 h-16 text-xl">
+                  <p className="text-base">Impuestos incluidos</p>
+                  </div>
+                <div className="grid grid-cols-2 gap-2 h-16 text-xl w-full">
                   <BotonCompraCarrito productos={objetosCarro} />
                   <Link
                     href="/CarritoCompra"
-                    className="bg-colorBase p-2 h-full flex justify-center items-center"
+                    className="bg-colorBase p-2 h-full flex justify-center items-center w-full"
                   >
                     Ir al carrito
                   </Link>

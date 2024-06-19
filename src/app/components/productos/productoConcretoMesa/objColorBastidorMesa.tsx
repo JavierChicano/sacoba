@@ -12,7 +12,7 @@ export default function ObjColorBastidor({ datos }: { datos: ObjColorBastidor })
         <div
             className={cn(
                 selected ? "bg-colorBase" : "bg-fondoTerciario",
-                "self-center p-2 cursor-pointer flex justify-center flex-grow max-w-32"
+                "self-center p-2 cursor-pointer flex justify-center flex-grow max-w-fit"
             )}
             onClick={() => onSelect(color)}
         >

@@ -77,7 +77,7 @@ export default function SeccionModulosBanco({
       </div>
       <div className="flex flex-col gap-4">
         <section className="flex items-center gap-2">
-          <h2 className="text-2xl">Elige color y textura del tapizado</h2>
+          <h2 className="text-2xl">Color y textura del tapizado</h2>
           <span
             className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase"
             onClick={() => {
@@ -112,7 +112,7 @@ export default function SeccionModulosBanco({
         </div>
         <section>
           <section className="flex items-center gap-2">
-            <h2 className="text-2xl">Elige color y acabado del bastidor</h2>
+            <h2 className="text-2xl">Color y acabado del bastidor</h2>
             <span
               className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase"
               onClick={() => {

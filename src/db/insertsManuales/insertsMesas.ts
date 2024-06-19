@@ -321,7 +321,7 @@ export async function insertarMesas() {
         "90x45, 100x50, 100x60, 110x70, 120x80, 150x80, 80x80, 90x90",
       altura: "76, 92, 102",
       materialPata: "madera",
-      colorPata: "madera",
+      colorPata: "madera barnizada",
       precio: "227, 245, 251, 271, 290, 329, 250, 289",
       tendencia: true,
     },
@@ -335,7 +335,7 @@ export async function insertarMesas() {
         "90x45, 100x50, 100x60, 110x70, 120x80, 150x80, 80x80, 90x90",
       altura: "76, 92, 102",
       materialPata: "madera",
-      colorPata: "madera",
+      colorPata: "madera barnizada",
       precio: "207, 219, 227, 245, 260, 295, 226, 261",
     },
     {
@@ -348,7 +348,7 @@ export async function insertarMesas() {
         "90x45, 100x50, 100x60, 110x70, 120x80, 150x80, 80x80, 90x90",
       altura: "76, 92, 102",
       materialPata: "madera",
-      colorPata: "madera",
+      colorPata: "madera barnizada",
       precio: "311, 369, 379, 438, 500, 593, 376, 452",
     },
     {
@@ -361,7 +361,7 @@ export async function insertarMesas() {
         "90x45, 100x50, 100x60, 110x70, 120x80, 150x80, 80x80, 90x90",
       altura: "76, 92, 102",
       materialPata: "madera",
-      colorPata: "madera",
+      colorPata: "madera barnizada",
       precio: "368, 409, 460, 540, 625, 748, 456, 554",
     },
 
@@ -375,7 +375,7 @@ export async function insertarMesas() {
       dimensiones: "110x70(150x70), 120x80(160x80), 140x85(200x85)",
       altura: "77",
       materialPata: "madera",
-      colorPata: "madera",
+      colorPata: "madera barnizada",
       precio: "598, 608, 628",
       nuevo: true,
     },
@@ -388,7 +388,7 @@ export async function insertarMesas() {
       dimensiones: "110x70(150x70), 120x80(160x80), 140x85(200x85)",
       altura: "77",
       materialPata: "madera",
-      colorPata: "madera",
+      colorPata: "madera barnizada",
       precio: "658, 669, 691",
     },
     {
@@ -400,7 +400,7 @@ export async function insertarMesas() {
       dimensiones: "110x70(150x70), 120x80(160x80), 140x85(200x85)",
       altura: "77",
       materialPata: "madera",
-      colorPata: "madera",
+      colorPata: "madera barnizada",
       precio: "658, 669, 691",
     },    
     {
@@ -412,7 +412,7 @@ export async function insertarMesas() {
       dimensiones: "110x70(150x70), 120x80(160x80), 140x85(200x85)",
       altura: "77",
       materialPata: "madera",
-      colorPata: "madera",
+      colorPata: "madera barnizada",
       precio: "615, 625, 646",
     },
     {
@@ -424,7 +424,7 @@ export async function insertarMesas() {
       dimensiones: "110x70(150x70), 120x80(160x80), 140x85(200x85)",
       altura: "77",
       materialPata: "madera",
-      colorPata: "madera",
+      colorPata: "madera barnizada",
       precio: "871, 890, 1001",
     },
     {
@@ -436,7 +436,7 @@ export async function insertarMesas() {
       dimensiones: "110x70(150x70), 120x80(160x80), 140x85(200x85)",
       altura: "77",
       materialPata: "madera",
-      colorPata: "madera",
+      colorPata: "madera barnizada",
       precio: "976, 1019, 1161",
     },
 
@@ -450,7 +450,7 @@ export async function insertarMesas() {
       dimensiones: "110x70, 120x80, 140x85",
       altura: "77",
       materialPata: "madera",
-      colorPata: "blanco",
+      colorPata: "madera barnizada",
       tendencia: true,
       precio: "404, 411, 463",
     },
@@ -463,7 +463,7 @@ export async function insertarMesas() {
       dimensiones: "110x70, 120x80, 140x85",
       altura: "77",
       materialPata: "madera",
-      colorPata: "blanco",
+      colorPata: "madera barnizada",
       precio: "422, 445, 499",
     },
     {
@@ -475,7 +475,7 @@ export async function insertarMesas() {
       dimensiones: "110x70, 120x80, 140x85",
       altura: "77",
       materialPata: "madera",
-      colorPata: "blanco",
+      colorPata: "madera barnizada",
       precio: "598, 663, 767",
     },
     {
@@ -488,7 +488,7 @@ export async function insertarMesas() {
       dimensiones: "110x70, 120x80, 140x85",
       altura: "77",
       materialPata: "madera",
-      colorPata: "blanco",
+      colorPata: "madera barnizada",
       precio: "700, 788, 921",
     },
 
@@ -502,7 +502,7 @@ export async function insertarMesas() {
       dimensiones: "90, 100",
       altura: "77",
       materialPata: "madera",
-      colorPata: "blanco",
+      colorPata: "madera barnizada",
       precio: "417, 430",
       tendencia: true,
     },
@@ -515,7 +515,7 @@ export async function insertarMesas() {
       dimensiones: "90, 100",
       altura: "77",
       materialPata: "madera",
-      colorPata: "blanco",
+      colorPata: "madera barnizada",
       precio: "455, 468",
     },
 

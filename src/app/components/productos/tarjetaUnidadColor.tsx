@@ -66,7 +66,6 @@ export default function UnidadColor({ color }: { color: TipoColor }) {
       setRutaIMG(
         `/colores/${nombre}/${color.grupo}/${color.imagenColor}`
       );
-      console.log(`/colores/${nombre}/${color.grupo}/${color.imagenColor}`)
       const nombreCompleto = nombre + " " + color.grupo;
       setNombreModelo(nombreCompleto);
     } else {
@@ -79,7 +78,6 @@ export default function UnidadColor({ color }: { color: TipoColor }) {
       setAcabadosDisponibles(acabados);
     }
   }, []);
-  console.log("HOLA")
 
   return (
     <li

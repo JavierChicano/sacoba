@@ -91,29 +91,6 @@ export default function DesplegableProducto() {
               Bancos
             </Link>
           </li>
-          <li>
-            <Link
-              href="/ProductoAMedida/"
-              className={`flex gap-4 items-center px-4 py-2 ${
-                pathName === "/ProductoAMedida"
-                  ? "bg-colorBase text-black"
-                  : "hover:bg-fondoTerciario"
-              }`}
-            >
-              <Image
-                className={
-                  pathName === "/ProductoAMedida"
-                    ? "black w-auto h-6"
-                    : "w-auto h-6 filter invert"
-                }
-                src="/iconos/aMedida.png"
-                alt="Logo de la marca"
-                width={50}
-                height={50}
-              />
-              A medida
-            </Link>
-          </li>
         </ul>
       </div>
     </aside>

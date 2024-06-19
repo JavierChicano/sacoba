@@ -43,7 +43,7 @@ export default function ModalCheckoutEnvio({
       onClick={onClose}
     >
       <section
-        className="flex bg-fondo w-4/5 lg:h-3/5 lg:w-2/5 p-10 lg:p-16 lg:px-20 flex-col align-middle lg:gap-10 gap-5"
+        className="flex bg-fondo w-4/5 lg:h-fit lg:w-2/5 p-10 lg:p-16 lg:px-20 flex-col align-middle lg:gap-10 gap-5"
         onClick={(e) => e.stopPropagation()}
       >
         <h1 className="text-2xl lg:text-5xl border-b border-colorBase flex justify-between items-end">
@@ -69,7 +69,7 @@ export default function ModalCheckoutEnvio({
         >
           {loadingTienda ? (
             <aside>
-              <h1>Procesando</h1>
+              <h1 className="lg:text-3xl text-xl">Procesando</h1>
               <Spinner color="warning" />
             </aside>
           ) : (
@@ -97,7 +97,7 @@ export default function ModalCheckoutEnvio({
         >
           {loading ? (
             <aside>
-              <h1>Procesando</h1>
+              <h1 className="lg:text-3xl text-xl">Procesando</h1>
               <Spinner color="warning" />
             </aside>
           ) : (

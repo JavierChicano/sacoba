@@ -13,7 +13,6 @@ export default function CompClienteCarrito() {
   const [objetosCarro, setObjetosCarro] = useState<string[]>([]);
   const [sesionIniciada, setSesionIniciada] = useState(false);
   const [carritoVacio, setCarritoVacio] = useState(false);
-  const [refrescar, setRefrescar] = useState(false);
   const { totalProductos } = usePrecioTotalCarrito();
 
   const obtenerUsuario = async () => {
@@ -136,8 +135,9 @@ export default function CompClienteCarrito() {
               <div className="w-42 justify-around flex items-center mt-16">
                 <span className="w-32"></span>
                 <div className="w-60 flex flex-col justify-end gap-3">
-                  <div className="flex justify-center items-center text-3xl">
+                  <div className="flex flex-col justify-center items-end text-3xl ">
                     Total: {Math.round(totalProductos)}€
+                    <p className="text-base">Impuestos incluidos</p>
                   </div>
                   <BotonCompraCarrito productos={objetosCarro}/>
                 </div>

@@ -7,7 +7,7 @@ export default function InfoExtra() {
       <div className="w-full flex justify-between gap-12 lg:-ml-14 whitespace-nowrap lg:flex-row flex-col px-20 lg:p-0">
         <section>
           <h1 className="text-4xl mb-2">Tienda física</h1>
-          <p className="whitespace-normal">Av. de Fuenlabrada, 55, 28970 Humanes de Madrid, Madrid</p>
+          <p className="whitespace-normal">Av. de Fuenlabrada, 55, 28970 Humanes de Madrid, Madrid. España</p>
         </section>
         <section>
           <h1 className="text-4xl mb-2">Horarios</h1>

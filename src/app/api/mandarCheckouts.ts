@@ -17,7 +17,6 @@ export async function checkoutProductoDomicilio({
       if (response.ok) {
         const session = await response.json();
         window.location.href = session.url;
-        console.log(session);
       } else {
         console.log(response);
       }
@@ -41,6 +40,7 @@ export async function checkoutProductoDomicilio({
         },
         body: JSON.stringify(productos),
       });
+      onLoad()
       if (response.ok) {
         const session = await response.json();
         window.location.href = session.url;

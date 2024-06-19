@@ -12,7 +12,7 @@ export default function ColorDekton({
   return (
     <div className="hover:scale-110">
       <Image
-        src={`/colores/dekton g1/g4/${color}`}
+        src={`/colores/dekton/g4/${color}`}
         alt="Logo marca silestone"
         width={130}
         height={130}

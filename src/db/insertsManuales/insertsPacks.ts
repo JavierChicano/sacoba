@@ -39,7 +39,7 @@ export async function insertarPacks() {
       descripcion: "Mesa extensible frontal, guías automáticas",
       materialTapa: "cristal 3mm",
       dimensiones:
-        "80x40(80x68), 90x45x(90x79), 100x50(100x84), 100x60(100x94)",
+        "80x40(80x68), 90x45(90x79), 100x50(100x84), 100x60(100x94)",
       precio: "265, 278, 299, 308",
     },
     {
@@ -48,7 +48,7 @@ export async function insertarPacks() {
       descripcion: "Mesa extensible frontal, guías automáticas",
       materialTapa: "laminado",
       dimensiones:
-        "80x40(80x68), 90x45x(90x79), 100x50(100x84), 100x60(100x94)",
+        "80x40(80x68), 90x45(90x79), 100x50(100x84), 100x60(100x94)",
       precio: "256, 267, 284, 293",
     },
     {
@@ -57,7 +57,7 @@ export async function insertarPacks() {
       descripcion: "Mesa extensible frontal, guías automáticas",
       materialTapa: "laminado ECO",
       dimensiones:
-        "80x40(80x68), 90x45x(90x79), 100x50(100x84), 100x60(100x94)",
+        "80x40(80x68), 90x45(90x79), 100x50(100x84), 100x60(100x94)",
       precio: "236, 245, 259, 265",
     },
 

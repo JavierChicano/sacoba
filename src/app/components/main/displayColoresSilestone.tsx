@@ -14,7 +14,7 @@ export default function ColorSilestone({
   return (
     <div className="hover:scale-110">
       <Image
-        src={`/colores/silestone g1/${grado}/${color}`}
+        src={`/colores/silestone/${grado}/${color}`}
         alt="Logo marca silestone"
         width={130}
         height={130}

@@ -191,7 +191,7 @@ export default function SeccionPersonalizarMesa({
       </div>
       <div className="flex gap-2 flex-wrap justify-around"></div>
       <section className="flex items-center gap-2">
-        <h2 className="text-2xl">Elige color y textura</h2>
+        <h2 className="text-2xl">Acabado de la encimera</h2>
         <span
           className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase"
           onClick={() => {
@@ -317,11 +317,11 @@ export default function SeccionPersonalizarMesa({
         </section>
       )}
       <aside className="text-4xl flex items-end gap-4 border-b border-colorBaseSecundario">
-        Soporte
+        Patas
       </aside>
       <div className="flex flex-col gap-2">
         <h2 className="text-2xl mr-4">
-          Bastidor de {mesaSeleccionada[0].materialPata}
+          Patas de {mesaSeleccionada[0].materialPata}
         </h2>
         <div className="flex gap-2 flex-wrap items-center">
           <span className="text-2xl mr-[6px]">Color</span>
