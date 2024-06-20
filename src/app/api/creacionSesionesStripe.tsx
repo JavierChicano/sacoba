@@ -132,10 +132,10 @@ export async function productoEnvio() {
    images: [`${baseUrl}/imgEnvio.png`],
  });
 
- //Creacion del precio el producto
+ //Creacion del precio del envio 40€
  const priceProductoEnvio = await stripe.prices.create({
    currency: "eur",
-   unit_amount: `${30 * 100}`,
+   unit_amount: `${40 * 100}`,
    product: `${crearProductoEnvio.id}`,
    nickname: "Precio del envio a domicilio",
  });

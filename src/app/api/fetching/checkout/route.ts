@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       },
       consent_collection: {
         terms_of_service: "required",
-      },
+      }
     });
 
     return NextResponse.json({ url: session.url }, { status: 200 });

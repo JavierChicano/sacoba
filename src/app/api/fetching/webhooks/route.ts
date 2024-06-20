@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-console.log("GFFDGF")
 
 export async function POST(req: NextRequest) {
-    console.log("GFFDGF")
   const payload = await req.text();
   const sigHeader = req.headers.get("stripe-signature");
   const endpointSecret = process.env.STRIPE_SECRET_KEY_WEBHOOK;
@@ -20,7 +18,9 @@ export async function POST(req: NextRequest) {
   switch (event.type) {
     case 'checkout.session.completed':
       const session = event.data.object;
+      console.log(session)
       // Handle the checkout.session.completed event
+      session.metadata
       console.log('Checkout session completed:', session);
       break;
     // Handle other event types if needed

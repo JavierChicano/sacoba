@@ -1,6 +1,6 @@
 import { TipoConsulta, TipoUsuario } from "../../tipos/tipos";
 import { db } from "./index";
-import { carrito, consultas, usuarios } from "./schema";
+import { carrito, consultas, pedidos, usuarios } from "./schema";
 import jwt from "jsonwebtoken";
 
 export async function registrarUsuario({ usuario }: { usuario: TipoUsuario }) {
@@ -74,6 +74,32 @@ export async function registrarCarrito({
       detallesProducto: JSON.stringify(producto),
       precioTotal: producto.precio*producto.cantidad
     });
+    // Si la inserción se realiza sin errores, devolvemos true
+    return true;
+  } catch (error) {
+    // Si ocurre algún error, devolvemos false
+    return false;
+  }
+}
+
+
+export async function registrarPedido({
+  datos
+}: {
+  datos: any
+}) {
+  console.log(datos)
+  try {
+    await db.insert(pedidos).values({
+      cliente: datos,
+      tipoProducto: datos,
+      modelo: datos,
+      detallesProducto: datos,
+      fecha: datos,
+      factura: datos,
+      precio: datos
+    });
+
     // Si la inserción se realiza sin errores, devolvemos true
     return true;
   } catch (error) {
