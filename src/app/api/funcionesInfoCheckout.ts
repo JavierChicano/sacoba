@@ -43,11 +43,11 @@ export function generarImagenesPack(pack: any) {
   const modelo = pack.modelo.toLowerCase();
   const modeloSilla = pack.modeloSilla.toLowerCase();
   if (pack.packElegido === "Mesa") {
-    arrayImagenes = [`${baseUrl}/productos/packs/${modelo}.png`];
+    arrayImagenes = [`${baseUrl}/productos/packs/${modelo.toLowerCase()}.png`];
   } else {
     arrayImagenes = [
-      `${baseUrl}/productos/packs/${modelo}.png`,
-      `${baseUrl}/productos/packs/${modeloSilla}.png`,
+      `${baseUrl}/productos/packs/${modelo.toLowerCase()}.png`,
+      `${baseUrl}/productos/packs/${modeloSilla.toLowerCase()}.png`,
     ];
   }
   return arrayImagenes;

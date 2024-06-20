@@ -52,7 +52,7 @@ export async function dividirProductos(productos: any) {
           const crearProductoMesa = await stripe.products.create({
             name: `${producto.producto}`,
             description: `${generarDescripcionMesa(producto)}`,
-            images: [`${baseUrl}/productos/mesas/${modeloMesa}.png`],
+            images: [`${baseUrl}/productos/mesas/${modeloMesa.toLowerCase()}.png`],
           });
 
           //Creacion del precio el producto
@@ -75,7 +75,7 @@ export async function dividirProductos(productos: any) {
           const crearProductoSilla = await stripe.products.create({
             name: `${producto.producto}`,
             description: `${generarDescripcionSilla(producto)}`,
-            images: [`${baseUrl}/productos/sillas/${modeloSilla}.png`],
+            images: [`${baseUrl}/productos/sillas/${modeloSilla.toLowerCase()}.png`],
           });
 
           //Creacion del precio el producto
@@ -98,7 +98,7 @@ export async function dividirProductos(productos: any) {
           const crearProductoBanco = await stripe.products.create({
             name: `${producto.producto}`,
             description: `${generarDescripcionBanco(producto)}`,
-            images: [`${baseUrl}/productos/bancos/${modeloBanco}.png`],
+            images: [`${baseUrl}/productos/bancos/${modeloBanco.toLowerCase()}.png`],
           });
 
           //Creacion del precio el producto
