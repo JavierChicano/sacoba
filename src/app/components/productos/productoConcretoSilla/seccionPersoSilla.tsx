@@ -10,6 +10,7 @@ import SeccionPrecioSilla from "./seccionPrecioSilla";
 import Image from "next/image";
 import { useSillaFinal } from "../../../../../states/statesProductoFinal";
 import { useTheme } from "next-themes";
+import VerEscala from "../verEscala";
 
 export default function SeccionPersonalizarSilla({
   sillaSeleccionada,
@@ -119,8 +120,9 @@ export default function SeccionPersonalizarSilla({
   return (
     <>
       <section className="bg-fondoSecundario flex flex-col gap-4 p-8 col-span-2 lg:col-span-1">
-        <aside className="text-3xl lg:text-4xl flex items-end gap-4">
-          Formato: <span className="text-lg lg:text-2xl">{formato}</span>
+        <aside className="text-xl lg:text-4xl flex gap-1 flex-col items-start border-b border-colorBaseSecundario">
+          <h1>Formato: <span className="text-lg lg:text-2xl">{formato}</span></h1>
+          <VerEscala imagen="medidasSilla"/>
         </aside>
         <div className="flex gap-2 flex-wrap justify-around">
           {sillaSeleccionada.map((silla, index) => (

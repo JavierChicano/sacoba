@@ -15,6 +15,7 @@ import Image from "next/image";
 import { useBancoFinal } from "../../../../../states/statesProductoFinal";
 import ObjModuloBanco from "./objModuloBanco";
 import { useTheme } from "next-themes";
+import VerEscala from "../verEscala";
 
 export default function SeccionModulosBanco({
   bancosPosibles,
@@ -70,10 +71,11 @@ export default function SeccionModulosBanco({
 
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 row-span-6 col-span-2 lg:col-span-1">
-      <div className="flex justify-between h-14">
-        <h1 className="text-3xl lg:text-4xl self-center border-b border-colorBaseSecundario w-full">
-          Acabados
+      <div className="flex border-b border-colorBaseSecundario w-full justify-between h-14 items-end">
+        <h1 className="text-3xl lg:text-4xl">
+        <span>Acabados</span>
         </h1>
+        <VerEscala imagen={"medidasBanco"}/>
       </div>
       <div className="flex flex-col gap-4">
         <section className="flex items-center gap-2">

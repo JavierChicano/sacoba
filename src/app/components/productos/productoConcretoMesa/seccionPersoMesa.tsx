@@ -19,6 +19,7 @@ import ObjColorBastidor from "./objColorBastidorMesa";
 import ObjAlturaMesa from "./objAlturaMesa";
 import ModalColoresBastidor from "../productoConcretoBanco/modalColoresBastidor";
 import { useTheme } from "next-themes";
+import VerEscala from "../verEscala";
 
 export default function SeccionPersonalizarMesa({
   mesaSeleccionada,
@@ -174,8 +175,9 @@ export default function SeccionPersonalizarMesa({
 
   return (
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 col-span-2 lg:col-span-1">
-      <aside className="text-3xl lg:text-4xl flex items-end gap-4 border-b border-colorBaseSecundario">
-        Encimera
+      <aside className="text-3xl lg:text-4xl flex items-end gap-4 border-b border-colorBaseSecundario justify-between">
+        <span>Encimera</span>
+        <VerEscala imagen={"medidasMesa"}/>
       </aside>
       <div className="flex gap-2 flex-wrap">
         {dimensionesMesa.map((dimension, index) => (
@@ -210,10 +212,16 @@ export default function SeccionPersonalizarMesa({
         )}
       >
         <h2 className="text-xl">
-          Acabado: <span className={theme==="light"? "text-white" : "text-colorBase"}>{modeloElegido}</span>
+          Acabado:{" "}
+          <span className={theme === "light" ? "text-white" : "text-colorBase"}>
+            {modeloElegido}
+          </span>
         </h2>
         <h2 className="text-xl">
-          Color: <span className={theme==="light"? "text-white" : "text-colorBase"}>{colorElegido}</span>
+          Color:{" "}
+          <span className={theme === "light" ? "text-white" : "text-colorBase"}>
+            {colorElegido}
+          </span>
         </h2>
         <div>
           <Image
@@ -250,7 +258,11 @@ export default function SeccionPersonalizarMesa({
           >
             <h2 className="text-xl">
               Color:{" "}
-              <span className={theme==="light"? "text-white" : "text-colorBase"}>{colorElegidoBastidor}</span>
+              <span
+                className={theme === "light" ? "text-white" : "text-colorBase"}
+              >
+                {colorElegidoBastidor}
+              </span>
             </h2>
             <div>
               <Image
