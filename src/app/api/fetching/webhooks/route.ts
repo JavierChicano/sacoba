@@ -1,3 +1,4 @@
+import { registrarPedido } from "@/db/inserts";
 import { NextRequest, NextResponse } from "next/server";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -18,9 +19,13 @@ export async function POST(req: NextRequest) {
   switch (event.type) {
     case 'checkout.session.completed':
       const session = event.data.object;
-      console.log(session)
+      console.log("cliente", session.email)
+      console.log("detallesProducto", session.metadata)
+      console.log("fecha", session)
+      console.log("precio", session.amount_total)
+      console.log("adress", session.address)
       // Handle the checkout.session.completed event
-      session.metadata
+      await registrarPedido(session)
       console.log('Checkout session completed:', session);
       break;
     // Handle other event types if needed

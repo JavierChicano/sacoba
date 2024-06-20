@@ -47,6 +47,8 @@ export function generarImagenesPack(pack: any) {
   } else {
     arrayImagenes = [
       `${baseUrl}/productos/packs/${modelo.toLowerCase()}.png`,
+      `${baseUrl}/productos/packs/${modelo.toLowerCase()}.png`,
+      `${baseUrl}/productos/packs/${modelo.toLowerCase()}.png`,
       `${baseUrl}/productos/packs/${modeloSilla.toLowerCase()}.png`,
     ];
   }

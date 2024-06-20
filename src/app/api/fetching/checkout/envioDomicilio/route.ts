@@ -1,5 +1,6 @@
 import { dividirProductos, productoEnvio } from "@/app/api/creacionSesionesStripe";
 import { LeerDatosCookie } from "@/app/components/perfil/cookiePerfil";
+import { metadata } from "@/app/layout";
 import { NextRequest, NextResponse } from "next/server";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -14,7 +15,7 @@ export async function POST(req: NextRequest) {
   //Sumamos el coste del envio al pedido
   const envio = await productoEnvio()
   productosDivididos.push(envio)
-
+console.log(productosJuntos)
   let correoElectonico = undefined;
 
   //Si el usuario esta logueado usamos su correo
@@ -44,6 +45,9 @@ export async function POST(req: NextRequest) {
       consent_collection: {
         terms_of_service: 'required',
       },
+      metadata: {
+        productos: JSON.stringify(productosJuntos)
+      }
     });
 
     return NextResponse.json({ url: session.url }, { status: 200 });

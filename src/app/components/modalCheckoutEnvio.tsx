@@ -62,7 +62,7 @@ export default function ModalCheckoutEnvio({
             checkoutProductoRecogidaTienda({
               productos,
               onLoad: () => {
-                handleLoadingFalseTienda;
+                handleLoadingFalseTienda();
               },
             });
           }}
@@ -90,7 +90,7 @@ export default function ModalCheckoutEnvio({
             checkoutProductoDomicilio({
               productos,
               onLoad: () => {
-                handleLoadingFalse;
+                handleLoadingFalse();
               },
             });
           }}

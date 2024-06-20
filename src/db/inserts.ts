@@ -104,6 +104,7 @@ export async function registrarPedido({
     return true;
   } catch (error) {
     // Si ocurre algún error, devolvemos false
+    console.log(error)
     return false;
   }
 }

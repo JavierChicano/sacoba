@@ -37,6 +37,9 @@ export async function POST(req: NextRequest) {
       },
       consent_collection: {
         terms_of_service: "required",
+      },
+      metadata: {
+        productos: JSON.stringify(productosJuntos)
       }
     });
 

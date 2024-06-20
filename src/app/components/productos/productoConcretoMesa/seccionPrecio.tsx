@@ -120,7 +120,7 @@ export default function SeccionPrecio({
     if (guardarCarro === true) {
       handleCarrito();
     }
-  }, [mesa.precio]);
+  }, [mesa.precio, guardarCarro]);
 
   useEffect(() => {
     setPrecioMesaFinal(precioFinal() * cantidad);
@@ -163,8 +163,6 @@ export default function SeccionPrecio({
             <div
               className="bg-fondoTerciario border-[1px] border-colorBase p-2 w-32 flex justify-center hover:bg-colorBase cursor-pointer flex-grow"
               onClick={() => {
-                setPrecioMesaFinal(precioFinal());
-                setCantidadMesas(cantidad);
                 setGuardarCarro(true);
               }}
             >

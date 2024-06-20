@@ -23,7 +23,6 @@ export async function dividirProductos(productos: any) {
     try {
       switch (producto.producto) {
         case "Pack":
-          console.log(producto);
           //Creacion del producto
           const crearProductoPack = await stripe.products.create({
             name: `${producto.producto}`,
@@ -46,7 +45,6 @@ export async function dividirProductos(productos: any) {
           });
           break;
         case "Mesa":
-          console.log(producto);
           const modeloMesa = producto.modelo.toLowerCase();
           //Creacion del producto
           const crearProductoMesa = await stripe.products.create({
@@ -69,7 +67,6 @@ export async function dividirProductos(productos: any) {
           });
           break;
         case "Silla":
-          console.log(producto);
           const modeloSilla = producto.modelo.toLowerCase();
           //Creacion del producto
           const crearProductoSilla = await stripe.products.create({
@@ -92,7 +89,6 @@ export async function dividirProductos(productos: any) {
           });
           break;
         case "Banco":
-          console.log(producto);
           const modeloBanco = producto.modelo.toLowerCase();
           //Creacion del producto
           const crearProductoBanco = await stripe.products.create({
