@@ -76,7 +76,6 @@ export default function CompClienteCarrito() {
   };
 
   // localStorage.clear()
-  console.log(objetosCarro)
   return (
     <section className="w-full">
       <RutaCarrito />

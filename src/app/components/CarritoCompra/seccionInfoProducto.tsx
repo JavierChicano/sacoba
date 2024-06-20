@@ -116,7 +116,7 @@ export default function SeccionInfoProducto({
           <div className="w-40 h-36">
             <Image
               className="w-full h-full rounded-lg"
-              src={`/productos/${producto.producto}s/${modelo()}.png`}
+              src={`/productos/${producto.producto.toLowerCase()}s/${modelo()}.png`}
               alt={`Imagen de ${producto.producto}${modelo()}`}
               width={500}
               height={500}

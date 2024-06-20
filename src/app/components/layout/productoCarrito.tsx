@@ -107,7 +107,7 @@ export default function ProductoCarrito({
       <div className="w-32 h-28">
         <Image
           className="w-full h-full cursor-pointer rounded-lg"
-          src={`/productos/${producto.producto}s/${modelo()}.png`}
+          src={`/productos/${producto.producto.toLowerCase()}s/${modelo()}.png`}
           alt={`Imagen de ${producto.producto}${modelo()}`}
           width={300}
           height={300}
