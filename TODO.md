@@ -38,7 +38,7 @@
   29.1- Responsive del perfil✅
   29.2- Completar resto paginas perfil
  30- Mirar porq el texto en claro al principio funciona mal
- 31- Poner mensaje "al seleccionar una opcion aceptas nuestras nuestra politica X", en modalCheckoutEnvio
+ 31- Poner mensaje "al seleccionar una opcion aceptas nuestras nuestra politica X", en modalCheckoutEnvio ✅
  32- Hacer peticion de cookies
 
 

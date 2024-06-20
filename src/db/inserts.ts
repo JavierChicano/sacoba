@@ -84,20 +84,20 @@ export async function registrarCarrito({
 
 
 export async function registrarPedido({
-  datos
+  session
 }: {
-  datos: any
+  session: any
 }) {
-  console.log(datos)
+  let fecha = new Date(session.created * 1000);
   try {
     await db.insert(pedidos).values({
-      cliente: datos,
-      tipoProducto: datos,
-      modelo: datos,
-      detallesProducto: datos,
-      fecha: datos,
-      factura: datos,
-      precio: datos
+      cliente: session.customer_details.email,
+      tipoProducto: session,
+      modelo: session,
+      detallesProducto: JSON.parse(session.metadata.productos),
+      fecha: session,
+      factura: session,
+      precio: session.amount_total
     });
 
     // Si la inserción se realiza sin errores, devolvemos true
