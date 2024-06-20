@@ -42,6 +42,7 @@ export default function SeccionModulosBanco({
 
   //Estado que guarda si ha elegido zocalo o no
   const [zocalo, setZocalo] = useState(false);
+  const [zocaloSeleccionado, setZocaloSeleccionado] = useState(false);
 
   useEffect(() => {
     setBancoFinal(
@@ -50,14 +51,14 @@ export default function SeccionModulosBanco({
       colorElegido,
       modeloElegidoBastidor,
       colorElegidoBastidor,
-      zocalo
+      zocaloSeleccionado
     );
   }, [
     modeloElegido,
     colorElegido,
     modeloElegidoBastidor,
     colorElegidoBastidor,
-    zocalo,
+    zocaloSeleccionado,
   ]);
 
   useEffect(() => {
@@ -66,6 +67,11 @@ export default function SeccionModulosBanco({
     }
     if (colorElegidoBastidor.length > 0) {
       setColorSeleccionadoBastidor("", "", "");
+    }
+    if(bancosPosibles[0].zocalo){
+      setZocalo(true)
+    }else{
+      setZocalo(false)
     }
   }, []);
 
@@ -78,8 +84,8 @@ export default function SeccionModulosBanco({
         <VerEscala imagen={"medidasBanco"}/>
       </div>
       <div className="flex flex-col gap-4">
-        <section className="flex items-center gap-2">
-          <h2 className="text-2xl">Color y textura del tapizado</h2>
+        <section className="flex items-center gap-2 justify-between md:justify-start">
+          <h2 className="text-lg md:text-2xl">Color y textura del tapizado</h2>
           <span
             className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase"
             onClick={() => {
@@ -114,7 +120,7 @@ export default function SeccionModulosBanco({
         </div>
         <section>
           <section className="flex items-center gap-2">
-            <h2 className="text-2xl">Color y acabado del bastidor</h2>
+            <h2 className="text-lg md:text-2xl">Color y acabado del bastidor</h2>
             <span
               className="flex bg-fondoTerciario p-2 cursor-pointer hover:bg-colorBase"
               onClick={() => {
@@ -152,13 +158,13 @@ export default function SeccionModulosBanco({
             </div>
           </div>
           {zocalo && (
-            <label className="flex items-center text-2xl gap-4 mt-4">
+            <label className="flex items-center text-lg md:text-2xl gap-4 mt-4">
               ¿Desea que el banco tenga zócalo?
               <input
                 type="checkbox"
                 style={{ width: "20px", height: "20px", marginLeft: "5px" }}
                 onChange={() => {
-                  setZocalo(true);
+                  setZocaloSeleccionado(true);
                 }}
               />
             </label>
