@@ -177,20 +177,22 @@ export default function SeccionPersonalizarMesa({
     <section className="bg-fondoSecundario flex flex-col gap-4 p-8 col-span-2 lg:col-span-1">
       <aside className="text-3xl lg:text-4xl flex items-end gap-4 border-b border-colorBaseSecundario justify-between">
         <span>Encimera</span>
-        <VerEscala imagen={"medidasMesa"}/>
+        <VerEscala imagen={"medidasMesa"} />
       </aside>
-      <div className="flex gap-2 flex-wrap">
-        {dimensionesMesa.map((dimension, index) => (
-          <ObjMesaPacks
-            key={index}
-            datos={{
-              dimension: dimension,
-              selected: indexDimension === index,
-              onSelect: () => handleSelectFormato(index, dimension),
-            }}
-          />
-        ))}
-      </div>
+      {dimensionesMesa.length > 0 && (
+        <div className="flex gap-2 flex-wrap">
+          {dimensionesMesa.map((dimension, index) => (
+            <ObjMesaPacks
+              key={index}
+              datos={{
+                dimension: dimension,
+                selected: indexDimension === index,
+                onSelect: () => handleSelectFormato(index, dimension),
+              }}
+            />
+          ))}
+        </div>
+      )}
       <div className="flex gap-2 flex-wrap justify-around"></div>
       <section className="flex items-center gap-2">
         <h2 className="text-2xl">Acabado de la encimera</h2>

@@ -2,9 +2,9 @@ import Desplegable from "../components/Ayuda/desplegable";
 
 export default function Ayuda() {
   return (
-    <main className="flex flex-col items-center">
+    <main className="flex flex-col items-center p-4">
       <section className="max-w-7xl w-full flex flex-col gap-8 text-center">
-        <h1 className="text-5xl">¿Tiene las siguientes dudas?</h1>
+        <h1 className="text-2xl md:text-5xl">¿Tiene las siguientes dudas?</h1>
         <Desplegable
           pregunta="¿Quiere más opciones de personalización?"
           respuesta={respuesta1}

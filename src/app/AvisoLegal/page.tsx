@@ -1,6 +1,6 @@
 export default function AvisoLegal() {
   return (
-    <main className="flex flex-col items-center">
+    <main className="flex flex-col items-center p-4">
       <section className="max-w-7xl w-full flex flex-col gap-8">
         <p>
           <h2 className="text-xl">1.Aceptación de los Términos</h2>

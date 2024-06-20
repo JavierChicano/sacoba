@@ -17,10 +17,13 @@ export default function Desplegable({
 
   return (
     <>
-      <section className="w-full border-b border-colorBaseSecundario text-3xl py-5 text-left">
+      <section className="w-full border-b border-colorBaseSecundario text-xl md:text-3xl py-5 text-left">
         <div className="flex justify-between cursor-pointer" onClick={toggleOpen}>
           <h1>{pregunta}</h1>
+          <div className="w-10 flex justify-end">
+
           {!isOpen ? <IconSquareRoundedArrowDown size={35} /> :  <IconSquareRoundedArrowUp size={35} />}
+          </div>
         </div>
         <div className={`content ${isOpen ? "open" : "closed"}`}>
           <p className="text-xl mt-5">{respuesta}</p>
