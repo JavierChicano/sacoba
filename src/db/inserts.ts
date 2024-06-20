@@ -84,11 +84,11 @@ export async function registrarCarrito({
 
 
 export async function registrarPedido({
-  session
+  session, fecha
 }: {
-  session: any
+  session: any, fecha: string
 }) {
-  let fecha = new Date(session.created * 1000);
+  
   try {
     await db.insert(pedidos).values({
       cliente: session.customer_details.email,

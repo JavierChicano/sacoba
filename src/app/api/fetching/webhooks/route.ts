@@ -20,15 +20,16 @@ export async function POST(req: NextRequest) {
     case 'checkout.session.completed':
       const session = event.data.object;
       let fecha = new Date(session.created * 1000);
+      let formattedDate = fecha.toISOString().replace(/\.\d{3}Z$/, 'Z');
       console.log("cliente", session.customer_details.email);
-      console.log("fecha", fecha);
+      console.log("fecha", formattedDate);
       console.log("address", session.customer_details.address);
 
 
       console.log("precio", session.amount_total)
       console.log("detallesProducto", JSON.parse(session.metadata.productos))
       // Handle the checkout.session.completed event
-      await registrarPedido(session)
+      await registrarPedido({ session, fecha: formattedDate });
       console.log('Checkout session completed:', session);
       break;
     // Handle other event types if needed
