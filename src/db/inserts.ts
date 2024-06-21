@@ -4,7 +4,7 @@ import { db } from "./index";
 import { carrito, consultas, pedidos, usuarios, carritoLocal } from "./schema";
 import jwt from "jsonwebtoken";
 import { deleteProductoCarritoLocal2 } from "./deletes";
-import { selectCarritoUsuarioLocal, selectCarritoUsuarioPorID } from "./selectsDinamicos";
+import { selectCarritoParaPedido } from "./selectsDinamicos";
 
 export async function registrarUsuario({ usuario }: { usuario: TipoUsuario }) {
   try {
@@ -166,7 +166,7 @@ export async function registrarCarritoLocal({ producto }: { producto: any }) {
 type PedidoParams = {
   cliente: string;
   fecha: string;
-  idProductos: [];
+  idProductos: number[];
   tipoCliente: "logueado" | "sin loguear";
   tipoEnvio: "Recogida en tienda" | "Domicilio";
   precioTotal: number;
@@ -179,10 +179,8 @@ export async function registrarPedido({ datos }: { datos: PedidoParams }) {
   let productos
   if(datos.tipoEnvio === "Domicilio"){
     direccionProporcionada=JSON.stringify(datos.direccion)
-    productos = await selectCarritoUsuarioPorID(datos.idProductos)
-  }else{
-    productos = await selectCarritoUsuarioLocal(datos.idProductos)
   }
+  productos = await selectCarritoParaPedido(datos.idProductos, datos.tipoEnvio)
     console.log("Productos",productos);
     try {
     await db.insert(pedidos).values({

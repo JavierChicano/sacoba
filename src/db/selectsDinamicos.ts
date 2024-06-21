@@ -74,27 +74,48 @@ export async function selectCarritoUsuario(email: string) {
     };
   }
 }
-export async function selectCarritoUsuarioPorID(id: []) {
+export async function selectCarritoParaPedido(id: number[], tipoEnvio: string) {
+  console.log("ID Q RECIBE", id)
+  console.log("TIPO ENVIO Q RECIBE", tipoEnvio)
   try {
-    const carritoUsuario = await db
-      .select()
-      .from(carrito)
-      .where(inArray(carrito.id, id));
-    //Comprobamos si hay registros
-    if (carritoUsuario.length > 0) {
-      return {
-        success: true,
-        carrito: carritoUsuario,
-      };
+    if (tipoEnvio === "Domicilio") {
+      const carritoUsuario = await db
+        .select()
+        .from(carrito)
+        .where(inArray(carrito.id, id));
+      //Comprobamos si hay registros
+      if (carritoUsuario.length > 0) {
+        return {
+          success: true,
+          carrito: carritoUsuario,
+        };
+      } else {
+        return {
+          success: false,
+          message: "El carrito está vacio",
+        };
+      }
     } else {
-      return {
-        success: false,
-        message: "El carrito está vacio",
-      };
+      const carritoUsuario = await db
+        .select()
+        .from(carritoLocal)
+        .where(inArray(carritoLocal.id, id));
+      //Comprobamos si hay registros
+      if (carritoUsuario.length > 0) {
+        return {
+          success: true,
+          carrito: carritoUsuario,
+        };
+      } else {
+        return {
+          success: false,
+          message: "El carrito está vacio",
+        };
+      }
     }
   } catch (error: any) {
     //Si salta un error en la consulta
-    console.log("ERROR consulta carro",error);
+    console.log("ERROR consulta carro", error);
     return {
       success: false,
     };
@@ -121,7 +142,7 @@ export async function selectCarritoUsuarioLocal(id: []) {
     }
   } catch (error: any) {
     //Si salta un error en la consulta
-    console.log("ERROR consulta carro local",error);
+    console.log("ERROR consulta carro local", error);
     return {
       success: false,
     };
@@ -137,7 +158,7 @@ export async function selectComprobarCorreoElectronico(email: string) {
       .from(usuarios)
       .where(eq(usuarios.correoElectronico, email))
       .limit(1);
-      
+
     //Comprobamos si hay resultados
     if (usuario && usuario.length === 1) {
       const tokenGenerado = jwt.sign(
@@ -146,14 +167,14 @@ export async function selectComprobarCorreoElectronico(email: string) {
           exp: Math.floor(Date.now() / 1000) + 600,
           //Contiene la informacion del usuario
           usuario: {
-            correoElectronico: usuario[0].correoElectronico
+            correoElectronico: usuario[0].correoElectronico,
           },
         },
         process.env.AUTH_USER_TOKEN!
       );
       return {
         success: true,
-        token: tokenGenerado
+        token: tokenGenerado,
       };
     }
     //Si el user no existe
