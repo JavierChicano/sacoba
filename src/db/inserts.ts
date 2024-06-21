@@ -175,12 +175,12 @@ type PedidoParams = {
 
 export async function registrarPedido({ datos }: { datos: PedidoParams }) {
     console.log("DATOS",datos);
-  let direccionProporcionada = ""
+  let direccionProporcionada = "no especificada"
   let productos
   if(datos.tipoEnvio === "Domicilio"){
     direccionProporcionada=JSON.stringify(datos.direccion)
   }
-  productos = await selectCarritoParaPedido(datos.idProductos, datos.tipoEnvio)
+  productos = await selectCarritoParaPedido(datos.idProductos, datos.tipoCliente)
     console.log("Productos",productos);
     try {
     await db.insert(pedidos).values({

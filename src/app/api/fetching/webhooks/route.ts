@@ -22,14 +22,6 @@ export async function POST(req: NextRequest) {
     case "checkout.session.completed":
       const session = event.data.object;
       let fecha = getDate(session);
-      console.log("cliente", session.customer_details.email);
-      console.log("fecha", fecha);
-      console.log("address", session.customer_details.address);
-
-      console.log("precio", session.amount_total);
-      console.log("tipoCliente", session.metadata.tipo);
-      console.log("idsProductos", session.metadata.ids);
-      console.log("tipoEnvio", session.metadata.tipoEnvio);
       // Handle the checkout.session.completed event
       await registrarPedido({
         datos: {

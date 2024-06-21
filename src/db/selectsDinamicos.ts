@@ -74,11 +74,11 @@ export async function selectCarritoUsuario(email: string) {
     };
   }
 }
-export async function selectCarritoParaPedido(id: number[], tipoEnvio: string) {
+export async function selectCarritoParaPedido(id: number[], tipoCliente: string) {
   console.log("ID Q RECIBE", id)
-  console.log("TIPO ENVIO Q RECIBE", tipoEnvio)
+  console.log("TIPO ENVIO Q RECIBE", tipoCliente)
   try {
-    if (tipoEnvio === "Domicilio") {
+    if (tipoCliente === "logueado") {
       const carritoUsuario = await db
         .select()
         .from(carrito)
