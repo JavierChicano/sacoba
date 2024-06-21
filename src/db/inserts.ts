@@ -88,14 +88,20 @@ export async function registrarPedido({
 }: {
   session: any, fecha: string
 }) {
-  
+  let tipoEnvioPedido;
+  //Verificar que tipo de envio es
+  if (session.shipping_details && session.shipping_details.address) {
+    tipoEnvioPedido = "A domicilio"
+  } else {
+    tipoEnvioPedido = "En tienda"
+  }
   try {
     await db.insert(pedidos).values({
       cliente: session.customer_details.email,
       fecha: fecha,
       productos: JSON.parse(session.metadata.productos),
-      importe: session.amount_total,
-      tipoEnvio: session,
+      importe: session.amount_total/100,
+      tipoEnvio: tipoEnvioPedido,
       direccion: session.customer_details.address
     });
 

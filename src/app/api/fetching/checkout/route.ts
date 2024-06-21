@@ -3,9 +3,6 @@ import { dividirProductos } from "../../creacionSesionesStripe";
 import { LeerDatosCookie } from "@/app/components/perfil/cookiePerfil";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -25,14 +22,14 @@ export async function POST(req: NextRequest) {
       customer_email: correoElectonico,
       line_items: productosDivididos,
       mode: "payment",
-      success_url: `${baseUrl}/?success=true`,
-      cancel_url: `${baseUrl}/`,
+      success_url: `https://www.sacoba.es/Success`,
+      cancel_url: `https://www.sacoba.es/`,
       custom_text: {
         submit: {
           message: "Te enviaremos la factura al correo electronico",
         },
         terms_of_service_acceptance: {
-          message: `Acepto las [condiciones de venta](${baseUrl}/CondicionesVenta)`,
+          message: `Acepto las [condiciones de venta](https://www.sacoba.es/CondicionesVenta)`,
         },
       },
       consent_collection: {
