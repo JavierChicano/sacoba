@@ -125,7 +125,7 @@ export const carritoLocal = sqliteTable("carritoLocal", {
   modelo: text("modelo").notNull(),
   detallesProducto: text("detallesProducto").notNull(),
   precioTotal: integer("precioTotal").notNull(),
-  fechaCreacion: text("fecha").notNull(),
+  fecha: text("fecha").notNull(),
 });
 
 export const pedidos = sqliteTable("pedidos", {

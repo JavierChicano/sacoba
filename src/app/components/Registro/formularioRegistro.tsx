@@ -52,11 +52,12 @@ export default function FormRegistro() {
       //Chequeamos si el cliente tiene productos en el carrito
       const carritoString = localStorage.getItem("carrito");
       if (carritoString !== null) {
-        const carritoObjeto = JSON.parse(carritoString);
+        const carritoIds = JSON.parse(carritoString);
         await InsertarCarritoExistente(
-          carritoObjeto,
+          carritoIds,
           result.data.correoElectronico
         );
+        //Limpiamos el localStorage
         localStorage.clear();
       }
       //Seteamos la cookie con el token que contiene la informacion del usuario

@@ -1,14 +1,14 @@
 "use server";
 
-import { registrarCarrito } from "@/db/inserts";
+import { juntarAmbosCarritos } from "@/db/inserts";
 
 export const InsertarCarritoExistente = async (
-  carrito: any,
+  carritoIds: any,
   usuario: string
 ) => {
   try {
-    const insercionExitosa = await registrarCarrito({
-      producto: carrito,
+    const insercionExitosa = await juntarAmbosCarritos({
+      carritoIds: carritoIds,
       correo: usuario,
     });
     if (insercionExitosa) {

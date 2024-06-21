@@ -1,7 +1,9 @@
+import { inArray } from "drizzle-orm";
 import { TipoConsulta, TipoUsuario } from "../../tipos/tipos";
 import { db } from "./index";
 import { carrito, consultas, pedidos, usuarios, carritoLocal } from "./schema";
 import jwt from "jsonwebtoken";
+import { deleteProductoCarritoLocal2 } from "./deletes";
 
 export async function registrarUsuario({ usuario }: { usuario: TipoUsuario }) {
   try {
@@ -59,6 +61,59 @@ export async function registrarConsulta({
   }
 }
 
+export async function juntarAmbosCarritos({
+  carritoIds,
+  correo,
+}: {
+  carritoIds: [];
+  correo: string;
+}) {
+  try {
+    const productosEnLocal = await db
+      .select({
+        id: carritoLocal.id,
+        producto: carritoLocal.detallesProducto,
+        modelo: carritoLocal.modelo,
+        tipo: carritoLocal.tipoProducto,
+      })
+      .from(carritoLocal)
+      .where(inArray(carritoLocal.id, carritoIds));
+
+    if (productosEnLocal.length > 1) {
+      //Insertamos los productos 1 por 1
+      for (const producto of productosEnLocal) {
+        const productoParseado = JSON.parse(producto.producto);
+        await db.insert(carrito).values({
+          cliente: correo,
+          tipoProducto: producto.tipo,
+          modelo: producto.modelo,
+          detallesProducto: producto.producto,
+          precioTotal: productoParseado.precio * productoParseado.cantidad,
+        });
+
+        await deleteProductoCarritoLocal2({ id: producto.id });
+      }
+    } else {
+      //Si solo hay un producto que guardar
+      const productoParseado = JSON.parse(productosEnLocal[0].producto);
+      await db.insert(carrito).values({
+        cliente: correo,
+        tipoProducto: productosEnLocal[0].tipo,
+        modelo: productosEnLocal[0].modelo,
+        detallesProducto: productosEnLocal[0].producto,
+        precioTotal: productoParseado.precio * productoParseado.cantidad,
+      });
+      await deleteProductoCarritoLocal2({id: productosEnLocal[0].id});
+    }
+
+    return true;
+  } catch (error) {
+    console.log(error);
+    // Si ocurre algún error, devolvemos false
+    return false;
+  }
+}
+
 export async function registrarCarrito({
   producto,
   correo,
@@ -90,16 +145,16 @@ export async function registrarCarritoLocal({ producto }: { producto: any }) {
       modelo: producto.modelo,
       detallesProducto: JSON.stringify(producto),
       precioTotal: producto.precio * producto.cantidad,
-      fechaCreacion: new Date().toISOString(),
+      fecha: new Date().toISOString(),
     });
     // Si la inserción se realiza sin errores, devolvemos true
     return {
       success: true,
-      idGenerado: insert.lastInsertRowid
+      idGenerado: insert.lastInsertRowid,
     };
   } catch (error) {
     // Si ocurre algún error, devolvemos false
-    console.log(error)
+    console.log(error);
     return {
       success: false,
     };

@@ -119,7 +119,7 @@ export default function SeccionPrecio({
   }, [mesa.precio, guardarCarro]);
 
   useEffect(() => {
-    setPrecioMesaFinal(precioFinal() * cantidad);
+    setPrecioMesaFinal(precioFinal());
     setCantidadMesas(cantidad);
   }, [cantidad, precioMesa, precioAltura, precioGrupo]);
 

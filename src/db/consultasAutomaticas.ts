@@ -1,25 +1,36 @@
-const cron = require('node-cron');
-const sqlite3 = require('sqlite3').verbose();
+// import { deletePeriodicoCarritoLocal } from "./deletes";
 
-// Abre una conexión a la base de datos
-const db = new sqlite3.Database('path/to/your/database.sqlite');
+// const cron = require('node-cron');
+
+// // Función para eliminar carritos viejos
+//  async function eliminarCarritoLocalAntiguo() {
+//   const fechaLimite = new Date();
+//   fechaLimite.setDate(fechaLimite.getDate() - 7);
+//   const fecha = fechaLimite.toISOString();
+
+//   await deletePeriodicoCarritoLocal({fecha})
+// }
+
+// // Configura un cron job para ejecutar la función cada día a medianoche
+// cron.schedule('0 0 * * *', () => {
+//   console.log('Ejecutando limpieza de carritos viejos');
+//   eliminarCarritoLocalAntiguo();
+// });
+
+import { deletePeriodicoCarritoLocal } from "./deletes";
+const cron = require('node-cron');
 
 // Función para eliminar carritos viejos
-function eliminarCarritosViejos() {
+async function eliminarCarritoLocalAntiguo() {
   const fechaLimite = new Date();
-  fechaLimite.setDate(fechaLimite.getDate() - 7);
-  const fechaLimiteISO = fechaLimite.toISOString();
+  fechaLimite.setMinutes(fechaLimite.getMinutes() - 15);
+  const fecha = fechaLimite.toISOString();
 
-  db.run(`DELETE FROM carritoLocal WHERE fecha < ?`, [fechaLimiteISO], function(err: any) {
-    if (err) {
-      return console.error(err.message);
-    }
-    console.log(`Carritos viejos eliminados:`);
-  });
+  await deletePeriodicoCarritoLocal({ fecha });
 }
 
-// Configura un cron job para ejecutar la función cada día a medianoche
-cron.schedule('0 0 * * *', () => {
+// Configura un cron job para ejecutar la función cada 5 minutos
+cron.schedule('*/5 * * * *', () => {
   console.log('Ejecutando limpieza de carritos viejos');
-  eliminarCarritosViejos();
+  eliminarCarritoLocalAntiguo();
 });

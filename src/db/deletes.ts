@@ -1,34 +1,68 @@
 import { db } from ".";
 import { carrito, carritoLocal } from "./schema";
-import { eq } from "drizzle-orm";
+import { eq, lt } from "drizzle-orm";
 
-export async function deleteProductoCarrito({producto}:{producto: any}) {
-    try {
-        await db
-        .delete(carrito)
-        .where(eq(carrito.id, producto.id));
+export async function deleteProductoCarrito({ producto }: { producto: any }) {
+  try {
+    await db.delete(carrito).where(eq(carrito.id, producto.id));
 
-      // Si el delete se realiza sin errores, devolvemos true
-      return true;
-    } catch (error) {
-        console.log(error)
-      // Si ocurre algún error, devolvemos false
-      return false;
-    }
+    // Si el delete se realiza sin errores, devolvemos true
+    return true;
+  } catch (error) {
+    console.log(error);
+    // Si ocurre algún error, devolvemos false
+    return false;
   }
-  
-  export async function deleteProductoCarritoLocal({producto}:{producto: any}) {
-    try {
-        await db
-        .delete(carritoLocal)
-        .where(eq(carritoLocal.id, producto.id));
+}
 
-      // Si el delete se realiza sin errores, devolvemos true
-      return true;
-    } catch (error) {
-        console.log(error)
-      // Si ocurre algún error, devolvemos false
-      return false;
-    }
+export async function deleteProductoCarritoLocal({
+  producto,
+}: {
+  producto: any;
+}) {
+  try {
+    await db.delete(carritoLocal).where(eq(carritoLocal.id, producto.id));
+
+    // Si el delete se realiza sin errores, devolvemos true
+    return true;
+  } catch (error) {
+    console.log(error);
+    // Si ocurre algún error, devolvemos false
+    return false;
   }
-  
+}
+
+export async function deleteProductoCarritoLocal2({
+  id,
+}: {
+  id: number;
+}) {
+  try {
+    await db.delete(carritoLocal).where(eq(carritoLocal.id, id));
+    // Si el delete se realiza sin errores, devolvemos true
+    return true;
+  } catch (error) {
+    console.log(error);
+    // Si ocurre algún error, devolvemos false
+    return false;
+  }
+}
+
+//Funcion periodica para limpiar el carritoLocal
+export async function deletePeriodicoCarritoLocal({
+  fecha,
+}: {
+  fecha: string;
+}) {
+  console.log("gpña")
+  try {
+    await db.delete(carritoLocal).where(lt(carritoLocal.fecha, fecha)); 
+
+    // Si el delete se realiza sin errores, devolvemos true
+    return true;
+  } catch (error) {
+    console.log(error);
+    // Si ocurre algún error, devolvemos false
+    return false;
+  }
+}
