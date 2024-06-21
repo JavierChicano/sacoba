@@ -42,6 +42,7 @@ export async function POST(req: NextRequest) {
       metadata: {
         tipo: tipoCliente,
         ids: sacarIdProductos(productosJuntos),
+        tipoEnvio: "Recogida en tienda"
       }
     });
 

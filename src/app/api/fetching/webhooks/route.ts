@@ -27,9 +27,9 @@ export async function POST(req: NextRequest) {
       console.log("address", session.customer_details.address);
 
       console.log("precio", session.amount_total);
-      console.log("detallesProducto",session.metadata.productos);
       console.log("tipoCliente", session.metadata.tipo);
       console.log("idsProductos", session.metadata.ids);
+      console.log("tipoEnvio", session.metadata.tipoEnvio);
       // Handle the checkout.session.completed event
       await registrarPedido({ session, fecha });
       console.log("Checkout session completed:", session);
