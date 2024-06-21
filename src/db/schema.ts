@@ -119,6 +119,15 @@ export const carrito = sqliteTable("carrito", {
   precioTotal: integer("precioTotal").notNull(),
 });
 
+export const carritoLocal = sqliteTable("carritoLocal", {
+  id: integer("id").primaryKey({autoIncrement: true}),
+  tipoProducto: text("tipoProducto", { enum: ["mesa", "silla", "banco", "pack"]}).notNull(),
+  modelo: text("modelo").notNull(),
+  detallesProducto: text("detallesProducto").notNull(),
+  precioTotal: integer("precioTotal").notNull(),
+  fechaCreacion: text("fecha").notNull(),
+});
+
 export const pedidos = sqliteTable("pedidos", {
   id: integer("id").primaryKey({autoIncrement: true}),
   cliente: text("cliente").notNull().references(() => usuarios.correoElectronico),

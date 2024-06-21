@@ -10,6 +10,7 @@ import { Toaster, toast } from "sonner";
 import { usuarios } from "@/db/schema";
 import Euro from "../../euro";
 import BotonCompraMesa from "./botonCompraMesa";
+import { InsertarCarritoLocal } from "../insertarCarritoLocal";
 
 export default function SeccionPrecio({
   mesaSeleccionada,
@@ -86,7 +87,7 @@ export default function SeccionPrecio({
   }, [mesa, index, mesaSeleccionada]);
 
   useEffect(() => {
-    // localStorage.clear()
+    localStorage.clear();
     //Funciones para agregar lo elegido a la BBDD
     const handleCarrito = async () => {
       const result = await InsertarCarrito(mesa);
@@ -94,27 +95,17 @@ export default function SeccionPrecio({
       if (!result.success) {
         toast.error(result.message);
       } else {
-        if (result.usuario === "no iniciado") {
-          const mesaJson = JSON.stringify(mesa);
-          // Guardamos la seleccion en el localStore
-          let carrito = localStorage.getItem("carrito");
-          //Comprueba si ya hay objetos almacenados
-          if (carrito !== null) {
-            let carritoObj = JSON.parse(carrito);
-            if (!Array.isArray(carritoObj)) {
-              carritoObj = [carritoObj]; // Si no es un array, lo convertimos en uno
-            }
-
-            let nuevoCarrito = [...carritoObj, mesa];
-            console.log(nuevoCarrito);
-            localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
-          } else {
-            //Si es el primer objeto en almacenarse
-            localStorage.setItem("carrito", mesaJson);
-          }
+        const resultLocal = await InsertarCarritoLocal(mesa);
+        console.log(resultLocal);
+        if (resultLocal.success) {
+          localStorage.setItem("carrito", `${resultLocal.idGenerado}`);
+          console.log("kfdhkjfd");
         }
-        toast.success(result.message);
+        toast.error("Hubo un error al procesar la solicitud.");
+        console.log("kfdhkjfd");
       }
+      toast.success(result.message);
+      console.log("kfdhkjfd");
     };
     //Solo lanzamos la funcion si hemos clickado en Añadir Carro
     if (guardarCarro === true) {
@@ -168,7 +159,7 @@ export default function SeccionPrecio({
             >
               Añadir al carro
             </div>
-            <BotonCompraMesa mesa={mesa}/>
+            <BotonCompraMesa mesa={mesa} />
           </section>
         </div>
       </section>
