@@ -1,4 +1,5 @@
 import { dividirProductos, productoEnvio } from "@/app/api/creacionSesionesStripe";
+import { sacarIdProductos } from "@/app/api/funcionesInfoCheckout";
 import { LeerDatosCookie } from "@/app/components/perfil/cookiePerfil";
 import { metadata } from "@/app/layout";
 import { NextRequest, NextResponse } from "next/server";
@@ -15,14 +16,18 @@ export async function POST(req: NextRequest) {
   //Sumamos el coste del envio al pedido
   const envio = await productoEnvio()
   productosDivididos.push(envio)
-console.log(productosJuntos)
   let correoElectonico = undefined;
+  let tipoCliente
 
   //Si el usuario esta logueado usamos su correo
   const user = await LeerDatosCookie();
   if (user.status) {
     correoElectonico = user.usuario.correoElectronico;
+    tipoCliente = "logueado"
+  }else{
+    tipoCliente = "local"
   }
+  
   try {
     //Creacion de la sesion de pago
     const session = await stripe.checkout.sessions.create({
@@ -46,7 +51,8 @@ console.log(productosJuntos)
         terms_of_service: 'required',
       },
       metadata: {
-        productos: JSON.stringify(productosJuntos)
+        tipo: tipoCliente,
+        ids: sacarIdProductos(productosJuntos),
       }
     });
 

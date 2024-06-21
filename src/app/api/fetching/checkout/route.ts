@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { dividirProductos } from "../../creacionSesionesStripe";
 import { LeerDatosCookie } from "@/app/components/perfil/cookiePerfil";
+import { sacarIdProductos } from "../../funcionesInfoCheckout";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 
@@ -9,11 +10,14 @@ export async function POST(req: NextRequest) {
   const productosJuntos = body.productos;
   const productosDivididos = await dividirProductos(productosJuntos);
   let correoElectonico = undefined;
-
+  let tipoCliente
   //Si el usuario esta logueado usamos su correo
   const user = await LeerDatosCookie();
   if (user.status) {
     correoElectonico = user.usuario.correoElectronico;
+    tipoCliente = "logueado"
+  }else{
+    tipoCliente = "local"
   }
 
   try {
@@ -36,7 +40,8 @@ export async function POST(req: NextRequest) {
         terms_of_service: "required",
       },
       metadata: {
-        productos: JSON.stringify(productosJuntos)
+        tipo: tipoCliente,
+        ids: sacarIdProductos(productosJuntos),
       }
     });
 

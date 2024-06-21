@@ -28,6 +28,8 @@ export async function POST(req: NextRequest) {
 
       console.log("precio", session.amount_total);
       console.log("detallesProducto", JSON.parse(session.metadata.productos));
+      console.log("tipoCliente", session.metadata.tipo);
+      console.log("idsProductos", JSON.parse(session.metadata.ids));
       // Handle the checkout.session.completed event
       await registrarPedido({ session, fecha });
       console.log("Checkout session completed:", session);

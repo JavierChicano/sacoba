@@ -53,20 +53,30 @@ export function generarImagenesPack(pack: any) {
   return arrayImagenes;
 }
 
-//Funciones para generar una mesa
+//Funcion para generar una mesa
 export function generarDescripcionMesa(mesa: any) {
   //Generar la descripcion del producto adecuada
   return `Mesa, modelo ${mesa.modelo}. Dimensiones de la mesa ${mesa.dimension}, material ${mesa.acabado} de color ${mesa.color} y altura de ${mesa.altura}cm`;
 }
 
-//Funciones para generar una silla
+//Funcion para generar una silla
 export function generarDescripcionSilla(silla: any) {
   //Generar la descripcion del producto adecuada
   return `${silla.formato}, modelo ${silla.modelo}, material ${silla.acabado} de color ${silla.color} y con el soporte en ${silla.colorPata}`;
 }
 
-//Funciones para generar un banco
+//Funcion para generar un banco
 export function generarDescripcionBanco(banco: any) {
   //Generar la descripcion del producto adecuada
   return `Banco de cocina, modelo ${banco.modelo}, con ${banco.modulos.length} modulos, con ${banco.acabadoTapizado} de color ${banco.colorTapizado} y con un bastidor de ${banco.acabadoBastidor} de color ${banco.colorBastidor} `;
+}
+
+//Funcion para sacar el id de los productos comprados
+export function sacarIdProductos(productos: any) {
+  const idsProductos = [];
+  //Recorremos el objeto producto para sacar el id de cada 1
+  for (const producto of productos) {
+    idsProductos.push(producto.id);
+  }
+  return JSON.stringify(idsProductos);
 }
