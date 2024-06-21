@@ -183,7 +183,7 @@ export async function registrarPedido({ datos }: { datos: PedidoParams }) {
   }else{
     productos = await selectCarritoUsuarioLocal(datos.idProductos)
   }
-    console.log(productos);
+    console.log("Productos",productos);
     try {
     await db.insert(pedidos).values({
       cliente:  datos.cliente,

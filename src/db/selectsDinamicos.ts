@@ -94,6 +94,7 @@ export async function selectCarritoUsuarioPorID(id: []) {
     }
   } catch (error: any) {
     //Si salta un error en la consulta
+    console.log("ERROR consulta carro",error);
     return {
       success: false,
     };
@@ -120,6 +121,7 @@ export async function selectCarritoUsuarioLocal(id: []) {
     }
   } catch (error: any) {
     //Si salta un error en la consulta
+    console.log("ERROR consulta carro local",error);
     return {
       success: false,
     };
