@@ -34,8 +34,8 @@ export async function POST(req: NextRequest) {
       customer_email: correoElectonico,
       line_items: productosDivididos,
       mode: "payment",
-      success_url: `${baseUrl}/?success=true`,
-      cancel_url: `${baseUrl}/Packs`,
+      success_url:  `https://www.sacoba.es/Success`,
+      cancel_url: `https://www.sacoba.es/`,
       shipping_address_collection: {
         allowed_countries: ["ES"],
       },
