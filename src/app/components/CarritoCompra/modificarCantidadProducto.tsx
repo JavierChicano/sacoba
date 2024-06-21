@@ -1,19 +1,36 @@
 "use server";
 
-import { actualizarCantidadProductoCarrito } from "@/db/updates";
+import { actualizarCantidadProductoCarrito, actualizarCantidadProductoCarritoLocal } from "@/db/updates";
 
-export const ModificarCantidadProducto = async (productoConNuevaCantidad: any) => {
+export const ModificarCantidadProducto = async (
+  productoConNuevaCantidad: any,
+  modo: string
+) => {
   try {
-    const response = await actualizarCantidadProductoCarrito({producto: productoConNuevaCantidad})
-    if(response){
-        return true
-    }else{
+    if (modo === "local") {
+      const response = await actualizarCantidadProductoCarritoLocal({
+        producto: productoConNuevaCantidad,
+      });
+      if (response) {
+        return true;
+      } else {
         //Si la sesion no esta iniciada
-        return false
+        return false;
+      }
+    } else {
+      const response = await actualizarCantidadProductoCarrito({
+        producto: productoConNuevaCantidad,
+      });
+      if (response) {
+        return true;
+      } else {
+        //Si la sesion no esta iniciada
+        return false;
+      }
     }
   } catch (error) {
     // Manejar el error si ocurre algún problema
     console.log(error);
-    return false
+    return false;
   }
 };

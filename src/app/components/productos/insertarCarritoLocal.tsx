@@ -7,10 +7,10 @@ export const InsertarCarritoLocal = async (producto: any) => {
     const insercion = await registrarCarritoLocal({
       producto: producto,
     });
-    console.log(insercion)
     if (insercion.success) {
+        const id = insercion.idGenerado?.toString()
       return {
-        idGenerado: insercion.idGenerado,
+        idGenerado: id,
         success: true,
       };
     } else {

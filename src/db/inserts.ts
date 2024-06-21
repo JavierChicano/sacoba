@@ -92,7 +92,6 @@ export async function registrarCarritoLocal({ producto }: { producto: any }) {
       precioTotal: producto.precio * producto.cantidad,
       fechaCreacion: new Date().toISOString(),
     });
-    console.log(insert)
     // Si la inserción se realiza sin errores, devolvemos true
     return {
       success: true,

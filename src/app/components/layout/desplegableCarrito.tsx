@@ -5,8 +5,8 @@ import Link from "next/link";
 import { usePrecioTotalCarrito } from "../../../../states/states";
 import { LeerDatosCookie } from "../perfil/cookiePerfil";
 import { RecogerDatosCarrito } from "../CarritoCompra/recogerDatosCarrito";
-import Euro from "../euro";
 import BotonCompraCarrito from "../CarritoCompra/botonCompraCarrito";
+import { RecogerDatosCarritoLocal } from "../CarritoCompra/datosCarritoLocal";
 
 export default function DesplegableCarrito() {
   const [objetosCarro, setObjetosCarro] = useState<string[]>([]);
@@ -42,14 +42,21 @@ export default function DesplegableCarrito() {
       } else {
         //Si la sesion no esta iniciada
         let carritoString = localStorage.getItem("carrito");
+
         if (carritoString !== null) {
-          const carritoObjeto = JSON.parse(carritoString);
-          if (carritoObjeto[0] === undefined) {
-            //Si el carrito tiene un solo objeto hay que convertirlo a array
-            const carroArray = [carritoObjeto];
-            setObjetosCarro(carroArray.reverse());
-          } else {
-            setObjetosCarro(carritoObjeto.reverse());
+          const consultaLocal = await RecogerDatosCarritoLocal(
+            JSON.parse(carritoString)
+          );
+          //Si la consulta sale bn
+          if (consultaLocal.success && consultaLocal.carrito !== undefined) {
+            const detallesProductos = consultaLocal.carrito.map((producto) => {
+              const detalles = JSON.parse(producto.detallesProducto);
+              return {
+                ...detalles,
+                id: producto.id,
+              };
+            });
+            setObjetosCarro(detallesProductos.reverse());
           }
         } else {
           setCarritoVacio(true);
@@ -67,16 +74,6 @@ export default function DesplegableCarrito() {
     obtenerUsuario();
   }, []);
 
-  const recargarCarritoLocal = () => {
-    let carritoString = localStorage.getItem("carrito");
-    if (carritoString !== null) {
-      const carritoObjeto = JSON.parse(carritoString);
-      setObjetosCarro(carritoObjeto.reverse());
-    } else {
-      setCarritoVacio(true);
-    }
-  };
-
   return (
     <>
       {!loading && (
@@ -91,14 +88,13 @@ export default function DesplegableCarrito() {
                       key={index}
                       clave={index}
                       onDelete={obtenerUsuario}
-                      onDeleteLocal={recargarCarritoLocal}
                     />
                   ))}
                 </section>
                 <div className="my-4 text-2xl">
                   Total: {Math.round(totalProductos)}€
                   <p className="text-base">Impuestos incluidos</p>
-                  </div>
+                </div>
                 <div className="grid grid-cols-2 gap-2 h-16 text-xl w-full">
                   <BotonCompraCarrito productos={objetosCarro} />
                   <Link

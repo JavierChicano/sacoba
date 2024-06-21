@@ -5,17 +5,16 @@ import { IconMinus, IconPlus, IconTrash } from "@tabler/icons-react";
 import { EliminarProductoCarrito } from "../CarritoCompra/EliminarProductoCarrito";
 import { Toaster, toast } from "sonner";
 import { ModificarCantidadProducto } from "../CarritoCompra/modificarCantidadProducto";
+import { LeerDatosCookie } from "../perfil/cookiePerfil";
 
 export default function ProductoCarrito({
   producto,
   clave,
   onDelete,
-  onDeleteLocal,
 }: {
   producto: any;
   clave: number;
   onDelete: () => Promise<void>;
-  onDeleteLocal: () => void;
 }) {
   const { setSumaTotal } = usePrecioTotalCarrito();
   const [cantidad, setCantidad] = useState(1);
@@ -51,35 +50,29 @@ export default function ProductoCarrito({
 
   useEffect(() => {
     setCantidad(producto.cantidad);
-  },[]);
+  }, []);
 
   const eliminarElemento = async () => {
-    const response = await EliminarProductoCarrito(producto);
-
-    //Si la consulta a la BBDD es false, seguramente sea porq la sesion no esta iniciada
-    if (!response) {
-      let carritoString = localStorage.getItem("carrito");
-      if (carritoString !== null) {
-        const carritoObjeto = JSON.parse(carritoString);
-        if (carritoObjeto.length > 1) {
-          const productosActualizados = eliminarProducto(
-            carritoObjeto,
-            producto
-          );
-          localStorage.setItem(
-            "carrito",
-            JSON.stringify(productosActualizados)
-          );
-        } else {
-          localStorage.removeItem("carrito");
-        }
+    //Comprobamos si el usuario esta logueado
+    const user = await LeerDatosCookie();
+    if (user.status) {
+      //Si esta logueado quitamos el producto de la tabla CARRITO
+      const response = await EliminarProductoCarrito(producto, "");
+      if (response) {
+        toast.success("Producto eliminado del carrito");
         setSumaTotal(clave, 0);
-        onDeleteLocal();
+        await onDelete();
+        return;
       }
     } else {
-      toast.success("Producto eliminado del carrito");
-      setSumaTotal(clave, 0);
-      await onDelete();
+      //Si NO esta logueado quitamos el producto de la tabla CARRITOLOCAL
+      const responseLocal = await EliminarProductoCarrito(producto, "local");
+      if (responseLocal) {
+        toast.success("Producto eliminado del carrito");
+        setSumaTotal(clave, 0);
+        await onDelete();
+        return;
+      }
     }
   };
 
@@ -88,20 +81,16 @@ export default function ProductoCarrito({
       ...producto,
       cantidad: cantidadCalculada,
     };
-    const response = await ModificarCantidadProducto(productoConNuevaCantidad);
-    //Si la consulta a la BBDD es false, seguramente sea porq la sesion no esta iniciada
-    if (!response) {
-      let carritoString = localStorage.getItem("carrito");
-      if (carritoString !== null) {
-        const carritoObjeto = JSON.parse(carritoString);
-        const productosActualizados = reemplazarProducto(
-          carritoObjeto,
-          productoConNuevaCantidad
-        );
-        localStorage.setItem("carrito", JSON.stringify(productosActualizados));
-      }
+    //Comprobamos si el usuario esta logueado
+    const user = await LeerDatosCookie();
+    if (user.status) {
+      //Si esta logueamos ejecutamos esta consulta
+      await ModificarCantidadProducto(productoConNuevaCantidad, "");
+    }else{
+      await ModificarCantidadProducto(productoConNuevaCantidad, "local");
     }
   };
+
   return (
     <article className="grid grid-cols-[1fr_2fr] gap-4 lg:border-none border-b border-colorBase lg:mb-0 mb-2 pb-2 lg:pb-0">
       <div className="w-32 h-28">
@@ -150,9 +139,7 @@ export default function ProductoCarrito({
                 onClick={eliminarElemento}
               />
             </aside>
-            <div className="text-2xl lg:base">
-              Precio: {Math.round(total)}€
-            </div>
+            <div className="text-2xl lg:base">Precio: {Math.round(total)}€</div>
           </div>
           <div className="w-full lg:flex justify-center items-center hidden">
             <IconTrash

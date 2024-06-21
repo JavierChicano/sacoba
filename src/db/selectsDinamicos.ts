@@ -1,6 +1,6 @@
 import { db } from ".";
-import { carrito, usuarios } from "./schema";
-import { eq } from "drizzle-orm";
+import { carrito, carritoLocal, usuarios } from "./schema";
+import { eq, inArray } from "drizzle-orm";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -55,6 +55,31 @@ export async function selectCarritoUsuario(email: string) {
       .select()
       .from(carrito)
       .where(eq(carrito.cliente, email));
+    //Comprobamos si hay registros
+    if (carritoUsuario.length > 0) {
+      return {
+        success: true,
+        carrito: carritoUsuario,
+      };
+    } else {
+      return {
+        success: false,
+        message: "El carrito está vacio",
+      };
+    }
+  } catch (error: any) {
+    //Si salta un error en la consulta
+    return {
+      success: false,
+    };
+  }
+}
+export async function selectCarritoUsuarioLocal(id: []) {
+  try {
+    const carritoUsuario = await db
+      .select()
+      .from(carritoLocal)
+      .where(inArray(carritoLocal.id, id));
     //Comprobamos si hay registros
     if (carritoUsuario.length > 0) {
       return {

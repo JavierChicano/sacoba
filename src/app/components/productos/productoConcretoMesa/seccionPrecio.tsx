@@ -87,7 +87,6 @@ export default function SeccionPrecio({
   }, [mesa, index, mesaSeleccionada]);
 
   useEffect(() => {
-    localStorage.clear();
     //Funciones para agregar lo elegido a la BBDD
     const handleCarrito = async () => {
       const result = await InsertarCarrito(mesa);
@@ -96,16 +95,22 @@ export default function SeccionPrecio({
         toast.error(result.message);
       } else {
         const resultLocal = await InsertarCarritoLocal(mesa);
-        console.log(resultLocal);
         if (resultLocal.success) {
-          localStorage.setItem("carrito", `${resultLocal.idGenerado}`);
-          console.log("kfdhkjfd");
+          let carritoIds = localStorage.getItem("carrito");
+
+          if (carritoIds !== null && resultLocal.idGenerado !== undefined) {
+            let idsArray: string[] = JSON.parse(carritoIds); // Convertir a array
+            idsArray.push(resultLocal.idGenerado); // Agregar el nuevo ID al array
+            localStorage.setItem("carrito", JSON.stringify(idsArray));
+          } else {
+            localStorage.setItem("carrito", JSON.stringify([resultLocal.idGenerado]));
+          }
+        } else {
+          toast.error("Hubo un error al procesar la solicitud.");
+          return;
         }
-        toast.error("Hubo un error al procesar la solicitud.");
-        console.log("kfdhkjfd");
       }
       toast.success(result.message);
-      console.log("kfdhkjfd");
     };
     //Solo lanzamos la funcion si hemos clickado en Añadir Carro
     if (guardarCarro === true) {

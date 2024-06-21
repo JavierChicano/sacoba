@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { db } from ".";
 import { TipoUsuarioExtended } from "../../tipos/tipos";
-import { carrito, usuarios } from "./schema";
+import { carrito, carritoLocal, usuarios } from "./schema";
 import jwt from "jsonwebtoken";
 
 export async function actualizarUsuario({
@@ -73,6 +73,26 @@ export async function actualizarCantidadProductoCarrito({
     return false;
   }
 }
+export async function actualizarCantidadProductoCarritoLocal({
+  producto,
+}: {
+  producto: any;
+}) {
+  try {
+    await db
+      .update(carritoLocal)
+      .set({
+        detallesProducto: JSON.stringify(producto),
+      })
+      .where(eq(carritoLocal.id, producto.id));
+    // Si la inserción se realiza sin errores, devolvemos true
+    return true;
+  } catch (error) {
+    // Si ocurre algún error, devolvemos false
+    return false;
+  }
+}
+
 
 export async function actualizarPasswordUsuario({
   correoElectronico,

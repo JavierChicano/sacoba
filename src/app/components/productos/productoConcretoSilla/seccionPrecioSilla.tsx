@@ -6,6 +6,7 @@ import { Toaster, toast } from "sonner";
 import { InsertarCarrito } from "../insertarCarrito";
 import Euro from "../../euro";
 import BotonCompraSilla from "./botonCompraSilla";
+import { InsertarCarritoLocal } from "../insertarCarritoLocal";
 
 export default function SeccionPrecioSilla({ precio }: { precio: number }) {
   const { silla, setPrecioSillaFinal, setCantidadSillas } = useSillaFinal();
@@ -35,29 +36,23 @@ export default function SeccionPrecioSilla({ precio }: { precio: number }) {
       if (!result.success) {
         toast.error(result.message);
       } else {
-        if (result.usuario === "no iniciado") {
-          const mesaJson = JSON.stringify(silla);
-          // Guardamos la seleccion en el localStore
-          let carrito = localStorage.getItem("carrito");
-          //Comprueba si ya hay objetos almacenados
-          console.log(carrito);
+        const resultLocal = await InsertarCarritoLocal(silla);
+        if (resultLocal.success) {
+          let carritoIds = localStorage.getItem("carrito");
 
-          if (carrito !== null) {
-            let carritoObj = JSON.parse(carrito);
-            if (!Array.isArray(carritoObj)) {
-              carritoObj = [carritoObj]; // Si no es un array, lo convertimos en uno
-            }
-
-            let nuevoCarrito = [...carritoObj, silla];
-            console.log(nuevoCarrito);
-            localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
+          if (carritoIds !== null && resultLocal.idGenerado !== undefined) {
+            let idsArray: string[] = JSON.parse(carritoIds); // Convertir a array
+            idsArray.push(resultLocal.idGenerado); // Agregar el nuevo ID al array
+            localStorage.setItem("carrito", JSON.stringify(idsArray));
           } else {
-            //Si es el primer objeto en almacenarse
-            localStorage.setItem("carrito", mesaJson);
+            localStorage.setItem("carrito", JSON.stringify([resultLocal.idGenerado]));
           }
+        } else {
+          toast.error("Hubo un error al procesar la solicitud.");
+          return
         }
-        toast.success(result.message);
       }
+      toast.success(result.message);
     };
     //Solo lanzamos la funcion si hemos clickado en Añadir Carro
     if (guardarCarro === true) {

@@ -7,17 +7,16 @@ import { ModificarCantidadProducto } from "./modificarCantidadProducto";
 import BotonPapelera from "./botonPapelera";
 import { EliminarProductoCarrito } from "./EliminarProductoCarrito";
 import { Toaster, toast } from "sonner";
+import { LeerDatosCookie } from "../perfil/cookiePerfil";
 
 export default function SeccionInfoProducto({
   producto,
   clave,
-  onDelete,
-  onDeleteLocal
+  onDelete
 }: {
   producto: any;
   clave: number;
-  onDelete: () => Promise<void>;
-  onDeleteLocal: () => void;
+  onDelete: () => Promise<void>
 }) {
   const [cantidad, setCantidad] = useState(1);
   const [total, setTotal] = useState(1);
@@ -66,49 +65,45 @@ export default function SeccionInfoProducto({
     }
   }, []);
 
+  const eliminarElemento = async () => {
+    //Comprobamos si el usuario esta logueado
+    const user = await LeerDatosCookie();
+    if (user.status) {
+      //Si esta logueado quitamos el producto de la tabla CARRITO
+      const response = await EliminarProductoCarrito(producto, "");
+      if (response) {
+        toast.success("Producto eliminado del carrito");
+        setSumaTotal(clave, 0);
+        await onDelete();
+        return;
+      }
+    } else {
+      //Si NO esta logueado quitamos el producto de la tabla CARRITOLOCAL
+      const responseLocal = await EliminarProductoCarrito(producto, "local");
+      if (responseLocal) {
+        toast.success("Producto eliminado del carrito");
+        setSumaTotal(clave, 0);
+        await onDelete();
+        return;
+      }
+    }
+  };
+
   const modificarCantidadBBDD = async (cantidadCalculada: number) => {
     const productoConNuevaCantidad = {
       ...producto,
       cantidad: cantidadCalculada,
     };
-    const response = await ModificarCantidadProducto(productoConNuevaCantidad);
-    //Si la consulta a la BBDD es false, seguramente sea porq la sesion no esta iniciada
-    if (!response) {
-      let carritoString = localStorage.getItem("carrito");
-      if (carritoString !== null) {
-        const carritoObjeto = JSON.parse(carritoString);
-        const productosActualizados = reemplazarProducto(
-          carritoObjeto,
-          productoConNuevaCantidad
-        );
-        localStorage.setItem("carrito", JSON.stringify(productosActualizados));
-      }
+    //Comprobamos si el usuario esta logueado
+    const user = await LeerDatosCookie();
+    if (user.status) {
+      //Si esta logueamos ejecutamos esta consulta
+      await ModificarCantidadProducto(productoConNuevaCantidad, "");
+    }else{
+      await ModificarCantidadProducto(productoConNuevaCantidad, "local");
     }
   };
-  
-  const eliminarElemento = async () => {
-    const response = await EliminarProductoCarrito(producto);
-    
-    //Si la consulta a la BBDD es false, seguramente sea porq la sesion no esta iniciada
-    if (!response) {
-      let carritoString = localStorage.getItem("carrito");
-      if (carritoString !== null) {
-        const carritoObjeto = JSON.parse(carritoString);
-        if (carritoObjeto.length > 1) {
-          const productosActualizados = eliminarProducto(carritoObjeto, producto);
-          localStorage.setItem("carrito",JSON.stringify(productosActualizados));
-        } else {
-          localStorage.removeItem("carrito");
-        }
-        setSumaTotal(clave, 0);
-        onDeleteLocal();
-      }
-    } else {
-      toast.success("Producto eliminado del carrito");
-      setSumaTotal(clave, 0);
-      await onDelete();
-    }
-  };
+ 
   return (
     <section className="flex mt-4 border-b border-colorBase pb-4 justify-between w-full items-center">
       <div className="w-1/2 flex gap-8 justify-between">

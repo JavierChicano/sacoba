@@ -32,7 +32,7 @@ export default function ModalCheckoutEnvio({
   const handleLoadingFalseTienda = () => {
     setLoadingTienda(false);
   };
-  
+  console.log(productos)
   return (
     <aside
       className={

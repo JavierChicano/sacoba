@@ -8,6 +8,7 @@ import { RecogerDatosCarrito } from "../CarritoCompra/recogerDatosCarrito";
 import RutaCarrito from "../CarritoCompra/rutaCarrito";
 import ProductoCarrito from "../layout/productoCarrito";
 import BotonCompraCarrito from "../CarritoCompra/botonCompraCarrito";
+import { RecogerDatosCarritoLocal } from "../CarritoCompra/datosCarritoLocal";
 
 export default function CompClienteCarritoMovil() {
   const [objetosCarro, setObjetosCarro] = useState<string[]>([]);
@@ -42,14 +43,21 @@ export default function CompClienteCarritoMovil() {
       } else {
         //Si la sesion no esta iniciada
         let carritoString = localStorage.getItem("carrito");
+
         if (carritoString !== null) {
-          const carritoObjeto = JSON.parse(carritoString);
-          if (carritoObjeto.length > 1) {
-            setObjetosCarro(carritoObjeto.reverse());
-          } else {
-            //Si el carrito tiene un solo objeto hay que convertirlo a array
-            const carroArray = [carritoObjeto];
-            setObjetosCarro(carroArray.reverse());
+          const consultaLocal = await RecogerDatosCarritoLocal(
+            JSON.parse(carritoString)
+          );
+          //Si la consulta sale bn
+          if (consultaLocal.success && consultaLocal.carrito !== undefined) {
+            const detallesProductos = consultaLocal.carrito.map((producto) => {
+              const detalles = JSON.parse(producto.detallesProducto);
+              return {
+                ...detalles,
+                id: producto.id,
+              };
+            });
+            setObjetosCarro(detallesProductos.reverse());
           }
         } else {
           setCarritoVacio(true);
@@ -64,16 +72,6 @@ export default function CompClienteCarritoMovil() {
   useEffect(() => {
     obtenerUsuario();
   }, []);
-
-  const recargarCarritoLocal = () => {
-    let carritoString = localStorage.getItem("carrito");
-    if (carritoString !== null) {
-      const carritoObjeto = JSON.parse(carritoString);
-      setObjetosCarro(carritoObjeto.reverse());
-    } else {
-      setCarritoVacio(true);
-    }
-  };
 
   return (
     <section className="w-full px-8">
@@ -107,7 +105,6 @@ export default function CompClienteCarritoMovil() {
               key={index}
               clave={index}
               onDelete={obtenerUsuario}
-              onDeleteLocal={recargarCarritoLocal}
             />
           ))}
           <section className="w-full flex flex-col justify-between items-center text-2xl">

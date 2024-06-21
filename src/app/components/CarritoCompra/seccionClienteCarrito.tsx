@@ -8,6 +8,7 @@ import { RecogerDatosCarrito } from "./recogerDatosCarrito";
 import RutaCarrito from "./rutaCarrito";
 import { usePrecioTotalCarrito } from "../../../../states/states";
 import BotonCompraCarrito from "./botonCompraCarrito";
+import { RecogerDatosCarritoLocal } from "./datosCarritoLocal";
 
 export default function CompClienteCarrito() {
   const [objetosCarro, setObjetosCarro] = useState<string[]>([]);
@@ -42,14 +43,21 @@ export default function CompClienteCarrito() {
       } else {
         //Si la sesion no esta iniciada
         let carritoString = localStorage.getItem("carrito");
+
         if (carritoString !== null) {
-          const carritoObjeto = JSON.parse(carritoString);
-          if ((carritoObjeto[0] === undefined)) {
-            //Si el carrito tiene un solo objeto hay que convertirlo a array
-            const carroArray = [carritoObjeto];
-            setObjetosCarro(carroArray.reverse());
-          } else {
-            setObjetosCarro(carritoObjeto.reverse());
+          const consultaLocal = await RecogerDatosCarritoLocal(
+            JSON.parse(carritoString)
+          );
+          //Si la consulta sale bn
+          if (consultaLocal.success && consultaLocal.carrito !== undefined) {
+            const detallesProductos = consultaLocal.carrito.map((producto) => {
+              const detalles = JSON.parse(producto.detallesProducto);
+              return {
+                ...detalles,
+                id: producto.id,
+              };
+            });
+            setObjetosCarro(detallesProductos.reverse());
           }
         } else {
           setCarritoVacio(true);
@@ -65,17 +73,6 @@ export default function CompClienteCarrito() {
     obtenerUsuario();
   }, []);
 
-  const recargarCarritoLocal = () => {
-    let carritoString = localStorage.getItem("carrito");
-    if (carritoString !== null) {
-      const carritoObjeto = JSON.parse(carritoString);
-      setObjetosCarro(carritoObjeto.reverse());
-    }else{
-      setCarritoVacio(true);
-    }
-  };
-
-  // localStorage.clear()
   return (
     <section className="w-full">
       <RutaCarrito />
@@ -115,7 +112,6 @@ export default function CompClienteCarrito() {
               key={index}
               clave={index}
               onDelete={obtenerUsuario}
-              onDeleteLocal={recargarCarritoLocal}
             />
           ))}
           <section className="w-full flex justify-between items-center text-2xl">

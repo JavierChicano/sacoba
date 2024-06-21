@@ -14,6 +14,7 @@ import { useTheme } from "next-themes";
 import { TipoColor } from "../../../../../tipos/tipos";
 import ModalColoresBastidor from "../productoConcretoBanco/modalColoresBastidor";
 import BotonCompraPack from "./botonCompraPack";
+import { InsertarCarritoLocal } from "../insertarCarritoLocal";
 
 export default function ElegirPack({
   mesa,
@@ -124,32 +125,30 @@ export default function ElegirPack({
       if (!result.success) {
         toast.error(result.message);
       } else {
-        if (result.usuario === "no iniciado") {
-          const mesaJson = JSON.stringify(pack);
-          // Guardamos la seleccion en el localStore
-          let carrito = localStorage.getItem("carrito");
-          //Comprueba si ya hay objetos almacenados
-          if (carrito !== null) {
-            let carritoObj = JSON.parse(carrito);
-            if (!Array.isArray(carritoObj)) {
-              carritoObj = [carritoObj]; // Si no es un array, lo convertimos en uno
-            }
+        const resultLocal = await InsertarCarritoLocal(pack);
+        if (resultLocal.success) {
+          let carritoIds = localStorage.getItem("carrito");
 
-            let nuevoCarrito = [...carritoObj, pack];
-            localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
+          if (carritoIds !== null && resultLocal.idGenerado !== undefined) {
+            let idsArray: string[] = JSON.parse(carritoIds); // Convertir a array
+            idsArray.push(resultLocal.idGenerado); // Agregar el nuevo ID al array
+            localStorage.setItem("carrito", JSON.stringify(idsArray));
           } else {
-            //Si es el primer objeto en almacenarse
-            localStorage.setItem("carrito", mesaJson);
+            localStorage.setItem("carrito", JSON.stringify([resultLocal.idGenerado]));
           }
+        } else {
+          toast.error("Hubo un error al procesar la solicitud.");
+          return
         }
-        toast.success(result.message);
       }
+      toast.success(result.message);
     };
     //Solo lanzamos la funcion si hemos clickado en Añadir Carro
     if (guardarCarro === true) {
       handleCarrito();
     }
   }, [guardarCarro]);
+
   return (
     <>
       <section className="lg:grid lg:grid-cols-2 w-full">
