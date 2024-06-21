@@ -122,10 +122,11 @@ export const carrito = sqliteTable("carrito", {
 export const pedidos = sqliteTable("pedidos", {
   id: integer("id").primaryKey({autoIncrement: true}),
   cliente: text("cliente").notNull().references(() => usuarios.correoElectronico),
-  tipoProducto: text("tipoProducto", { enum: ["mesa", "silla", "banco", "pack"]}).notNull(),
-  modelo: text("modelo").notNull(),
-  detallesProducto: text("detallesProducto").notNull(),
   fecha: text("fecha").notNull(),
-  factura: text("factura").notNull(),
-  precio: integer("precio").notNull(),
+  productos: text("productos").notNull(),
+  importe: integer("importe").notNull(),
+  tipoEnvio: text("tipoEnvio").notNull(),
+  direccion: text("tipoEnvio"),
+  entregado: integer("entregado").default(0),
+  observaciones: text("observaciones"),
 });

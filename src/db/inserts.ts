@@ -75,7 +75,7 @@ export async function registrarCarrito({
       precioTotal: producto.precio*producto.cantidad
     });
     // Si la inserción se realiza sin errores, devolvemos true
-    return true;
+    return true; 
   } catch (error) {
     // Si ocurre algún error, devolvemos false
     return false;
@@ -92,12 +92,11 @@ export async function registrarPedido({
   try {
     await db.insert(pedidos).values({
       cliente: session.customer_details.email,
-      tipoProducto: session,
-      modelo: session,
-      detallesProducto: JSON.parse(session.metadata.productos),
-      fecha: session,
-      factura: session,
-      precio: session.amount_total
+      fecha: fecha,
+      productos: JSON.parse(session.metadata.productos),
+      importe: session.amount_total,
+      tipoEnvio: session,
+      direccion: session.customer_details.address
     });
 
     // Si la inserción se realiza sin errores, devolvemos true
