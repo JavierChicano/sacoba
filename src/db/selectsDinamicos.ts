@@ -74,6 +74,32 @@ export async function selectCarritoUsuario(email: string) {
     };
   }
 }
+export async function selectCarritoUsuarioPorID(id: []) {
+  try {
+    const carritoUsuario = await db
+      .select()
+      .from(carrito)
+      .where(inArray(carrito.id, id));
+    //Comprobamos si hay registros
+    if (carritoUsuario.length > 0) {
+      return {
+        success: true,
+        carrito: carritoUsuario,
+      };
+    } else {
+      return {
+        success: false,
+        message: "El carrito está vacio",
+      };
+    }
+  } catch (error: any) {
+    //Si salta un error en la consulta
+    return {
+      success: false,
+    };
+  }
+}
+
 export async function selectCarritoUsuarioLocal(id: []) {
   try {
     const carritoUsuario = await db

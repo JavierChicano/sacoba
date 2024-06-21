@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
   switch (event.type) {
     case "checkout.session.completed":
       const session = event.data.object;
-      let fecha = getDate(session)
+      let fecha = getDate(session);
       console.log("cliente", session.customer_details.email);
       console.log("fecha", fecha);
       console.log("address", session.customer_details.address);
@@ -31,7 +31,18 @@ export async function POST(req: NextRequest) {
       console.log("idsProductos", session.metadata.ids);
       console.log("tipoEnvio", session.metadata.tipoEnvio);
       // Handle the checkout.session.completed event
-      await registrarPedido({ session, fecha });
+      await registrarPedido({
+        datos: {
+          cliente: session.customer_details.email,
+          fecha: getDate(session),
+          idProductos: session.metadata.ids, 
+          tipoCliente: session.metadata.tipo,
+          tipoEnvio: session.metadata.tipoEnvio,
+          precioTotal: session.amount_total,
+          direccion: session.customer_details.address,
+        },
+      });
+
       console.log("Checkout session completed:", session);
       break;
     // Handle other event types if needed
@@ -55,5 +66,5 @@ function getDate(session: any) {
 
   // Formatear la fecha y hora en el formato deseado ("yyyy-MM-dd HH:mm")
   let fechaFormateada = `${year}-${month}-${day} ${hours}:${minutes}`;
-  return fechaFormateada
+  return fechaFormateada;
 }

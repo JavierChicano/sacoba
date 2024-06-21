@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     correoElectonico = user.usuario.correoElectronico;
     tipoCliente = "logueado"
   }else{
-    tipoCliente = "local"
+    tipoCliente = "sin loguear"
   }
   
   try {

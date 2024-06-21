@@ -4,6 +4,7 @@ import { db } from "./index";
 import { carrito, consultas, pedidos, usuarios, carritoLocal } from "./schema";
 import jwt from "jsonwebtoken";
 import { deleteProductoCarritoLocal2 } from "./deletes";
+import { selectCarritoUsuarioLocal, selectCarritoUsuarioPorID } from "./selectsDinamicos";
 
 export async function registrarUsuario({ usuario }: { usuario: TipoUsuario }) {
   try {
@@ -161,28 +162,36 @@ export async function registrarCarritoLocal({ producto }: { producto: any }) {
   }
 }
 
-export async function registrarPedido({
-  session,
-  fecha,
-}: {
-  session: any;
+//Funcion que guarda un pedido en la tabla Pedidos
+type PedidoParams = {
+  cliente: string;
   fecha: string;
-}) {
-  let tipoEnvioPedido;
-  //Verificar que tipo de envio es
-  if (session.shipping_details && session.shipping_details.address) {
-    tipoEnvioPedido = "A domicilio";
-  } else {
-    tipoEnvioPedido = "En tienda";
+  idProductos: [];
+  tipoCliente: "logueado" | "sin loguear";
+  tipoEnvio: "Recogida en tienda" | "Domicilio";
+  precioTotal: number;
+  direccion: string[];
+};
+
+export async function registrarPedido({ datos }: { datos: PedidoParams }) {
+    console.log("DATOS",datos);
+  let direccionProporcionada = ""
+  let productos
+  if(datos.tipoEnvio === "Domicilio"){
+    direccionProporcionada=JSON.stringify(datos.direccion)
+    productos = await selectCarritoUsuarioPorID(datos.idProductos)
+  }else{
+    productos = await selectCarritoUsuarioLocal(datos.idProductos)
   }
-  try {
+    console.log(productos);
+    try {
     await db.insert(pedidos).values({
-      cliente: session.customer_details.email,
-      fecha: fecha,
-      productos: JSON.parse(session.metadata.productos),
-      importe: session.amount_total / 100,
-      tipoEnvio: tipoEnvioPedido,
-      direccion: session.customer_details.address,
+      cliente:  datos.cliente,
+      fecha:  datos.fecha,
+      productos:  JSON.stringify(productos),
+      importe:  datos.precioTotal / 100,
+      tipoEnvio: datos.tipoEnvio,
+      direccion: direccionProporcionada,
     });
 
     // Si la inserción se realiza sin errores, devolvemos true
