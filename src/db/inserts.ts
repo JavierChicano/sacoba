@@ -180,7 +180,15 @@ export async function registrarPedido({ datos }: { datos: PedidoParams }) {
   if(datos.tipoEnvio === "Domicilio"){
     direccionProporcionada=JSON.stringify(datos.direccion)
   }
-  productos = await selectCarritoParaPedido(datos.idProductos, datos.tipoCliente)
+  const ids = datos.idProductos.map(number => number.toString());
+  console.log("IDS INICIALES", datos.idProductos)
+  console.log("IDS mapeados", ids)
+
+
+  productos = await selectCarritoParaPedido(ids, datos.tipoCliente)
+
+
+
     console.log("Productos",productos);
     try {
     await db.insert(pedidos).values({

@@ -74,7 +74,7 @@ export async function selectCarritoUsuario(email: string) {
     };
   }
 }
-export async function selectCarritoParaPedido(id: number[], tipoCliente: string) {
+export async function selectCarritoParaPedido(id: any[], tipoCliente: string) {
   console.log("ID Q RECIBE", id)
   console.log("TIPO ENVIO Q RECIBE", tipoCliente)
   try {
