@@ -11,6 +11,7 @@ export async function POST(req: NextRequest) {
   const productosDivididos = await dividirProductos(productosJuntos);
   let correoElectonico = undefined;
   let tipoCliente;
+  let idsProductos;
   //Si el usuario esta logueado usamos su correo
   const user = await LeerDatosCookie();
   if (user.status) {
@@ -20,6 +21,14 @@ export async function POST(req: NextRequest) {
     tipoCliente = "sin loguear"
   }
 
+  //Comprobamos de donde viene la compra
+  if(body.procedencia === "Carrito"){
+    idsProductos = sacarIdProductos(productosJuntos)
+  }else{
+    //Si viene de "Productos" pasamos el producto no el id
+    idsProductos = JSON.stringify(productosJuntos)
+  }
+  
   try {
     //Creacion de la sesion de pago
     const session = await stripe.checkout.sessions.create({
@@ -41,7 +50,7 @@ export async function POST(req: NextRequest) {
       },
       metadata: {
         tipo: tipoCliente,
-        ids: sacarIdProductos(productosJuntos),
+        ids: idsProductos,
         tipoEnvio: "Recogida en tienda",
         tipoCompra: body.procedencia,
       }

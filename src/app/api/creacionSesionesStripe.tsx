@@ -8,9 +8,7 @@ import {
 } from "./funcionesInfoCheckout";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
+const baseUrl =`https://www.sacoba.es`
 
 export async function dividirProductos(productos: any) {
   // Array para guardar los datos

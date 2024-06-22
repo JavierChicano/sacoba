@@ -50,7 +50,6 @@ export async function deletePeriodicoCarritoLocal({
 }: {
   fecha: string;
 }) {
-  console.log("gpña");
   try {
     await db.delete(carritoLocal).where(lt(carritoLocal.fecha, fecha));
 
@@ -67,8 +66,10 @@ export async function deleteCarritoComprado(ids: [], tipoCliente: string) {
   try {
     if (tipoCliente === "logueado") {
       await db.delete(carrito).where(inArray(carrito.id, ids));
+      console.log("Se ha borado el carro tocho");
     } else {
       await db.delete(carritoLocal).where(inArray(carritoLocal.id, ids));
+      console.log("Se ha borado el carro local");
     }
     // Si el delete se realiza sin errores, devolvemos true
     return true;
