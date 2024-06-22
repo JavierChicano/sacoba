@@ -7,10 +7,10 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const productosJuntos = body.productos;
+  const productosJuntos = body.productos.productos;
   const productosDivididos = await dividirProductos(productosJuntos);
   let correoElectonico = undefined;
-  let tipoCliente
+  let tipoCliente;
   //Si el usuario esta logueado usamos su correo
   const user = await LeerDatosCookie();
   if (user.status) {
@@ -42,7 +42,8 @@ export async function POST(req: NextRequest) {
       metadata: {
         tipo: tipoCliente,
         ids: sacarIdProductos(productosJuntos),
-        tipoEnvio: "Recogida en tienda"
+        tipoEnvio: "Recogida en tienda",
+        tipoCompra: body.procedencia,
       }
     });
     return NextResponse.json({ url: session.url }, { status: 200 });

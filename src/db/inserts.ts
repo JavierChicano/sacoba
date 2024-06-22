@@ -3,7 +3,7 @@ import { TipoConsulta, TipoUsuario } from "../../tipos/tipos";
 import { db } from "./index";
 import { carrito, consultas, pedidos, usuarios, carritoLocal } from "./schema";
 import jwt from "jsonwebtoken";
-import { deleteProductoCarritoLocal2 } from "./deletes";
+import { deleteCarritoComprado, deleteProductoCarritoLocal2 } from "./deletes";
 import { selectCarritoParaPedido } from "./selectsDinamicos";
 
 export async function registrarUsuario({ usuario }: { usuario: TipoUsuario }) {
@@ -169,38 +169,49 @@ type PedidoParams = {
   idProductos: string;
   tipoCliente: "logueado" | "sin loguear";
   tipoEnvio: "Recogida en tienda" | "Domicilio";
+  tipoCompra: "Producto" | "Carrito";
   precioTotal: number;
   direccion: string[];
 };
 
 export async function registrarPedido({ datos }: { datos: PedidoParams }) {
+  let direccionProporcionada = "no especificada";
+  if (datos.tipoEnvio === "Domicilio") {
+    direccionProporcionada = JSON.stringify(datos.direccion);
+  }
   try {
+    let productos;
+    const ids = JSON.parse(datos.idProductos);
     console.log("DATOS", datos);
-    let direccionProporcionada = "no especificada";
-    if (datos.tipoEnvio === "Domicilio") {
-      direccionProporcionada = JSON.stringify(datos.direccion);
+    //Comprobar si los productos estan guardados en el carrito o no
+    if (datos.tipoCompra === "Carrito") {
+      const consulta = await selectCarritoParaPedido(ids, datos.tipoCliente);
+      productos = consulta.carrito;
+    } else {
+      productos = JSON.parse(datos.idProductos);
     }
-    const ids = JSON.parse(datos.idProductos)
-    const productos = await selectCarritoParaPedido(ids, datos.tipoCliente);
-
-    console.log("Productos", productos);
-    console.log("Productos mss", productos.message);
-    console.log("Productos carro", productos.carrito);
+    console.log("FORMATO PRODUCTOS", datos.idProductos);
+    console.log("FORMATO PARSEADO", productos);
 
     await db.insert(pedidos).values({
       cliente: datos.cliente,
       fecha: datos.fecha,
-      productos: JSON.stringify(productos.carrito),
+      productos: JSON.stringify(productos),
       importe: datos.precioTotal / 100,
       tipoEnvio: datos.tipoEnvio,
       direccion: direccionProporcionada,
     });
 
-    // Si la inserción se realiza sin errores, devolvemos true
+    //Cuando ya tenemos los datos en la tabla pedidos, borramos los productos del carrito
+    if (datos.tipoCompra === "Carrito") {
+      await deleteCarritoComprado(ids, datos.tipoCliente);
+    }
+    console.log("TODO HA SALIDO BN");
+
     return true;
   } catch (error) {
     // Si ocurre algún error, devolvemos false
-    console.log(error);
+    console.log("Error en la insercion de un pedido", error);
     return false;
   }
 }

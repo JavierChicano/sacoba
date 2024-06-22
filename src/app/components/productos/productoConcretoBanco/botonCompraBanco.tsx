@@ -21,6 +21,7 @@ export default function BotonCompraBanco(banco: any) {
         productos={producto}
         displayModal={displayModal}
         onClose={handleCloseModal}
+        procedencia="producto"
       />
     </div>
   );

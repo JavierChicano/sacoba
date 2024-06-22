@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
           idProductos: session.metadata.ids, 
           tipoCliente: session.metadata.tipo,
           tipoEnvio: session.metadata.tipoEnvio,
+          tipoCompra: session.metadata.tipoCompra,
           precioTotal: session.amount_total,
           direccion: session.customer_details.address,
         },

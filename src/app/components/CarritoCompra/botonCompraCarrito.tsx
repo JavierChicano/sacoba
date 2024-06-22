@@ -22,6 +22,7 @@ export default function BotonCompraCarrito(productos: any) {
         productos={productos}
         displayModal={displayModal}
         onClose={handleCloseModal}
+        procedencia="carrito"
       />
     </div>
   );

@@ -22,6 +22,7 @@ export default function BotonCompraPack(pack: any) {
         productos={producto}
         displayModal={displayModal}
         onClose={handleCloseModal}
+        procedencia="producto"
       />
     </div>
   );

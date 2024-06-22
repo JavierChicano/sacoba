@@ -1,6 +1,6 @@
 import { db } from ".";
 import { carrito, carritoLocal } from "./schema";
-import { eq, lt } from "drizzle-orm";
+import { eq, inArray, lt } from "drizzle-orm";
 
 export async function deleteProductoCarrito({ producto }: { producto: any }) {
   try {
@@ -32,11 +32,7 @@ export async function deleteProductoCarritoLocal({
   }
 }
 
-export async function deleteProductoCarritoLocal2({
-  id,
-}: {
-  id: number;
-}) {
+export async function deleteProductoCarritoLocal2({ id }: { id: number }) {
   try {
     await db.delete(carritoLocal).where(eq(carritoLocal.id, id));
     // Si el delete se realiza sin errores, devolvemos true
@@ -54,10 +50,26 @@ export async function deletePeriodicoCarritoLocal({
 }: {
   fecha: string;
 }) {
-  console.log("gpña")
+  console.log("gpña");
   try {
-    await db.delete(carritoLocal).where(lt(carritoLocal.fecha, fecha)); 
+    await db.delete(carritoLocal).where(lt(carritoLocal.fecha, fecha));
 
+    // Si el delete se realiza sin errores, devolvemos true
+    return true;
+  } catch (error) {
+    console.log(error);
+    // Si ocurre algún error, devolvemos false
+    return false;
+  }
+}
+
+export async function deleteCarritoComprado(ids: [], tipoCliente: string) {
+  try {
+    if (tipoCliente === "logueado") {
+      await db.delete(carrito).where(inArray(carrito.id, ids));
+    } else {
+      await db.delete(carritoLocal).where(inArray(carritoLocal.id, ids));
+    }
     // Si el delete se realiza sin errores, devolvemos true
     return true;
   } catch (error) {

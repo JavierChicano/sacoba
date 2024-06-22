@@ -22,6 +22,7 @@ export default function BotonCompraMesa(mesa: any) {
         productos={producto}
         displayModal={displayModal}
         onClose={handleCloseModal}
+        procedencia="producto"
       />
     </div>
   );

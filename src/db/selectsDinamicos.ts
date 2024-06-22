@@ -76,15 +76,12 @@ export async function selectCarritoUsuario(email: string) {
   }
 }
 export async function selectCarritoParaPedido(id: [], tipoCliente: string) {
-  console.log("ID Q RECIBE", id);
-  console.log("TIPO ENVIO Q RECIBE", tipoCliente);
   try {
     if (tipoCliente === "logueado") {
       const carritoUsuario = await db
         .select()
-        .from(carritoLocal)
-        .where(inArray(carritoLocal.id, id));
-      console.log("logueado", carritoUsuario);
+        .from(carrito)
+        .where(inArray(carrito.id, id));
       //Comprobamos si hay registros
       if (carritoUsuario.length > 0) {
         return {
@@ -102,7 +99,6 @@ export async function selectCarritoParaPedido(id: [], tipoCliente: string) {
         .select()
         .from(carritoLocal)
         .where(inArray(carritoLocal.id, id));
-      console.log("CONSULTA sin loguear", carritoUsuario);
       //Comprobamos si hay registros
       if (carritoUsuario.length > 0) {
         return {

@@ -130,7 +130,7 @@ export const carritoLocal = sqliteTable("carritoLocal", {
 
 export const pedidos = sqliteTable("pedidos", {
   id: integer("id").primaryKey({autoIncrement: true}),
-  cliente: text("cliente").notNull().references(() => usuarios.correoElectronico),
+  cliente: text("cliente").notNull(),
   fecha: text("fecha").notNull(),
   productos: text("productos").notNull(),
   importe: integer("importe").notNull(),

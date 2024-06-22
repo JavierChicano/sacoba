@@ -8,10 +8,12 @@ import { Spinner } from "@nextui-org/react";
 
 export default function ModalCheckoutEnvio({
   productos,
+  procedencia,
   displayModal,
   onClose,
 }: {
   productos: any;
+  procedencia: string;
   displayModal: boolean;
   onClose: () => void;
 }) {
@@ -32,7 +34,7 @@ export default function ModalCheckoutEnvio({
   const handleLoadingFalseTienda = () => {
     setLoadingTienda(false);
   };
-  console.log(productos)
+
   return (
     <aside
       className={
@@ -64,6 +66,7 @@ export default function ModalCheckoutEnvio({
               onLoad: () => {
                 handleLoadingFalseTienda();
               },
+              procedencia
             });
           }}
         >
@@ -92,6 +95,7 @@ export default function ModalCheckoutEnvio({
               onLoad: () => {
                 handleLoadingFalse();
               },
+              procedencia
             });
           }}
         >
