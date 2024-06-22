@@ -79,11 +79,13 @@ export async function selectCarritoParaPedido(id: [], tipoCliente: string) {
   console.log("TIPO ENVIO Q RECIBE", tipoCliente)
   try {
     if (tipoCliente === "logueado") {
-      const carritoUsuario = await db
+      const query = db
         .select()
         .from(carrito)
         .where(inArray(carrito.id, id));
-  console.log("CONSULTA LOGUEADO", carritoUsuario)
+      
+      console.log("CONSULTA LOGUEADO SQL", query.toSQL());
+      const carritoUsuario = await query;
   //Comprobamos si hay registros
       if (carritoUsuario.length > 0) {
         return {
@@ -126,10 +128,13 @@ export async function selectCarritoParaPedido(id: [], tipoCliente: string) {
 
 export async function selectCarritoUsuarioLocal(id: []) {
   try {
-    const carritoUsuario = await db
-      .select()
-      .from(carritoLocal)
-      .where(inArray(carritoLocal.id, id));
+    const query = db
+        .select()
+        .from(carrito)
+        .where(inArray(carrito.id, id));
+      
+      console.log("CONSULTA LOGUEADO SQL", query.toSQL());
+      const carritoUsuario = await query;
     //Comprobamos si hay registros
     if (carritoUsuario.length > 0) {
       return {

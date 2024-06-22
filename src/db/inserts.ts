@@ -185,7 +185,7 @@ export async function registrarPedido({ datos }: { datos: PedidoParams }) {
 
     console.log("Productos", productos);
     console.log("Productos mss", productos.message);
-    console.log("Productos mss", productos.carrito);
+    console.log("Productos carro", productos.carrito);
 
     await db.insert(pedidos).values({
       cliente: datos.cliente,
