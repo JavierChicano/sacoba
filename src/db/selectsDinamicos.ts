@@ -79,7 +79,9 @@ export async function selectCarritoParaPedido(id: [], tipoCliente: string) {
   try {
     if (tipoCliente === "logueado") {
       const carritoUsuario = await db
-        .select()
+        .select({
+          producto: carrito.detallesProducto
+        })
         .from(carrito)
         .where(inArray(carrito.id, id));
       //Comprobamos si hay registros
@@ -96,7 +98,9 @@ export async function selectCarritoParaPedido(id: [], tipoCliente: string) {
       }
     } else {
       const carritoUsuario = await db
-        .select()
+        .select({
+          producto: carritoLocal.detallesProducto
+        })
         .from(carritoLocal)
         .where(inArray(carritoLocal.id, id));
       //Comprobamos si hay registros

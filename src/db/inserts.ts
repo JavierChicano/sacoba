@@ -187,6 +187,7 @@ export async function registrarPedido({ datos }: { datos: PedidoParams }) {
     if (datos.tipoCompra === "Carrito") {
       const consulta = await selectCarritoParaPedido(ids, datos.tipoCliente);
       productos = consulta.carrito;
+      console.log("CONSULTA",productos)
     } else {
       productos = JSON.parse(datos.idProductos);
     }
