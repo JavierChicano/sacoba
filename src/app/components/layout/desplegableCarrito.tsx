@@ -91,6 +91,7 @@ export default function DesplegableCarrito() {
                       producto={objeto}
                       key={index}
                       clave={index}
+                      pagina="desplegable"
                       onDelete={obtenerUsuario}
                     />
                   ))}

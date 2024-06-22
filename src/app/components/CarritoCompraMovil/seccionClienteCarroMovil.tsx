@@ -108,6 +108,7 @@ export default function CompClienteCarritoMovil() {
               producto={objeto}
               key={index}
               clave={index}
+              pagina="movil"
               onDelete={obtenerUsuario}
             />
           ))}

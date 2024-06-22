@@ -10,10 +10,12 @@ import { LeerDatosCookie } from "../perfil/cookiePerfil";
 export default function ProductoCarrito({
   producto,
   clave,
+  pagina,
   onDelete,
 }: {
   producto: any;
   clave: number;
+  pagina: string;
   onDelete: () => Promise<void>;
 }) {
   const { setSumaTotal } = usePrecioTotalCarrito();
@@ -150,55 +152,7 @@ export default function ProductoCarrito({
           </div>
         </div>
       </section>
-      <Toaster position="top-right" richColors />
+      {pagina === "movil" ? <Toaster position="top-right" richColors />: <span></span>}
     </article>
   );
 }
-
-const reemplazarProducto = (productos: any, nuevoProducto: any) => {
-  if (productos.length > 1) {
-    return productos.map((producto: any) => {
-      // Comprobamos si los productos son iguales excepto en la cantidad
-      if (
-        producto.producto === nuevoProducto.producto &&
-        producto.modelo === nuevoProducto.modelo &&
-        producto.dimension === nuevoProducto.dimension &&
-        producto.acabado === nuevoProducto.acabado &&
-        producto.grupo === nuevoProducto.grupo &&
-        producto.color === nuevoProducto.color &&
-        producto.grosor === nuevoProducto.grosor &&
-        producto.colorPata === nuevoProducto.colorPata &&
-        producto.colorExtensible === nuevoProducto.colorExtensible &&
-        producto.altura === nuevoProducto.altura &&
-        producto.precio === nuevoProducto.precio
-      ) {
-        // Si son iguales excepto en la cantidad, reemplazamos el antiguo por el nuevo
-        return nuevoProducto;
-      } else {
-        // Si no coinciden, mantenemos el producto existente
-        return producto;
-      }
-    });
-  } else {
-    return nuevoProducto;
-  }
-};
-
-const eliminarProducto = (productos: any, productoAEliminar: any) => {
-  return productos.filter((producto: any) => {
-    // Filtramos para excluir el producto a eliminar
-    return !(
-      producto.producto === productoAEliminar.producto &&
-      producto.modelo === productoAEliminar.modelo &&
-      producto.dimension === productoAEliminar.dimension &&
-      producto.acabado === productoAEliminar.acabado &&
-      producto.grupo === productoAEliminar.grupo &&
-      producto.color === productoAEliminar.color &&
-      producto.grosor === productoAEliminar.grosor &&
-      producto.colorPata === productoAEliminar.colorPata &&
-      producto.colorExtensible === productoAEliminar.colorExtensible &&
-      producto.altura === productoAEliminar.altura &&
-      producto.precio === productoAEliminar.precio
-    );
-  });
-};
