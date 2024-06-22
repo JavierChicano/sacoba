@@ -58,6 +58,10 @@ export default function CompClienteCarrito() {
               };
             });
             setObjetosCarro(detallesProductos.reverse());
+          } else {
+            if (consultaLocal.message === "El carrito está vacio") {
+              setCarritoVacio(true);
+            }
           }
         } else {
           setCarritoVacio(true);
