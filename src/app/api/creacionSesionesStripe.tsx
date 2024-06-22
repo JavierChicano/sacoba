@@ -6,7 +6,6 @@ import {
   generarDescripcionSilla,
   generarImagenesPack,
 } from "./funcionesInfoCheckout";
-import { verify } from "jsonwebtoken";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const baseUrl = process.env.VERCEL_URL

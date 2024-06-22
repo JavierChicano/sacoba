@@ -21,7 +21,6 @@ export async function POST(req: NextRequest) {
   switch (event.type) {
     case "checkout.session.completed":
       const session = event.data.object;
-      let fecha = getDate(session);
       // Handle the checkout.session.completed event
       await registrarPedido({
         datos: {
@@ -51,7 +50,7 @@ function getDate(session: any) {
 
   // Obtener los componentes de la fecha y hora en la zona horaria local (española)
   let year = fecha.getFullYear();
-  let month = ("0" + (fecha.getMonth() + 1)).slice(-2); // los meses son base 0, así que añadimos 1
+  let month = ("0" + (fecha.getMonth() + 1)).slice(-2); 
   let day = ("0" + fecha.getDate()).slice(-2);
   let hours = ("0" + fecha.getHours()).slice(-2);
   let minutes = ("0" + fecha.getMinutes()).slice(-2);
