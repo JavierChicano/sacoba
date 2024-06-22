@@ -78,5 +78,5 @@ export function sacarIdProductos(productos: any) {
   for (const producto of productos) {
     idsProductos.push(`${producto.id}`);
   }
-  return idsProductos;
+  return JSON.stringify(idsProductos);
 }

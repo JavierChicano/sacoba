@@ -166,7 +166,7 @@ export async function registrarCarritoLocal({ producto }: { producto: any }) {
 type PedidoParams = {
   cliente: string;
   fecha: string;
-  idProductos: [];
+  idProductos: string;
   tipoCliente: "logueado" | "sin loguear";
   tipoEnvio: "Recogida en tienda" | "Domicilio";
   precioTotal: number;
@@ -180,8 +180,8 @@ export async function registrarPedido({ datos }: { datos: PedidoParams }) {
     if (datos.tipoEnvio === "Domicilio") {
       direccionProporcionada = JSON.stringify(datos.direccion);
     }
-
-    const productos = await selectCarritoParaPedido(datos.idProductos, datos.tipoCliente);
+    const ids = JSON.parse(datos.idProductos)
+    const productos = await selectCarritoParaPedido(ids, datos.tipoCliente);
 
     console.log("Productos", productos);
     console.log("Productos mss", productos.message);

@@ -19,8 +19,6 @@ export async function POST(req: NextRequest) {
   }else{
     tipoCliente = "sin loguear"
   }
-  console.log(productosJuntos)
-  console.log(sacarIdProductos(productosJuntos))
 
   try {
     //Creacion de la sesion de pago
