@@ -74,7 +74,7 @@ export async function selectCarritoUsuario(email: string) {
     };
   }
 }
-export async function selectCarritoParaPedido(id: any[], tipoCliente: string) {
+export async function selectCarritoParaPedido(id: [], tipoCliente: string) {
   console.log("ID Q RECIBE", id)
   console.log("TIPO ENVIO Q RECIBE", tipoCliente)
   try {
@@ -83,7 +83,8 @@ export async function selectCarritoParaPedido(id: any[], tipoCliente: string) {
         .select()
         .from(carrito)
         .where(inArray(carrito.id, id));
-      //Comprobamos si hay registros
+  console.log("CONSULTA LOGUEADO", carritoUsuario)
+  //Comprobamos si hay registros
       if (carritoUsuario.length > 0) {
         return {
           success: true,
@@ -100,7 +101,8 @@ export async function selectCarritoParaPedido(id: any[], tipoCliente: string) {
         .select()
         .from(carritoLocal)
         .where(inArray(carritoLocal.id, id));
-      //Comprobamos si hay registros
+  console.log("CONSULTA sin loguear", carritoUsuario)
+  //Comprobamos si hay registros
       if (carritoUsuario.length > 0) {
         return {
           success: true,

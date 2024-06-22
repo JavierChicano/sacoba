@@ -104,7 +104,7 @@ export async function juntarAmbosCarritos({
         detallesProducto: productosEnLocal[0].producto,
         precioTotal: productoParseado.precio * productoParseado.cantidad,
       });
-      await deleteProductoCarritoLocal2({id: productosEnLocal[0].id});
+      await deleteProductoCarritoLocal2({ id: productosEnLocal[0].id });
     }
 
     return true;
@@ -166,7 +166,7 @@ export async function registrarCarritoLocal({ producto }: { producto: any }) {
 type PedidoParams = {
   cliente: string;
   fecha: string;
-  idProductos: number[];
+  idProductos: [];
   tipoCliente: "logueado" | "sin loguear";
   tipoEnvio: "Recogida en tienda" | "Domicilio";
   precioTotal: number;
@@ -174,28 +174,24 @@ type PedidoParams = {
 };
 
 export async function registrarPedido({ datos }: { datos: PedidoParams }) {
-    console.log("DATOS",datos);
-  let direccionProporcionada = "no especificada"
-  let productos
-  if(datos.tipoEnvio === "Domicilio"){
-    direccionProporcionada=JSON.stringify(datos.direccion)
-  }
-  const ids = datos.idProductos.map(number => number.toString());
-  console.log("IDS INICIALES", datos.idProductos)
-  console.log("IDS mapeados", ids)
+  try {
+    console.log("DATOS", datos);
+    let direccionProporcionada = "no especificada";
+    if (datos.tipoEnvio === "Domicilio") {
+      direccionProporcionada = JSON.stringify(datos.direccion);
+    }
 
+    const productos = await selectCarritoParaPedido(datos.idProductos, datos.tipoCliente);
 
-  productos = await selectCarritoParaPedido(ids, datos.tipoCliente)
+    console.log("Productos", productos);
+    console.log("Productos mss", productos.message);
+    console.log("Productos mss", productos.carrito);
 
-
-
-    console.log("Productos",productos);
-    try {
     await db.insert(pedidos).values({
-      cliente:  datos.cliente,
-      fecha:  datos.fecha,
-      productos:  JSON.stringify(productos),
-      importe:  datos.precioTotal / 100,
+      cliente: datos.cliente,
+      fecha: datos.fecha,
+      productos: JSON.stringify(productos.carrito),
+      importe: datos.precioTotal / 100,
       tipoEnvio: datos.tipoEnvio,
       direccion: direccionProporcionada,
     });
