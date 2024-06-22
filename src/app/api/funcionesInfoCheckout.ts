@@ -76,7 +76,7 @@ export function sacarIdProductos(productos: any) {
   const idsProductos = [];
   //Recorremos el objeto producto para sacar el id de cada 1
   for (const producto of productos) {
-    idsProductos.push(producto.id);
+    idsProductos.push(`${producto.id}`);
   }
-  return JSON.stringify(idsProductos);
+  return idsProductos;
 }

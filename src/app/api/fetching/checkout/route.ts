@@ -19,6 +19,8 @@ export async function POST(req: NextRequest) {
   }else{
     tipoCliente = "sin loguear"
   }
+  console.log(productosJuntos)
+  console.log(sacarIdProductos(productosJuntos))
 
   try {
     //Creacion de la sesion de pago
@@ -45,7 +47,6 @@ export async function POST(req: NextRequest) {
         tipoEnvio: "Recogida en tienda"
       }
     });
-
     return NextResponse.json({ url: session.url }, { status: 200 });
   } catch (err) {
     console.log(err);

@@ -3,6 +3,7 @@ import { carrito, carritoLocal, usuarios } from "./schema";
 import { eq, inArray } from "drizzle-orm";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { sacarIdProductos } from "@/app/api/funcionesInfoCheckout";
 
 //Select usuario logueado
 export async function selectComprobarUsuario(
@@ -75,18 +76,16 @@ export async function selectCarritoUsuario(email: string) {
   }
 }
 export async function selectCarritoParaPedido(id: [], tipoCliente: string) {
-  console.log("ID Q RECIBE", id)
-  console.log("TIPO ENVIO Q RECIBE", tipoCliente)
+  console.log("ID Q RECIBE", id);
+  console.log("TIPO ENVIO Q RECIBE", tipoCliente);
   try {
     if (tipoCliente === "logueado") {
-      const query = db
+      const carritoUsuario = await db
         .select()
-        .from(carrito)
-        .where(inArray(carrito.id, id));
-      
-      console.log("CONSULTA LOGUEADO SQL", query.toSQL());
-      const carritoUsuario = await query;
-  //Comprobamos si hay registros
+        .from(carritoLocal)
+        .where(inArray(carritoLocal.id, id));
+      console.log("logueado", carritoUsuario);
+      //Comprobamos si hay registros
       if (carritoUsuario.length > 0) {
         return {
           success: true,
@@ -103,8 +102,8 @@ export async function selectCarritoParaPedido(id: [], tipoCliente: string) {
         .select()
         .from(carritoLocal)
         .where(inArray(carritoLocal.id, id));
-  console.log("CONSULTA sin loguear", carritoUsuario)
-  //Comprobamos si hay registros
+      console.log("CONSULTA sin loguear", carritoUsuario);
+      //Comprobamos si hay registros
       if (carritoUsuario.length > 0) {
         return {
           success: true,
@@ -128,13 +127,10 @@ export async function selectCarritoParaPedido(id: [], tipoCliente: string) {
 
 export async function selectCarritoUsuarioLocal(id: []) {
   try {
-    const query = db
-        .select()
-        .from(carrito)
-        .where(inArray(carrito.id, id));
-      
-      console.log("CONSULTA LOGUEADO SQL", query.toSQL());
-      const carritoUsuario = await query;
+    const carritoUsuario = await db
+      .select()
+      .from(carritoLocal)
+      .where(inArray(carritoLocal.id, id));
     //Comprobamos si hay registros
     if (carritoUsuario.length > 0) {
       return {
