@@ -64,7 +64,7 @@ export default function FormRegistro() {
       setCookie("client-Token", response.token);
 
       //Si se ha insertado correctamente redirige al perfil
-      router.push("/Perfil");
+      router.push("/Perfil/InfoUser");
     }
     setIsLoading(false);
   };

@@ -56,7 +56,7 @@ export default function FormLogin() {
       }
       setCookie("client-Token", response.token);
       //Si se ha insertado correctamente redirige al perfil
-      redirect("/Perfil");
+      redirect("/Perfil/InfoUser");
     }
   };
 

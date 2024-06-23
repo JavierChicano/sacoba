@@ -111,12 +111,12 @@ export default function BotonesHeaderMovil({
                     />
                   </Link>
                   {cookieIniciada && (
-                    <Link href={"/Perfil"} onClick={onClose}>
+                    <Link href={"/Perfil/InfoUser"} onClick={onClose}>
                       <IconUser
                         stroke={2}
                         size={50}
                         color={
-                          pathName === "/Perfil" ? "orange" : "currentColor"
+                          pathName === "/Perfil/InfoUser" ? "orange" : "currentColor"
                         }
                       />
                     </Link>

@@ -52,7 +52,7 @@ export default function FormNuevaPassword({
       setCookie("client-Token", response.token);
 
       //Si se ha insertado correctamente redirige
-      redirect("/Perfil");
+      redirect("/Perfil/InfoUser");
     }
   };
 

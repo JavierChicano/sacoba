@@ -1,6 +1,4 @@
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
+const baseUrl =`https://www.sacoba.es`
 
 //Funciones para generar el pack
 export function generarDescripcionPack(pack: any) {

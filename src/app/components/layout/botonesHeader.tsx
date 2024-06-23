@@ -72,11 +72,11 @@ export default function BotonesHeader() {
             onMouseLeave={() => setMostrarLogin(false)}
           >
             {cookieIniciada ? (
-              <Link href={"/Perfil"}>
+              <Link href={"/Perfil/InfoUser"}>
                   <IconUser
                     stroke={2}
                     size={40}
-                    color={(mostrarLogin || pathName === "/Perfil") ? "orange" : "currentColor"}
+                    color={(mostrarLogin || pathName === "/Perfil/InfoUser") ? "orange" : "currentColor"}
 
                   />
               </Link>
