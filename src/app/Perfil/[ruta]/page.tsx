@@ -5,10 +5,10 @@ import SliderPerfilMovil from "../../components/perfil/sliderPerfilMovil";
 export default function Perfil({ params }: { params: {ruta: string} }) {
   return (
     <main className="flex flex-col items-center">
-      <div className="max-w-7xl items-center w-full p-6 md:p-0">
+      <div className="max-w-7xl items-center w-full p-6 md:p-10">
         <RutaPerfil />
         <SliderPerfil ruta={params.ruta} />
-        <SliderPerfilMovil/>
+        <SliderPerfilMovil ruta={params.ruta}/>
       </div>
     </main>
   );

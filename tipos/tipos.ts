@@ -86,11 +86,13 @@ export interface TipoCarrito {
 }
 
 export interface TipoPedido {
+  id: number;
   cliente: string;
-  tipoProducto: string;
-  modelo: string;
-  detallesProducto: string;
   fecha: string;
-  factura: string;
-  precio: number;
+  productos: string;
+  importe: number;
+  tipoEnvio: string;
+  direccion: string | null;
+  entregado: number | null;
+  observaciones: string | null;
 }

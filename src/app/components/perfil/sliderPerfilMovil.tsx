@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LogOut from "./cerrarSesionCookie";
 import { useRouter } from "next/navigation";
 import {
@@ -9,10 +9,19 @@ import {
   IconUserScan,
 } from "@tabler/icons-react";
 import CajaUserInfo from "./cajaInfoUser";
+import { LeerDatosCookie } from "./cookiePerfil";
+import CajaPedidos from "./cajaPedidos";
 
-export default function SliderPerfilMovil() {
+interface Usuario {
+  nombre: string;
+  apellidos: string;
+  correoElectronico: string;
+}
+
+export default function SliderPerfilMovil({ruta}:{ruta: string}) {
   const [itemSeleccionado, setItemSeleccionado] = useState("CerrarSesion");
   const router = useRouter();
+  const [usuario, setUsuario] = useState<Usuario>();
 
   const handleBoton = async () => {
     const response = await LogOut();
@@ -22,6 +31,33 @@ export default function SliderPerfilMovil() {
       console.log("Ha sucedido un error");
     }
   };
+
+  useEffect(() => {
+    const obtenerUsuario = async () => {
+      try {
+        const cookie = await LeerDatosCookie(); 
+        if(cookie.status){
+          setUsuario(cookie.usuario)
+        }else{
+
+        }
+      } catch (error) {
+        console.error("Error al obtener los datos del usuario:", error);
+      }
+    };
+    obtenerUsuario(); 
+  }, []);
+
+  //Comprobar en la URL si queremos ir a una seccion en concreto directamente
+  useEffect(() => {
+    if (ruta === "InfoUser") {
+      setItemSeleccionado("Info user");
+    }else if (ruta === "pedidos") {
+      setItemSeleccionado("Pedidos");
+    }else if (ruta === "notificaciones") {
+      setItemSeleccionado("Notificaciones");
+    }
+  }, [ruta]);
 
   return (
     <section className="w-full flex flex-col gap-10 md:hidden">
@@ -58,7 +94,8 @@ export default function SliderPerfilMovil() {
         </div>
       </aside>
       <div className="border border-fondoSecundario"></div>
-      <div>{itemSeleccionado === "Info user" && <CajaUserInfo />} </div>
+      <div>{itemSeleccionado === "Info user" && <CajaUserInfo usuario={usuario} />} </div>
+      <div>{itemSeleccionado === "Pedidos" && <CajaPedidos correoElectronico={usuario?.correoElectronico} />}</div>
       <div>
         {itemSeleccionado === "CerrarSesion" && (
           <section className="text-3xl flex flex-col w-full items-center gap-6">

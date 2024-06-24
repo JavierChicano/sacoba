@@ -155,7 +155,7 @@ export default function FormPerfil() {
       <div className="col-span-2 flex justify-center mt-10">
         <button
           type="submit"
-          className="p-2 md:w-1/3 bg-colorBase h-14 self-center text-2xl hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"
+          className="p-2 lg:w-1/3 bg-colorBase h-14 self-center text-2xl hover:bg-colorBaseSecundario hover:text-black transition duration-300 ease-in-out"
         >
           Guardar cambios
         </button>

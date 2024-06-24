@@ -1,5 +1,5 @@
 import { db } from ".";
-import { carrito, carritoLocal, usuarios } from "./schema";
+import { carrito, carritoLocal, pedidos, usuarios } from "./schema";
 import { eq, inArray } from "drizzle-orm";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -80,7 +80,7 @@ export async function selectCarritoParaPedido(id: [], tipoCliente: string) {
     if (tipoCliente === "logueado") {
       const carritoUsuario = await db
         .select({
-          producto: carrito.detallesProducto
+          producto: carrito.detallesProducto,
         })
         .from(carrito)
         .where(inArray(carrito.id, id));
@@ -99,7 +99,7 @@ export async function selectCarritoParaPedido(id: [], tipoCliente: string) {
     } else {
       const carritoUsuario = await db
         .select({
-          producto: carritoLocal.detallesProducto
+          producto: carritoLocal.detallesProducto,
         })
         .from(carritoLocal)
         .where(inArray(carritoLocal.id, id));
@@ -185,5 +185,26 @@ export async function selectComprobarCorreoElectronico(email: string) {
   } catch (error: any) {
     //Si salta un error en la consulta
     return false;
+  }
+}
+
+//Select pedidos de un usuario
+export async function selectPedidosUsuario(email: string) {
+  try {
+    // Realizar una consulta SQL para seleccionar el usuario con el correo electrónico dado
+    const pedido = await db
+      .select()
+      .from(pedidos)
+      .where(eq(pedidos.cliente, email));
+
+    return {
+      success: true,
+      pedidos: pedido,
+    };
+  } catch (error: any) {
+    //Si salta un error en la consulta
+    return {
+      success: false
+    };;
   }
 }
