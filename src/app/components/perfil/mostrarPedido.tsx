@@ -10,7 +10,6 @@ export default function MostrarPedido({ pedido }: { pedido: TipoPedido }) {
   const [estado, setEstado] = useState("confirmado");
   const [desplegado, setDesplegado] = useState(false);
   const productos = JSON.parse(pedido.productos);
-
   useEffect(() => {
     if (pedido.entregado) {
       setEstado("entregado");
@@ -22,7 +21,7 @@ export default function MostrarPedido({ pedido }: { pedido: TipoPedido }) {
   const handleClick = () => {
     //Mostrar ventana modal
   };
-
+  
   return (
     <article className="border-y border-colorBase py-4 flex flex-col gap-4">
       <aside className="grid grid-cols-2 md:flex md:justify-around items-center">

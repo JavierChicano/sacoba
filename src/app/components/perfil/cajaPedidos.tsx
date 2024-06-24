@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { LeerDatosPedidos } from "./leerDatosPedidos";
 import { TipoPedido } from "../../../../tipos/tipos";
 import MostrarPedido from "./mostrarPedido";
+import Link from "next/link";
 
 export default function CajaPedidos({
   correoElectronico,
@@ -11,35 +12,39 @@ export default function CajaPedidos({
   const [pedidos, setPedidos] = useState<TipoPedido[]>();
   const [pedidosVacio, setPedidosVacio] = useState(false);
 
-  const obtenerPedidos = async (correo: string) => {
+  const obtenerPedidos = async () => {
     try {
-      const consulta = await LeerDatosPedidos({ correoElectronico: correo });
-      if (consulta.status) {
-        console.log();
-        setPedidos(consulta.pedidos);
-        if (consulta.pedidos?.length === 0) {
-          setPedidosVacio(true);
+      if (correoElectronico !== undefined) {
+        const consulta = await LeerDatosPedidos({correoElectronico});
+
+        if (consulta.status) {
+          setPedidos(consulta.pedidos);
+          if (consulta.pedidos?.length === 0) {
+            setPedidosVacio(true);
+          }
         }
       }
     } catch (error) {
       console.error("Error al obtener los datos del usuario:", error);
     }
   };
-  
+
   useEffect(() => {
-    let parche;
-    if (correoElectronico === undefined) {
-      parche = "";
-    } else {
-      parche = correoElectronico;
-    }
-    obtenerPedidos(parche);
-  }, []);
+    obtenerPedidos();
+  }, [correoElectronico]);
 
   return (
     <section className="flex flex-col gap-12 md:px-28">
       {pedidosVacio ? (
-        <div>No tiene pedidos, realice su primera compra</div>
+        <div className="text-2xl md:text-3xl flex w-full justify-center flex-col text-center gap-6">
+          <h1>No tiene pedidos, realice su primera compra</h1>
+          <Link
+            href={"/#productos"}
+            className="border border-colorBase p-4 w-64 cursor-pointer self-center hover:bg-colorBaseSecundario"
+          >
+            Ver productos
+          </Link>
+        </div>
       ) : (
         <div>
           {pedidos ? (
