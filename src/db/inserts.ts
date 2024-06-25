@@ -189,7 +189,14 @@ export async function registrarPedido({ datos }: { datos: PedidoParams }) {
       productos = consulta.carrito;
       console.log("CONSULTA",productos)
     } else {
-      productos = {"producto": datos.idProductos[0]};
+      console.log(datos.idProductos)
+      productos = {"producto": datos.idProductos};
+      console.log("PRIMER PRODUCTO",productos)
+      productos = [{"producto": datos.idProductos[1]}];
+      console.log("SEGUNDO PRODUCTO",productos)
+      productos = {"producto": datos.idProductos[2]};
+      console.log("Tercer PRODUCTO",productos)
+      productos = {"producto": datos.idProductos[1]};
     }
 
     await db.insert(pedidos).values({
