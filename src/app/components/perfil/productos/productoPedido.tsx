@@ -6,6 +6,7 @@ import DatosPack from "./datosPack";
 
 export default function MostrarProductoPedido({ producto }: { producto: any }) {
   const info = JSON.parse(producto.producto);
+  console.log(info)
   let componenteDatos;
 
   //Para cargar el componente que muestra la informacion en concreto de ese producto
