@@ -8,10 +8,6 @@ import { metadata } from "@/app/layout";
 import { NextRequest, NextResponse } from "next/server";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
-
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const productosJuntos = body.productos;
@@ -37,7 +33,7 @@ export async function POST(req: NextRequest) {
     idsProductos = sacarIdProductos(productosJuntos);
   } else {
     //Si viene de "Productos" pasamos el producto no el id
-    idsProductos = JSON.stringify(productosJuntos);
+    idsProductos = JSON.stringify(productosJuntos[0]);
   }
 
   try {
@@ -56,7 +52,7 @@ export async function POST(req: NextRequest) {
           message: "Te enviaremos la factura al correo electronico",
         },
         terms_of_service_acceptance: {
-          message: `Acepto las [condiciones de venta](${baseUrl}/CondicionesVenta)`,
+          message: `Acepto las [condiciones de venta](https://www.sacoba.es/Legal/CondicionesVenta)`,
         },
       },
       consent_collection: {

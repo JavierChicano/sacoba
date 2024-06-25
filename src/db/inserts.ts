@@ -187,11 +187,8 @@ export async function registrarPedido({ datos }: { datos: PedidoParams }) {
     if (datos.tipoCompra === "Carrito") {
       const consulta = await selectCarritoParaPedido(ids, datos.tipoCliente);
       productos = consulta.carrito;
-      console.log("CONSULTA",productos)
     } else {
-      console.log(datos.idProductos)
       productos = [{"producto": datos.idProductos}];
-      console.log(productos)
     }
 
     await db.insert(pedidos).values({

@@ -81,7 +81,7 @@ export default function ModalCheckoutEnvio({
               <ul className="list-disc pl-4 lg:pl-6 text-xs lg:text-xl ">
                 <li>Sin coste adicional</li>
                 <li>Obtén tu producto más rápido con esta opción</li>
-                <li>Direccion </li>
+                <li>Direccion: Av. de Fuenlabrada, 55, 28970 Humanes de Madrid, Madrid. España</li>
               </ul>
             </>
           )}

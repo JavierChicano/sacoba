@@ -4,7 +4,6 @@ import { LeerDatosCookie } from "@/app/components/perfil/cookiePerfil";
 import { sacarIdProductos } from "../../funcionesInfoCheckout";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const productosJuntos = body.productos.productos;
@@ -28,7 +27,6 @@ export async function POST(req: NextRequest) {
     //Si viene de "Productos" pasamos el producto no el id
     idsProductos = JSON.stringify(productosJuntos[0])
   }
-  console.log(idsProductos)
   
   try {
     //Creacion de la sesion de pago
@@ -43,7 +41,7 @@ export async function POST(req: NextRequest) {
           message: "Te enviaremos la factura al correo electronico",
         },
         terms_of_service_acceptance: {
-          message: `Acepto las [condiciones de venta](https://www.sacoba.es/CondicionesVenta)`,
+          message: `Acepto las [condiciones de venta](https://www.sacoba.es/Legal/CondicionesVenta)`,
         },
       },
       consent_collection: {
