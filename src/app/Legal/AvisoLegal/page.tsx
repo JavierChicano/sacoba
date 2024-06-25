@@ -109,7 +109,7 @@ export default function AvisoLegal() {
           <h2 className="text-xl">Política de Devoluciones y Reembolsos</h2>
           <h4>
             Consulta nuestras{" "}
-            <Link href={"/"} className="underline text-blue-600">
+            <Link href={"/Legal/CondicionesVenta/"} className="underline text-blue-600">
               Condiciones de venta
             </Link>{" "}
             para obtener información sobre cómo devolver productos y obtener
@@ -123,7 +123,7 @@ export default function AvisoLegal() {
           <h4>
             Para productos defectuosos o dañados,
             consulta nuestras{" "}
-            <Link href={"/"} className="underline text-blue-600">
+            <Link href={"/Legal/CondicionesVenta/"} className="underline text-blue-600">
               Condiciones de venta
             </Link>
           </h4>
@@ -158,7 +158,7 @@ export default function AvisoLegal() {
             Sacoba se reserva el derecho de terminar tu acceso a nuestro sitio
             web en cualquier momento, sin previo aviso, por cualquier motivo,
             incluyendo, pero no limitado a, el incumplimiento de estos{" "}
-            <Link href={"/Legal/AvisoLegal"} className="underline text-blue-600">
+            <Link href={"/Legal/AvisoLegal/"} className="underline text-blue-600">
               Términos y Condiciones de Uso
             </Link>
           </h4>
@@ -192,7 +192,7 @@ export default function AvisoLegal() {
           <h4>
             Utilizamos cookies para mejorar tu experiencia en nuestro sitio web.
             Consulta nuestra{" "}
-            <Link href={"/AvisoLegal"} className="underline text-blue-600">
+            <Link href={"/Legal/AvisoLegal/"} className="underline text-blue-600">
               Política de Cookies
             </Link>{" "}
             para más detalles sobre su uso y cómo gestionarlas.
