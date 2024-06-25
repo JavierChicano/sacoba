@@ -26,8 +26,9 @@ export async function POST(req: NextRequest) {
     idsProductos = sacarIdProductos(productosJuntos)
   }else{
     //Si viene de "Productos" pasamos el producto no el id
-    idsProductos = JSON.stringify(productosJuntos)
+    idsProductos = JSON.stringify(productosJuntos[0])
   }
+  console.log(idsProductos)
   
   try {
     //Creacion de la sesion de pago
