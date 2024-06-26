@@ -10,13 +10,6 @@ export default function MostrarPedido({ pedido }: { pedido: TipoPedido }) {
   const [estado, setEstado] = useState("confirmado");
   const [desplegado, setDesplegado] = useState(false);
   const productos = JSON.parse(pedido.productos);
-  useEffect(() => {
-    if (pedido.entregado) {
-      setEstado("entregado");
-    } else {
-      setEstado("confirmado");
-    }
-  }, [pedido.entregado]);
 
   const handleClick = () => {
     //Mostrar ventana modal
@@ -27,9 +20,9 @@ export default function MostrarPedido({ pedido }: { pedido: TipoPedido }) {
       <aside className="grid grid-cols-2 md:flex md:justify-around items-center">
         <h1
           className={`${
-            estado === "entregado"
+            pedido.estado === "Entregado"
               ? "text-colorBaseSecundario"
-              : "text-green-500"
+              : pedido.estado === "Confirmado" ? "text-green-500" : "text-red-500"
           }`}
         >
           Pedido {estado}

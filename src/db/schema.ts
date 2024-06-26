@@ -136,6 +136,6 @@ export const pedidos = sqliteTable("pedidos", {
   importe: integer("importe").notNull(),
   tipoEnvio: text("tipoEnvio").notNull(),
   direccion: text("direccion"),
-  entregado: integer("entregado").default(0),
+  estado: text("estado").default("Confirmado"),
   observaciones: text("observaciones"),
 });

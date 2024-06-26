@@ -93,6 +93,6 @@ export interface TipoPedido {
   importe: number;
   tipoEnvio: string;
   direccion: string | null;
-  entregado: number | null;
+  estado: string | null;
   observaciones: string | null;
 }
