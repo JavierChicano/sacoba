@@ -16,15 +16,11 @@ import * as React from "react";
 interface Props {
   token: string;
 }
-const imgUrl = process.env.VERCEL_URL
-? `https://${process.env.VERCEL_URL}`
-: "http://localhost:3000";
+const imgUrl = `https://www.sacoba.es/`
 
 
 export const TemplateReseteoPassword = ({ token }: Props) => {
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}/Login/NuevaPassword?token=${token}`
-    : `http://localhost:3000/Login/NuevaPassword?token=${token}`;
+  const baseUrl = `https://www.sacoba.es/Login/NuevaPassword?token=${token}`
 
   return (
     <Html>
