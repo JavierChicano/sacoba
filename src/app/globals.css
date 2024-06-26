@@ -34,7 +34,9 @@
   --contraste: #17181d; 
   --contraste-opacidad: #17181dc7; 
   --text-invertido: #fff;
+  --text-colores: #fff;
 }
+
 [data-theme="dark"] {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
@@ -49,6 +51,7 @@
   --contraste: #f3f3f3;
   --contraste-opacidad: #f3f3f3cb;
   --text-invertido: #000000;
+  --text-colores: #e09145;
 }
 
 body {

@@ -10,7 +10,6 @@ import { usePackFinal } from "../../../../../states/statesProductoFinal";
 import { Toaster, toast } from "sonner";
 import { InsertarCarrito } from "../insertarCarrito";
 import { cn } from "@nextui-org/react";
-import { useTheme } from "next-themes";
 import { TipoColor } from "../../../../../tipos/tipos";
 import ModalColoresBastidor from "../productoConcretoBanco/modalColoresBastidor";
 import BotonCompraPack from "./botonCompraPack";
@@ -28,7 +27,6 @@ export default function ElegirPack({
   coloresSilla: TipoColor[];
 }) {
   //Estados globales
-  const { theme } = useTheme();
   const { setPackResto, pack, setSillaPack } = usePackFinal();
   const { precioAcumulado, setPrecioAcumulado } = usePrecioAcumulado();
   const { modalVisibleBastidor, setModalVisibleBastidor } = useModalBastidor();
@@ -237,9 +235,7 @@ export default function ElegirPack({
                 <h2 className="text-xl">
                   Acabado:{" "}
                   <span
-                    className={
-                      theme === "light" ? "text-white" : "text-colorBase"
-                    }
+                    className="text-textoColores"
                   >
                     {modeloElegidoBastidor}
                   </span>
@@ -247,9 +243,7 @@ export default function ElegirPack({
                 <h2 className="text-xl">
                   Color:{" "}
                   <span
-                    className={
-                      theme === "light" ? "text-white" : "text-colorBase"
-                    }
+                    className="text-textoColores"
                   >
                     {colorElegidoBastidor}
                   </span>

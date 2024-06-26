@@ -7,9 +7,7 @@ import ClientComponent from "./components/layout/client";
 import Header from "./components/layout/header";
 import Footer from "./components/footer/footer";
 import CookieConsentimiento from "./components/cookieConsentimiento";
-import { cookies } from "next/headers";
 
-const cookiesConsent = cookies().get("consent-cookies");
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -29,7 +27,7 @@ export default function RootLayout({
         <ClientComponent>
           <Header />
           {children}
-          {!cookiesConsent?.value && <CookieConsentimiento/>}
+          <CookieConsentimiento/>
           <Footer />
         </ClientComponent>
       </body>

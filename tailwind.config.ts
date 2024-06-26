@@ -46,7 +46,8 @@ const config: Config = {
         colorBaseSecundario: "var(--color-secundario)",
         contraste: "var(--contraste)",
         contrasteOpacidad: "var(--contraste-opacidad)",
-        textoInvertido: "var(--text-invertido)"
+        textoInvertido: "var(--text-invertido)",
+        textoColores: "var(--text-colores)",
       },
     },
   },

@@ -157,10 +157,10 @@ export default function SeccionPersonalizarSilla({
           )}
         >
           <h2 className="text-xl">
-            Acabado: <span className={theme==="light"? "text-white" : "text-colorBase"}>{modeloElegido}</span>
+            Acabado: <span className="text-textoColores">{modeloElegido}</span>
           </h2>
           <h2 className="text-xl">
-            Color: <span className={theme==="light"? "text-white" : "text-colorBase"}>{colorElegido}</span>
+            Color: <span className="text-textoColores">{colorElegido}</span>
           </h2>
           <div>
             <Image
