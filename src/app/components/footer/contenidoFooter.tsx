@@ -50,6 +50,7 @@ export default function ContenidoFooter() {
           <li><Link href={"/Legal/AvisoLegal/"}>Aviso legal</Link></li>
             <li><Link href={"/Legal/PoliticaPrivacidad/"}>Política de privacidad</Link></li>
             <li><Link href={"/Legal/CondicionesVenta/"}>Condiciones de venta</Link></li>
+            <li><Link href={"/Legal/PoliticaCookies/"}>Política de cookies</Link></li>
           </ul>
         </section>
         <section className="lg:mt-10 lg:pl-20">

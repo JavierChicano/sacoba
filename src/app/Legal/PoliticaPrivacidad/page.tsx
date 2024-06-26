@@ -4,7 +4,7 @@ export default function PoliticaPrivacidad() {
   return (
     <main className="flex flex-col items-center p-4 gap-4">
       <h1 className="text-2xl md:text-3xl my-2">Política de privacidad</h1>
-      <aside className="w-full flex flex-col gap-2">
+      <aside className="max-w-7xl w-full flex flex-col gap-2">
         <h1 className="text-xl">Introducción</h1>
         <p>
           En Sacoba, nos comprometemos a proteger y respetar su privacidad. Esta
@@ -95,7 +95,7 @@ export default function PoliticaPrivacidad() {
           <h2 className="text-xl">Cookies y tecnologías similares</h2>
           <h4>
             Utilizamos{" "}
-            <Link href={"/Legal/Cookies/"} className="underline text-blue-600">
+            <Link href={"/Legal/PoliticaCookies/"} className="underline text-blue-600">
               cookies
             </Link>{" "}
             para mejorar su experiencia en nuestro sitio web.
@@ -224,7 +224,7 @@ export default function PoliticaPrivacidad() {
             Utilizamos cookies para mejorar tu experiencia en nuestro sitio web.
             Consulta nuestra{" "}
             <Link
-              href={"/Legal/AvisoLegal/"}
+              href={"/Legal/PoliticaCookies/"}
               className="underline text-blue-600"
             >
               Política de Cookies

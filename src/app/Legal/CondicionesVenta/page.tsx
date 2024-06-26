@@ -4,7 +4,7 @@ export default function CondicionesVenta() {
   return (
     <main className="flex flex-col items-center p-4 gap-4">
       <h1 className="text-2xl md:text-3xl my-2">Condiciones de venta</h1>
-      <aside className="w-full flex flex-col gap-2">
+      <aside className="max-w-7xl w-full flex flex-col gap-2">
         <h1 className="text-xl">Introducción</h1>
         <p>
           Bienvenido a Sacoba. Estas Condiciones de Venta describen los términos

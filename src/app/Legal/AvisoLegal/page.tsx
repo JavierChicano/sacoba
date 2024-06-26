@@ -6,7 +6,7 @@ export default function AvisoLegal() {
       <h1 className="text-2xl md:text-3xl my-2">
         Términos y Condiciones de Uso
       </h1>
-      <aside className="w-full flex flex-col gap-2">
+      <aside className="max-w-7xl w-full flex flex-col gap-2">
         <h1 className="text-xl">Definiciones</h1>
         <p>Usuario: Persona que accede y utiliza el sitio web de Sacoba.</p>
         <p>
@@ -192,7 +192,7 @@ export default function AvisoLegal() {
           <h4>
             Utilizamos cookies para mejorar tu experiencia en nuestro sitio web.
             Consulta nuestra{" "}
-            <Link href={"/Legal/AvisoLegal/"} className="underline text-blue-600">
+            <Link href={"/Legal/PoliticaCookies/"} className="underline text-blue-600">
               Política de Cookies
             </Link>{" "}
             para más detalles sobre su uso y cómo gestionarlas.
