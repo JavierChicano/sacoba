@@ -14,7 +14,6 @@ export default function MostrarPedido({ pedido }: { pedido: TipoPedido }) {
   const handleClick = () => {
     //Mostrar ventana modal
   };
-  console.log(productos)
   return (
     <article className="border-y border-colorBase py-4 flex flex-col gap-4">
       <aside className="grid grid-cols-2 md:flex md:justify-around items-center">

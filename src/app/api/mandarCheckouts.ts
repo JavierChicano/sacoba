@@ -19,7 +19,7 @@ export async function checkoutProductoDomicilio({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(productos),
+        body: JSON.stringify(datos),
       }
     );
     onLoad();

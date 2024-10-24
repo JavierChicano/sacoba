@@ -182,16 +182,16 @@ export async function registrarPedido({ datos }: { datos: PedidoParams }) {
   try {
     let productos;
     const ids = JSON.parse(datos.idProductos);
-    
+
     //Comprobar si los productos estan guardados en el carrito o no
     if (datos.tipoCompra === "Carrito") {
       const consulta = await selectCarritoParaPedido(ids, datos.tipoCliente);
       productos = consulta.carrito;
     } else {
-      productos = [{"producto": datos.idProductos}];
+      productos = [{ producto: datos.idProductos }];
     }
 
-    await db.insert(pedidos).values({
+    const insert = await db.insert(pedidos).values({
       cliente: datos.cliente,
       fecha: datos.fecha,
       productos: JSON.stringify(productos),
@@ -205,10 +205,10 @@ export async function registrarPedido({ datos }: { datos: PedidoParams }) {
       await deleteCarritoComprado(ids, datos.tipoCliente);
     }
 
-    return true;
+    return { success: true, idPedido: insert.lastInsertRowid, productos: productos };
   } catch (error) {
     // Si ocurre algún error, devolvemos false
     console.log("Error en la insercion de un pedido", error);
-    return false;
+    return {success: false};
   }
 }
