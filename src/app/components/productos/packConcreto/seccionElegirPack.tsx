@@ -291,7 +291,7 @@ export default function ElegirPack({
                 <h1 className="text-3xl">Total: {precioFinal()}€</h1>
                 <section className="flex gap-4 w-full lg:w-auto text-xl lg:text-base">
                   <div
-                    className="bg-fondoTerciario border-[1px] border-colorBase p-2 lg:w-32 w-1/2 flex justify-center hover:bg-colorBase cursor-pointer"
+                    className="bg-fondoTerciario border-[1px] border-colorBase p-2 lg:w-32 w-1/2 flex justify-center hover:bg-colorBase cursor-pointer text-nowrap"
                     onClick={() => {
                       setGuardarCarro(true);
                     }}

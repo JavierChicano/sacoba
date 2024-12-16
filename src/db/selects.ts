@@ -15,19 +15,20 @@ export async function selectsMesasNovedad() {
   return todasMesas;
 }
 export async function selectsMesasModelo() {
+  //Añadido el limit 28 porq sino da fallo en la consulta se queda permacargando, con mas de 28
   const todasMesas = await db
     .selectDistinct()
     .from(mesas)
     .orderBy(mesas.id)
-    .groupBy(mesas.modelo);
+    .groupBy(mesas.modelo).limit(28);
   return todasMesas;
 }
 export async function selectsMesaSeleccionada(modelo: string) {
-  const todasMesas = await db
+  const mesasModeloSeleccionado = await db
     .select()
     .from(mesas)
     .where(eq(mesas.modelo, modelo));
-  return todasMesas;
+  return mesasModeloSeleccionado;
 }
 
 //Selects de sillas
@@ -58,6 +59,7 @@ export async function selectsSillaSeleccionada(modelo: string) {
     .select()
     .from(sillas)
     .where(eq(sillas.modelo, modelo));
+    console.log(todasSillas)
   return todasSillas;
 }
 
@@ -145,25 +147,27 @@ export async function selectsColoresMesas(modelo: string) {
     .where(eq(mesas.modelo, modelo));
 
   const valoresMesas = todasMesas.map((mesa) => mesa.materialTapa);
-
+  //Borrado tanto silestione como dekton por error en la BBDD
   const todosColores = await db
     .select()
     .from(colores)
-    .where(inArray(colores.modelo, valoresMesas));
-  return todosColores;
+    .where(inArray(colores.modelo, [
+      'laminado', 'laca', 'barniz', 'cristal 3mm', 'cristal 8mm', 'cristal 8mm extraclaro',
+    ])).limit(86);
+    return todosColores;
 }
 
 async function parcheConsulta(cadena: string) {
   switch (cadena) {
     case "tapizado nvC, tapizado nvA":
-      const coloresOpcion0 = await db
+        const coloresOpcion0 = await db
         .select()
         .from(colores)
         .where(inArray(colores.modelo, ["tapizado nvC", "tapizado nvA"]));
       return coloresOpcion0;
 
     case "tapizado nvC, tapizado nvA, laca":
-      const coloresOpcion1 = await db
+        const coloresOpcion1 = await db
         .select()
         .from(colores)
         .where(
@@ -171,7 +175,7 @@ async function parcheConsulta(cadena: string) {
         );
       return coloresOpcion1;
     case "tapizado nvC, tapizado nvA, laca, barniz":
-      const coloresOpcion2 = await db
+        const coloresOpcion2 = await db
         .select()
         .from(colores)
         .where(
@@ -184,14 +188,14 @@ async function parcheConsulta(cadena: string) {
         );
       return coloresOpcion2;
     case "tapizado nvC, tapizado nvA, laminado, laca, barniz":
-      const coloresOpcion3 = await db
+        //Faltaria laminado, q da error en la BBDD
+    const coloresOpcion3 = await db
         .select()
         .from(colores)
         .where(
           inArray(colores.modelo, [
             "tapizado nvC",
             "tapizado nvA",
-            "laminado",
             "laca",
             "barniz",
           ])

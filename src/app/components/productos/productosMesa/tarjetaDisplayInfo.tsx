@@ -9,6 +9,7 @@ export default function TarjetaDisplayInfo({ datos }: { datos: TipoMesa }) {
   const [hovered, setHovered] = useState(false);
   
   const handleClick = () => {
+    console.log(`/ProductoConcretoMesa/${datos.modelo}`)
     router.push(`/ProductoConcretoMesa/${datos.modelo}`);
   };
 

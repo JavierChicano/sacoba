@@ -6,7 +6,6 @@ import RutaPC from "./rutaPC";
 import SeccionPersonalizarMesa from "./seccionPersoMesa";
 import { useMesaFinal } from "../../../../../states/statesProductoFinal";
 import { useEffect, useState } from "react";
-import { boolean } from "drizzle-orm/mysql-core";
 
 export default function CompClienteMesa({
   mesaSeleccionada,
