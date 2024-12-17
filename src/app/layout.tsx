@@ -11,8 +11,8 @@ import CookieConsentimiento from "./components/cookieConsentimiento";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Muebles sacoba",
-  description: "Pagina web de venta al público de mesas, sillas y bancos de cocina",
+  title: "Muebles Sacoba",
+  description: "Página web de venta al público de mesas, sillas y bancos de cocina",
 };
 
 export default function RootLayout({
@@ -20,14 +20,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
+      <head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-D7F98HXQYR"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag() { dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', 'G-D7F98HXQYR');
+            `,
+          }}
+        />
+      </head>
       <body className={cn("bg-fondo min-h-lvh w-full", inter.className)}>
         <ClientComponent>
           <Header />
           {children}
-          <CookieConsentimiento/>
+          <CookieConsentimiento />
           <Footer />
         </ClientComponent>
       </body>
