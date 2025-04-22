@@ -16,9 +16,6 @@ export default async function ProductoMesa() {
   const promiseMesasModelos = selectsMesasModelo();
 
   const [mesasNovedad, mesasTendencias, mesasModelos] = await Promise.all([promiseMesasNovedad, promiseMesasTendencias, promiseMesasModelos])
-  console.log(mesasNovedad)
-  console.log(mesasTendencias)
-  console.log(mesasModelos)
   return (
     <main className="flex flex-col items-center">
       <div className="w-screen lg:max-w-7xl flex flex-col items-center p-4 lg:p-0">

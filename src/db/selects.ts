@@ -59,7 +59,6 @@ export async function selectsSillaSeleccionada(modelo: string) {
     .select()
     .from(sillas)
     .where(eq(sillas.modelo, modelo));
-    console.log(todasSillas)
   return todasSillas;
 }
 

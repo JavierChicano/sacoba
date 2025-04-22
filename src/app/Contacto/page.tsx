@@ -24,7 +24,7 @@ export default function Contacto() {
           </div>
         </div>
       </div>
-      <InfoExtra />
+      {/* <InfoExtra /> */}
     </main>
   );
 }
