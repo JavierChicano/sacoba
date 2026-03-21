@@ -1,9 +1,8 @@
 import { jwtVerify } from "jose";
-import { cookies } from "next/headers";
 import { NextResponse, type NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest) {
-  const clientToken = cookies().get("client-Token");
+export async function proxy(request: NextRequest) {
+  const clientToken = request.cookies.get("client-Token");
   //Si el usuario se dirige a "Perfil"
   if (request.nextUrl.pathname.includes("/Perfil")) {
     if (clientToken === undefined) {

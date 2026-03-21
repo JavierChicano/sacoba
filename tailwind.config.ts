@@ -58,7 +58,9 @@ export default config;
 function addVariablesForColors({ addBase, theme }: any) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+    Object.entries(allColors)
+      .filter(([, val]) => typeof val === "string")
+      .map(([key, val]) => [`--${key}`, val])
   );
 
   addBase({
